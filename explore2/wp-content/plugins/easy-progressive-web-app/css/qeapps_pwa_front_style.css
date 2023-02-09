@@ -1,0 +1,126 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.easy_pwa_cta_banner_section{
+    width: 100%;
+    margin: 0 auto;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #ccc;
+    padding: 10px 10px;
+    z-index: 99999;
+}
+.easy_pwa_cta_banner_section .easy_pwa_cta_banner_innerbox{
+    display: flex;
+}
+.easy_pwa_cta_banner_section .easy_pwa_cta_banner_innerbox .cta_banner_button{
+    background: #ccc !important;
+    color: #28303d !important;
+    text-transform: uppercase;
+}
+.easy_pwa_cta_banner_section .easy_pwa_cta_banner_innerbox  span.cta_banner_close{
+    background: #464442;
+    border-radius: 10px !important;
+    padding: 3px 5px;
+    font-size: 10px;
+    font-weight: bold;
+    color: #fff;
+}
+.easy_pwa_cta_banner_section .easy_pwa_cta_banner_innerbox .cta_banner_center{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 10px;
+}
+.easy_pwa_cta_banner_section .easy_pwa_cta_banner_innerbox .cta_banner_icon{
+    width: 50px;
+}
+.easy_pwa_cta_banner_section .easy_pwa_cta_banner_innerbox .cta_banner_button{
+    padding: 2px;
+    font-size: 14px;
+}
+.easy_pwa_cta_banner_popup_section{
+    margin: 0 auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,.8);
+    padding: 20px;
+    z-index: 99999; 
+    color: #fff; 
+    height: 100vh;
+    display: flex;
+}
+.easy_pwa_cta_banner_popup_section .popup_button_close{
+    position: relative;
+    top: -10px;
+    right: -10px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 12.5px;
+    background: #464442;
+    width: 20px;
+    border-radius: 10px;
+    text-align: center;
+    height: 20px;
+    float: right;
+}
+.easy_pwa_cta_banner_popup_section .in_popup_main_div{
+    margin: auto;
+    width: 100%;
+    background: #fff;
+    text-align: center;
+    padding: 15px;
+    border-radius: 16px; 
+    border: 1px solid rgba(0,0,0,.2); 
+    box-shadow: 0 3px 9px rgb(0 0 0 / 50%);
+    font-size:18px;
+    color:#63584C;
+    text-align:center;
+}
+.easy_pwa_cta_banner_popup_section .popup_main_app_logo{
+    margin: 10px;
+    text-align: center;
+}
+.easy_pwa_cta_banner_popup_section .popup_main_app_logo img{
+    max-width: 115px;
+}
+.easy_pwa_cta_banner_popup_section .installmessage_android p{
+    font-size:16px;
+    color:#63584C;
+    text-align:center;
+}
+.easy_pwa_cta_banner_popup_section .installmessage_android .install_event_button{
+    background-color:#28303d !important;
+    color:#FFFFFF !important;
+    font-size:16px;
+    text-align:center;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.easy_pwa_cta_banner_popup_section .installmessage_ios p{
+    font-size:16px;
+    color:#63584C;
+    text-align:center;
+}
+.installmessage_android, .installmessage_ios{
+    text-align: center;display: none;
+}
+
+@media all and (display-mode: standalone) {
+    
+}
+
+@media only screen and (min-width:992px) and (max-width:1199px) {
+}
+@media only screen and (min-width:768px) and (max-width:991px) {
+}
+@media only screen and (max-width:991px) {
+}
