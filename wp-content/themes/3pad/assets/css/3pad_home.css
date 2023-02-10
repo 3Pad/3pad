@@ -1,0 +1,437 @@
+
+ 
+ body{
+	background-position: center !important;
+    background-size: cover !important;
+	}
+  /* create a container for the background image */
+/* create a container for the background image */
+
+.bg-image {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #123;
+}
+
+.section-login{
+  position: fixed;
+}
+
+.blue {
+  position: absolute;
+  top: -5%;
+  right: -5%;
+  background-image: linear-gradient(
+    to right top,
+    #051937,
+    #004d7a,
+    #008793,
+    #00bf72,
+    #a8eb12
+  );
+  width: 30vw;
+  height: 10vw;
+  border-radius: 50%;
+  animation: spin 10s linear infinite;
+  z-index: 1;
+}
+
+.green {
+  position: absolute;
+  top: 50%;
+  right: -20%;
+  background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
+  width: 30vw;
+  height: 40vw;
+  border-radius: 100px;
+  animation: spinReverse 20s linear infinite;
+  z-index: 10;
+}
+
+.red {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+  width: 20vh;
+  height: 65vw;
+  border-radius: 100px;
+  animation: spin 35s linear infinite;
+  z-index: 5;
+}
+
+.red2 {
+  position: absolute;
+  bottom: 0%;
+  left: 30%;
+  background-image: linear-gradient(
+    to right,
+    #b8cbb8 0%,
+    #b8cbb8 0%,
+    #b465da 0%,
+    #cf6cc9 33%,
+    #ee609c 66%,
+    #ee609c 100%
+  );
+  width: 100vh;
+  height: 35vh;
+  border-radius: 100px;
+  animation: spin 20s linear infinite;
+  z-index: 5;
+}
+
+.yellow {
+  position: absolute;
+  top: 50%;
+  left: -10%;
+  background-image: linear-gradient(to top, #96fbc4 0%, blue 100%);
+  width: 60vh;
+  height: 40vh;
+  border-radius: 100px;
+  animation: spinReverse 45s linear infinite;
+  z-index: 10;
+}
+
+.blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
+}
+
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinReverse {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.checkout-button-container {
+  box-shadow: 0 0 11px 1px rgb(0 0 0 / 74%);
+}
+
+
+#lockpay{
+    flex-wrap: wrap;
+    width: 90%;
+}
+
+  .connect{
+    display: none;
+  }
+  .w-button{
+    background: black;
+    text-align: center;
+  }
+ 
+  .checkout-button-container{
+    line-height: normal;
+    padding: 45px 20px !important;
+  }
+  #statuslink{
+    display: contents;
+  }
+  #logo{
+    background-image: url("./../images/3pad_logo.png") !important;
+    width: 160px;
+    height: 100px;
+    display: block;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .container-login{
+  }
+
+
+  .centered-heading {
+    font-size: 2em;
+    line-height: normal;
+  }
+  .logoutbefore{
+    text-align: center;
+    width: 100%;
+    padding: 20px 0px 0px 0px;
+  }
+  .wp-die-message{
+    width: 92%;
+    text-align: center;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #fff;
+    position: absolute;
+    display: block;
+    top: 15px !important;
+    background: #000;
+    box-shadow: 0px 1px 21px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 10px;
+    line-height: 20px;
+  }
+  #error-page {
+  margin: 0px !important;
+  max-width: 100%;
+  border: none;
+  padding: 0;
+}
+
+#error-page p{
+  margin: 0 !important;
+}
+
+h1{
+  border-bottom: none !important;
+}
+#site-title-error{
+  margin-top: 0px;
+text-align: center;
+background: red;
+border-radius: 20px;
+display: block;
+position: static;
+}
+
+#header-user{
+  font-size: max(0.3em, 12px);
+  max-width: 230px;
+  line-break: anywhere;
+  text-align: center; 
+  overflow: scroll; 
+  margin-top: 0vw; 
+  margin-bottom: 0vw;
+   padding: 0; 
+   text-shadow: none;
+   line-height: initial;
+}
+
+    #create-site-form {
+      display: flex;
+      align-items: center;
+      height: auto !important;
+      background: none !important;
+      align-content: stretch;
+      flex-wrap: wrap;
+      flex-direction: row;
+    }
+    #create-site-form input[type="text"] {
+        width: 200px;
+        padding: 10px;
+        border-radius: 7px;
+        margin-right: 10px;
+        text-align: center;
+    }
+    #create-site-form input[type="submit"] {
+        padding: 10px 20px;
+        background-color: #000;
+        color: #fff;
+        text-transform: capitalize;
+        font-weight: 400;
+        border: 0;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+  #field-box {
+    font-family: system-ui;
+    margin-bottom: 10px;
+    margin-top: -12px;
+    width: 60%;
+  }
+
+  #field-box input {
+    color: #000;
+    font-size: 12px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+  }
+  .acc_status{
+    margin: -45px 0px 60px 0px;
+    width: 100%;
+  }
+  .acc_status_text{
+    background: #fff;
+    height: 18px;
+    display: inline;
+    width: 208px;
+    color: #000;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  #secure-url{
+    height: 23px;
+    background: black;
+    position: fixed;
+    width: 100%;
+    color: white;
+    text-align: center;
+    font-family: system-ui;
+    box-shadow: -1px -1px 20px 0px black;
+    font-size: 11px;
+    font-weight: 300;
+  }
+
+  .status{
+    bottom: 1px; 
+    position: absolute;
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  #subheader-status{
+    padding-left: 3px;
+    font-size: 12px;
+    color: #f0f8ffdb;
+    margin: 0;
+    text-shadow: none;
+  }
+
+        @keyframes blink {
+          from {
+            background-color: red;
+            box-shadow: 1px 1px 9px 3px rgb(197, 50, 50);
+          }
+
+          to {
+            background-color: transparent;
+          }
+        }
+
+/* Apply the animation to the indicator light element */
+.light {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation-name: blink;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+#canvas {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+ 
+
+  @media only screen and (max-width: 315px) {
+    #create-site-button{
+      margin-top: 15px;
+    }
+}
+
+@media only screen and (max-height: 670px) and (max-width: 670px)  {
+  #lockpay{
+    overflow: scroll;
+      max-height: 250px;
+  }
+}
+
+@media screen and (max-width: 767px){
+.columns {
+    margin-bottom: 20px;
+}
+}
+
+/* Help */
+.help-button-wrapper {
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+  text-align: right;
+  z-index: 9;
+}
+.help-button-wrapper.expanded{
+  z-index: 9999;
+}
+.help-button {
+  height: 40px;
+  width: 90px;
+  font-size: 14px;
+  border-radius: 10px;
+  border: 0 none;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 2px 11px 5px #ffffff30;
+  transform: scale(1);
+  transition: all 200ms ease;
+}
+.help-button:hover,
+.help-button:focus,
+.help-button:active {
+  box-shadow: 0 2px 11px 5px #ffffff30;
+  outline: 0;
+}
+.help-button span {
+  display: block;
+  font-size: 2em;
+  transform: scale(1);
+  transition: transform 100ms ease;
+}
+.help-button:hover span,
+.expanded .help-button span,
+.expanded .help-button span {
+  transform: scale(1.25);
+}
+.expanded .help-button {
+  color: white;
+background: #000000;
+z-index: 999;
+}
+.expanded .help-button::before{
+  content: "❌";
+}
+.help-list {
+  overflow:scroll;
+  list-style: none;
+  margin: 0;
+  transition: all 200ms ease;
+  transform: translate(0, 90px) scale(0.5);
+  transform-origin: bottom center;
+  opacity: 0;
+  height: 0;
+}
+.expanded .help-list {
+  height: 400px;
+  transform: translate(0px, 20px) scale(1);
+  opacity: 1;
+  padding: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: #00000091;
+box-shadow: -1px 1px 10px black;
+}
+.help-list li {
+  margin-bottom: 1em;
+}
+.help-list a {
+  color: #212121;
+}
