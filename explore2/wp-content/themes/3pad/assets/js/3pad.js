@@ -407,3 +407,8 @@ if ('serviceWorker' in navigator) {
     });
   });
 }
+
+//Hide app install button 
+if (window.matchMedia('(display-mode: standalone)').matches) {
+  document.getElementById("app_button").style.display = "none";
+}

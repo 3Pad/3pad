@@ -1,9 +1,3 @@
-'use strict';
-const cacheName = '3pad.1.0';
-const startPage = '/';
-const offlinePage = '';
-const filesToCache = [];
-const neverCacheUrls = '/';
 // Install
 self.addEventListener('install', function(e) {
 console.log('Service worker installation calling!');
