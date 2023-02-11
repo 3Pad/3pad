@@ -1616,202 +1616,18 @@ form {
   }
 
     /*********** Embeds *********/
-    .embed1-button-wrapper {
-      position: fixed;
-      bottom: 5em;
-      right: 1em;
-      text-align: right;
-      z-index: 99;
-    }
-    .embed1-wrapper.expanded{
-      z-index: 9999;
-    }
-    .embed1-list {
-      overflow:scroll;
-      list-style: none;
-      margin: 0;
-      transition: all 200ms ease;
-      transform: translate(0, 90px) scale(0.5);
-      transform-origin: top center;
-      opacity: 0;
-      height: 0;
-    }
-    .expanded .embed1-list {
-      height: 415px;
+
+    /**embed All CSS */
+    .expanded .embed1-list, .expanded .embed2-list, .expanded .embed3-list, .expanded .embed4-list, .expanded .embed5-list, .expanded .embed6-list, .expanded .embed7-list, .expanded .embed8-list, .expanded .embed9-list, .expanded .embed10-list{
+      height: 77vh;
+      max-height: 425px;
       transform: translate(0px, 20px) scale(1);
       opacity: 1;
       border-radius: 10px;
       box-shadow: 0px 0px 33px #00000080;
     }
-    .embed1-list li {
-      margin-bottom: 0em;
-    }
-    .embed1-list a {
-      color: #212121;
-    }
 
-     /*********** Embed - 2 *********/
-     .embed2-button-wrapper {
-      position: fixed;
-      bottom: 5em;
-      right: 1em;
-      text-align: right;
-      z-index: 99;
-    }
-    .embed2-wrapper.expanded{
-      z-index: 9999;
-    }
-   
-   
-    .embed2-list {
-      overflow:scroll;
-      list-style: none;
-      margin: 0;
-      transition: all 200ms ease;
-      transform: translate(0, 90px) scale(0.5);
-      transform-origin: top center;
-      opacity: 0;
-      height: 0;
-    }
-    .expanded .embed2-list {
-      height: 415px;
-      transform: translate(0px, 20px) scale(1);
-      opacity: 1;
-      border-radius: 10px;
-      box-shadow: 0px 0px 33px #00000080;
-    }
-    .embed2-list li {
-      margin-bottom: 0em;
-    }
-    .embed2-list a {
-      color: #212121;
-    }
-
-    /*********** Embed - 3 *********/
-    .embed3-button-wrapper {
-      position: fixed;
-      bottom: 5em;
-      right: 1em;
-      text-align: right;
-      z-index: 99;
-    }
-    .embed3-wrapper.expanded{
-      z-index: 9999;
-    }
-   
-   
-    .embed3-list {
-      overflow:scroll;
-      list-style: none;
-      margin: 0;
-      transition: all 200ms ease;
-      transform: translate(0, 90px) scale(0.5);
-      transform-origin: top center;
-      opacity: 0;
-      height: 0;
-    }
-    .expanded .embed3-list {
-      height: 415px;
-      transform: translate(0px, 20px) scale(1);
-      opacity: 1;
-      border-radius: 10px;
-      box-shadow: 0px 0px 33px #00000080;
-    }
-    .embed3-list li {
-      margin-bottom: 0em;
-    }
-    .embed3-list a {
-      color: #212121;
-    }
-
-    /*********** Embed - 4 *********/
-    .embed4-button-wrapper {
-      position: fixed;
-      bottom: 5em;
-      right: 1em;
-      text-align: right;
-      z-index: 99;
-    }
-    .embed4-wrapper.expanded{
-      z-index: 9999;
-    }
-   
-   
-    .embed4-list {
-      overflow:scroll;
-      list-style: none;
-      margin: 0;
-      transition: all 200ms ease;
-      transform: translate(0, 90px) scale(0.5);
-      transform-origin: left center;
-      opacity: 0;
-      height: 0;
-    }
-    .expanded .embed4-list {
-      height: 415px;
-      transform: translate(0px, 20px) scale(1);
-      opacity: 1;
-      border-radius: 10px;
-      box-shadow: 0px 0px 33px #00000080;
-    }
-    .embed4-list li {
-      margin-bottom: 0em;
-    }
-    .embed4-list a {
-      color: #212121;
-    }
-
-    /*********** Embed - 5 *********/
-    .embed5-button-wrapper {
-      position: fixed;
-      bottom: 5em;
-      right: 1em;
-      text-align: right;
-      z-index: 99;
-    }
-    .embed5-wrapper.expanded{
-      z-index: 9999;
-    }
-   
-   
-    .embed5-list {
-      overflow:scroll;
-      list-style: none;
-      margin: 0;
-      transition: all 200ms ease;
-      transform: translate(0, 90px) scale(0.5);
-      transform-origin: right center;
-      opacity: 0;
-      height: 0;
-    }
-    .expanded .embed5-list {
-      height: 415px;
-      transform: translate(0px, 20px) scale(1);
-      opacity: 1;
-      border-radius: 10px;
-      box-shadow: 0px 0px 33px #00000080;
-    }
-    .embed5-list li {
-      margin-bottom: 0em;
-    }
-    .embed5-list a {
-      color: #212121;
-    }
-
-    /*********** Embed - 6 *********/
-    .embed6-button-wrapper {
-      position: fixed;
-      bottom: 5em;
-      right: 1em;
-      text-align: right;
-      z-index: 99;
-    }
-    .embed6-wrapper.expanded{
-      z-index: 9999;
-    }
-   
-   
-    .embed6-list {
+    .embed1-list, .embed2-list, .embed3-list, .embed4-list, .embed5-list, .embed6-list, .embed7-list, .embed8-list, .embed9-list, .embed10-list {
       overflow:scroll;
       list-style: none;
       margin: 0;
@@ -1821,167 +1637,26 @@ form {
       opacity: 0;
       height: 0;
     }
-    .expanded .embed6-list {
-      height: 415px;
-      transform: translate(0px, 20px) scale(1);
-      opacity: 1;
-      border-radius: 10px;
-      box-shadow: 0px 0px 33px #00000080;
-    }
-    .embed6-list li {
+
+    .embed1-list li, .embed2-list li, .embed3-list li, .embed4-list li, .embed5-list li, .embed6-list li, .embed7-list li, .embed8-list li, .embed9-list li, .embed10-list li{
       margin-bottom: 0em;
     }
-    .embed6-list a {
+
+    .embed1-list a, .embed2-list a, .embed3-list a, .embed4-list a, .embed5-list a, .embed6-list a, .embed7-list a, .embed8-list a, .embed9-list a, .embed10-list a{
       color: #212121;
     }
 
-    /*********** Embed - 7 *********/
-    .embed7-button-wrapper {
-      position: fixed;
-      bottom: 5em;
-      right: 1em;
-      text-align: right;
-      z-index: 999;
-    }
-    .embed7-wrapper.expanded{
-      z-index: 9999;
-    }
-   
-   
-    .embed7-list {
-      overflow:scroll;
-      list-style: none;
-      margin: 0;
-      transition: all 200ms ease;
-      transform: translate(0, 90px) scale(0.5);
-      transform-origin: bottom center;
-      opacity: 0;
-      height: 0;
-    }
-    .expanded .embed7-list {
-      height: 415px;
-      transform: translate(0px, 20px) scale(1);
-      opacity: 1;
-      border-radius: 10px;
-      box-shadow: 0px 0px 33px #00000080;
-    }
-    .embed7-list li {
-      margin-bottom: 0em;
-    }
-    .embed7-list a {
-      color: #212121;
-    }
-
-    /*********** Embed - 8 *********/
-    .embed8-button-wrapper {
-      position: fixed;
-      bottom: 5em;
-      right: 1em;
-      text-align: right;
-      z-index: 999;
-    }
-    .embed8-wrapper.expanded{
-      z-index: 9999;
-    }
-   
-   
-    .embed8-list {
-      overflow:scroll;
-      list-style: none;
-      margin: 0;
-      transition: all 200ms ease;
-      transform: translate(0, 90px) scale(0.5);
-      transform-origin: bottom center;
-      opacity: 0;
-      height: 0;
-    }
-    .expanded .embed8-list {
-      height: 415px;
-      transform: translate(0px, 20px) scale(1);
-      opacity: 1;
-      border-radius: 10px;
-      box-shadow: 0px 0px 33px #00000080;
-    }
-    .embed8-list li {
-      margin-bottom: 0em;
-    }
-    .embed8-list a {
-      color: #212121;
-    }
-
-    /*********** Embed - 9 *********/
-    .embed9-button-wrapper {
-      position: fixed;
-      bottom: 5em;
-      right: 1em;
-      text-align: right;
-      z-index: 999;
-    }
-    .embed9-wrapper.expanded{
-      z-index: 9999;
-    }
-   
-   
-    .embed9-list {
-      overflow:scroll;
-      list-style: none;
-      margin: 0;
-      transition: all 200ms ease;
-      transform: translate(0, 90px) scale(0.5);
-      transform-origin: bottom center;
-      opacity: 0;
-      height: 0;
-    }
-    .expanded .embed9-list {
-      height: 415px;
-      transform: translate(0px, 20px) scale(1);
-      opacity: 1;
-      border-radius: 10px;
-      box-shadow: 0px 0px 33px #00000080;
-    }
-    .embed9-list li {
-      margin-bottom: 0em;
-    }
-    .embed9-list a {
-      color: #212121;
-    }
-
-    /*********** Embed - 10 *********/
-    .embed10-button-wrapper {
+    .embed1-button-wrapper, .embed2-button-wrapper, .embed3-button-wrapper, .embed4-button-wrapper, .embed5-button-wrapper, .embed6-button-wrapper, .embed7-button-wrapper, .embed8-button-wrapper, .embed9-button-wrapper, .embed10-button-wrapper{
       position: fixed;
       bottom: 5em;
       right: 1em;
       text-align: right;
       z-index: 99;
     }
-    .embed10-wrapper.expanded{
+    .embed1-wrapper.expanded, .embed2-wrapper.expanded, .embed3-wrapper.expanded, .embed4-wrapper.expanded, .embed5-wrapper.expanded, .embed6-wrapper.expanded, .embed7-wrapper.expanded, .embed8-wrapper.expanded, .embed9-wrapper.expanded, .embed10-wrapper.expanded{
       z-index: 9999;
     }
-   
-   
-    .embed10-list {
-      overflow:scroll;
-      list-style: none;
-      margin: 0;
-      transition: all 200ms ease;
-      transform: translate(0, 90px) scale(0.5);
-      transform-origin: bottom center;
-      opacity: 0;
-      height: 0;
-    }
-    .expanded .embed10-list {
-      height: 415px;
-      transform: translate(0px, 20px) scale(1);
-      opacity: 1;
-      border-radius: 10px;
-      box-shadow: 0px 0px 33px #00000080;
-    }
-    .embed10-list li {
-      margin-bottom: 0em;
-    }
-    .embed10-list a {
-      color: #212121;
-    }
+
 
     /* embed loading */
     .embedloading{
@@ -2007,3 +1682,5 @@ form {
       border: 0;
       overflow: scroll;
     }
+
+

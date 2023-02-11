@@ -396,3 +396,19 @@ jQuery(document).ready(function($){
 if ( window.history.replaceState ) {
   window.history.replaceState( null, null, window.location.href );
 }
+
+////Register Service Worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('./wp-content/themes/3pad/assets/js/pwa_js.js').then(function(registration) {
+      console.log('Service worker registered successfully:', registration);
+    }, function(error) {
+      console.error('Service worker registration failed:', error);
+    });
+  });
+}
+
+//Hide app install button 
+if (window.matchMedia('(display-mode: standalone)').matches) {
+  document.getElementById("app_button").style.display = "none";
+}
