@@ -19,6 +19,7 @@ The platform allows users to publish their website and store the content on dece
 
 ## Requirements
 To use this repository, you need to have basic knowledge of decentralized networks like IPFS and ICP. You should also be familiar with Git and have a Github account set up.
+
 ## Installation
 
 Clone the repository to your local machine by running the following command in your terminal:
@@ -40,6 +41,8 @@ ICP Canister ID: jqazs-dyaaa-aaaad-qe36q-cai
 
 Current IPFS Hash: QmPMRkofPuGW4J5AjvCnni7YDPJBMtp7WofgumCnMw2r97 (Hashes are subject to change)
 
+Please note that in order to view your website through the URL, you will need to have an IPFS gateway or a DApp browser that supports IPFS. To get started, you can use a public IPFS gateway such as https://gateway.ipfs.io/.
+
 ICP URL: https://jqazs-dyaaa-aaaad-qe36q-cai.ic0.app/<YOURSITENAME>/index.html
 
 ICP URL: https://icp.3pad.xyz/<YOURSITENAME>
@@ -49,15 +52,19 @@ IPFS URL: https://3pad.xyz/<YOURSITENAME>
 IPFS URL: https://ipfs.io/ipfs/bafybeiapb2pqn2vc5ver36cytpvey4pcxgiewdtqf4beqm33lguoriu6qi/<YOURSITENAME>
 (Hashes are subject to change)
 
-Please note that in order to view your website through the URL, you will need to have an IPFS gateway or a DApp browser that supports IPFS. To get started, you can use a public IPFS gateway such as https://gateway.ipfs.io/.
+Fleek IPFS URL: https://ipfs3pad.on.fleek.co/<YOURSITENAME>
+
 ## Contributing
 
 We welcome contributions from the community. If you find any bugs or have any suggestions for improvement, please feel free to create an issue in the repository.
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
 ## Support
 
 For support, please reach out to us on our community forums or email us at contact@3pad.xyz or message in Discord https://discord.com/invite/JbGgj47PrW .
+
+
 ## More to Come
 We are constantly working to improve and expand our decentralized services offering for our users. Our goal is to provide a seamless and decentralized experience for all content creators on our platform. In the future, we plan to integrate more decentralized options and services to provide even more flexibility and control for our users. Stay tuned for more updates and exciting developments from our team.
