@@ -400,7 +400,7 @@ if ( window.history.replaceState ) {
 ////Register Service Worker
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
-    navigator.serviceWorker.register('/wp-content/themes/3pad/assets/js/pwa_js.js').then(function(registration) {
+    navigator.serviceWorker.register('./wp-content/themes/3pad/assets/js/pwa_js.js').then(function(registration) {
       console.log('Service worker registered successfully:', registration);
     }, function(error) {
       console.error('Service worker registration failed:', error);
