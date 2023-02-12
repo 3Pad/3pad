@@ -467,7 +467,7 @@
         color: #ffffff;
         font-family: system-ui;
         font-weight: 900;
-        font-size: 10vw;
+        font-size: calc(30px + 6 * ((100vw - 300px) / 80));
         text-shadow: 0px 0px 14px rgba(0, 0, 0, 0.15);
     }
     .elementor-4337 .elementor-element.elementor-element-2ca4c609 {
@@ -803,6 +803,13 @@
             font-size: 29px;
         }
     }
+    @media screen and (orientation:landscape) { 
+        .elementor-4337 .elementor-element.elementor-element-df6b6ef .elementor-heading-title, .elementor-4337 .elementor-element.elementor-element-6fd90596 .elementor-heading-title, .elementor-4337 .elementor-element.elementor-element-83b32e .elementor-heading-title{
+            font-size: 5vmin !important;
+        }
+     }
+     
+    
     .elementor-4337 .elementor-element.elementor-element-85f81df {
         position: fixed;
         bottom: 35px;

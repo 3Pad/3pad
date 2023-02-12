@@ -5,12 +5,12 @@
     <meta content="width=device-width,initial-scale=1,maximum-scale=5" name="viewport">
     <meta content="ie=edge" http-equiv="x-ua-compatible">
     <meta content="3Pad | Your content. Redifined." name="description">
-    <link href="https://ipfs.io/ipfs/QmeJ13XnVj1pdEnCGzRQEKLsmPUhzTCd8ryArBwmRDK2CB" rel="icon" type="image/x-icon">
+    <link href="https://cloudflare-ipfs.com/ipfs/QmeJ13XnVj1pdEnCGzRQEKLsmPUhzTCd8ryArBwmRDK2CB" rel="icon" type="image/x-icon">
     <meta content="Beta | LaunchPad | 3Pad" property="og:title">
     <meta content="3Pad" property="og:site_name">
     <meta content="3Pad | Your content. Redifined." property="og:description">
-    <meta content="https://ipfs.io/ipfs/QmeJ13XnVj1pdEnCGzRQEKLsmPUhzTCd8ryArBwmRDK2CB" property="og:image">
-    <meta content="https://ipfs.io/ipfs/QmeJ13XnVj1pdEnCGzRQEKLsmPUhzTCd8ryArBwmRDK2CB" property="twitter:image">
+    <meta content="https://cloudflare-ipfs.com/ipfs/QmeJ13XnVj1pdEnCGzRQEKLsmPUhzTCd8ryArBwmRDK2CB" property="og:image">
+    <meta content="https://cloudflare-ipfs.com/ipfs/QmeJ13XnVj1pdEnCGzRQEKLsmPUhzTCd8ryArBwmRDK2CB" property="twitter:image">
     <meta content="Beta | LaunchPad | 3Pad" name="twitter:title">
     <meta content="3Pad | Your content. Redifined." name="twitter:description">
     <meta content="summary_large_image" property="twitter:card">
@@ -26,6 +26,12 @@
     </noscript>
     <!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "5092b35b470549b1af6e595e86ebcd1f"}'></script><!-- End Cloudflare Web Analytics -->
     <script async defer data-website-id="01986122-c6c5-4d5c-8e61-9282235ced87" src="https://analytics.3pad.xyz/umami.js"></script>
+    <!-- IPFS Auto Redirect -->
+    <script>
+        var xIpfsPath=new XMLHttpRequest();xIpfsPath.open("GET",document.location,!1);xIpfsPath.send();var ipfsPath=xIpfsPath.getResponseHeader("X-Ipfs-Path");var ipfsUrl="https://cf-ipfs.com/"+ipfsPath;var xCheckStatus=new XMLHttpRequest();xCheckStatus.open("HEAD",ipfsUrl,!1);xCheckStatus.send();if(xCheckStatus.status===200){window.location=ipfsUrl}else{var gateways=["https://cloudflare-ipfs.com/","https://ipfs.joaoleitao.org/","https://4everland.io/","https://gateway.ipfs.io/","https://ipfs.io/ ","https://ipfs.yt/","https://gateway.pinata.cloud/"];var gatewayFound=!1;for(var i=0;i<gateways.length;i++){var gatewayUrl=gateways[i]+ipfsPath;xCheckStatus.open("HEAD",gatewayUrl,!1);xCheckStatus.send();if(xCheckStatus.status===200){window.location=gatewayUrl;gatewayFound=!0;break}else if(xCheckStatus.status===429){console.error("IPFS gateway "+gateways[i]+" returned a 429 status code")}else{console.error("IPFS gateway "+gateways[i]+" returned a "+xCheckStatus.status+" status code")}}
+if(!gatewayFound){console.error("No IPFS gateways returned a 200 status code")}}
+    </script>
+    <!-- IPFS Auto Redirect -->
     
 <title>Beta | LaunchPad | 3Pad</title>
 <meta name="robots" content="max-image-preview:large">
@@ -122,7 +128,7 @@
 
 <div class="login-button-container blurred">
 	<p>To View This Content</p>
-	<a target="_self" href="https://app.unlock-protocol.com/checkout?client_id=app.3pad.xyz&#038;redirect_uri=https://app.3pad.xyz/&#038;state=2bc1ccfbfc" class="login-button">Login</a>
+	<a target="_self" href="https://app.unlock-protocol.com/checkout?client_id=app.3pad.xyz&#038;redirect_uri=https://app.3pad.xyz/&#038;state=a9a6075548" class="login-button">Login</a>
 </div>
 
 <style>.login-button-container{
