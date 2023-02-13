@@ -435,3 +435,28 @@ box-shadow: -1px 1px 10px black;
 .help-list a {
   color: #212121;
 }
+
+
+#ipfsPathstyle {
+  overflow: scroll;
+    text-overflow: inherit;
+    white-space: nowrap;
+    border-radius: 6px;
+    padding: 13px;
+    background: #00000075;
+    color: #ffffffb8;
+    margin-top: -4px;
+    width: 80%;
+    box-shadow: 1px -2px 20px 0px #00000075;
+    text-align: center;
+    font-size: 10px;
+}
+
+
+
+#pathdiv{
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
