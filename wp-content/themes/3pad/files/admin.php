@@ -636,4 +636,12 @@ function my_custom_redirect()
 
 add_action('admin_init', 'my_custom_redirect');
 
+///Simply Static Menu
+function change_ss_settings_capability($capability)
+{
+  return 'manage_options';
+}
+
+add_filter('ss_settings_capability', 'change_ss_settings_capability');
+
 /******ADMIN AREA*****/

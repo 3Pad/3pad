@@ -42,6 +42,10 @@ add_filter('ss_get_options', function ($options) {
     if (is_main_site()) {
         $options['github-branch']                 = 'main';
         $options['clear_directory_before_export'] = 'off';
+        $options['local_dir']                     = IPFS_PATH;
+        $options['temp_files_dir']                = TEMP_PATH;
+        $options['destination_url_type']          = 'offline';
+        $options['delivery_method']               = 'local';
     }
 
     if (!is_main_site()) {

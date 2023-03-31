@@ -33,23 +33,32 @@ function create_my_mu_plugin_on_theme_activation()
     $theme_version = $current_theme->get('Version');
     if (!file_exists($mu_plugin_path) || version_compare(get_option('3pad_version'), $theme_version) < 0) {
         $file_paths = array(
-            get_template_directory() . '/files/git-push.php',
-            get_template_directory() . '/files/styling.php',
-            get_template_directory() . '/files/users.php',
-            get_template_directory() . '/files/admin.php',
-            get_template_directory() . '/files/security.php',
-            get_template_directory() . '/files/multisite-settings.php'
+            'git-push.php',
+            'styling.php',
+            'users.php',
+            'admin.php',
+            'security.php',
+            'multisite-settings.php',
         );
 
-        $mu_plugin_content = '<?php' . "\n\n";
-        $included_files    = array();
-        foreach ($file_paths as $file_path) {
+        $mu_plugin_content  = "<?php \n";
+        $mu_plugin_content .= "/**\n";
+        $mu_plugin_content .= " * Plugin Name: 3Pad Must Use Plugin\n";
+        $mu_plugin_content .= " * Description: This is a custom must-use plugin. It updates on changes to 'file_paths = array' in themes function file. \n";
+        $mu_plugin_content .= " */\n\n";
+        $included_files     = array();
+        foreach ($file_paths as $file) {
+            $file_path                  = get_template_directory() . '/files/' . $file;
             $file_version               = md5_file($file_path);
             $included_files[$file_path] = $file_version;
-            $mu_plugin_content         .= 'require_once "' . str_replace(get_template_directory(), '', $file_path) . '";' . "\n";
+            $mu_plugin_content         .= 'require_once get_template_directory() . "/files/' . $file . '";' . "\n";
         }
 
-        $mu_plugin_content .= "\n" . '$included_files = ' . var_export($included_files, true) . ';';
+        $formatted_included_files = array();
+        foreach ($included_files as $file_path => $file_version) {
+            $formatted_included_files[str_replace(get_template_directory(), '', $file_path)] = $file_version;
+        }
+        $mu_plugin_content .= "\n" . '$included_files = ' . var_export($formatted_included_files, true) . ';';
 
         file_put_contents($mu_plugin_path, $mu_plugin_content);
         update_option('3pad_version', $theme_version);
@@ -64,7 +73,7 @@ function create_my_mu_plugin_on_theme_activation()
     }
 }
 
-add_action('after_switch_theme', 'create_my_mu_plugin_on_theme_activation');
+add_action('after_setup_theme', 'create_my_mu_plugin_on_theme_activation');
 
 ///Delete MU plugin On switch
 function delete_my_mu_plugin_on_theme_change()
