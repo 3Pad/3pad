@@ -53,6 +53,10 @@ add_filter('ss_get_options', function ($options) {
         $options['delivery_method']               = 'local';
     }
 
+    if (!is_main_site()) {
+        $options['temp_files_dir'] = TEMP_PATH . $site_path . '/';
+    }
+
     if (!is_main_site() && file_exists($options['local_dir'])) {
         $options['clear_directory_before_export'] = 'on';
     }

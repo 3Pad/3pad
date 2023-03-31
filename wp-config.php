@@ -132,6 +132,9 @@ define('MORALIS_API_KEY', getenv_docker('WORDPRESS_MORALIS_KEY', 'API'));
 // IPFS PATH
 define('IPFS_PATH', getenv_docker('WORDPRESS_IPFS_PATH', 'PATH'));
 
+// TEMP PATH STATIC
+define('TEMP_PATH', getenv_docker('WORDPRESS_TEMP_PATH', 'PATH'));
+
 // GITHUB ACCESS TOKEN
 define('GITHUB_ACCESS_TOKEN', getenv_docker('WORDPRESS_GITHUB_TOKEN', 'TOKEN'));
 

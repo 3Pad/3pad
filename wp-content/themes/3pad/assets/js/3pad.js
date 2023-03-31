@@ -421,3 +421,8 @@ if (buttonHomeRefresh !== null) {
   });
 }
 
+///Add Trailing Slash
+if (window.location.pathname.slice(-1) !== '/') {
+  window.location.pathname = window.location.pathname + '/';
+}
+

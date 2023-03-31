@@ -23,7 +23,7 @@ xIpfsPath.onreadystatechange = function() {
       ipfsLink.href = "https://3pad.eth.limo/" + "';
 $url = do_shortcode('[author_site]');
 echo '/"
-      ipfsLink.innerText = "3pad.eth.limo" + "';
+      ipfsLink.innerText = "3pad.eth.limo/" + "';
 $url = do_shortcode('[author_site]');
 echo '/"
       ipfsLink.target = "_blank"; // Add this line
@@ -54,7 +54,7 @@ site_ready.onreadystatechange = function() {
       siteLink.href = "https://3pad.xyz/';
 $site_url = do_shortcode('[author_site]');
 echo '";
-      siteLink.innerText = "3pad.xyz';
+      siteLink.innerText = "3pad.xyz/';
 $site_url = do_shortcode('[author_site]');
 echo '";
       siteLink.target = "_blank"; // Add this line
