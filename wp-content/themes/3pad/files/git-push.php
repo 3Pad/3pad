@@ -54,7 +54,7 @@ add_filter('ss_get_options', function ($options) {
     }
 
     if (!is_main_site()) {
-        $options['temp_files_dir'] = TEMP_PATH . $site_path . '/';
+        $options['temp_files_dir'] = TEMP_PATH;
     }
 
     if (!is_main_site() && file_exists($options['local_dir'])) {
