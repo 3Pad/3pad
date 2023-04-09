@@ -37,22 +37,20 @@ Start using the repository by pulling the published sites from the platform and 
 ## Decentralized Services
 This repository is pulled by Decentralized services, including ICP Canister ID and IPFS Hash. These services allow for the secure and decentralized distribution of your website's files. You can access your website through the following links:
 
-ICP Canister ID: jqazs-dyaaa-aaaad-qe36q-cai
+ICP Canister ID: cglrx-3yaaa-aaaap-aaz4a-cai
 
 Current IPFS Hash: QmPMRkofPuGW4J5AjvCnni7YDPJBMtp7WofgumCnMw2r97 (Hashes are subject to change)
 
 Please note that in order to view your website through the URL, you will need to have an IPFS gateway or a DApp browser that supports IPFS. To get started, you can use a public IPFS gateway such as https://gateway.ipfs.io/.
 
-ICP URL: https://jqazs-dyaaa-aaaad-qe36q-cai.ic0.app/<YOURSITENAME>/index.html
+ICP URL: https://cglrx-3yaaa-aaaap-aaz4a-cai.ic0.app/<YOURSITENAME>/index.html
 
-ICP URL: https://icp.3pad.xyz/<YOURSITENAME>
+ICP URL: https://3pad.xyz/<YOURSITENAME>
 
-IPFS URL: https://3pad.xyz/<YOURSITENAME>
-
-IPFS URL: https://ipfs.io/ipfs/bafybeiapb2pqn2vc5ver36cytpvey4pcxgiewdtqf4beqm33lguoriu6qi/<YOURSITENAME>
+IPFS URL: https://3pad.eth.limo/<YOURSITENAME>
 (Hashes are subject to change)
 
-Fleek IPFS URL: https://ipfs3pad.on.fleek.co/<YOURSITENAME>
+4Everland IPFS URL: https://ipfs_deploy.4everland.app/<YOURSITENAME>
 
 ## Contributing
 
