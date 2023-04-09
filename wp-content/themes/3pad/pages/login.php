@@ -46,6 +46,7 @@ if (is_user_logged_in()) {
 			<h3 id="header-user" class="centered-heading">
 				<?php
 	global $current_user;
+
 	wp_get_current_user();
 	?>
 				<?php
@@ -284,7 +285,7 @@ if (is_user_logged_in()) {
 									🔮 New Version Available. Update Site.</p>
 							</div>
 							<p id="subheader-login" class="centered-subheading" style=" margin-bottom: 5px; ">This is your 3Pad URL</p>
-							<div id="sitepathdiv">
+							<div  id="sitepathdiv">
 								<div id="sitePathstyle"><span id="site_path"></span></div>
 							</div>
 							<div id="secondary_urls">

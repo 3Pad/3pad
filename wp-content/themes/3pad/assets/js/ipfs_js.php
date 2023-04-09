@@ -18,20 +18,30 @@ xIpfsPath.onreadystatechange = function() {
       ipfsHash.target = "_blank"; // Add this line
       document.getElementById("ipfsPath").innerHTML = "";
       document.getElementById("ipfsPath").appendChild(ipfsHash);
-
+      var siteLink = document.createElement("a");
+      siteLink.href = "https://3pad.xyz/';
+$site_url = do_shortcode('[author_site]');
+echo '";
+                  siteLink.innerText = "3pad.xyz/';
+$site_url = do_shortcode('[author_site]');
+echo '";
       var ipfsLink = document.createElement("a");
       ipfsLink.href = "https://3pad.eth.limo/" + "';
 $url = do_shortcode('[author_site]');
 echo '/"
-      ipfsLink.innerText = "3pad.eth.limo/" + "';
+                    ipfsLink.innerText = "3pad.eth.limo/" + "';
 $url = do_shortcode('[author_site]');
+
 echo '/"
       ipfsLink.target = "_blank"; // Add this line
       document.getElementById("ipfsPath_backup").innerHTML = "";
       document.getElementById("ipfsPath_backup").appendChild(ipfsLink);
+      document.getElementById("site_path").innerHTML = "";
+      document.getElementById("site_path").appendChild(siteLink);
     } else {
       document.getElementById("ipfsPath").innerHTML = "🛰 Awaiting IPFS CID... 📡";
       document.getElementById("ipfsPath_backup").innerHTML = "☁️ Awaiting Link... 🌎";
+      document.getElementById("site_path").innerHTML = "⏳ Awaiting Publication... 📄";
     }
   }
 };
@@ -42,38 +52,7 @@ xIpfsPath.send();
 
 echo '
 <script defer nonce="' . $nonce . '">
-var site_ready = new XMLHttpRequest();
-site_ready.open("HEAD", "https://3pad.xyz/';
-$site_url = do_shortcode('[author_site]');
-$random   = wp_rand(8);
-echo '/?publiction-check-' . $random . '", true);
-site_ready.onreadystatechange = function() {
-  if (site_ready.readyState === XMLHttpRequest.DONE) {
-    if (site_ready.status === 200) {
-      var siteLink = document.createElement("a");
-      siteLink.href = "https://3pad.xyz/';
-$site_url = do_shortcode('[author_site]');
-echo '";
-      siteLink.innerText = "3pad.xyz/';
-$site_url = do_shortcode('[author_site]');
-echo '";
-      siteLink.target = "_blank"; // Add this line
-      document.getElementById("site_path").innerHTML = "";
-      document.getElementById("site_path").appendChild(siteLink);
-    }
-    else {
-      document.getElementById("site_path").innerHTML = "⏳ Awaiting Publication... 📄";
-    }
-  }
-};
-site_ready.send();
-</script>
-';
-
-echo '
-
-<script defer nonce="' . $nonce . '">
-fetch("https://3pad.xyz/';
+fetch("https:///3pad.eth.limo/';
 $site_url = do_shortcode('[author_site]');
 $random   = wp_rand(8);
 echo '/?app-version-check' . $random . '", {},  true)
@@ -97,8 +76,6 @@ echo '/?app-version-check' . $random . '", {},  true)
     console.error("Error fetching version:", error);
   });
 </script>
-
-
 ';
 
 ?>

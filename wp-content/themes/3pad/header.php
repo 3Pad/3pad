@@ -58,6 +58,4 @@
     <!-- Cloudflare Web Analytics -->
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
         data-cf-beacon='{"token": "5092b35b470549b1af6e595e86ebcd1f"}'></script><!-- End Cloudflare Web Analytics -->
-    <script async defer data-website-id="01986122-c6c5-4d5c-8e61-9282235ced87"
-        src="https://analytics.3pad.xyz/umami.js"></script>
     <?php wp_head(); ?>

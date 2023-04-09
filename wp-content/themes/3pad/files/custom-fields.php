@@ -151,13 +151,14 @@ add_shortcode("custom", "create_custom_shortcode");
             }
         }
     }
+
     add_action("wp_head", "individual_purchase_lock_css");
     //////Individual Purchase Lock Customize
 
     //////Individual Login Lock Customize
     function individual_login_lock_css()
     {
-        $settings_page = "options";    ///Get Page ID
+        $settings_page = "options";  ///Get Page ID
         if (is_singular()) {
             $bgimage       = get_field("background_image_url_login", $settings_page);
             $buttonbg      = get_field("button_background_color_login", $settings_page);
@@ -203,6 +204,7 @@ add_shortcode("custom", "create_custom_shortcode");
             }
         }
     }
+
     add_action("wp_head", "individual_login_lock_css");
     //////Individual Login Lock Customize
 
@@ -249,8 +251,8 @@ add_action("wp_head", "mutefull_acf");
     /////////Site info ACF
     function prefix_site_info()
     {
-        $settings_page = "options";                                                            ///Get Page ID
-                                                                                               //Get Page
+        $settings_page = "options";  ///Get Page ID
+        //Get Page
         $page          = get_query_var('page');
         $site_title    = get_the_title() . ' | ' . get_field("site_title", $settings_page);
         if (is_front_page()) {
@@ -265,8 +267,9 @@ add_action("wp_head", "mutefull_acf");
 <title>$site_title | 3Pad</title>
 ";
     }
-    add_action('wp_head', 'prefix_site_info', 0);    //front end
-    add_action('admin_head', 'prefix_site_info');    //admin end
+
+    add_action('wp_head', 'prefix_site_info', 0);  //front end
+    add_action('admin_head', 'prefix_site_info');  //admin end
     add_action('login_head', 'prefix_site_info');
 
     /////////Site Info ACF
@@ -274,7 +277,7 @@ add_action("wp_head", "mutefull_acf");
     ///////// Shortcode: [videos]
     function create_videos_shortcode()
     {
-        $settings_page = "options";    ///Get Page ID
+        $settings_page = "options";  ///Get Page ID
         if (!is_user_logged_in()) {
             return get_field("background_videofor_logged_out_users", $settings_page);
         }
@@ -282,6 +285,7 @@ add_action("wp_head", "mutefull_acf");
             return get_field("enter_video_url_for_logged_in_users", $settings_page);
         }
     }
+
     add_shortcode('videos', 'create_videos_shortcode');
     ////////// Create Shortcode videos
 }
@@ -289,7 +293,7 @@ add_action("wp_head", "mutefull_acf");
 /******Bottom Menu*****/
 function bottom_menu()
 {
-    $settings_page = "options";    ///Get Page ID
+    $settings_page = "options";  ///Get Page ID
 
     $icon_2 = get_field("menu_icon_2", $settings_page);
     $icon_3 = get_field("menu_icon_3", $settings_page);
@@ -393,13 +397,14 @@ function bottom_menu()
           </script>';
     }
 }
+
 add_action('wp_footer', 'bottom_menu');
 /******Bottom Menu*****/
 
 /******Home Text Links*****/
 function home_text_links()
 {
-    $settings_page   = "options";    ///Get Page ID
+    $settings_page   = "options";  ///Get Page ID
     $show_text_links = get_field("display_text_links_on_home_page", $settings_page);
 
     //text color
@@ -520,13 +525,14 @@ function home_text_links()
     ';
     }
 }
+
 add_shortcode('text_links_shortcode', 'home_text_links');
 /******Home Text Links*****/
 
 /******Home Titles*****/
 function home_titles()
 {
-    $settings_page = "option";    ///Get Page ID
+    $settings_page = "option";  ///Get Page ID
     $show_titles   = get_field("display_titles", $settings_page);
 
     //Text Color
@@ -572,13 +578,14 @@ function home_titles()
         ';
     }
 }
+
 add_shortcode('home_titles_shortcode', 'home_titles');
 /******Home Titles*****/
 
 /******Corner Icons*****/
 function home_corner_icons()
 {
-    $settings_page     = "option";    ///Get Options Page
+    $settings_page     = "option";  ///Get Options Page
     $show_corner_links = get_field("display_corner_icons_on_home_page", $settings_page);
 
     //Get Icons
@@ -724,13 +731,14 @@ function home_corner_icons()
         ';
     }
 }
+
 add_shortcode('corner_icons_shortcode', 'home_corner_icons');
 /******Corner Icons*****/
 
 /******Social Icons*****/
 function icons_social()
 {
-    $settings_page = "options";    ///Get Page ID
+    $settings_page = "options";  ///Get Page ID
 
     //Get Social Icon
     $social_icon_1 = get_field("social_icon_1", $settings_page);
@@ -828,6 +836,7 @@ function icons_social()
     ';
     }
 }
+
 add_shortcode('social_icons', 'icons_social');
 /******Social Icons*****/
 
@@ -837,7 +846,7 @@ add_shortcode('social_icons', 'icons_social');
 
 function buttons_front_page()
 {
-    $settings_page = "option";    ///Get Options
+    $settings_page = "option";  ///Get Options
     $showbuttons   = get_field("show_play_&_fullscreen_buttons", $settings_page);
 
     if (is_front_page() && $showbuttons == "Yes") {
@@ -849,11 +858,12 @@ function buttons_front_page()
         //Hide Top Right Icon
         echo '<style>#topright{display: none;}</style>';
     }
-        /// Hide If "No"
-        else {
-            echo '<style>.mute_control, #button_fullscreen{display: none !important;}</style>';
-        }
+    /// Hide If "No"
+    else {
+        echo '<style>.mute_control, #button_fullscreen{display: none !important;}</style>';
+    }
 }
+
 add_action("wp_head", "buttons_front_page", 100);
 
 /******Buttons Video/Logo*****/
@@ -861,7 +871,7 @@ add_action("wp_head", "buttons_front_page", 100);
 //Fullscreen JS Load
 function buttons_front_page_js_load()
 {
-    $settings_page = "option";    ///Get Options
+    $settings_page = "option";  ///Get Options
     $showbuttons   = get_field("show_play_&_fullscreen_buttons", $settings_page);
 
     if (is_front_page() && $showbuttons == "Yes") {
@@ -870,6 +880,7 @@ function buttons_front_page_js_load()
         echo '"></script>';
     }
 }
+
 add_action("wp_footer", "buttons_front_page_js_load");
 
 /******Video Autoplay*****/
@@ -877,7 +888,7 @@ function home_video_autoplay()
 {
     ////////Only Home
     if (is_front_page()) {
-        $settings_page_video = "option";    ///Get Page ID
+        $settings_page_video = "option";  ///Get Page ID
 
         //Check User Staus For ACF
         /*
@@ -942,6 +953,7 @@ function home_video_autoplay()
         }
     }
 }
+
 add_action('wp_footer', 'home_video_autoplay', 100);
 /******MP4 Autoplay*****/
 
@@ -950,7 +962,7 @@ add_action('wp_footer', 'home_video_autoplay', 100);
 /******Background Image*****/
 function background_image_color_homepage()
 {
-    $settings_page       = "option";    ///Get Page ID
+    $settings_page       = "option";  ///Get Page ID
     $bgimagehome         = get_field("background_image_home", $settings_page);
     $bg_position_mobile  = get_field("background_image_mobile_position", $settings_page);
     $bg_position_desktop = get_field("background_image_desktop_position", $settings_page);
@@ -981,6 +993,7 @@ function background_image_color_homepage()
                 </style>';
     }
 }
+
 add_action('wp_head', 'background_image_color_homepage', 100);
 /******Background Image*****/
 
@@ -1008,6 +1021,7 @@ function discord_comments()
         ';
     }
 }
+
 // Add shortcode for Discord comments
 add_shortcode("discord_comment_shortcode", "discord_comments");
 
@@ -1016,7 +1030,7 @@ add_shortcode("discord_comment_shortcode", "discord_comments");
 function discord_comments_home()
 {
     // Get value of "enable_comments" field on settings page
-    $settings_page = "option";    ///Get Options Page
+    $settings_page = "option";  ///Get Options Page
 
     // Get settings for Discord comments
     $server_id  = get_field("server_id_home", $settings_page);
@@ -1032,6 +1046,7 @@ function discord_comments_home()
         
         ';
 }
+
 // Add shortcode for Discord comments
 add_shortcode("discord_comment_home_shortcode", "discord_comments_home");
 
@@ -1041,8 +1056,8 @@ function telegram_comments_home()
 {
     // Get settings page ID
     // Get value of "enable_comments" field on settings page
-    $settings_page = "option";                                                    ///Get Options Page
-                                                                                  // Get settings for Telegram comments
+    $settings_page = "option";  ///Get Options Page
+    // Get settings for Telegram comments
     $site_id       = get_field("telegram_site_id_home", $settings_page);
     $comment_count = get_field("telegram_comment_count_home", $settings_page);
     $likes         = get_field("telegram_likes_home", $settings_page);
@@ -1114,6 +1129,7 @@ function darkmode()
 <div class="curtain"></div>
     ';
 }
+
 // Add shortcode for darkmode
 add_shortcode("darkmode_shortcode", "darkmode");
 
@@ -1129,6 +1145,7 @@ function back_to_top()
 </div>
     ';
 }
+
 // Add shortcode for back to top button
 add_shortcode("back_to_top_shortcode", "back_to_top");
 
@@ -1145,6 +1162,7 @@ function disqus_comments()
         get_template_part('assets/js/disqus');
     }
 }
+
 // Add shortcode for Disqus comments
 add_shortcode("disqus_shortcode", "disqus_comments");
 
@@ -1153,6 +1171,7 @@ function disqus_comments_home()
 {
     get_template_part('assets/js/disqus_home');
 }
+
 // Add shortcode for Disqus comments
 add_shortcode("disqus_shortcode_home", "disqus_comments_home");
 
@@ -1167,6 +1186,7 @@ function disqus_reactions()
         get_template_part('assets/js/disqus-reactions');
     }
 }
+
 // Add shortcode for Disqus reactions
 add_shortcode("disqus_react", "disqus_reactions");
 
@@ -1186,6 +1206,7 @@ function analytics()
         get_template_part('assets/js/clicky_analytics');
     }
 }
+
 // Load in head for Analytics code
 add_action("wp_head", "analytics");
 
@@ -1259,12 +1280,13 @@ function age_restriction()
         }
     }
 }
+
 add_action('get_footer', 'age_restriction');
 
 ///Embed Content All Pages
 function show_comment_popup()
 {
-    $settings_page = "option";    ///Get Options Page
+    $settings_page = "option";  ///Get Options Page
 
     //Custom Fields embed URL
     $content_embed1  = get_field("embed_1", $settings_page);
@@ -1742,6 +1764,17 @@ function show_comment_popup()
         ";
     }
 }
+
 add_action('wp_footer', 'show_comment_popup');
+
+function trailing_slash()
+{
+    echo '
+<script> ///Add Trailing Slash
+if (window.location.pathname.trim().slice(-1) !== "/") {window.location.pathname = window.location.pathname.trim() + "/";} </script>
+';
+}
+
+add_action('wp_head', 'trailing_slash');
 
 /******CUSTOM FIELDS*****/
