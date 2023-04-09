@@ -25,14 +25,10 @@ To use this repository, you need to have basic knowledge of decentralized networ
 Clone the repository to your local machine by running the following command in your terminal:
 
 ```bash
-$ git clone https://github.com/3Pad/3pad.github.io.git
+$ git clone https://github.com/3Pad/3pad.git
 
 ```
-Navigate to the repository directory:
-```bash
-$ cd 3pad.github.io
 
-```
 If you plan on using a docker container for your compute, check out the akash.yml file. This file contains the manifest to deploy on akash network which is a decentralized computing service. 
 
 Start using the repository by pulling the core wordpress files to your wordpress container.
