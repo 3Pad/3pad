@@ -39,18 +39,18 @@ This repository is pulled by Decentralized services, including ICP Canister ID a
 
 ICP Canister ID: cglrx-3yaaa-aaaap-aaz4a-cai
 
-Current IPFS Hash: QmPMRkofPuGW4J5AjvCnni7YDPJBMtp7WofgumCnMw2r97 (Hashes are subject to change)
+Current IPNS Hash: ipns://k51qzi5uqu5dj8lwk8uvgap41opu8flbahhl0y4vnzzrqz5ygod3huy26pl04s (Hashes are subject to change)
 
 Please note that in order to view your website through the URL, you will need to have an IPFS gateway or a DApp browser that supports IPFS. To get started, you can use a public IPFS gateway such as https://gateway.ipfs.io/.
 
-ICP URL: https://cglrx-3yaaa-aaaap-aaz4a-cai.ic0.app/<YOURSITENAME>/index.html
+ICP URL: https://cglrx-3yaaa-aaaap-aaz4a-cai.ic0.app/YOUR_SITE_NAME
 
-ICP URL: https://3pad.xyz/<YOURSITENAME>
+ICP URL: https://3pad.xyz/YOUR_SITE_NAME
 
-IPFS URL: https://3pad.eth.limo/<YOURSITENAME>
+IPFS URL: https://3pad.eth.limo/YOUR_SITE_NAME
 (Hashes are subject to change)
 
-4Everland IPFS URL: https://ipfs_deploy.4everland.app/<YOURSITENAME>
+4Everland IPFS URL: https://ipfs_deploy.4everland.app/YOUR_SITE_NAME
 
 ## Contributing
 
