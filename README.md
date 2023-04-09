@@ -33,6 +33,8 @@ Navigate to the repository directory:
 $ cd 3pad.github.io
 
 ```
+If you plan on using a docker container for your compute, check out the akash.yml file. This file contains the manifest to deploy on akash network which is a decentralized computing service. 
+
 Start using the repository by pulling the published sites from the platform and storing them on decentralized services like IPFS and ICP.
 ## Decentralized Services
 This repository is pulled by Decentralized services, including ICP Canister ID and IPFS Hash. These services allow for the secure and decentralized distribution of your website's files. You can access your website through the following links:
@@ -43,7 +45,7 @@ Current IPNS Hash: ipns://k51qzi5uqu5dj8lwk8uvgap41opu8flbahhl0y4vnzzrqz5ygod3hu
 
 Please note that in order to view your website through the URL, you will need to have an IPFS gateway or a DApp browser that supports IPFS. To get started, you can use a public IPFS gateway such as https://gateway.ipfs.io/.
 
-ICP URL: https://cglrx-3yaaa-aaaap-aaz4a-cai.ic0.app/
+ICP RAW URL: https://cglrx-3yaaa-aaaap-aaz4a-cai.ic0.app/
 
 ICP URL: https://3pad.xyz/
 
