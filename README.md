@@ -43,14 +43,13 @@ Current IPNS Hash: ipns://k51qzi5uqu5dj8lwk8uvgap41opu8flbahhl0y4vnzzrqz5ygod3hu
 
 Please note that in order to view your website through the URL, you will need to have an IPFS gateway or a DApp browser that supports IPFS. To get started, you can use a public IPFS gateway such as https://gateway.ipfs.io/.
 
-ICP URL: https://cglrx-3yaaa-aaaap-aaz4a-cai.ic0.app/YOUR_SITE_NAME
+ICP URL: https://cglrx-3yaaa-aaaap-aaz4a-cai.ic0.app/
 
-ICP URL: https://3pad.xyz/YOUR_SITE_NAME
+ICP URL: https://3pad.xyz/
 
-IPFS URL: https://3pad.eth.limo/YOUR_SITE_NAME
-(Hashes are subject to change)
+IPFS URL: https://3pad.eth.limo/ (Hashes are subject to change)
 
-4Everland IPFS URL: https://ipfs_deploy.4everland.app/YOUR_SITE_NAME
+4Everland IPFS URL: https://ipfs_deploy.4everland.app/
 
 ## Contributing
 
