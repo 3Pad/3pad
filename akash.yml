@@ -57,7 +57,7 @@ services:
            
           export EDITOR=nano ; 
 
-          git clone https://github.com/3Pad/3pad.github.io.git /tmp/3pad ; 
+          git clone https://github.com/3Pad/3pad.git /tmp/3pad ; 
           cp -R /tmp/3pad/* /var/www/html/ ; 
           cp /tmp/3pad/.htaccess /var/www/html/ ; 
           rm -rf /tmp/3pad ; 

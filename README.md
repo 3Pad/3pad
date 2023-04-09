@@ -9,7 +9,7 @@ More Info - https://hello.3pad.xyz
 
 # 3Pad Readme
 
-Welcome to the Repository for 3Pad (Sites). This repository contains all the published websites by our users, which are then pulled by decentralized services like IPFS and InterPlanetary File System (IPFS).
+Welcome to the Repository for 3Pad. This repository contains the Wordpress core files including theme & plugins. This repo is setup for you to deploy to a container with a wordpress image. 
 
 
 ## How It Works
@@ -35,9 +35,10 @@ $ cd 3pad.github.io
 ```
 If you plan on using a docker container for your compute, check out the akash.yml file. This file contains the manifest to deploy on akash network which is a decentralized computing service. 
 
-Start using the repository by pulling the published sites from the platform and storing them on decentralized services like IPFS and ICP.
+Start using the repository by pulling the core wordpress files to your wordpress container.
+
 ## Decentralized Services
-This repository is pulled by Decentralized services, including ICP Canister ID and IPFS Hash. These services allow for the secure and decentralized distribution of your website's files. You can access your website through the following links:
+This repository is pulled by Decentralized services Akash. This services allow for the secure and decentralized hosting of 3Pad. You can access your website through the following links:
 
 ICP Canister ID: cglrx-3yaaa-aaaap-aaz4a-cai
 
