@@ -47,7 +47,7 @@ ICP URL: https://cglrx-3yaaa-aaaap-aaz4a-cai.ic0.app/
 
 ICP URL: https://3pad.xyz/
 
-IPFS URL: https://3pad.eth.limo/ (Hashes are subject to change)
+IPFS URL: https://3pad.eth.limo/
 
 4Everland IPFS URL: https://ipfs_deploy.4everland.app/
 
