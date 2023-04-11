@@ -54,7 +54,7 @@ IPFS URL: https://3pad.eth.limo/
 
 We welcome contributions from the community. If you find any bugs or have any suggestions for improvement, please feel free to create an issue in the repository.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT%2FAPACHE%202-yellow)](https://opensource.org/licenses/MIT)
 
 
 ## Support
