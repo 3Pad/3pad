@@ -141,10 +141,7 @@ services:
       - port: 22
         to:
           - global: true
-    params:
-      storage:
-        data:
-          mount: /var/lib/mysql
+    
 
 
 
@@ -182,15 +179,11 @@ profiles:
     adminer:
       resources:
         cpu:
-          units: 0.1
+          units: 0.5
         memory:
           size: 256Mi
         storage:
-          - name: data
-            size: 256Mi
-            attributes:
-              persistent: true
-              class: beta1
+          - size: 256Mi
 
 
             
