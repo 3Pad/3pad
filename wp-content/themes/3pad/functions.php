@@ -18,63 +18,6 @@ function your_theme_enqueue_styles()
 
 add_action('wp_enqueue_scripts', 'your_theme_enqueue_styles');
 
-// Load MU Plugin
-function create_my_mu_plugin_on_theme_activation()
-{
-    $current_theme  = wp_get_theme();
-    $mu_plugin_path = WP_CONTENT_DIR . '/mu-plugins/3pad.php';
-
-    // Check if mu-plugins directory exists, and create it if it doesn't
-    $mu_plugins_dir = WP_CONTENT_DIR . '/mu-plugins';
-    if (!is_dir($mu_plugins_dir)) {
-        mkdir($mu_plugins_dir);
-    }
-
-    $theme_version = $current_theme->get('Version');
-    if (!file_exists($mu_plugin_path) || version_compare(get_option('3pad_version'), $theme_version) < 0) {
-        $file_paths = array(
-            'git-push.php',
-            'styling.php',
-            'users.php',
-            'admin.php',
-            'security.php',
-            'multisite-settings.php',
-        );
-
-        $mu_plugin_content  = "<?php \n";
-        $mu_plugin_content .= "/**\n";
-        $mu_plugin_content .= " * Plugin Name: 3Pad Must Use Plugin\n";
-        $mu_plugin_content .= " * Description: This is a custom must-use plugin. It updates on changes to 'file_paths = array' in themes function file. \n";
-        $mu_plugin_content .= " */\n\n";
-        $included_files     = array();
-        foreach ($file_paths as $file) {
-            $file_path                  = get_template_directory() . '/files/' . $file;
-            $file_version               = md5_file($file_path);
-            $included_files[$file_path] = $file_version;
-            $mu_plugin_content         .= 'require_once get_template_directory() . "/files/' . $file . '";' . "\n";
-        }
-
-        $formatted_included_files = array();
-        foreach ($included_files as $file_path => $file_version) {
-            $formatted_included_files[str_replace(get_template_directory(), '', $file_path)] = $file_version;
-        }
-        $mu_plugin_content .= "\n" . '$included_files = ' . var_export($formatted_included_files, true) . ';';
-
-        file_put_contents($mu_plugin_path, $mu_plugin_content);
-        update_option('3pad_version', $theme_version);
-
-        // Output the require_once statements
-        echo 'require_once get_template_directory() . "/files/git-push.php";' . "\n";
-        echo 'require_once get_template_directory() . "/files/styling.php";' . "\n";
-        echo 'require_once get_template_directory() . "/files/users.php";' . "\n";
-        echo 'require_once get_template_directory() . "/files/admin.php";' . "\n";
-        echo 'require_once get_template_directory() . "/files/security.php";' . "\n";
-        echo 'require_once get_template_directory() . "/files/multisite-settings.php";' . "\n";
-    }
-}
-
-add_action('after_setup_theme', 'create_my_mu_plugin_on_theme_activation');
-
 ///Delete MU plugin On switch
 function delete_my_mu_plugin_on_theme_change()
 {
