@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Helper class for all helper function.
  *
@@ -13,8 +14,8 @@ namespace Unlock_Protocol\Inc\Utils;
  *
  * @since 3.0.0
  */
-class Helper {
-
+class Helper
+{
 	/**
 	 * This method is an improved version of PHP's filter_input() and
 	 * works well on PHP Cli as well which PHP default method does not.
@@ -31,10 +32,9 @@ class Helper {
 	 * @return mixed Value of the requested variable on success, FALSE if the filter fails, or NULL if the
 	 *  variable_name variable is not set.
 	 */
-	public static function filter_input( $type, $variable_name, $filter = FILTER_DEFAULT, $options = null ) {
-
-		if ( 'cli' !== php_sapi_name() ) {
-
+	public static function filter_input($type, $variable_name, $filter = FILTER_DEFAULT, $options = null)
+	{
+		if ('cli' !== php_sapi_name()) {
 			/**
 			 * We can not have code coverage since.
 			 * Since this will only execute when sapi is "fpm-fcgi".
@@ -46,12 +46,18 @@ class Helper {
 			 * Code is not running on PHP Cli and we are in clear.
 			 * Use the PHP method and bail out.
 			 */
-			switch ( $filter ) {
-				case FILTER_SANITIZE_STRING:
-					$sanitized_variable = filter_input( $type, $variable_name, $filter );
+			switch ($filter) {
+				case FILTER_SANITIZE_FULL_SPECIAL_CHARS:
+					$sanitized_variable = filter_input($type, $variable_name, $filter, $options);
+					if ($sanitized_variable !== null) {
+						$sanitized_variable = preg_replace('/<[^>]*>/', '', $sanitized_variable);
+					}
 					break;
 				default:
-					$sanitized_variable = filter_input( $type, $variable_name, $filter, $options );
+					$sanitized_variable = filter_input($type, $variable_name, $filter);
+					if ($sanitized_variable !== null) {
+						$sanitized_variable = preg_replace('/<[^>]*>/', '', $sanitized_variable);
+					}
 					break;
 			}
 
@@ -67,10 +73,9 @@ class Helper {
 		 * This is a workaround for that bug till its resolved in PHP binary
 		 * which doesn't look to be anytime soon. This is a friggin' 10 year old bug.
 		 */
-
 		$input = '';
 
-		$allowed_html_tags = wp_kses_allowed_html( 'post' );
+		$allowed_html_tags = wp_kses_allowed_html('post');
 
 		/**
 		 * Marking the switch() block below to be ignored by PHPCS
@@ -81,58 +86,55 @@ class Helper {
 
 		// @codingStandardsIgnoreStart
 
-		switch ( $type ) {
-
+		switch ($type) {
 			case INPUT_GET:
-				if ( ! isset( $_GET[ $variable_name ] ) ) {
+				if (!isset($_GET[$variable_name])) {
 					return null;
 				}
 
-				$input = wp_kses( $_GET[ $variable_name ], $allowed_html_tags );
+				$input = wp_kses($_GET[$variable_name], $allowed_html_tags);
 				break;
 
 			case INPUT_POST:
-				if ( ! isset( $_POST[ $variable_name ] ) ) {
+				if (!isset($_POST[$variable_name])) {
 					return null;
 				}
 
-				$input = wp_kses( $_POST[ $variable_name ], $allowed_html_tags );
+				$input = wp_kses($_POST[$variable_name], $allowed_html_tags);
 				break;
 
 			case INPUT_COOKIE:
-				if ( ! isset( $_COOKIE[ $variable_name ] ) ) {
+				if (!isset($_COOKIE[$variable_name])) {
 					return null;
 				}
 
-				$input = wp_kses( $_COOKIE[ $variable_name ], $allowed_html_tags );
+				$input = wp_kses($_COOKIE[$variable_name], $allowed_html_tags);
 				break;
 
 			case INPUT_SERVER:
-				if ( ! isset( $_SERVER[ $variable_name ] ) ) {
+				if (!isset($_SERVER[$variable_name])) {
 					return null;
 				}
 
-				$input = wp_kses( $_SERVER[ $variable_name ], $allowed_html_tags );
+				$input = wp_kses($_SERVER[$variable_name], $allowed_html_tags);
 				break;
 
 			case INPUT_ENV:
-				if ( ! isset( $_ENV[ $variable_name ] ) ) {
+				if (!isset($_ENV[$variable_name])) {
 					return null;
 				}
 
-				$input = wp_kses( $_ENV[ $variable_name ], $allowed_html_tags );
+				$input = wp_kses($_ENV[$variable_name], $allowed_html_tags);
 				break;
 
 			default:
 				return null;
 				break;
-
 		}
 
 		// @codingStandardsIgnoreEnd
 
-		return filter_var( $input, $filter );
-
+		return filter_var($input, $filter);
 	}
 
 	/**
@@ -145,11 +147,12 @@ class Helper {
 	 *
 	 * @return string
 	 */
-	public static function unique_username( $username ) {
+	public static function unique_username($username)
+	{
 		$uname = $username;
 		$count = 1;
 
-		while ( username_exists( $uname ) ) {
+		while (username_exists($uname)) {
 			$uname = $uname . '' . $count;
 		}
 
