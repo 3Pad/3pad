@@ -1,6 +1,5 @@
 name: 'repo-backup'
 on:
-on:
   schedule:
     - cron: '0 1 * * *'
 
