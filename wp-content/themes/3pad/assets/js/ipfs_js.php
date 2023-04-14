@@ -19,10 +19,10 @@ xIpfsPath.onreadystatechange = function() {
       document.getElementById("ipfsPath").innerHTML = "";
       document.getElementById("ipfsPath").appendChild(ipfsHash);
       var siteLink = document.createElement("a");
-      siteLink.href = "https://3pad.xyz/';
+      siteLink.href = "https://3pad.icp.xyz/';
 $site_url = do_shortcode('[author_site]');
-echo '";
-                  siteLink.innerText = "3pad.xyz/';
+echo '/";
+                  siteLink.innerText = "3pad.icp.xyz/';
 $site_url = do_shortcode('[author_site]');
 echo '";
       var ipfsLink = document.createElement("a");

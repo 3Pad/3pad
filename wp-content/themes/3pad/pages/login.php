@@ -326,14 +326,6 @@ if (is_user_logged_in()) {
 <?php
 } else {
 	?>
-	<!--- Logged Out --->
-	<?php
-	echo '
-	<script>
-	window.location.replace("http://hello.3pad.xyz");
-		</script>
-		';
-	?>
 	<!--- IPFS Message --->
 	<div style=" background: black; z-index: 99999999999999999999; top: 0px; width: 100%; height: 20px; position: fixed; ">
 		<p
