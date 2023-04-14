@@ -1769,10 +1769,12 @@ add_action('wp_footer', 'show_comment_popup');
 
 function trailing_slash()
 {
-    echo '
+    if (!is_main_site()) {
+        echo '
 <script> ///Add Trailing Slash
 if (window.location.pathname.trim().slice(-1) !== "/") {window.location.pathname = window.location.pathname.trim() + "/";} </script>
 ';
+    }
 }
 
 add_action('wp_head', 'trailing_slash');

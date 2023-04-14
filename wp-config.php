@@ -141,15 +141,27 @@ define('GITHUB_ACCESS_TOKEN', getenv_docker('WORDPRESS_GITHUB_TOKEN', 'TOKEN'));
 //GIT PUSH SECONDS
 define('GIT_PUSH_SECONDS', getenv_docker('WORDPRESS_GIT_PUSH_SECONDS', '300'));
 
+# Set the default theme to '3pad'
 define('WP_DEFAULT_THEME', '3pad');
+
+# Disallow editing files from the WordPress dashboard
 define('DISALLOW_FILE_EDIT', true);
+
+# Allow the use of WordPress multisite feature
 define('WP_ALLOW_MULTISITE', true);
 define('MULTISITE', true);
 define('SUBDOMAIN_INSTALL', false);
+
+# Set the domain and path for the main site in a multisite network
 define('DOMAIN_CURRENT_SITE', getenv_docker('WORDPRESS_DOMAIN_CURRENT_SITE', 'example.com'));
 define('PATH_CURRENT_SITE', '/');
+
+# Set the site ID and blog ID for the main site in a multisite network
 define('SITE_ID_CURRENT_SITE', 1);
 define('BLOG_ID_CURRENT_SITE', 1);
+
+# Enable the use of a caching plugin or system
+define('WP_CACHE', true);
 
 /* That's all, stop editing! Happy publishing. */
 
