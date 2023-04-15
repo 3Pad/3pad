@@ -1769,12 +1769,14 @@ add_action('wp_footer', 'show_comment_popup');
 
 function trailing_slash()
 {
-    echo '
-<script> ///Add Trailing Slash
-if (window.location.pathname.trim().slice(-1) !== "/") {window.location.pathname = window.location.pathname.trim() + "/";} </script>
+    //Add trailing slash
+    if (!is_main_site()) {
+        echo '
+<script> if (window.location.pathname.trim().slice(-1) !== "/") {window.location.pathname = window.location.pathname.trim() + "/";} </script>
 ';
+    }
 }
 
-add_action('wp_head', 'trailing_slash');
+add_action('wp_head', 'trailing_slash', 0);
 
 /******CUSTOM FIELDS*****/
