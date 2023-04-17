@@ -222,13 +222,13 @@ if (promptElement) {
 ///Close Button  & Home Button 
 jQuery(window).ready(function () {
   $('.full').click(function () {
-    $('.button_home').hide();
+    $('.button_home_refresh').hide();
     $('.close_button_home').show();
   });
 
   $('.close_button_home').click(function () {
     $('.close_button_home').hide();
-    $('.button_home').show();
+    $('.button_home_refresh').show();
   });
 });
 

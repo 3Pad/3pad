@@ -358,7 +358,7 @@ function bottom_menu()
     //echo '<style> #logoutlink{display: none;} </style>';
     //$logoutlink = FALSE;
     /// }
-    if (is_front_page() && $bottom_menu != false) {
+    if (is_front_page() && $bottom_menu === 'Yes') {
         echo '<style>#bottomright, #bottomleft{display: none;}
              #main_titles{display: flex; flex-direction: column !important; margin-bottom: 35px !important;} </style>';
     }
@@ -366,7 +366,7 @@ function bottom_menu()
         echo '<style>#app_button {display: none;}
               </style>';
     }
-    if (is_front_page() && $bottom_menu != false) {
+    if (is_front_page() && $bottom_menu === 'Yes') {
         echo '
         <style>
     /************ Style Menu ********/
@@ -389,7 +389,7 @@ function bottom_menu()
     ';
     }
 
-    if (is_front_page() && $bottom_menu != false) {
+    if (is_front_page() && $bottom_menu === 'Yes') {
         $site_title = get_field("site_title", $settings_page);
 
         echo '<script defer nonce="' . wp_create_nonce('js-nonce') . '">
@@ -500,7 +500,7 @@ function home_text_links()
         $text_middle_tab = 'target="_blank"';
     }
 
-    if (is_front_page() && $show_text_links === TRUE) {
+    if (is_front_page() && $show_text_links === 'Yes') {
         echo '
             <div class="elementor-element elementor-element-6fd90596 elementor-absolute e-transform fullscreenhide elementor-widget-mobile__width-inherit elementor-widget elementor-widget-heading" id=middleleft>
         <div class=elementor-widget-container>
@@ -559,7 +559,7 @@ function home_titles()
     $text_sub  = get_field("sub_title", $settings_page);
     $text_main = get_field("main_title", $settings_page);
 
-    if (is_front_page() && $show_titles === TRUE) {
+    if (is_front_page() && $show_titles === 'Yes') {
         echo '
         <div class="elementor-element elementor-element-d1c28e4 elementor-widget elementor-widget-heading">
         <div class=elementor-widget-container>
@@ -689,7 +689,7 @@ function home_corner_icons()
         $icon_bottom_left_URL = get_field("link_page_bottomright", $settings_page);
     }
 
-    if (is_front_page() && $show_corner_links === TRUE) {
+    if (is_front_page() && $show_corner_links === 'Yes') {
         echo '
         <div class="elementor-element elementor-element-ef7793d fullscreenhide elementor-widget__width-auto elementor-widget-tablet__width-auto elementor-fixed elementor-view-default elementor-widget elementor-widget-icon" id=bottomleft>
         <div class=elementor-widget-container>
@@ -795,7 +795,7 @@ function icons_social()
         echo '<style> .s6{display: none;}</style>';
     }
 
-    if (is_front_page() && $social_icon_show != false) {
+    if (is_front_page() && $social_icon_show === 'Yes') {
         echo '
 	 <div id="icon_space" class="elementor-social-icons-wrapper elementor-grid">
  <span class="elementor-grid-item s1">
@@ -1356,7 +1356,7 @@ function show_comment_popup()
     $jsnonce = wp_create_nonce('js-nonce');
 
     ///Fullscreen Code
-    if ($fullscreen1 == 'Yes' && $bottom_menu != false) {
+    if ($fullscreen1 == 'Yes' && $bottom_menu === 'Yes') {
         echo "<style>
         .embed1-button-wrapper{
             right: 0 !important;
@@ -1382,7 +1382,7 @@ function show_comment_popup()
         </style>";
     }
 
-    if ($fullscreen2 == 'Yes' && $bottom_menu != false) {
+    if ($fullscreen2 == 'Yes' && $bottom_menu === 'Yes') {
         echo "<style>
         .embed2-button-wrapper{
             right: 0 !important;
@@ -1409,7 +1409,7 @@ function show_comment_popup()
         </style>";
     }
 
-    if ($fullscreen3 == 'Yes' && $bottom_menu != false) {
+    if ($fullscreen3 == 'Yes' && $bottom_menu === 'Yes') {
         echo "<style>
         .embed3-button-wrapper{
             right: 0 !important;
@@ -1435,7 +1435,7 @@ function show_comment_popup()
         </style>";
     }
 
-    if ($fullscreen4 == 'Yes' && $bottom_menu != false) {
+    if ($fullscreen4 == 'Yes' && $bottom_menu === 'Yes') {
         echo "<style>
         .embed4-button-wrapper{
             right: 0 !important;
@@ -1461,7 +1461,7 @@ function show_comment_popup()
         </style>";
     }
 
-    if ($fullscreen5 == 'Yes' && $bottom_menu != false) {
+    if ($fullscreen5 == 'Yes' && $bottom_menu === 'Yes') {
         echo "<style>
         .embed5-button-wrapper{
             right: 0 !important;
@@ -1487,7 +1487,7 @@ function show_comment_popup()
         </style>";
     }
 
-    if ($fullscreen6 == 'Yes' && $bottom_menu != false) {
+    if ($fullscreen6 == 'Yes' && $bottom_menu === 'Yes') {
         echo "<style>
         .embed6-button-wrapper{
             right: 0 !important;
@@ -1513,7 +1513,7 @@ function show_comment_popup()
         </style>";
     }
 
-    if ($fullscreen7 == 'Yes' && $bottom_menu != false) {
+    if ($fullscreen7 == 'Yes' && $bottom_menu === 'Yes') {
         echo "<style>
         .embed7-button-wrapper{
             right: 0 !important;
@@ -1541,7 +1541,7 @@ function show_comment_popup()
         </style>";
     }
 
-    if ($fullscreen8 == 'Yes' && $bottom_menu != false) {
+    if ($fullscreen8 == 'Yes' && $bottom_menu === 'Yes') {
         echo "<style>
         .embed1-button-wrapper{
             right: 0 !important;
@@ -1567,7 +1567,7 @@ function show_comment_popup()
         </style>";
     }
 
-    if ($fullscreen9 == 'Yes' && $bottom_menu != false) {
+    if ($fullscreen9 == 'Yes' && $bottom_menu === 'Yes') {
         echo "<style>
         .embed9-button-wrapper{
             right: 0 !important;
@@ -1593,7 +1593,7 @@ function show_comment_popup()
         </style>";
     }
 
-    if ($fullscreen10 == 'Yes' && $bottom_menu != false) {
+    if ($fullscreen10 == 'Yes' && $bottom_menu === 'Yes') {
         echo "<style>
         .embed10-button-wrapper{
             right: 0 !important;
@@ -1769,14 +1769,12 @@ add_action('wp_footer', 'show_comment_popup');
 
 function trailing_slash()
 {
-    //Add trailing slash
-    if (!is_main_site()) {
-        echo '
-<script> if (window.location.pathname.trim().slice(-1) !== "/") {window.location.pathname = window.location.pathname.trim() + "/";} </script>
+    echo '
+<script> ///Add Trailing Slash
+if (window.location.pathname.trim().slice(-1) !== "/") {window.location.pathname = window.location.pathname.trim() + "/";} </script>
 ';
-    }
 }
 
-add_action('wp_head', 'trailing_slash', 0);
+add_action('wp_head', 'trailing_slash');
 
 /******CUSTOM FIELDS*****/

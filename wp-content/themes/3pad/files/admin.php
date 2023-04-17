@@ -644,4 +644,24 @@ function change_ss_settings_capability($capability)
 
 add_filter('ss_settings_capability', 'change_ss_settings_capability');
 
+///Load Custom admin Javascript file
+function load_admin_js() {
+	if ( ! is_super_admin() ) {
+		wp_enqueue_script( 'dashboard-js1', get_theme_file_uri( '/assets/js/dashboard.js' ), array( 'jquery' ), '1.0', true );
+	}
+}
+
+add_action( 'admin_enqueue_scripts', 'load_admin_js' );
+
+function load_admin_css() {
+  if ( ! is_super_admin() ) {
+    wp_enqueue_style( 'dashboard-css', get_theme_file_uri( '/assets/css/admin.css' ), array(), '1.0', 'all', 999 );
+  }
+}
+
+add_action( 'admin_enqueue_scripts', 'load_admin_css', 0 );
+
+
+
+
 /******ADMIN AREA*****/

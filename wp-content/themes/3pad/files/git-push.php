@@ -11,7 +11,7 @@ function ssp_run_static_export_cron()
 
 add_action('ssp_run_static_export_cron_five_minute', 'ssp_run_static_export_cron');
 
-///Five Minute Cron Trigger Sub Sites
+///Cron Trigger Sub Sites
 function ssp_delay_static_export()
 {
     // Check if there is an existing scheduled event for this function
