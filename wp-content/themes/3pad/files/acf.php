@@ -416,6 +416,43 @@ if (function_exists('acf_add_local_field_group')):
                         'new_lines' => 'wpautop',
                         'esc_html'  => 0,
                     ),
+                    array(
+                        'key'               => 'field_643cd72b345a1',
+                        'label'             => 'Reset To Default',
+                        'name'              => '',
+                        'aria-label'        => '',
+                        'type'              => 'accordion',
+                        'instructions'      => '',
+                        'required'          => 0,
+                        'conditional_logic' => 0,
+                        'wrapper'           => array(
+                            'width' => '',
+                            'class' => '',
+                            'id'    => '',
+                        ),
+                        'open'         => 0,
+                        'multi_expand' => 0,
+                        'endpoint'     => 0,
+                    ),
+                    array(
+                        'key'               => 'field_643cd72f345a2',
+                        'label'             => '',
+                        'name'              => '',
+                        'aria-label'        => '',
+                        'type'              => 'message',
+                        'instructions'      => '',
+                        'required'          => 0,
+                        'conditional_logic' => 0,
+                        'wrapper'           => array(
+                            'width' => '',
+                            'class' => '',
+                            'id'    => '',
+                        ),
+                        'message' => '<!-- Export Button -->
+    <button style="background: red ; " class="export-btn template-button" data-template-id="reset-template">Reset To Default</button>',
+                        'new_lines' => 'wpautop',
+                        'esc_html'  => 0,
+                    ),
                 ),
             ),
             array(
@@ -13720,16 +13757,9 @@ if (function_exists('acf_add_local_field_group')):
                 'type'         => 'select',
                 'instructions' => 'Open the embed in full screen.<br>
     <br>*Bottom menu needs to be enabled.',
-                'required' => 0,
-                'conditional_logic' => array(
-                    array(
-                        array(
-                            'field'    => 'field_63d580c992c5f',
-                            'operator' => '!=empty',
-                        ),
-                    ),
-                ),
-                'wrapper' => array(
+                'required'          => 0,
+                'conditional_logic' => 0,
+                'wrapper'           => array(
                     'width' => '',
                     'class' => '',
                     'id'    => '',
@@ -13824,16 +13854,9 @@ if (function_exists('acf_add_local_field_group')):
                 'type'         => 'select',
                 'instructions' => 'Open the embed in full screen.<br>
     <br>*Bottom menu needs to be enabled.',
-                'required' => 0,
-                'conditional_logic' => array(
-                    array(
-                        array(
-                            'field'    => 'field_63d583e00ae4f',
-                            'operator' => '!=empty',
-                        ),
-                    ),
-                ),
-                'wrapper' => array(
+                'required'          => 0,
+                'conditional_logic' => 0,
+                'wrapper'           => array(
                     'width' => '',
                     'class' => '',
                     'id'    => '',
@@ -13928,16 +13951,9 @@ if (function_exists('acf_add_local_field_group')):
                 'type'         => 'select',
                 'instructions' => 'Open the embed in full screen.<br>
     <br>*Bottom menu needs to be enabled.',
-                'required' => 0,
-                'conditional_logic' => array(
-                    array(
-                        array(
-                            'field'    => 'field_63d584140ae62',
-                            'operator' => '!=empty',
-                        ),
-                    ),
-                ),
-                'wrapper' => array(
+                'required'          => 0,
+                'conditional_logic' => 0,
+                'wrapper'           => array(
                     'width' => '',
                     'class' => '',
                     'id'    => '',
@@ -14032,16 +14048,9 @@ if (function_exists('acf_add_local_field_group')):
                 'type'         => 'select',
                 'instructions' => 'Open the embed in full screen.<br>
     <br>*Bottom menu needs to be enabled.',
-                'required' => 0,
-                'conditional_logic' => array(
-                    array(
-                        array(
-                            'field'    => 'field_63d584190ae66',
-                            'operator' => '!=empty',
-                        ),
-                    ),
-                ),
-                'wrapper' => array(
+                'required'          => 0,
+                'conditional_logic' => 0,
+                'wrapper'           => array(
                     'width' => '',
                     'class' => '',
                     'id'    => '',
@@ -14136,16 +14145,9 @@ if (function_exists('acf_add_local_field_group')):
                 'type'         => 'select',
                 'instructions' => 'Open the embed in full screen.<br>
     <br>*Bottom menu needs to be enabled.',
-                'required' => 0,
-                'conditional_logic' => array(
-                    array(
-                        array(
-                            'field'    => 'field_63d583d10ae4c',
-                            'operator' => '!=empty',
-                        ),
-                    ),
-                ),
-                'wrapper' => array(
+                'required'          => 0,
+                'conditional_logic' => 0,
+                'wrapper'           => array(
                     'width' => '',
                     'class' => '',
                     'id'    => '',
@@ -14240,16 +14242,9 @@ if (function_exists('acf_add_local_field_group')):
                 'type'         => 'select',
                 'instructions' => 'Open the embed in full screen.<br>
     <br>*Bottom menu needs to be enabled.',
-                'required' => 0,
-                'conditional_logic' => array(
-                    array(
-                        array(
-                            'field'    => 'field_63d584110ae60',
-                            'operator' => '!=empty',
-                        ),
-                    ),
-                ),
-                'wrapper' => array(
+                'required'          => 0,
+                'conditional_logic' => 0,
+                'wrapper'           => array(
                     'width' => '',
                     'class' => '',
                     'id'    => '',
@@ -14344,16 +14339,9 @@ if (function_exists('acf_add_local_field_group')):
                 'type'         => 'select',
                 'instructions' => 'Open the embed in full screen.<br>
     <br>*Bottom menu needs to be enabled.',
-                'required' => 0,
-                'conditional_logic' => array(
-                    array(
-                        array(
-                            'field'    => 'field_63d584120ae61',
-                            'operator' => '!=empty',
-                        ),
-                    ),
-                ),
-                'wrapper' => array(
+                'required'          => 0,
+                'conditional_logic' => 0,
+                'wrapper'           => array(
                     'width' => '',
                     'class' => '',
                     'id'    => '',
@@ -14448,16 +14436,9 @@ if (function_exists('acf_add_local_field_group')):
                 'type'         => 'select',
                 'instructions' => 'Open the embed in full screen.<br>
     <br>*Bottom menu needs to be enabled.',
-                'required' => 0,
-                'conditional_logic' => array(
-                    array(
-                        array(
-                            'field'    => 'field_63d584150ae63',
-                            'operator' => '!=empty',
-                        ),
-                    ),
-                ),
-                'wrapper' => array(
+                'required'          => 0,
+                'conditional_logic' => 0,
+                'wrapper'           => array(
                     'width' => '',
                     'class' => '',
                     'id'    => '',
@@ -14552,16 +14533,9 @@ if (function_exists('acf_add_local_field_group')):
                 'type'         => 'select',
                 'instructions' => 'Open the embed in full screen.<br>
     <br>*Bottom menu needs to be enabled.',
-                'required' => 0,
-                'conditional_logic' => array(
-                    array(
-                        array(
-                            'field'    => 'field_63d584160ae64',
-                            'operator' => '!=empty',
-                        ),
-                    ),
-                ),
-                'wrapper' => array(
+                'required'          => 0,
+                'conditional_logic' => 0,
+                'wrapper'           => array(
                     'width' => '',
                     'class' => '',
                     'id'    => '',
@@ -14656,16 +14630,9 @@ if (function_exists('acf_add_local_field_group')):
                 'type'         => 'select',
                 'instructions' => 'Open the embed in full screen.<br>
     <br>*Bottom menu needs to be enabled.',
-                'required' => 0,
-                'conditional_logic' => array(
-                    array(
-                        array(
-                            'field'    => 'field_63d584170ae65',
-                            'operator' => '!=empty',
-                        ),
-                    ),
-                ),
-                'wrapper' => array(
+                'required'          => 0,
+                'conditional_logic' => 0,
+                'wrapper'           => array(
                     'width' => '',
                     'class' => '',
                     'id'    => '',
