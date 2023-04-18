@@ -582,7 +582,7 @@ function check_if_home_pending()
   $title   = get_field('site_title', 'option');
   //If Title is empty. Isn't on admin page. isn't on login page. Isn't mainsite (WPMU)
   if ($title == NULL && !is_main_site() && current_user_can('edit_pages')) {
-    echo "<script>alert('Please Setup Your Landing Page'); </script>";
+    echo "<script>alert('Please Setup Your Landing Page. Enter Title To Start'); </script>";
   }
 }
 

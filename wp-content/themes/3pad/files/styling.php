@@ -58,7 +58,8 @@ function add_bg_image_div()
     <div class="green_bg"></div>
     <div class="blue_bg"></div>
     <div class="red2"></div>
-  </div>';
+  </div>
+  ';
   }
 }
 
@@ -143,7 +144,8 @@ function hide_my_sites_admin_bar()
   // Only hide the "My Sites" menu for non-super admins who have the "author" role
   if (!is_super_admin() && current_user_can('author')) {
     // Echo a style element that sets the display property of the "My Sites" menu to "none"
-    echo '<style>#wp-admin-bar-my-sites{display: none !important;}</style>';
+    echo '<style>#wp-admin-bar-my-sites{display: none !important;} </style>';
+    add_filter('show_admin_bar', '__return_false');
   }
 }
 

@@ -4,7 +4,7 @@
 if (function_exists('acf_add_options_page')) {
     acf_add_options_page(
         array(
-            'page_title' => 'Customize Landing Page',
+            'page_title' => 'Set Up',
             'menu_slug'  => 'customize-home',
             'menu_title' => 'Customize 🌟',
             'capability' => 'author',
@@ -13510,7 +13510,7 @@ if (function_exists('acf_add_local_field_group')):
                 'aria-label'   => '',
                 'type'         => 'text',
                 'instructions' => 'This is used to uniquely identify your website on Disqus. It cannot be changed. More info <a href="https://disqus.com" style="color:yellow;" target="_blank">HERE</a>',
-                'required'     => 1,
+                'required'     => 0,
                 'conditional_logic' => array(
                     array(
                         array(
@@ -13538,7 +13538,7 @@ if (function_exists('acf_add_local_field_group')):
                 'aria-label'   => '',
                 'type'         => 'text',
                 'instructions' => 'Enter Telegram Site ID . More Info <a href="https://comments.app" style="color: yellow;" target="_blank"><b>HERE</b></a><br>Be sure to copy & include [3pad.xyz] on the "Domains section" on telegram\'s manage site page',
-                'required'     => 1,
+                'required'     => 0,
                 'conditional_logic' => array(
                     array(
                         array(
@@ -13630,7 +13630,7 @@ if (function_exists('acf_add_local_field_group')):
                 'aria-label'   => '',
                 'type'         => 'text',
                 'instructions' => 'You can get the Server and Channel IDs from Discord: Go to the Appearance tab in User Settings, and turn on Developer Mode. Then, right-click the server icon or channel and click Copy ID<br>Must have <a style="color: yellow;" href="https://widgetbot.io/" target="_blank" >Widget Bot</a> Installed on your server',
-                'required'     => 1,
+                'required'     => 0,
                 'conditional_logic' => array(
                     array(
                         array(
@@ -13658,7 +13658,7 @@ if (function_exists('acf_add_local_field_group')):
                 'aria-label'   => '',
                 'type'         => 'text',
                 'instructions' => 'You can get the Server and Channel IDs from Discord: Go to the Appearance tab in User Settings, and turn on Developer Mode. Then, right-click the server icon or channel and click Copy ID<br>Must have <a style="color: yellow;" href="https://widgetbot.io/" target="_blank" >Widget Bot</a> Installed on your server',
-                'required'     => 1,
+                'required'     => 0,
                 'conditional_logic' => array(
                     array(
                         array(

@@ -24,7 +24,7 @@ function add_custom_headers($headers)
 	// Add the X-Download-Options header
 	$headers['X-Download-Options']                = 'noopen';
 	//Prevent Hotlinking
-	$headers['X-Frame-Options']                   = 'deny';
+	$headers['X-Frame-Options']                   = 'SAMEORIGIN';
 	//not to be indexed or followed by search engines
 	$headers['X-Robots-Tag']                      = 'noindex, nofollow, true';
 	// Add the X-Permitted-Cross-Domain-Policies header
