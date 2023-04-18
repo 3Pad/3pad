@@ -1,8 +1,7 @@
-name: 'repo-backup'
+name: repo-backup
 on:
   schedule:
     - cron: '0 1 * * *'
-
 jobs:
   repo-backup:
     runs-on: ubuntu-latest
