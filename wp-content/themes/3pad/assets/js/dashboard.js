@@ -353,29 +353,31 @@ const siteUrl = currentUrl.substring(0, wpAdminIndex);
 
 //Ajax Fields Update
 jQuery(document).ready(function($) {
-    var fields = $('input[type="url"], input[type="color"], input[type="number"], input[type="email"], input[type="password"], textarea, select').on('input change', function() {
-        $('#publish').trigger('click');
-    });
+    var acfFields = '#post input[id^="acf-field_"][type!="button"][type!="submit"][type!="reset"][type!="hidden"][type!="checkbox"][type!="radio"], #post select[id^="acf-field_"], #post textarea[id^="acf-field_"], #post input[type="checkbox"][id^="acf-field_"], #post input[type="radio"][id^="acf-field_"], #post input[type="color"][id^="acf-field_"], #post input[type="hidden"][name^="acf["]';
+
+$(document).on('change keyup paste click', acfFields, function() {
+  $('#publish').trigger('click');
+});
+
     
     $('#publish').click(function(event) {
-      event.preventDefault(); // prevent default form submission behavior
-      var data = $('#post').serialize(); // get form data
-      $.ajax({
-        url: $('#post').attr('action'), // form action URL
-        type: 'POST',
-        data: data,
-        success: function(response) {
-          // handle success
-          // Refresh the iframe with ID 'preview-frame'
-          $('#preview-frame').attr('src', $('#preview-frame').attr('src'));
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-          // handle error
-        }
-      });
+        event.preventDefault(); // prevent default form submission behavior
+        var data = $('#post').serialize(); // get form data
+        $.ajax({
+            url: $('#post').attr('action'), // form action URL
+            type: 'POST',
+            data: data,
+            success: function(response) {
+                // Refresh the iframe with ID 'preview-frame'
+                $('#preview-frame').attr('src', $('#preview-frame').attr('src'));
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                // handle error
+            }
+        });
     });
-  });
-  
+});
+
 
 
   
