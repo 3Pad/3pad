@@ -1609,7 +1609,7 @@ form {
     height: 0;
   }
   .expanded .comments-list {
-    height: 410px;
+    min-height: 360px;
     transform: translate(0px, 20px) scale(1);
     opacity: 1;
     border-radius: 10px;

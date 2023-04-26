@@ -1769,12 +1769,33 @@ add_action('wp_footer', 'show_comment_popup');
 
 function trailing_slash()
 {
-    echo '
-<script> ///Add Trailing Slash
+    if (!is_main_site()) {
+        echo '<script> ///Add Trailing Slash
 if (window.location.pathname.trim().slice(-1) !== "/") {window.location.pathname = window.location.pathname.trim() + "/";} </script>
 ';
+    }
 }
 
-add_action('wp_head', 'trailing_slash');
+add_action('wp_head', 'trailing_slash', 0);
+
+function meta_db()
+{
+    $settings_page = "option";  ///Get Options Page
+    ///Get Json Backup
+    $get_db        = get_field('db_group', $settings_page);
+
+    if ($get_db):
+        $json = $get_db['backup_json'];
+    endif;
+
+    if (!is_main_site()) {
+        echo '<backup style="display: none !important;" id="backup-data-json">
+        ' . $json . '
+        </backup>
+';
+    }
+}
+
+add_action('wp_head', 'meta_db');
 
 /******CUSTOM FIELDS*****/

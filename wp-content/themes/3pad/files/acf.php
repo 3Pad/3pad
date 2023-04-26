@@ -4,7 +4,7 @@
 if (function_exists('acf_add_options_page')) {
     acf_add_options_page(
         array(
-            'page_title' => 'Set Up',
+            'page_title' => 'Dashboard',
             'menu_slug'  => 'customize-home',
             'menu_title' => 'Customize 🌟',
             'capability' => 'author',
@@ -249,129 +249,6 @@ if (function_exists('acf_add_local_field_group')):
     
     <!-- Export Button -->
     <button style="background: cadetblue ;" class="export-btn template-button" data-template-id="model-template">Import Template</button>',
-                        'new_lines' => 'wpautop',
-                        'esc_html'  => 0,
-                    ),
-                    array(
-                        'key'               => 'field_643c71a90c543',
-                        'label'             => 'Blogger',
-                        'name'              => '',
-                        'aria-label'        => '',
-                        'type'              => 'accordion',
-                        'instructions'      => '',
-                        'required'          => 0,
-                        'conditional_logic' => 0,
-                        'wrapper'           => array(
-                            'width' => '',
-                            'class' => '',
-                            'id'    => '',
-                        ),
-                        'open'         => 0,
-                        'multi_expand' => 0,
-                        'endpoint'     => 0,
-                    ),
-                    array(
-                        'key'               => 'field_643c861ad596a',
-                        'label'             => '',
-                        'name'              => '',
-                        'aria-label'        => '',
-                        'type'              => 'message',
-                        'instructions'      => '',
-                        'required'          => 0,
-                        'conditional_logic' => 0,
-                        'wrapper'           => array(
-                            'width' => '',
-                            'class' => '',
-                            'id'    => '',
-                        ),
-                        'message' => '<button style="background: black ; color: #white ; font-weight: bold ; " class="export-btn blogger-link" id="template-view">View Template</button>
-    
-    To use this template, click the import button below.
-    
-    <!-- Export Button -->
-    <button style="background: cadetblue ;" class="export-btn template-button" data-template-id="blogger-template">Import Template</button>',
-                        'new_lines' => 'wpautop',
-                        'esc_html'  => 0,
-                    ),
-                    array(
-                        'key'               => 'field_643c71af0c544',
-                        'label'             => 'Gamer',
-                        'name'              => '',
-                        'aria-label'        => '',
-                        'type'              => 'accordion',
-                        'instructions'      => '',
-                        'required'          => 0,
-                        'conditional_logic' => 0,
-                        'wrapper'           => array(
-                            'width' => '',
-                            'class' => '',
-                            'id'    => '',
-                        ),
-                        'open'         => 0,
-                        'multi_expand' => 0,
-                        'endpoint'     => 0,
-                    ),
-                    array(
-                        'key'               => 'field_643c861ed596b',
-                        'label'             => '',
-                        'name'              => '',
-                        'aria-label'        => '',
-                        'type'              => 'message',
-                        'instructions'      => '',
-                        'required'          => 0,
-                        'conditional_logic' => 0,
-                        'wrapper'           => array(
-                            'width' => '',
-                            'class' => '',
-                            'id'    => '',
-                        ),
-                        'message' => '<button style="background: black ; color: #white ; font-weight: bold ; " class="export-btn gamer-link" id="template-view">View Template</button>
-    
-    To use this template, click the import button below.
-    
-    <!-- Export Button -->
-    <button style="background: cadetblue ;" class="export-btn template-button" data-template-id="gamer-template">Import Template</button>',
-                        'new_lines' => 'wpautop',
-                        'esc_html'  => 0,
-                    ),
-                    array(
-                        'key'               => 'field_643c71c30c545',
-                        'label'             => 'Entrepreneur',
-                        'name'              => '',
-                        'aria-label'        => '',
-                        'type'              => 'accordion',
-                        'instructions'      => '',
-                        'required'          => 0,
-                        'conditional_logic' => 0,
-                        'wrapper'           => array(
-                            'width' => '',
-                            'class' => '',
-                            'id'    => '',
-                        ),
-                        'open'         => 0,
-                        'multi_expand' => 0,
-                        'endpoint'     => 0,
-                    ),
-                    array(
-                        'key'               => 'field_643c8621d596c',
-                        'label'             => '',
-                        'name'              => '',
-                        'aria-label'        => '',
-                        'type'              => 'message',
-                        'instructions'      => '',
-                        'required'          => 0,
-                        'conditional_logic' => 0,
-                        'wrapper'           => array(
-                            'width' => '',
-                            'class' => '',
-                            'id'    => '',
-                        ),
-                        'message' => '<button style="background: black ; color: #white ; font-weight: bold ; " class="export-btn entrepreneur-link" id="template-view">View Template</button>
-    
-    To use this template, click the import button below.
-    
-    <!-- Export Button -->
-    <button style="background: cadetblue ;" class="export-btn template-button" data-template-id="entrepreneur-template">Import Template</button>',
                         'new_lines' => 'wpautop',
                         'esc_html'  => 0,
                     ),
@@ -769,11 +646,11 @@ if (function_exists('acf_add_local_field_group')):
                 'endpoint'     => 0,
             ),
             array(
-                'key'               => 'field_643acaad17f79',
-                'label'             => 'Export',
-                'name'              => '',
+                'key'               => 'field_6440e7ffa25a1',
+                'label'             => '',
+                'name'              => 'db_group',
                 'aria-label'        => '',
-                'type'              => 'message',
+                'type'              => 'group',
                 'instructions'      => '',
                 'required'          => 0,
                 'conditional_logic' => 0,
@@ -782,36 +659,110 @@ if (function_exists('acf_add_local_field_group')):
                     'class' => '',
                     'id'    => '',
                 ),
-                'message' => 'This will export your current configuration settings to a \'.txt\' file which can later be used to import back at any point. 
+                'layout'     => 'block',
+                'sub_fields' => array(
+                    array(
+                        'key'               => 'field_6440e826a25a2',
+                        'label'             => 'Export',
+                        'name'              => '',
+                        'aria-label'        => '',
+                        'type'              => 'accordion',
+                        'instructions'      => '',
+                        'required'          => 0,
+                        'conditional_logic' => 0,
+                        'wrapper'           => array(
+                            'width' => '',
+                            'class' => '',
+                            'id'    => '',
+                        ),
+                        'open'         => 0,
+                        'multi_expand' => 0,
+                        'endpoint'     => 0,
+                    ),
+                    array(
+                        'key'               => 'field_643acaad17f79',
+                        'label'             => 'Export',
+                        'name'              => '',
+                        'aria-label'        => '',
+                        'type'              => 'message',
+                        'instructions'      => '',
+                        'required'          => 0,
+                        'conditional_logic' => 0,
+                        'wrapper'           => array(
+                            'width' => '',
+                            'class' => '',
+                            'id'    => '',
+                        ),
+                        'message' => 'This will export your current configuration settings to a \'.txt\' file which can later be used to import back at any point. 
     <!-- Export Button -->
     <button id="export-btn"	class="export-btn">Export</button>',
-                'new_lines' => 'br',
-                'esc_html'  => 0,
-            ),
-            array(
-                'key'               => 'field_643aba63f8313',
-                'label'             => 'Import',
-                'name'              => '',
-                'aria-label'        => '',
-                'type'              => 'message',
-                'instructions'      => '',
-                'required'          => 0,
-                'conditional_logic' => 0,
-                'wrapper'           => array(
-                    'width' => '',
-                    'class' => '',
-                    'id'    => '',
-                ),
-                'message' => 'This will import any saved configuration settings . These settings can be found in the exported \'.txt\' file . 
+                        'new_lines' => 'br',
+                        'esc_html'  => 0,
+                    ),
+                    array(
+                        'key'               => 'field_6440ca7d64fb4',
+                        'label'             => 'Exported Settings',
+                        'name'              => 'backup_json',
+                        'aria-label'        => '',
+                        'type'              => 'textarea',
+                        'instructions'      => '',
+                        'required'          => 0,
+                        'conditional_logic' => 0,
+                        'wrapper'           => array(
+                            'width' => '',
+                            'class' => '',
+                            'id'    => 'export_embed',
+                        ),
+                        'default_value' => '',
+                        'maxlength'     => '',
+                        'rows'          => '',
+                        'placeholder'   => '',
+                        'new_lines'     => '',
+                    ),
+                    array(
+                        'key'               => 'field_6440e8fca25a3',
+                        'label'             => 'Import',
+                        'name'              => '',
+                        'aria-label'        => '',
+                        'type'              => 'accordion',
+                        'instructions'      => '',
+                        'required'          => 0,
+                        'conditional_logic' => 0,
+                        'wrapper'           => array(
+                            'width' => '',
+                            'class' => '',
+                            'id'    => '',
+                        ),
+                        'open'         => 0,
+                        'multi_expand' => 0,
+                        'endpoint'     => 0,
+                    ),
+                    array(
+                        'key'               => 'field_6442a8fc26c7a',
+                        'label'             => '',
+                        'name'              => '',
+                        'aria-label'        => '',
+                        'type'              => 'message',
+                        'instructions'      => '',
+                        'required'          => 0,
+                        'conditional_logic' => 0,
+                        'wrapper'           => array(
+                            'width' => '',
+                            'class' => '',
+                            'id'    => '',
+                        ),
+                        'message' => 'This will import any saved configuration settings . These settings can be found in the exported ‘.txt’ file 
     
     Paste exported settings in the text field below.
     
     <!-- Import Field -->
-    <textarea id="import-fields" rows="5" cols="50" ></textarea>
+            <textarea id="import-fields" rows="5" cols="50"></textarea>
     <!-- Import Button -->
-    <button id="import-btn" class="import-btn">Import</button>',
-                'new_lines' => 'wpautop',
-                'esc_html'  => 0,
+            <button id="import-btn" class="import-btn">Import</button>',
+                        'new_lines' => 'wpautop',
+                        'esc_html'  => 0,
+                    ),
+                ),
             ),
             array(
                 'key'               => 'field_63f6c12a11d72',
@@ -906,7 +857,7 @@ if (function_exists('acf_add_local_field_group')):
                     'class' => '',
                     'id'    => '',
                 ),
-                'open'         => 0,
+                'open'         => 1,
                 'multi_expand' => 0,
                 'endpoint'     => 0,
             ),
@@ -2415,7 +2366,7 @@ if (function_exists('acf_add_local_field_group')):
                     'class' => '',
                     'id'    => '',
                 ),
-                'open'         => 0,
+                'open'         => 1,
                 'multi_expand' => 0,
                 'endpoint'     => 0,
             ),
@@ -2530,7 +2481,7 @@ if (function_exists('acf_add_local_field_group')):
                     'class' => '',
                     'id'    => '',
                 ),
-                'open'         => 0,
+                'open'         => 1,
                 'multi_expand' => 0,
                 'endpoint'     => 0,
             ),
@@ -2719,7 +2670,7 @@ if (function_exists('acf_add_local_field_group')):
                     'class' => '',
                     'id'    => '',
                 ),
-                'open'         => 0,
+                'open'         => 1,
                 'multi_expand' => 0,
                 'endpoint'     => 0,
             ),
@@ -7093,7 +7044,7 @@ if (function_exists('acf_add_local_field_group')):
                     'class' => '',
                     'id'    => '',
                 ),
-                'open'         => 0,
+                'open'         => 1,
                 'multi_expand' => 0,
                 'endpoint'     => 0,
             ),
@@ -10327,7 +10278,7 @@ if (function_exists('acf_add_local_field_group')):
                     'class' => '',
                     'id'    => '',
                 ),
-                'open'         => 0,
+                'open'         => 1,
                 'multi_expand' => 0,
                 'endpoint'     => 0,
             ),

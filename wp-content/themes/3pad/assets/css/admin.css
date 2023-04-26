@@ -11,13 +11,74 @@ body, td, textarea, input, select {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.show-acf {
+  display: block !important;
+}
+
+.hide-acf {
+  display: none !important;
+}
+
+
+#wpbody-content > div.wrap.acf-settings-wrap > h1{
+  text-align: left;
+  margin-left: 20px;
+  font-size: max(7vw, 40px);
+  font-weight: 200 !important;
+}
+/************ Bottom Menu  **********/
+.altmenu {
+  width: 90%;
+background: #ffffff0f;
+position: fixed;
+left: 5%;
+box-shadow: 0 0 20px 10px #00000045;
+z-index: 9999;
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
+bottom: 10px;
+border-radius: 30px;
+}
+.altmenu ul {
+  padding: 0;
+  margin: 0;
+	width: 100%;
+	display: table;
+}
+.altmenu ul li {
+  display: table-cell;
+  margin-left: -4px;
+  margin-top: -3px;
+}
+
+
+@media (max-width: 930px) {
+  .altmenu ul li a {
+    padding: 10px 10px;
+  }
+}
+.altmenu ul li a:hover {
+    color: white;
+  }
+  .altmenu ul li a {
+    position: relative;
+    display: block;
+    padding: 10px 0px;
+    text-align: center;
+    font-size: 30px;
+    color: white;
+    transition: 300ms;
+  }
+
+/************ Bottom Menu  **********/
+
 .resetpassword, .view, tr.user-description-wrap, .user-url-wrap,.user-profile-picture, 
 .nav-tab-wrapper, #taxonomy-elementor_library_category, .user-email-wrap, #acf-group_63193edd9e74d, #wpfooter,
 .uip-display-block, #toplevel_page_uip-overview, .uip-position-relative,
   label[for=comments_notify],label[for=moderation_notify],label[for=comment_order],label[for=default_comments_page],
   label[for=require_name_email], #uip-toolbar-content > div > div:nth-child(4) > div, #uip-toolbar-content > div > div:nth-child(2) > div > span,
-  #elementor-switch-mode-button, #elementor-editor, #wpbody-content > div.wrap.acf-settings-wrap > h1,
-  #elementor-import-template-trigger .components-panel__body-toggle.components-button, #__wp-uploader-id-2, .supports-drag-drop, .block-editor-media-replace-flow__media-upload-menu, .color-option, label[for=comment_shortcuts],label[for=admin_bar_front], #screen-meta-links, .user-first-name-wrap, .user-last-name-wrap, #wpbody-content > h2:nth-child(20), #wpbody-content > h2:nth-child(18), #publishing-action .spinner, #wp-admin-bar-comments, .search-box, #burst-statistics > div > div.burst-content-area.burst-grid.burst-settings > div.burst-wizard-settings.burst-column-2 > div.burst-grid-item.burst-advanced > div.burst-grid-item-content > div:nth-child(1), .burst-tips-tricks, .burst-other-plugins, .button.button-black, .shepherd-element, .submitdelete, #wpbody-content > h2:nth-child(16), #wp-admin-bar-new-content, #wpbody-content > h2:nth-child(19), #wpbody-content > h2:nth-child(21), #wpbody-content > h2:nth-child(17), .components-site-icon, .right-tbl-text-main, .qeappspwa-right, #qeappspwa-section-three > table > tbody > tr:nth-child(1) > td > button, #qeappspwa-section-two > table > tbody > tr:nth-child(7), #qeappspwa-section-two > table > tbody > tr:nth-child(8) {
+  #elementor-switch-mode-button, #elementor-editor,
+  #elementor-import-template-trigger .components-panel__body-toggle.components-button, #__wp-uploader-id-2, .supports-drag-drop, .block-editor-media-replace-flow__media-upload-menu, .color-option, label[for=comment_shortcuts],label[for=admin_bar_front], #screen-meta-links, .user-first-name-wrap, .user-last-name-wrap, #wpbody-content > h2:nth-child(20), #wpbody-content > h2:nth-child(18), #publishing-action .spinner, #wp-admin-bar-comments, .search-box, #burst-statistics > div > div.burst-content-area.burst-grid.burst-settings > div.burst-wizard-settings.burst-column-2 > div.burst-grid-item.burst-advanced > div.burst-grid-item-content > div:nth-child(1), .burst-tips-tricks, .burst-other-plugins, .button.button-black, .shepherd-element, .submitdelete, #wpbody-content > h2:nth-child(16), #wp-admin-bar-new-content, #wpbody-content > h2:nth-child(19), #wpbody-content > h2:nth-child(21), #wpbody-content > h2:nth-child(17), .components-site-icon, .right-tbl-text-main, .qeappspwa-right, #qeappspwa-section-three > table > tbody > tr:nth-child(1) > td > button, #qeappspwa-section-two > table > tbody > tr:nth-child(7), #qeappspwa-section-two > table > tbody > tr:nth-child(8), #submitdiv > div.postbox-header, .handle-order-lower, .handle-order-higher{
     display:none !important;
 }
 
@@ -97,13 +158,15 @@ bottom: inherit;
 }
 .postbox{
 border: none;
-background: #ffffff17;
+background: none;
 box-shadow: none;
 border-radius: 10px;
 margin: 10px;
 color: white;
 padding: 10px;
 min-width: 220px;
+margin-bottom: -25px;
+top: -30px;
 }
 
 .postbox-header .hndle, .editor-styles-wrapper p, .wp-block-post-title, .components-tip p, .editor-post-url__link{
@@ -119,9 +182,9 @@ border-radius: 10px;
 }
 .postbox-header{
 border: none;
-background: #ffffff2b;
+/*background: #ffffff3d;*/
 border-radius: 10px;
-
+border: 1px solid;
 }
 .block-editor-default-block-appender .block-editor-inserter__toggle.components-button.has-icon{
 background: #007cba;
@@ -135,9 +198,10 @@ background: #c6c6c670;
 border-radius: 10px;
 }
 .acf-field.acf-accordion .acf-label.acf-accordion-title{
-background: #00000030;
-border-radius: 10px;
+  background: #ffffff3d;
+border-radius: 30px;
 margin: 10px 0px;
+box-shadow: 0px 0px 20px #ffffff26;
 }
 .wp-core-ui .notice.is-dismissible {
 padding-right: 38px;
@@ -210,7 +274,6 @@ background-image: none;
 background-size: auto;
 background-blend-mode: unset;
 background-size: cover;
-position: fixed;
 }
 
 a {color: #135979; font-weight: 600; }
@@ -255,13 +318,14 @@ position: fixed;
 width: 100vw;
 height: 103vh;
 overflow: hidden;
-background-color: #1a1a1a;
+background-color: #000;
 top: -2px;
 filter: saturate(1.8);
 -webkit-filter: saturate(1.8);
 }
 
 .blue_bg {
+  opacity: 0.7;
 position: absolute;
 top: -5%;
 right: -5%;
@@ -290,6 +354,7 @@ height: 40vw;
 border-radius: 100px;
 animation: spinReverse 20s linear infinite;
 z-index: 10;
+opacity: 0.2;
 }
 
 .red_bg {
@@ -302,10 +367,12 @@ height: 65vw;
 border-radius: 100px;
 animation: spin 35s linear infinite;
 z-index: 5;
+opacity: 0.3;
 }
 
 .red2 {
 position: absolute;
+opacity: 0.8;
 bottom: 0%;
 left: 30%;
 background-image: linear-gradient(
@@ -334,6 +401,7 @@ height: 40vh;
 border-radius: 100px;
 animation: spinReverse 45s linear infinite;
 z-index: 10;
+opacity: 0.5;
 }
 
 .blur {
@@ -343,8 +411,8 @@ left: 0;
 width: 100%;
 height: 100%;
 z-index: 50;
-backdrop-filter: blur(60px);
--webkit-backdrop-filter: blur(60px);
+backdrop-filter: blur(30px);
+-webkit-backdrop-filter: blur(30px);
 }
 
 
@@ -477,9 +545,13 @@ color: white;
 .css-kfhu3b{
 border: none !important;
 }
+
 @media only screen and (max-width: 850px) {
   #preview-frame {
     display: none;
+  }
+  #poststuff, #post-body{
+    overflow: unset !important;
   }
 }
 @media only screen and (min-width: 850px) {
@@ -502,15 +574,15 @@ border: none !important;
     margin-right: 325px !important;
   }
 img.instructions{
-width: 50% !important;
+min-width: 50% !important;
 }
 #major-publishing-actions.sticky {
 position: fixed;
-top: 54px;
+top: 10px;
 z-index: 9;
 min-width: 30em !important;
-backdrop-filter: blur(10px);
--webkit-backdrop-filter: blur(10px);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
 }
 }
 
@@ -519,6 +591,7 @@ backdrop-filter: blur(50px);
 -webkit-backdrop-filter: blur(50px);
 background-color: #00000054 !important;
 }
+
 
 #preview-frame {
   filter: drop-shadow(black 0px 0px 1rem);
@@ -534,7 +607,7 @@ background-color: #00000054 !important;
 
 #major-publishing-actions.sticky {
 position: fixed;
-top: 54px;
+top: 10px;
 z-index: 9;
 min-width: 80vw;
 backdrop-filter: blur(10px);
@@ -544,7 +617,7 @@ backdrop-filter: blur(10px);
 /* Help */
 .help-button-wrapper {
 position: fixed;
-bottom: 1em;
+bottom: 6em;
 right: 1em;
 text-align: right;
 z-index: 9;
@@ -617,6 +690,29 @@ margin-bottom: 1em;
 .help-list a {
 color: #212121;
 }
+
+.bounce {
+  animation: bounce 0.5s ease-out;
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(0.95);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  75% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 
 /* Web App */
 .left-tab-bg-main-floter{

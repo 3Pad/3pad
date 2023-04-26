@@ -656,6 +656,9 @@ add_action( 'admin_enqueue_scripts', 'load_admin_js' );
 function load_admin_css() {
   if ( ! is_super_admin() ) {
     wp_enqueue_style( 'dashboard-css', get_theme_file_uri( '/assets/css/admin.css' ), array(), '1.0', 'all', 999 );
+    wp_enqueue_style( 'fontawesome-css', get_theme_file_uri( '/assets/css/fontawesome.min.css' ), array(), '1.0', 'all', 999 );
+    wp_enqueue_style( 'brands-css', get_theme_file_uri( '/assets/css/brands.min.css' ), array(), '1.0', 'all', 999 );
+    wp_enqueue_style( 'solid-css', get_theme_file_uri( '/assets/css/solid.min.css' ), array(), '1.0', 'all', 999 );
   }
 }
 
