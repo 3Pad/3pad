@@ -14,14 +14,16 @@ add_action('ssp_run_static_export_cron_five_minute', 'ssp_run_static_export_cron
 ///Cron Trigger Sub Sites
 function ssp_delay_static_export()
 {
-    // Check if there is an existing scheduled event for this function
-    $scheduled_event = wp_next_scheduled('ssp_run_static_export_cron_five_minute');
+    $event_hook      = 'ssp_run_static_export_cron_five_minute';
+    $scheduled_event = wp_next_scheduled($event_hook);
+
+    // If there is a scheduled event, do not schedule a new one
     if ($scheduled_event) {
-        // If there is a scheduled event, cancel it to prevent duplicate events
-        wp_unschedule_event($scheduled_event, 'ssp_run_static_export_cron_five_minute');
+        return;
     }
-    // Schedule the function to run * from now (Seconds)
-    wp_schedule_single_event(time() + GIT_PUSH_SECONDS, 'ssp_run_static_export_cron_five_minute');
+
+    // Schedule the function to run after GIT_PUSH_SECONDS seconds
+    wp_schedule_single_event(time() + GIT_PUSH_SECONDS, $event_hook);
 }
 
 add_action('acf/save_post', 'ssp_delay_static_export');

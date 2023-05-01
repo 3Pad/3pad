@@ -26,7 +26,8 @@
 
 <?php
 //Check If Author is active
-$active = author_status();
+$active = current_user_can('subscriber');
+
 ?>
 <?php
 // I'm already logged in, so I don't need to worry about signing up.
@@ -104,9 +105,9 @@ if (is_user_logged_in()) {
 				*/
 	?>
 
-
+					
 				<?php  ///If author is detected don't display create site form
-	if (!$active):
+	if ($active = false):
 		?>
 					<?php
 
@@ -121,30 +122,8 @@ if (is_user_logged_in()) {
 			add_user_meta($user_id, 'starter', true);
 		}
 
-		function my_custom_form_callback($content)
-		{
-			//In Order To Echo The Content Behind Lock
-			$form  = '<p id="subheader-login" class="centered-subheading">Launch A New Site Below';
-			$form .= '</p>';
-			$form .= '<form id="create-site-form" method="post">';
-			$form .= '<input type="text" name="site-title" placeholder="Enter Site Name" required>';
-			$form .= wp_nonce_field('create-site', 'create-site-nonce', true, false);
-			$form .= '<input type="submit" id="create-site-button" name="create-site-button" value="🚀 Launch">';
-			$form .= '</form>';
-
-			//Style Logout Button Center
-			$form .= '<style>';
-			$form .= '.w-col-3{display: contents;}';
-			$form .= '</style>';
-
-			return $form;
-		}
-
-		$site_form = my_custom_form_callback('Site-Form');
-
-		///Lock Website Create Form
-		//add_filter('the_content', 'my_custom_form_callback');
 		?>
+
 
 					<?php
 		///Show The Site Form Here
@@ -155,6 +134,7 @@ if (is_user_logged_in()) {
 							class="b4 w-button">🚪
 							Log Out</a>
 					</div>
+					
 
 					<style>
 						.w-col-3 {
@@ -167,8 +147,9 @@ if (is_user_logged_in()) {
 	?>
 
 				<?php  ///If author is detected don't display create site form
-	$active = author_status();
-	if ($active):
+
+	$active = current_user_can('subscriber');
+	if ($active = true):
 		?>
 					<?php
 		///Remove starter meta since it's author
@@ -192,29 +173,20 @@ if (is_user_logged_in()) {
 
 		function my_custom_form_callback($content)
 		{
-			///Current User Id
-			$current_user_id = get_current_user_id();
+			if (current_user_can('subscriber') && !current_user_can('manage_options')) {
+				// If the user has the "author" role, get the site URL and make it HTTPS
+				//$blog_url = set_url_scheme($blog->siteurl, 'https');
+				$current_user = wp_get_current_user();
+				$user_login   = $current_user->user_login;
+				$page         = get_page_by_path($user_login);
+				$page_id      = $page->ID;
+				$gif          = 'https://media.giphy.com/media/3ohhwkciVuXOgX7z44/giphy-downsized.gif';
+				$random       = wp_rand(24);
 
-			//Random Link
-			//$link = 'https://3pad.xyz/explore3, https://3pad.xyz/explore1, https://3pad.xyz/explore2';
-			//$random_link = randomize_variable($link);
+				$html = '<div class="columns w-row">';
 
-			// Get all the sites that the user is a member of
-			$blogs = get_blogs_of_user($current_user_id);
-
-			// Loop through each site and check if the user has the "author" role
-			foreach ($blogs as $blog_id => $blog) {
-				$user = new WP_User($current_user_id, '', $blog_id);
-				if (in_array('author', $user->roles)) {
-					// If the user has the "author" role, get the site URL and make it HTTPS
-					$blog_url = set_url_scheme($blog->siteurl, 'https');
-					$gif      = 'https://media.giphy.com/media/3ohhwkciVuXOgX7z44/giphy-downsized.gif';
-					$random   = wp_rand(24);
-
-					$html = '<div class="columns w-row">';
-
-					//Account Staus
-					/*
+				//Account Staus
+				/*
 									$html .= '<div class="acc_status">';
 									$html .= '<a class="acc_status_link">';
 									$html .= '<p class="acc_status_text">';
@@ -224,39 +196,38 @@ if (is_user_logged_in()) {
 									$html .= '</div>';
 									*/
 
-					$html .= '<div class="column w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">';
-					$html .= '<a id="unlocklink" target="_parent" button="home" href="';
-					$html .= $blog_url;
-					$html .= '/wp-admin/admin.php?page=customize-home" class="email-login w-button">🏠 Dashboard</a>';
-					$html .= '</div>';
+				$html .= '<div class="column w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">';
+				$html .= '<a id="unlocklink" target="_parent" button="home" href="';
 
-					$html .= '<div class="column-2 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">';
-					$html .= '<a id="unlocklink" button="site" target="_blank" href="https://app.unlock-protocol.com/checkout?paywallConfig=%7B%22locks%22%3A%7B%220x4b63670232e58574c9f94b2382e7db27161b66ea%22%3A%7B%22network%22%3A137%2C%22skipRecipient%22%3Atrue%2C%22name%22%3A%22A+Dollar+A+Day+Contribution%22%2C%22captcha%22%3Atrue%2C%22password%22%3Afalse%2C%22promo%22%3Afalse%2C%22emailRequired%22%3Afalse%2C%22maxRecipients%22%3Anull%2C%22dataBuilder%22%3A%22%22%2C%22recurringPayments%22%3A%22forever%22%7D%2C%220x8d9799dbb790af451f4370bcae727cf33bcb35b6%22%3A%7B%22network%22%3A137%2C%22name%22%3A%22A+Monthly+Contribution%22%2C%22recurringPayments%22%3A%22forever%22%2C%22skipRecipient%22%3Atrue%2C%22captcha%22%3Atrue%2C%22password%22%3Afalse%2C%22promo%22%3Afalse%2C%22emailRequired%22%3Afalse%2C%22maxRecipients%22%3Anull%2C%22dataBuilder%22%3A%22%22%7D%7D%2C%22pessimistic%22%3Atrue%2C%22skipRecipient%22%3Atrue%2C%22title%22%3A%22Your+Contribution+Goes+A+Long+Way+%26+You+Can+Always+Cancel+Anytime+%7C+3Pad%22%2C%22icon%22%3A%22https%3A%2F%2Fmedia.giphy.com%2Fmedia%2FE1bpjy0otOn3a9bn8s%2Fgiphy-downsized.gif%22%2C%22persistentCheckout%22%3Afalse%2C%22referrer%22%3A%22%22%2C%22messageToSign%22%3A%22Thank+You+For+Your+Contribution.%22%2C%22hideSoldOut%22%3Afalse%7D" class="loginwithnft w-button">💸 Contribute';
-					$html .= '</a>';
-					$html .= '</div>';
+				$html .= '/wp-admin/post.php?action=edit&post=' . $page_id . '" class="email-login w-button">🏠 Dashboard</a>';
+				$html .= '</div>';
 
-					$html .= '<div class="column-3 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">';
-					$html .= '<a id="unlocklink" button="status" href="https://tally.so/r/npeq51" target="_blank" rel="noopener noreferrer" class="cryptologin w-button help-button">💬 Feedback</a>';
-					$html .= '</div>';
+				$html .= '<div class="column-2 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">';
+				$html .= '<a id="unlocklink" button="site" target="_blank" href="https://app.unlock-protocol.com/checkout?paywallConfig=%7B%22locks%22%3A%7B%220x4b63670232e58574c9f94b2382e7db27161b66ea%22%3A%7B%22network%22%3A137%2C%22skipRecipient%22%3Atrue%2C%22name%22%3A%22A+Dollar+A+Day+Contribution%22%2C%22captcha%22%3Atrue%2C%22password%22%3Afalse%2C%22promo%22%3Afalse%2C%22emailRequired%22%3Afalse%2C%22maxRecipients%22%3Anull%2C%22dataBuilder%22%3A%22%22%2C%22recurringPayments%22%3A%22forever%22%7D%2C%220x8d9799dbb790af451f4370bcae727cf33bcb35b6%22%3A%7B%22network%22%3A137%2C%22name%22%3A%22A+Monthly+Contribution%22%2C%22recurringPayments%22%3A%22forever%22%2C%22skipRecipient%22%3Atrue%2C%22captcha%22%3Atrue%2C%22password%22%3Afalse%2C%22promo%22%3Afalse%2C%22emailRequired%22%3Afalse%2C%22maxRecipients%22%3Anull%2C%22dataBuilder%22%3A%22%22%7D%7D%2C%22pessimistic%22%3Atrue%2C%22skipRecipient%22%3Atrue%2C%22title%22%3A%22Your+Contribution+Goes+A+Long+Way+%26+You+Can+Always+Cancel+Anytime+%7C+3Pad%22%2C%22icon%22%3A%22https%3A%2F%2Fmedia.giphy.com%2Fmedia%2FE1bpjy0otOn3a9bn8s%2Fgiphy-downsized.gif%22%2C%22persistentCheckout%22%3Afalse%2C%22referrer%22%3A%22%22%2C%22messageToSign%22%3A%22Thank+You+For+Your+Contribution.%22%2C%22hideSoldOut%22%3Afalse%7D" class="loginwithnft w-button">💸 Contribute';
+				$html .= '</a>';
+				$html .= '</div>';
 
-					$html .= '<div class="column-4 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">';
-					$html .= '<a id="unlocklink" button="log-out" href="';
-					$html .= wp_logout_url(get_permalink());
-					$html .= '"class="b4 w-button">🚪 Log Out</a>';
-					$html .= '</div>';
-					$html .= '</div>';
+				$html .= '<div class="column-3 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">';
+				$html .= '<a id="unlocklink" button="status" href="https://tally.so/r/npeq51" target="_blank" rel="noopener noreferrer" class="cryptologin w-button help-button">💬 Feedback</a>';
+				$html .= '</div>';
 
-					///remove Logout Button if status is acttive member & add some css
-					$html .= '<style>';
-					$html .= '.checkout-button{ display: none; }';
-					$html .= '.checkout-button-container.blurred{background:url(' . $gif . ')no-repeat 50% !important;}';
-					$html .= '.logoutbefore{display: none;}';
-					$html .= '@keyframes blink { from {background-color: lime; box-shadow: 1px 1px 9px 3px rgb(51, 197, 50);} to {background-color: transparent;}}';
-					$html .= '</style>';
+				$html .= '<div class="column-4 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">';
+				$html .= '<a id="unlocklink" button="log-out" href="';
+				$html .= wp_logout_url(get_permalink());
+				$html .= '"class="b4 w-button">🚪 Log Out</a>';
+				$html .= '</div>';
+				$html .= '</div>';
 
-					// Return the original content in addition to the "Upgrade?" message
-					return $content . $html;
-				}
+				///remove Logout Button if status is acttive member & add some css
+				$html .= '<style>';
+				$html .= '.checkout-button{ display: none; }';
+				$html .= '.checkout-button-container.blurred{background:url(' . $gif . ')no-repeat 50% !important;}';
+				$html .= '.logoutbefore{display: none;}';
+				$html .= '@keyframes blink { from {background-color: lime; box-shadow: 1px 1px 9px 3px rgb(51, 197, 50);} to {background-color: transparent;}}';
+				$html .= '</style>';
+
+				// Return the original content in addition to the "Upgrade?" message
+				return $content . $html;
 			}
 		}
 
@@ -285,7 +256,7 @@ if (is_user_logged_in()) {
 									🔮 New Version Available. Update Site.</p>
 							</div>
 							<p id="subheader-login" class="centered-subheading" style=" margin-bottom: 5px; ">This is your 3Pad URL</p>
-							<p id="subheader-login" class="centered-subheading" style="font-size: 6px;line-height: 0;">(Updates May Take Time To Deploy)</p>
+							<p id="subheader-login" class="centered-subheading" style="font-size: 6px;line-height: 0;">(Updates May Take Time To Reflect)</p>
 							<div  id="sitepathdiv">
 								<div id="sitePathstyle"><span id="site_path"></span></div>
 							</div>
@@ -304,10 +275,15 @@ if (is_user_logged_in()) {
 							</p>
 						</div>
 						<div class="column-4 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack logoutbefore">
+							<a id="unlocklink" button="log-out" href="/"
+								class="b4 w-button">Issues? 🔮</a>
+						</div>
+						<div class="column-4 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack logoutbefore">
 							<a id="unlocklink" button="log-out" href="<?php echo wp_logout_url(get_permalink()); ?>"
 								class="b4 w-button">🚪 Log
 								Out</a>
 						</div>
+						
 
 						<?php  //IPFS Get Path
 		get_template_part('assets/js/ipfs_js');
@@ -337,7 +313,7 @@ if (is_user_logged_in()) {
 	<section class="section-login wf-section">
 		<div class="container-login">
 			<div id="logo"></div>
-			<h1 id="header-login" class="centered-heading">Connect Your Wallet To Launch</h1>
+			<h1 id="header-login" class="centered-heading">Connect With WEB3 To Launch</h1>
 			<p id="subheader-login" class="centered-subheading">Choose A Option Below To Connect With</p>
 			<p id="subheader-login" class="centered-subheading"
 				style="font-size: 9px; line-height: 14px; margin: -16px 40px 0px 41px;">By connecting, you agree to our <a
@@ -383,6 +359,8 @@ if (is_user_logged_in()) {
 	///Get The Unlock Login URL
 	the_content();
 	?>
+	<?php get_template_part('/pages/sitemap'); ?>
+
 <?php
 }
 ?>

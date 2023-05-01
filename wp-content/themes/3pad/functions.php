@@ -58,7 +58,7 @@ require_once plugin_dir_path(__FILE__) . 'files/cache.php';
 /**
  * ADMIN AREA
  */
-require_once plugin_dir_path(__FILE__) . 'files/admin.php';
+//require_once plugin_dir_path(__FILE__) . 'files/admin.php';
 
 /**
  * Users
@@ -69,11 +69,6 @@ require_once plugin_dir_path(__FILE__) . 'files/users.php';
  * Custom Fields
  */
 require_once plugin_dir_path(__FILE__) . 'files/custom-fields.php';
-
-/**
- * Security
- */
-require_once plugin_dir_path(__FILE__) . 'files/security.php';
 
 /**
  * Login Security
@@ -114,3 +109,5 @@ require_once plugin_dir_path(__FILE__) . 'files/git-push.php';
  * BunnCDN
  */
 //require_once plugin_dir_path(__FILE__) . 'files/bunnycdn.php';
+
+// Use the ACF "save_post" hook to save the ACF fields for each user individually.

@@ -50,7 +50,7 @@ add_filter('the_password_form', 'my_custom_password_form', 99);
 //Add Bg-Image
 function add_bg_image_div()
 {
-  if (is_admin() && !is_super_admin()) {
+  if (is_admin() && !current_user_can('manage_options')) {
     echo '<div class="bg-image">
     <div class="blur"></div>
     <div class="yellow_bg"></div>
@@ -68,7 +68,7 @@ add_action('admin_head', 'add_bg_image_div');
 //Add Help Videos
 function add_help_videos()
 {
-  if (is_admin() && !is_super_admin()) {
+  if (is_admin() && !current_user_can('manage_options')) {
     echo '
     <div class="help-button-wrapper">
     <ul class="help-list">
@@ -131,21 +131,11 @@ function remove_add_new_page($wp_admin_bar)
   $user_meta_expiration_time = get_user_meta($user_id, 'admin-premium', true);
 
   // The user meta field is not valid (premium), deny access to the admin page...
-  if ($user_meta_expiration_time < $current_time && !is_super_admin()) {
+  if ($user_meta_expiration_time < $current_time && !current_user_can('manage_options')) {
     // Remove the "Add New" menu item
     $wp_admin_bar->remove_node('new-content');
   }
 }
-
-function quick_styling()
-{
-  if (!is_front_page()) {
-    echo '<style>.altmenu{ display: none;}</style>
-  ';
-  }
-}
-
-add_action('wp_head', 'quick_styling');
 
 ////// Super Admin Hide Dont add code below this
 
@@ -153,7 +143,7 @@ add_action('wp_head', 'quick_styling');
 function hide_my_sites_admin_bar()
 {
   // Only hide the "My Sites" menu for non-super admins who have the "author" role
-  if (!is_super_admin() && current_user_can('author')) {
+  if (!current_user_can('manage_options')) {
     // Echo a style element that sets the display property of the "My Sites" menu to "none"
     echo '<style>#wp-admin-bar-my-sites{display: none !important;} </style>';
     add_filter('show_admin_bar', '__return_false');
@@ -163,3 +153,20 @@ function hide_my_sites_admin_bar()
 // Add the "hide_my_sites_admin_bar" function to the "wp_head" and "admin_head" actions
 add_action('wp_head', 'hide_my_sites_admin_bar');
 add_action('admin_head', 'hide_my_sites_admin_bar');
+add_action('admin_head', 'hide_admin_bar_site_name');
+
+function hide_admin_bar_site_name()
+{
+  echo '<style> #wp-admin-bar-site-name { display: none !important; }</style>';
+}
+
+///Disable application password
+add_filter('wp_is_application_passwords_available', '__return_false');
+
+///Remove Dashboard Menu Icon
+function remove_dashboard_icon()
+{
+  remove_menu_page('index.php');
+}
+
+add_action('admin_menu', 'remove_dashboard_icon');

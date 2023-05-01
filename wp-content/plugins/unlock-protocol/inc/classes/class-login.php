@@ -209,7 +209,12 @@ class Login
 
 			$user = get_user_by('id', $uid);
 
-			update_user_meta($user->ID, 'unlock_ethereum_address', $ethereum_address);
+			if ($user) {
+				update_user_meta($user->ID, 'unlock_ethereum_address', $ethereum_address);
+			} else {
+				error_log("Error updating Ethereum address for user: " . $user_email);
+				echo "There was an error updating your Ethereum address. Please try again later. $ethereum_address";
+			}
 
 			/**
 			 * Fires once the user has been registered successfully.

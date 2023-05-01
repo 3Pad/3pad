@@ -1,10 +1,13 @@
 <?php
-$nonce = wp_create_nonce('js-nonce');
+
+$nonce        = wp_create_nonce('js-nonce');
+$current_user = wp_get_current_user();
+$page         = $current_user->user_login;
 
 echo '<script defer nonce="' . $nonce . '">
 var xIpfsPath = new XMLHttpRequest();
 xIpfsPath.open("GET", "https://3pad.eth.limo/';
-$url    = do_shortcode('[author_site]');
+echo $page;
 $random = wp_rand(8);
 echo '/?ipfs-check-' . $nonce . '&t=' . time() . '", true);
 xIpfsPath.onreadystatechange = function() {
@@ -14,23 +17,24 @@ xIpfsPath.onreadystatechange = function() {
     if (ipfsPath) {
       var ipfsHash = document.createElement("a");
       ipfsHash.href = "https://dweb.link/ipfs/" + ipfsPath;
-      ipfsHash.innerText = "" + ipfsPath;
+      ipfsHash.innerText = "ipfs://" + ipfsPath;
       ipfsHash.target = "_blank"; // Add this line
       document.getElementById("ipfsPath").innerHTML = "";
       document.getElementById("ipfsPath").appendChild(ipfsHash);
       var siteLink = document.createElement("a");
       siteLink.href = "https://3pad.eth.limo/';
-$site_url = do_shortcode('[author_site]');
+echo $page;
+
 echo '/";
                   siteLink.innerText = "3pad.eth.limo/';
-$site_url = do_shortcode('[author_site]');
+echo $page;
 echo '";
       var ipfsLink = document.createElement("a");
       ipfsLink.href = "https://3pad.icp.xyz/" + "';
-$url = do_shortcode('[author_site]');
-echo '/"
+echo $page;
+echo '"
                     ipfsLink.innerText = "3pad.icp.xyz/" + "';
-$url = do_shortcode('[author_site]');
+echo $page;
 
 echo '/"
       ipfsLink.target = "_blank"; // Add this line

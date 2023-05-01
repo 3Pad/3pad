@@ -20,7 +20,7 @@ body, td, textarea, input, select {
 }
 
 
-#wpbody-content > div.wrap.acf-settings-wrap > h1{
+#wpbody-content > div.wrap > h1{
   text-align: left;
   margin-left: 20px;
   font-size: max(7vw, 40px);
@@ -78,7 +78,7 @@ border-radius: 30px;
   label[for=comments_notify],label[for=moderation_notify],label[for=comment_order],label[for=default_comments_page],
   label[for=require_name_email], #uip-toolbar-content > div > div:nth-child(4) > div, #uip-toolbar-content > div > div:nth-child(2) > div > span,
   #elementor-switch-mode-button, #elementor-editor,
-  #elementor-import-template-trigger .components-panel__body-toggle.components-button, #__wp-uploader-id-2, .supports-drag-drop, .block-editor-media-replace-flow__media-upload-menu, .color-option, label[for=comment_shortcuts],label[for=admin_bar_front], #screen-meta-links, .user-first-name-wrap, .user-last-name-wrap, #wpbody-content > h2:nth-child(20), #wpbody-content > h2:nth-child(18), #publishing-action .spinner, #wp-admin-bar-comments, .search-box, #burst-statistics > div > div.burst-content-area.burst-grid.burst-settings > div.burst-wizard-settings.burst-column-2 > div.burst-grid-item.burst-advanced > div.burst-grid-item-content > div:nth-child(1), .burst-tips-tricks, .burst-other-plugins, .button.button-black, .shepherd-element, .submitdelete, #wpbody-content > h2:nth-child(16), #wp-admin-bar-new-content, #wpbody-content > h2:nth-child(19), #wpbody-content > h2:nth-child(21), #wpbody-content > h2:nth-child(17), .components-site-icon, .right-tbl-text-main, .qeappspwa-right, #qeappspwa-section-three > table > tbody > tr:nth-child(1) > td > button, #qeappspwa-section-two > table > tbody > tr:nth-child(7), #qeappspwa-section-two > table > tbody > tr:nth-child(8), #submitdiv > div.postbox-header, .handle-order-lower, .handle-order-higher{
+  #elementor-import-template-trigger .components-panel__body-toggle.components-button, #__wp-uploader-id-2, .supports-drag-drop, .block-editor-media-replace-flow__media-upload-menu, .color-option, label[for=comment_shortcuts],label[for=admin_bar_front], #screen-meta-links, .user-first-name-wrap, .user-last-name-wrap, #wpbody-content > h2:nth-child(20), #wpbody-content > h2:nth-child(18), #publishing-action .spinner, #wp-admin-bar-comments, .search-box, #burst-statistics > div > div.burst-content-area.burst-grid.burst-settings > div.burst-wizard-settings.burst-column-2 > div.burst-grid-item.burst-advanced > div.burst-grid-item-content > div:nth-child(1), .burst-tips-tricks, .burst-other-plugins, .button.button-black, .shepherd-element, .submitdelete, #wpbody-content > h2:nth-child(16), #wp-admin-bar-new-content, #wpbody-content > h2:nth-child(19), #wpbody-content > h2:nth-child(21), #wpbody-content > h2:nth-child(17), .components-site-icon, .right-tbl-text-main, .qeappspwa-right, #qeappspwa-section-three > table > tbody > tr:nth-child(1) > td > button, #qeappspwa-section-two > table > tbody > tr:nth-child(7), #qeappspwa-section-two > table > tbody > tr:nth-child(8), #submitdiv > div.postbox-header, .handle-order-lower, .handle-order-higher, #titlediv, #minor-publishing, .postbox-header, #wpbody-content > h2:nth-child(14){
     display:none !important;
 }
 
@@ -222,7 +222,7 @@ content: "🆗 👍 ✅ ";
 }
 
 .wp-core-ui .notice.is-dismissible p::after{
-content: " It may take some time to see changes reflected for visitors. 🆗 👍 ✅";
+/*content: " It may take some time to see changes reflected for visitors. 🆗 👍 ✅"; */
 }
 
 .block-editor .edit-post-sidebar .acf-fields > .acf-field.acf-accordion .acf-accordion-title label, .components-button.is-tertiary, .ded-f-d-aee-abe-1n1x27z, .wp-block-image figcaption, .components-font-size-picker__header__hint, .wp-block-embed figcaption, .interface-complementary-area, .block-editor-block-types-list__item-title, .block-editor-block-icon.has-colors svg, .components-dropdown__content [role="menuitem"], .interface-complementary-area h2, .block-editor-block-styles__variants .block-editor-block-styles__item, .components-button, .components-panel__body-toggle.components-button, .block-editor-list-view-leaf .block-editor-list-view-block-contents, .interface-interface-skeleton__secondary-sidebar, .form-table th, span.description, .wrap h1.wp-heading-inline, .tablenav .one-page .displaying-num, .subsubsub a.current, .subsubsub a .count, .subsubsub a.current .count, .subsubsub, .block-editor-tool-selector__help, .editor-post-saved-state.is-saved[aria-disabled="true"], .editor-post-saved-state.is-saved[aria-disabled="true"]:hover, .editor-post-saved-state.is-saving[aria-disabled="true"], .editor-post-saved-state.is-saving[aria-disabled="true"]:hover, .block-editor-block-breadcrumb__current, .toggle-indicator, .components-menu-item__info, .components-menu-group__label, .acf-block-component .acf-block-fields, .plugins .desc p, .wp-die-message, p, .update-core-php h2, td.column-title p, td.plugin-title p, .postbox .inside h2, .wrap [class$=icon32]+h2, .wrap h1, .wrap>h2:first-child, .plugins .notice p, .components-popover__header-title, .form-table td p, .form-table td fieldset label, .form-table label, .sui-2-12-13 .sui-wrap .sui-row-with-sidenav .sui-sidenav .sui-vertical-tabs a, .sui-2-12-13 .sui-wrap .sui-header h1, input:disabled, .docs a, .editor-post-visibility__fieldset .editor-post-visibility__info, label, .components-truncate, .burst-wizard-help .burst-help-header, #collapse-button .collapse-button-label, #adminmenu *, h2.components-truncate, span.components-truncate, .editor-post-url__link-label, div.components-v-stack:nth-child(2), h3.components-truncate, .interface-complementary-area p:not(.components-base-control__help), .components-button.is-small, .editor-post-publish-panel__prepublish strong, #editor > div > div.edit-post-layout.is-mode-visual.is-sidebar-opened.has-metaboxes.interface-interface-skeleton.has-footer > div.interface-interface-skeleton__editor > div.interface-interface-skeleton__body > div.interface-interface-skeleton__actions > div:nth-child(2) > div > div > div.editor-post-publish-panel__content > div > div.components-site-card > div, #editor > div > div.edit-post-layout.is-mode-visual.is-sidebar-opened.has-metaboxes.interface-interface-skeleton.has-footer > div.interface-interface-skeleton__editor > div.interface-interface-skeleton__body > div.interface-interface-skeleton__actions > div:nth-child(2) > div > div > div.editor-post-publish-panel__content > div > div.components-site-card > div > span.components-site-home, .order-higher-indicator, .order-lower-indicator, .qe-help-and-support-bg-main, .qeappspwa-tab a, .qeappspwa-tab a.active, .input-accs, .post-publish-panel__postpublish .components-panel__body{
@@ -298,7 +298,7 @@ display: none !important;
 }
 .wp-core-ui .button, .wp-core-ui .button-secondary{
 color: #ffffff;
-background: #000000;
+background: #92929282;
 border: none;
 box-shadow: 1px -1px 20px 0px #00000059;
 }
@@ -508,7 +508,6 @@ background-color: #ffffff87;
 
 #publishing-action, #publish{
 width: 100%;
-display: none;
 }
 .encrypt_box{
 display: flex;
@@ -552,6 +551,11 @@ border: none !important;
   }
   #poststuff, #post-body{
     overflow: unset !important;
+    margin-top: -30px;
+  }
+  #wpbody-content > div.wrap > h1{
+    width: 90%;
+    text-align: center;
   }
 }
 @media only screen and (min-width: 850px) {
@@ -595,7 +599,7 @@ background-color: #00000054 !important;
 
 #preview-frame {
   filter: drop-shadow(black 0px 0px 1rem);
-  border-radius: 5px; 
+  border-radius: 15px; 
   margin-top: 15px; 
   height: 70vh; 
   width: 100%;
@@ -607,7 +611,7 @@ background-color: #00000054 !important;
 
 #major-publishing-actions.sticky {
 position: fixed;
-top: 10px;
+top: 5.5vw;
 z-index: 9;
 min-width: 80vw;
 backdrop-filter: blur(10px);
@@ -626,17 +630,18 @@ z-index: 9;
 z-index: 9999;
 }
 .help-button {
-height: 40px;
-width: 90px;
-font-size: 14px;
-border-radius: 10px;
-border: 0 none;
-background: #000;
-color: #fff;
-cursor: pointer;
-box-shadow: 0 2px 11px 5px #ffffff30;
-transform: scale(1);
-transition: all 200ms ease;
+  height: 40px;
+  width: 90px;
+  font-size: 14px;
+  border-radius: 10px;
+  border: 1px solid #ffffff63;
+  background: #00000000;
+  color: #fff;
+  cursor: pointer;
+  transform: scale(1);
+  transition: all 200ms ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 .help-button:hover,
 .help-button:focus,

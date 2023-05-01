@@ -138,7 +138,7 @@ add_action('before_delete_post', 'restrict_customize_page_deletion');
 add_action('init', function () {
   $current_page = "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-  if (strpos($current_page, 'wp-admin/edit.php?post_type=wp_block') !== false && is_admin() && !is_super_admin()) {
+  if (strpos($current_page, 'wp-admin/edit.php?post_type=wp_block') !== false && is_admin() && !current_user_can('manage_options')) {
     wp_redirect('edit.php?post_type=page');
     exit;
   }
@@ -259,7 +259,7 @@ if (!is_admin()) {
     $blog_id = get_current_blog_id();
 
     // Check if the current user is a super admin and is logged in
-    if (is_super_admin() && is_user_logged_in()) {
+    if (current_user_can('manage_options') && is_user_logged_in()) {
       // If the user is a super admin and is logged in, allow access to the REST API
       return $access;
     }
@@ -545,16 +545,17 @@ add_action('init', function () {
 /////Disalbe All Comments
 
 ////////////////////////////////////////////////////////////////// DON'T allow users to access WordPress admin
-add_action('admin_init', 'endo_hide_dashboard');
 
-function endo_hide_dashboard()
-{
-  // Check if the user cannot edit pages
-  if (!current_user_can('author')) {
-    // Redirect the user to the homepage
-    wp_redirect('/');
-  }
+add_action('init', 'remove_dashboard_access', 0);
+function remove_dashboard_access() {
+    // Check if the current user is a non-member
+    if ( current_user_can( 'non-member' ) && !current_user_can('manage_options') && is_admin() ) {
+        // Redirect the user to the homepage
+        wp_redirect( home_url() );
+        exit;
+    }
 }
+
 
 // Redirect logged-out users who try to access wp-login.php and logged-in users who try to access wp-signup.php
 add_action('init', function () {
@@ -571,13 +572,33 @@ add_action('init', function () {
 });
 
 // Redirect non-super admins who attempt to access the main site wp-admin
-add_action('init', function () {
-  // Check if the current page URL contains '/wp-admin' and the current site is the main site
-  if (strpos($_SERVER['REQUEST_URI'], '/wp-admin') !== false && is_main_site() && !is_super_admin()) {
-    // Redirect non-super admins to the homepage
-    wp_redirect('/');
+add_action('admin_init', function () {
+  // Check if the current user is not a super admin
+  if (!current_user_can('manage_options')) {
+    // Check if the current page is not the edit post or profile page, or the dashboard
+    $screen = get_current_screen();
+    if ($screen && $screen->id !== 'post' && $screen->id !== 'profile' && $screen->id == 'dashboard') {
+      // Redirect non-super admins to the homepage
+      wp_redirect('/');
+      exit;
+    }
   }
 });
+
+
+///Redirect From index.php
+add_action('admin_init', function() {
+  if (is_admin() && !wp_doing_ajax() && !current_user_can('manage_options')) {
+    global $pagenow;
+    if ($pagenow === 'index.php') {
+      wp_redirect(home_url());
+      exit();
+    }
+  }
+});
+
+
+
 
 // Remove the admin bar from non-admin users
 add_action('after_setup_theme', 'endo_remove_admin_bar');
@@ -611,59 +632,7 @@ function page_lock_clash($postid)
 
 add_action('save_post', 'page_lock_clash');
 
-///Redirect Multisite Authors for non owners
-function redirect_on_access_denied()
-{
-  if (is_user_logged_in() && current_user_can('author') && !is_main_site()) {
-    return;
-  }
 
-  $home_url = home_url();
-  wp_safe_redirect($home_url);
-  exit;
-}
-
-add_action('admin_page_access_denied', 'redirect_on_access_denied');
-
-// Check For Admin Access User Meta Assigned when Unlock Has Access
-
-function admin_area_unlock_access()
-{
-  // Check for the user's wp-admin-token-expiration meta field
-  //$user_id = get_current_user_id();
-
-  // Get the current time & meta
-  // $current_time = time();
-  //$user_meta_expiration_time = get_user_meta($user_id, 'admin-premium', true);
-  //Bypass For Super Admin . Run On Admin Page
-  if (!is_super_admin() && is_admin()) {
-    // The user meta field is not valid (premium), deny access to the admin page...
-    $user_id            = get_current_user_id();  //User iD
-    $current_time       = time();
-    $current_expiration = get_user_meta($user_id, 'admin-token-expiration', true);
-
-    if (!strpos($_SERVER['REQUEST_URI'], 'wp-admin/admin.php?page=customize-home') && !strpos($_SERVER['REQUEST_URI'], 'wp-admin/profile.php') && !isset($_GET['message']) || empty($current_expiration)) {
-      //Get template of access Denied
-      //get_template_part('pages/access-denied');
-
-      //cache bust links with random output
-      $random_int = wp_generate_password(4, false);
-
-      //Add refresh meta header for 3 seconds
-      //echo '<meta http-equiv="refresh" content="2;url=/?status_refresh=' . $random_int . '" />';
-      wp_safe_redirect('/?no_access=' . $random_int . '"');
-      exit;
-
-      //Display non active membership text
-      //wp_die('Confirming Your Status. Redirecting You Back To Launchpad <div class="loader"></div>');
-
-      //Add Role cotributor
-      //$user_id->set_role('contributor');
-    }
-  }
-}
-
-add_action('admin_init', 'admin_area_unlock_access');
 
 //Add Sandbox To Iframe
 

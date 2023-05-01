@@ -1,5 +1,6 @@
-<?php //Get Main Site home Page default Id
-if (!is_page(10)) { ?>
+<?php  //Get Main Site home Page default Id
+if (!is_page(10)) {
+	?>
 	<?php get_header(); ?>
 	<link href="<?php echo get_theme_file_uri('/assets/js/pwa_manifest.json'); ?>"  rel="manifest" />
 	<!--- Home CSS --->
@@ -63,7 +64,7 @@ if (!is_page(10)) { ?>
 							<div class="fullscreenshow" id=logo>
 								<div class="elementor-widget-container sf-hidden">
 									<img style="max-width: 100px;max-height: 100px;opacity: 0.5;float: left;" loading="lazy"
-										src="<?php echo get_field("site_logo", "option"); ?>"> </img>
+										src="<?php $settings_page = get_queried_object_id(); echo get_field("site_logo", $settings_page); ?>"> </img>
 								</div>
 							</div>
 							<?php do_shortcode("[corner_icons_shortcode]"); ?>
@@ -75,8 +76,10 @@ if (!is_page(10)) { ?>
 			</section>
 		</div>
 		<?php get_footer(); ?>
-		<?php }
+		<?php
+}
 //Load Login Page template For home page main site
 else {
 	get_template_part('pages/login');
-} ?>
+}
+?>

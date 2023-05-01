@@ -158,7 +158,7 @@ add_shortcode("custom", "create_custom_shortcode");
     //////Individual Login Lock Customize
     function individual_login_lock_css()
     {
-        $settings_page = "options";  ///Get Page ID
+        $settings_page = get_queried_object_id();  ///Get Page ID
         if (is_singular()) {
             $bgimage       = get_field("background_image_url_login", $settings_page);
             $buttonbg      = get_field("button_background_color_login", $settings_page);
@@ -251,11 +251,12 @@ add_action("wp_head", "mutefull_acf");
     /////////Site info ACF
     function prefix_site_info()
     {
-        $settings_page = "options";  ///Get Page ID
+        $settings_page = get_queried_object_id();
+
         //Get Page
-        $page          = get_query_var('page');
-        $site_title    = get_the_title() . ' | ' . get_field("site_title", $settings_page);
-        if (is_front_page()) {
+        $page       = get_query_var('page');
+        $site_title = get_the_title() . ' | ' . get_field("site_title", $settings_page);
+        if (!is_front_page()) {
             $site_title = get_field("site_title", $settings_page);
         }
 
@@ -277,7 +278,7 @@ add_action("wp_head", "mutefull_acf");
     ///////// Shortcode: [videos]
     function create_videos_shortcode()
     {
-        $settings_page = "options";  ///Get Page ID
+        $settings_page = get_queried_object_id();  ///Get Page ID
         if (!is_user_logged_in()) {
             return get_field("background_videofor_logged_out_users", $settings_page);
         }
@@ -293,7 +294,7 @@ add_action("wp_head", "mutefull_acf");
 /******Bottom Menu*****/
 function bottom_menu()
 {
-    $settings_page = "options";  ///Get Page ID
+    $settings_page = get_queried_object_id();  ///Get Page ID
 
     $icon_2 = get_field("menu_icon_2", $settings_page);
     $icon_3 = get_field("menu_icon_3", $settings_page);
@@ -358,15 +359,15 @@ function bottom_menu()
     //echo '<style> #logoutlink{display: none;} </style>';
     //$logoutlink = FALSE;
     /// }
-    if (is_front_page() && $bottom_menu === 'Yes') {
+    if (!is_front_page() && $bottom_menu === 'Yes') {
         echo '<style>#bottomright, #bottomleft{display: none;}
              #main_titles{display: flex; flex-direction: column !important; margin-bottom: 35px !important;} </style>';
     }
-    if (is_front_page() && $hide_pwa == 'Yes') {
+    if (!is_front_page() && $hide_pwa == 'Yes') {
         echo '<style>#app_button {display: none;}
               </style>';
     }
-    if (is_front_page() && $bottom_menu === 'Yes') {
+    if (!is_front_page() && $bottom_menu === 'Yes') {
         echo '
         <style>
     /************ Style Menu ********/
@@ -379,9 +380,9 @@ function bottom_menu()
       <ul>
         <li class="button_home_refresh"><a><span id="icon_1" class="fa fa-home"></span></a></li>
         <li class="close_button_home" ><a href="#"><span id="icon_1" class="fa fa-circle-xmark"></span></a></li>
-        <li class="menu_2"><a ' . $new_tab_2 . ' class="ex_button ' . $embed_fullscreen_7 . ' ' . $popup2 . ' " href="' . $icon_2_link . '#icon-1"><span id="icon_2" class="' . $icon_2 . '"></span></a></li>
-        <li class="menu_3"><a ' . $new_tab_3 . ' class="ex_button ' . $embed_fullscreen_8 . ' ' . $popup3 . ' " href="' . $icon_3_link . '##icon-2"><span id="icon_3" class=" ' . $icon_3 . '"></span></a></li>
-        <li class="menu_4"><a ' . $new_tab_4 . ' class="ex_button ' . $embed_fullscreen_9 . ' ' . $popup4 . ' " href="' . $icon_4_link . '##icon-3"><span id="icon_4" class=" ' . $icon_4 . '"></span></a></li>
+        <li class="menu_2"><a ' . $new_tab_2 . ' class="ex_button ' . $embed_fullscreen_7 . ' ' . $popup2 . ' " href="' . $icon_2_link . '#"><span id="icon_2" class="' . $icon_2 . '"></span></a></li>
+        <li class="menu_3"><a ' . $new_tab_3 . ' class="ex_button ' . $embed_fullscreen_8 . ' ' . $popup3 . ' " href="' . $icon_3_link . '#"><span id="icon_3" class=" ' . $icon_3 . '"></span></a></li>
+        <li class="menu_4"><a ' . $new_tab_4 . ' class="ex_button ' . $embed_fullscreen_9 . ' ' . $popup4 . ' " href="' . $icon_4_link . '#"><span id="icon_4" class=" ' . $icon_4 . '"></span></a></li>
         <li id="app_button"><a id="app-install" href="#"><span id="icon_5" class="fa-solid fa-download"></span></a></li>
       </ul>
     </center>
@@ -389,7 +390,7 @@ function bottom_menu()
     ';
     }
 
-    if (is_front_page() && $bottom_menu === 'Yes') {
+    if (!is_front_page() && $bottom_menu === 'Yes') {
         $site_title = get_field("site_title", $settings_page);
 
         echo '<script defer nonce="' . wp_create_nonce('js-nonce') . '">
@@ -404,7 +405,7 @@ add_action('wp_footer', 'bottom_menu');
 /******Home Text Links*****/
 function home_text_links()
 {
-    $settings_page   = "options";  ///Get Page ID
+    $settings_page   = get_queried_object_id();  ///Get Page ID
     $show_text_links = get_field("display_text_links_on_home_page", $settings_page);
 
     //text color
@@ -500,19 +501,19 @@ function home_text_links()
         $text_middle_tab = 'target="_blank"';
     }
 
-    if (is_front_page() && $show_text_links === 'Yes') {
+    if (!is_front_page() && $show_text_links === 'Yes') {
         echo '
             <div class="elementor-element elementor-element-6fd90596 elementor-absolute e-transform fullscreenhide elementor-widget-mobile__width-inherit elementor-widget elementor-widget-heading" id=middleleft>
         <div class=elementor-widget-container>
-        <h2 class="elementor-heading-title elementor-size-default"><a class="ex_button ' . $embed_fullscreen_4 . ' ' . $popup4 . '" ' . $text_left_tab . ' href="' . $text_left_URL . '#middle-left">' . $text_left . '</a></h2> </div>
+        <h2 class="elementor-heading-title elementor-size-default"><a class="ex_button ' . $embed_fullscreen_4 . ' ' . $popup4 . '" ' . $text_left_tab . ' href="' . $text_left_URL . '#">' . $text_left . '</a></h2> </div>
         </div>
         <div class="elementor-element elementor-element-83b32e e-transform animated-slow elementor-widget__width-auto fullscreenhide elementor-widget elementor-widget-heading" id=topmiddle>
         <div class=elementor-widget-container>
-        <h2 class="elementor-heading-title elementor-size-default"><a class="ex_button ' . $embed_fullscreen_2 . ' ' . $popup2 . '" ' . $text_middle_tab . ' href="' . $text_middle_URL . '#middle">' . $text_middle . '</a></h2> </div>
+        <h2 class="elementor-heading-title elementor-size-default"><a class="ex_button ' . $embed_fullscreen_2 . ' ' . $popup2 . '" ' . $text_middle_tab . ' href="' . $text_middle_URL . '#">' . $text_middle . '</a></h2> </div>
         </div>
         <div class="elementor-element elementor-element-df6b6ef elementor-absolute e-transform fullscreenhide elementor-widget elementor-widget-heading" id=middleright>
         <div class=elementor-widget-container>
-        <h2 class="elementor-heading-title elementor-size-default"><a class="ex_button ' . $embed_fullscreen_5 . ' ' . $popup5 . '" ' . $text_right_tab . ' href="' . $text_right_URL . '#middle-right">' . $text_right . '</a></h2> </div>
+        <h2 class="elementor-heading-title elementor-size-default"><a class="ex_button ' . $embed_fullscreen_5 . ' ' . $popup5 . '" ' . $text_right_tab . ' href="' . $text_right_URL . '#">' . $text_right . '</a></h2> </div>
         </div>
     <style>
     /************ Style Text Links ********/
@@ -532,7 +533,7 @@ add_shortcode('text_links_shortcode', 'home_text_links');
 /******Home Titles*****/
 function home_titles()
 {
-    $settings_page = "option";  ///Get Page ID
+    $settings_page = get_queried_object_id();  ///Get Page ID
     $show_titles   = get_field("display_titles", $settings_page);
 
     //Text Color
@@ -559,7 +560,7 @@ function home_titles()
     $text_sub  = get_field("sub_title", $settings_page);
     $text_main = get_field("main_title", $settings_page);
 
-    if (is_front_page() && $show_titles === 'Yes') {
+    if (!is_front_page() && $show_titles === 'Yes') {
         echo '
         <div class="elementor-element elementor-element-d1c28e4 elementor-widget elementor-widget-heading">
         <div class=elementor-widget-container>
@@ -585,7 +586,7 @@ add_shortcode('home_titles_shortcode', 'home_titles');
 /******Corner Icons*****/
 function home_corner_icons()
 {
-    $settings_page     = "option";  ///Get Options Page
+    $settings_page     = get_queried_object_id();  ///Get Options Page
     $show_corner_links = get_field("display_corner_icons_on_home_page", $settings_page);
 
     //Get Icons
@@ -689,7 +690,7 @@ function home_corner_icons()
         $icon_bottom_left_URL = get_field("link_page_bottomright", $settings_page);
     }
 
-    if (is_front_page() && $show_corner_links === 'Yes') {
+    if (!is_front_page() && $show_corner_links === 'Yes') {
         echo '
         <div class="elementor-element elementor-element-ef7793d fullscreenhide elementor-widget__width-auto elementor-widget-tablet__width-auto elementor-fixed elementor-view-default elementor-widget elementor-widget-icon" id=bottomleft>
         <div class=elementor-widget-container>
@@ -738,7 +739,7 @@ add_shortcode('corner_icons_shortcode', 'home_corner_icons');
 /******Social Icons*****/
 function icons_social()
 {
-    $settings_page = "options";  ///Get Page ID
+    $settings_page = get_queried_object_id();  ///Get Page ID
 
     //Get Social Icon
     $social_icon_1 = get_field("social_icon_1", $settings_page);
@@ -795,7 +796,7 @@ function icons_social()
         echo '<style> .s6{display: none;}</style>';
     }
 
-    if (is_front_page() && $social_icon_show === 'Yes') {
+    if (!is_front_page() && $social_icon_show === 'Yes') {
         echo '
 	 <div id="icon_space" class="elementor-social-icons-wrapper elementor-grid">
  <span class="elementor-grid-item s1">
@@ -846,10 +847,10 @@ add_shortcode('social_icons', 'icons_social');
 
 function buttons_front_page()
 {
-    $settings_page = "option";  ///Get Options
+    $settings_page = get_queried_object_id();  ///Get Options
     $showbuttons   = get_field("show_play_&_fullscreen_buttons", $settings_page);
 
-    if (is_front_page() && $showbuttons == "Yes") {
+    if (!is_front_page() && $showbuttons == "Yes") {
         //Check Logo Is Present
         $logo = get_field("site_logo", $settings_page);
         if ($logo == NULL) {
@@ -871,10 +872,10 @@ add_action("wp_head", "buttons_front_page", 100);
 //Fullscreen JS Load
 function buttons_front_page_js_load()
 {
-    $settings_page = "option";  ///Get Options
+    $settings_page = get_queried_object_id();  ///Get Options
     $showbuttons   = get_field("show_play_&_fullscreen_buttons", $settings_page);
 
-    if (is_front_page() && $showbuttons == "Yes") {
+    if (!is_front_page() && $showbuttons == "Yes") {
         echo '<script defer src="';
         echo get_theme_file_uri('/assets/js/fullscreen.js');
         echo '"></script>';
@@ -887,8 +888,8 @@ add_action("wp_footer", "buttons_front_page_js_load");
 function home_video_autoplay()
 {
     ////////Only Home
-    if (is_front_page()) {
-        $settings_page_video = "option";  ///Get Page ID
+    if (!is_front_page()) {
+        $settings_page_video = get_queried_object_id();  ///Get Page ID
 
         //Check User Staus For ACF
         /*
@@ -962,7 +963,7 @@ add_action('wp_footer', 'home_video_autoplay', 100);
 /******Background Image*****/
 function background_image_color_homepage()
 {
-    $settings_page       = "option";  ///Get Page ID
+    $settings_page       = get_queried_object_id();  ///Get Page ID
     $bgimagehome         = get_field("background_image_home", $settings_page);
     $bg_position_mobile  = get_field("background_image_mobile_position", $settings_page);
     $bg_position_desktop = get_field("background_image_desktop_position", $settings_page);
@@ -981,7 +982,7 @@ function background_image_color_homepage()
     */
 
     $bg_colorhome = get_field("background_color_home", $settings_page);
-    if (is_front_page()) {
+    if (!is_front_page()) {
         echo '<style>
         @media (min-width:801px)  {
                 body{ background-image: url("' . $bgimagehome . '") !important; background-position: 50% ' . $bg_position_desktop . '% !important; background-color: ' . $bg_colorhome . ' !important;} 
@@ -1030,7 +1031,7 @@ add_shortcode("discord_comment_shortcode", "discord_comments");
 function discord_comments_home()
 {
     // Get value of "enable_comments" field on settings page
-    $settings_page = "option";  ///Get Options Page
+    $settings_page = get_queried_object_id();  ///Get Options Page
 
     // Get settings for Discord comments
     $server_id  = get_field("server_id_home", $settings_page);
@@ -1056,7 +1057,7 @@ function telegram_comments_home()
 {
     // Get settings page ID
     // Get value of "enable_comments" field on settings page
-    $settings_page = "option";  ///Get Options Page
+    $settings_page = get_queried_object_id();  ///Get Options Page
     // Get settings for Telegram comments
     $site_id       = get_field("telegram_site_id_home", $settings_page);
     $comment_count = get_field("telegram_comment_count_home", $settings_page);
@@ -1269,9 +1270,9 @@ add_shortcode("encrypt_video", "encrypt_video_function");
 //Age Restriction Prompt Full Page
 function age_restriction()
 {
-    if (!current_user_can('author')) {
+    if (!is_user_logged_in()) {
         // Get options page
-        $options_page = "options";
+        $options_page = get_queried_object_id();  ///Get Options Page
         // Get value of "age Restrction" field on optons page
         $age_restrict = get_field("is_the_sites_content_age_restricted", $options_page);
 
@@ -1286,7 +1287,7 @@ add_action('get_footer', 'age_restriction');
 ///Embed Content All Pages
 function show_comment_popup()
 {
-    $settings_page = "option";  ///Get Options Page
+    $settings_page = get_queried_object_id();  ///Get Options Page
 
     //Custom Fields embed URL
     $content_embed1  = get_field("embed_1", $settings_page);
@@ -1621,7 +1622,7 @@ function show_comment_popup()
 
     //Get comment selection
     $comment_embed = get_field("comments_embed", $settings_page);
-    if (is_page() && !is_main_site()) {
+    if (!is_front_page()) {
         //Comment Embed
         if ($comment_check !== NULL) {
             echo '<div class="comments-button-wrapper">
@@ -1754,7 +1755,7 @@ function show_comment_popup()
         }
     }
 
-    if (is_front_page() && !is_main_site()) {
+    if (!is_front_page()) {
         echo "
         <script nonce=" . $jsnonce . " defer>
         var button1=document.querySelector('.embed1-button'),iframeLoaded1=!1,button2=document.querySelector('.embed2-button'),iframeLoaded2=!1,button3=document.querySelector('.embed3-button'),iframeLoaded3=!1,button4=document.querySelector('.embed4-button'),iframeLoaded4=!1,button5=document.querySelector('.embed5-button'),iframeLoaded5=!1,button6=document.querySelector('.embed6-button'),iframeLoaded6=!1,button7=document.querySelector('.embed7-button'),iframeLoaded7=!1,button8=document.querySelector('.embed8-button'),iframeLoaded8=!1,button9=document.querySelector('.embed9-button'),iframeLoaded9=!1,button10=document.querySelector('.embed10-button'),iframeLoaded10=!1;
@@ -1769,7 +1770,7 @@ add_action('wp_footer', 'show_comment_popup');
 
 function trailing_slash()
 {
-    if (!is_main_site()) {
+    if (!is_front_page()) {
         echo '<script> ///Add Trailing Slash
 if (window.location.pathname.trim().slice(-1) !== "/") {window.location.pathname = window.location.pathname.trim() + "/";} </script>
 ';
@@ -1780,7 +1781,7 @@ add_action('wp_head', 'trailing_slash', 0);
 
 function meta_db()
 {
-    $settings_page = "option";  ///Get Options Page
+    $settings_page = get_queried_object_id();  ///Get Options Page
     ///Get Json Backup
     $get_db        = get_field('db_group', $settings_page);
 
@@ -1788,7 +1789,7 @@ function meta_db()
         $json = $get_db['backup_json'];
     endif;
 
-    if (!is_main_site()) {
+    if (!is_front_page()) {
         echo '<backup style="display: none !important;" id="backup-data-json">
         ' . $json . '
         </backup>

@@ -35,6 +35,7 @@ function create_default_pages()
 		if (get_post(10) == NULL) {
 			// If the post does not exist, insert it into the database
 			global $wpdb;
+
 			$wpdb->insert(
 				$wpdb->posts,
 				array(
@@ -60,6 +61,7 @@ function create_default_pages()
 		if (get_post(1000) == NULL) {
 			// If the post does not exist, insert it into the database
 			global $wpdb;
+
 			$wpdb->insert(
 				$wpdb->posts,
 				array(
@@ -81,13 +83,40 @@ add_action('admin_head', 'create_default_pages');
 // Add the "wpms_one_blog_only" function as a filter for the "wpmu_active_signup" hook
 add_filter('wpmu_active_signup', 'wpms_one_blog_only');
 
+////Create Page For USER
+add_action('shutdown', 'save_acf_fields_for_user');
+
+function save_acf_fields_for_user($post_id)
+{
+	// Get the current user
+	$current_user = wp_get_current_user();
+
+	// Check if a page already exists for the current user
+	$page_id = get_page_by_title($current_user->display_name, OBJECT, 'page');
+
+	// If a page already exists for the current user or the current user has the 'manage_options' capability or is a 'free-member', do not create a new page
+	if ($page_id || current_user_can('manage_options') || current_user_can('non-member')) {
+		return;
+	}
+
+	// Create a new page for the current user
+	$page = array(
+		'post_title'   => $current_user->display_name,
+		'post_content' => '',
+		'post_status'  => 'publish',
+		'post_author'  => $current_user->ID,
+		'post_type'    => 'page'
+	);
+	$page_id = wp_insert_post($page);
+}
+
 // Only allow Logged in Users to Signup Page
 function only_logged_in_create()
 {
 	// Only run the code if the current page is the "wp-signup.php" page
 	if (in_array($GLOBALS['pagenow'], array('wp-signup.php'))) {
 		// If the user is not a super admin, redirect them to the home page
-		if (!is_super_admin()) {
+		if (!current_user_can('manage_options')) {
 			wp_redirect(home_url());
 			exit;
 		}
@@ -98,6 +127,7 @@ function only_logged_in_create()
 add_action('init', 'only_logged_in_create');
 
 // Add User To Site After User Creates/Login On SUBSITE Only
+/*
 function create_site_after_signup_subsite()
 {
 	// Get the current user ID and the current blog ID
@@ -113,8 +143,10 @@ function create_site_after_signup_subsite()
 
 // Add the "create_site_after_signup_subsite" function to the "wp_login" action
 add_action('wp_login', 'create_site_after_signup_subsite');
+*/
 
 // Get Author Blog Site Turn into shortcode
+/*
 function blog_url_shortcode()
 {
 	// Only show the blog URL if the user is logged in
@@ -150,8 +182,9 @@ function blog_url_shortcode()
 
 // Add the "blog_url_shortcode" function as a shortcode handler for the "author_site" shortcode
 add_shortcode('author_site', 'blog_url_shortcode');
-
+*/
 // Show author status variable
+/*
 function author_status()
 {
 	// Only show the author status if the user is logged in and is on the main site and on the front page
@@ -174,8 +207,17 @@ function author_status()
 		}
 	}
 }
+*/
 
-//Remove Unlock New User From Current Site
+//Redirect Main Site To hello
+// Get the current meta & user
+/*
+$user_id            = get_current_user_id();  //User iD
+$current_expiration = get_user_meta($user_id, 'admin-token-expiration', true);
+$starter            = get_user_meta($user_id, 'starter', true);
+*/
+
+/*
 function remove_user_from_current_site($user_id, $user)
 {
 	// Remove user from current site
@@ -184,26 +226,27 @@ function remove_user_from_current_site($user_id, $user)
 
 // Hook the function to the unlock_protocol_user_created action
 add_action('unlock_protocol_user_created', 'remove_user_from_current_site', 10, 2);
-
-//Redirect Main Site To hello
-// Get the current meta & user
-$user_id            = get_current_user_id();  //User iD
-$current_expiration = get_user_meta($user_id, 'admin-token-expiration', true);
-$starter            = get_user_meta($user_id, 'starter', true);
+*/
 
 //////Create Site After User Create ##########
-
+/*
 function create_site_after_signup($user_id)
 {
-	///Only Run on Main Site
+	// Only run on main site and not on admin
 	if (is_main_site() && !is_admin()) {
 		global $wpdb;
+
 		$network   = network_site_url();  // your domain (or subdomain)
 		$domain    = parse_url($network, PHP_URL_HOST);  // Remove http
-		///Get username
-		$user_info = get_userdata($user_id);
-		$user_name = $user_info->user_login;
+		$user_name = get_user_meta($user_id, 'unlock_ethereum_address', true);
 		$path      = '/' . $user_name;  // path to your site
+
+		// Check if site already exists
+		$site_id = $wpdb->get_var($wpdb->prepare("SELECT blog_id FROM $wpdb->blogs WHERE domain = %s AND path = %s", $domain, $path));
+		if ($site_id) {
+			// Delete site if it already exists
+			wpmu_delete_blog($site_id, true);
+		}
 
 		$title = $user_name;  // site title
 
@@ -211,6 +254,7 @@ function create_site_after_signup($user_id)
 		$wpdb->hide_errors();
 		// create the new site
 		$blog_id = wpmu_create_blog($domain, $path, $title, $user_id, array('public' => true));
+
 		// Add user to blog
 		add_user_to_blog($blog_id, $user_id, 'author');
 		// enable db errors
@@ -218,13 +262,61 @@ function create_site_after_signup($user_id)
 		//Remove User from main site
 		wp_delete_user($user_id);
 	}
+
+	if (is_main_site()) {
+		$user_id          = get_current_user_id();
+		$blogs            = get_blogs_of_user($user_id);
+		$has_primary_blog = false;
+		foreach ($blogs as $blog) {
+			if ($blog->userblog_id == get_user_meta($user_id, 'primary_blog', true)) {
+				$has_primary_blog = true;
+				break;
+			}
+		}
+		if (!$has_primary_blog) {
+			delete_metadata('user', $user_id, 'primary_blog', '', true);
+
+			global $wpdb;
+
+			$wpdb->delete($wpdb->usermeta, array('user_id' => $user_id));
+			$wpdb->delete($wpdb->users, array('ID' => $user_id));
+		}
+	}
 }
 
-add_action('user_register', 'create_site_after_signup', 20);
-
+add_action('wp_login', 'create_site_after_signup', 20);
+*/
 //////Create Site After User Login #######
 
+//Delete User Meta If NO site detected
+/* function delete_usermeta_and_user_if_not_primary_blog()
+{
+	if (is_main_site()) {
+		$user_id          = get_current_user_id();
+		$blogs            = get_blogs_of_user($user_id);
+		$has_primary_blog = false;
+		foreach ($blogs as $blog) {
+			if ($blog->userblog_id == get_user_meta($user_id, 'primary_blog', true)) {
+				$has_primary_blog = true;
+				break;
+			}
+		}
+		if (!$has_primary_blog) {
+			delete_metadata('user', $user_id, 'primary_blog', '', true);
+
+			global $wpdb;
+
+			$wpdb->delete($wpdb->usermeta, array('user_id' => $user_id));
+			$wpdb->delete($wpdb->users, array('ID' => $user_id));
+		}
+	}
+}
+
+add_action('wp_loaded', 'delete_usermeta_and_user_if_not_primary_blog');
+*/
+
 ############### Change URL Path
+/*
 function update_multisite_blog_path()
 {
 	// Get the current user ID.
@@ -302,9 +394,9 @@ function update_multisite_blog_path()
 
 // Add the action to the admin footer.
 add_action('admin_footer', 'update_multisite_blog_path');
-
+*/
 ############### Change URL Path
-
+/*
 #################################################
 
 function revert_multisite_blog_path()
@@ -358,8 +450,9 @@ function revert_multisite_blog_path()
 add_action('acf/save_post', 'revert_multisite_blog_path', 20);
 
 #################################################
-
-#################################################
+*/
+################################################# ENS NAME
+/*
 function check_ens()
 {
 	// Get the current user ID
@@ -405,7 +498,7 @@ function check_ens()
 add_action('wp_login', 'check_ens');
 
 #####################################################
-
+*/
 #################################################### Delete BLog
 
 function deleteDirectory($dir)
@@ -433,7 +526,7 @@ function deleteDirectory($dir)
 	// Delete the directory
 	return rmdir($dir);
 }
-
+/*
 function delete_multisite_blog_on_save()
 {
 	//Delete site field
@@ -443,6 +536,7 @@ function delete_multisite_blog_on_save()
 	if ($delete == 'Delete My Site') {
 		// Get the blog details for the current site
 		global $wpdb;
+
 		$blog_details = get_blog_details();
 		$blog_id      = $blog_details->blog_id;
 		$site_id      = $blog_details->site_id;
@@ -460,6 +554,7 @@ function delete_multisite_blog_on_save()
 		// Delete the user from the database
 		if ($current_user_id) {
 			global $wpdb;
+
 			$wpdb->delete($wpdb->users, array('ID' => $current_user_id));
 		}
 
@@ -491,7 +586,9 @@ function delete_multisite_blog_on_save()
 		#######################
 
 		WP_Filesystem();
+
 		global $wp_filesystem;
+
 		$wp_filesystem->rmdir($blog_dir, true);
 
 		// Update the site and user tables
@@ -505,11 +602,11 @@ function delete_multisite_blog_on_save()
 }
 
 add_action('acf/save_post', 'delete_multisite_blog_on_save');
-
+*/
 ################################################## Delete Blog
 
 #######  Update Blog Admin Email
-
+/*
 if (!function_exists('wp_get_current_user')) {
 	// Check if the admin email address contains '3pad.xyz'
 	add_action('init', 'check_admin_email_address');
@@ -546,5 +643,5 @@ if (!function_exists('wp_get_current_user')) {
 		}
 	}
 }
-
+*/
 #######  Update Blog Admin Email

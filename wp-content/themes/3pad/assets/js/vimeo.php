@@ -1,7 +1,7 @@
 <!-- Vimeo (.js) -->
 <?php
-$settings_page_video = "option"; ///Get Page ID
-$vid_id = get_field("enter_video_id_home", $settings_page_video);
+$settings_page_video = get_queried_object_id();  ///Get Page ID
+$vid_id              = get_field("enter_video_id_home", $settings_page_video);
 /*
 if (is_user_logged_in() && !current_user_can('subsciber')) {
     $vid_id = get_field("enter_video_id_logged_in_home", $settings_page_video);

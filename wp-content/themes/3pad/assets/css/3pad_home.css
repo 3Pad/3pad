@@ -15,6 +15,7 @@
   background-color: #000;
   filter: saturate(1.8);
   -webkit-filter: saturate(1.8);
+  top: 0;
 }
 
 .section-login{

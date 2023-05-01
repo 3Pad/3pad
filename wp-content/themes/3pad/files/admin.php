@@ -301,14 +301,6 @@ function remove_menus()
 add_action('admin_menu', 'remove_menus', 1000);
 ////////////////Disable menu items
 
-/////////////Redirect Help To 3Pad
-$words = array('?3padhelp');
-foreach ($words as $word) {
-  if (stristr($_SERVER["REQUEST_URI"], $word) !== false) {
-    exit (header("Location: https://www.youtube.com/playlist?list=PLvDo1PIwr6nqF61OmJgZGDfq-cD_8bcnf"));
-    //exit(header("HTTP/1.0 410 Gone"));
-  }
-}
 
 /////////////Redirect TO Launchpad
 $words = array('?launchpad');
@@ -319,14 +311,7 @@ foreach ($words as $word) {
     //exit(header("HTTP/1.0 410 Gone"));
   }
 }
-/////////////Unlock Protocol Locks Page
-$words = array('?page=locks');
-foreach ($words as $word) {
-  if (stristr($_SERVER["REQUEST_URI"], $word) !== false) {
-    exit (header("Location: https://app.unlock-protocol.com/locks"));
-    //exit(header("HTTP/1.0 410 Gone"));
-  }
-}
+
 /////////////Encrypt Page
 $words = array('?encrypt');
 foreach ($words as $word) {
@@ -345,25 +330,31 @@ exit(header("Location: https://app.unlock-protocol.com/keychain"));
 }
 }
 */
-/////////////Analytics
-$words = array('?analytics');
-foreach ($words as $word) {
-  if (stristr($_SERVER["REQUEST_URI"], $word) !== false) {
-    $site = site_url();
-    exit (header("Location: $site/wp-admin/index.php?page=burst"));
-    //exit(header("HTTP/1.0 410 Gone"));
+
+
+//
+function redirect_to_profile_edit_page() {
+  $words = array('?customize-page');
+  foreach ($words as $word) {
+      if (stristr($_SERVER["REQUEST_URI"], $word) !== false) {
+          $current_user = wp_get_current_user();
+          $user_login = $current_user->user_login;
+          $page = get_page_by_path($user_login);
+          if ($page) {
+              $page_id = $page->ID;
+          } else {
+              // If the user has not authored any pages, set $page_id to null
+              $page_id = null;
+          }
+
+          exit (header("Location: /wp-admin/post.php?action=edit&post=$page_id"));
+          //exit(header("HTTP/1.0 410 Gone"));
+      }
   }
 }
 
-/////////////Bug Report
-$words = array('?bugreport');
-foreach ($words as $word) {
-  if (stristr($_SERVER["REQUEST_URI"], $word) !== false) {
-    $site = site_url();
-    exit (header("Location: https://tally.so/r/nWJbQe"));
-    //exit(header("HTTP/1.0 410 Gone"));
-  }
-}
+add_action('admin_init', 'redirect_to_profile_edit_page');
+
 
 ///////ENS
 /////////////Analytics
@@ -422,7 +413,7 @@ function add_nav_menus_link_for_editor()
   $user_meta_expiration_time = get_user_meta($user_id, 'admin-premium', true);
 
   // The user meta field is not valid (premium), deny access to the admin page...
-  if ($user_meta_expiration_time < $current_time && !is_super_admin()) {
+  if ($user_meta_expiration_time < $current_time && !current_user_can('manage_options')) {
     /////////Add Content Page
     /*
     add_menu_page(
@@ -447,11 +438,25 @@ function add_nav_menus_link_for_editor()
   ///All
 
   add_menu_page(
+    __('Customize'),
+    // the page title
+    __('Customize'),
+    // the menu title
+    'read',
+    //capability
+    '?customize-page',
+    // 3pad help page //menu slug
+    'customize',
+    'dashicons-welcome-write-blog',
+    10
+  );
+
+  add_menu_page(
     __('Launchpad'),
     // the page title
     __('Launchpad 🚀'),
     // the menu title
-    'author',
+    'read',
     //capability
     '?launchpad',
     // 3pad help page //menu slug
@@ -461,7 +466,7 @@ function add_nav_menus_link_for_editor()
   );
 
   //<------------> If user is premium Member <------------>
-  if ($user_meta_expiration_time > $current_time && !is_super_admin()) {
+  if ($user_meta_expiration_time > $current_time && !current_user_can('manage_options')) {
     // Custom link to the nav menus page
     /*
     add_menu_page(
@@ -624,6 +629,7 @@ add_action('admin_head', 'metahead', 0);
 remove_action('admin_head', '_admin_bar_bump_cb');
 
 ///Redirect from page edit screen non admin
+/*
 function my_custom_redirect()
 {
   if (!current_user_can('manage_options')) {
@@ -635,6 +641,7 @@ function my_custom_redirect()
 }
 
 add_action('admin_init', 'my_custom_redirect');
+*/
 
 ///Simply Static Menu
 function change_ss_settings_capability($capability)
@@ -646,7 +653,7 @@ add_filter('ss_settings_capability', 'change_ss_settings_capability');
 
 ///Load Custom admin Javascript file
 function load_admin_js() {
-	if ( ! is_super_admin() ) {
+	if ( ! current_user_can('manage_options') ) {
 		wp_enqueue_script( 'dashboard-js1', get_theme_file_uri( '/assets/js/dashboard.js' ), array( 'jquery' ), '1.0', true );
 	}
 }
@@ -654,7 +661,7 @@ function load_admin_js() {
 add_action( 'admin_enqueue_scripts', 'load_admin_js' );
 
 function load_admin_css() {
-  if ( ! is_super_admin() ) {
+  if ( ! current_user_can('manage_options') ) {
     wp_enqueue_style( 'dashboard-css', get_theme_file_uri( '/assets/css/admin.css' ), array(), '1.0', 'all', 999 );
     wp_enqueue_style( 'fontawesome-css', get_theme_file_uri( '/assets/css/fontawesome.min.css' ), array(), '1.0', 'all', 999 );
     wp_enqueue_style( 'brands-css', get_theme_file_uri( '/assets/css/brands.min.css' ), array(), '1.0', 'all', 999 );
@@ -664,6 +671,14 @@ function load_admin_css() {
 
 add_action( 'admin_enqueue_scripts', 'load_admin_css', 0 );
 
+
+//Disable Gutenberg
+function disable_gutenberg() {
+  if ( ! current_user_can( 'manage_options' ) ) {
+      add_filter( 'use_block_editor_for_post', '__return_false' );
+  }
+}
+add_action( 'admin_init', 'disable_gutenberg' );
 
 
 

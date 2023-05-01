@@ -1,12 +1,10 @@
 <?php
 
-
-
 ////Header
 get_header();
 
 if (is_singular()) {
-	get_template_part('pages/single');
+	get_template_part('front-page');
 }
 
 if (is_main_site() && is_front_page()) {

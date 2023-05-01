@@ -11,8 +11,10 @@ if (is_admin()) {
   {
     if (!is_admin()) {
       $user = wp_get_current_user();
+
       //if (!current_user_can('administrator')) { // Is Not Administrator - Remove Administrator
       global $wpdb;
+
       $user_ID = get_current_user_id();
       $user_search->query_where =
         str_replace(
@@ -60,27 +62,14 @@ add_action("init", "check_user_other_sessions", 99);
 ///////////////// Add role option theme customize
 function customize_user_roles()
 {
-  if (is_admin() && !is_super_admin()) {
+  if (is_admin() && !current_user_can('manage_options')) {
     ///////Subscriber
     $subscriber = get_role('subscriber');
     $subscriber->remove_cap('upload_files');
-
-    ///////Author
-    $author = get_role('author');
-    $author->remove_cap('upload_files');
-    $author->remove_cap('create_pages');
-    $author->remove_cap('delete_pages');
-    $author->remove_cap('delete_others_pages');
-    $author->remove_cap('delete_published_pages');
-    $author->add_cap('delete_private_pages');
-    $author->add_cap('edit_pages');
-    $author->add_cap('edit_others_pages');
-    $author->add_cap('edit_published_pages');
-    $author->remove_cap('publish_pages');
-    $author->remove_cap('unfiltered_html');
-    $author->remove_cap('edit_theme_options');
-    $author->remove_cap('customize');
-    $author->remove_cap('manage_options');
+    $subscriber->remove_cap('edit_pages');
+    $subscriber->add_cap('edit_published_pages');
+    $subscriber->remove_cap('edit_others_pages');
+    $subscriber->remove_cap('create_pages');
   }
 }
 

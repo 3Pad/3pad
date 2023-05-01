@@ -1,19 +1,21 @@
 <?php
 
 ////Load Custom Pages
+/*
 if (function_exists('acf_add_options_page')) {
     acf_add_options_page(
         array(
             'page_title' => 'Dashboard',
             'menu_slug'  => 'customize-home',
             'menu_title' => 'Customize 🌟',
-            'capability' => 'author',
+            'capability' => 'read',
             'position'   => '2',
             'icon_url'   => 'dashicons-cover-image',
             'redirect'   => false
         )
     );
 }
+*/
 
 /////Import Acf PHP below
 if (function_exists('acf_add_local_field_group')):
@@ -812,6 +814,13 @@ if (function_exists('acf_add_local_field_group')):
                     'value'    => 'customize-home',
                 ),
             ),
+            array(
+                array(
+                    'param'    => 'post_type',
+                    'operator' => '==',
+                    'value'    => 'page',
+                ),
+            ),
         ),
         'menu_order'            => 1,
         'position'              => 'normal',
@@ -1250,6 +1259,13 @@ if (function_exists('acf_add_local_field_group')):
                     'param'    => 'options_page',
                     'operator' => '==',
                     'value'    => 'customize-home',
+                ),
+            ),
+            array(
+                array(
+                    'param'    => 'post_type',
+                    'operator' => '==',
+                    'value'    => 'page',
                 ),
             ),
         ),
@@ -1710,8 +1726,6 @@ if (function_exists('acf_add_local_field_group')):
                     'operator' => '==',
                     'value'    => 'page',
                 ),
-            ),
-            array(
                 array(
                     'param'    => 'current_user_role',
                     'operator' => '==',
@@ -2321,6 +2335,13 @@ if (function_exists('acf_add_local_field_group')):
                     'value'    => 'customize-home',
                 ),
             ),
+            array(
+                array(
+                    'param'    => 'post_type',
+                    'operator' => '==',
+                    'value'    => 'page',
+                ),
+            ),
         ),
         'menu_order'            => 3,
         'position'              => 'normal',
@@ -2623,6 +2644,13 @@ if (function_exists('acf_add_local_field_group')):
                     'param'    => 'options_page',
                     'operator' => '==',
                     'value'    => 'customize-home',
+                ),
+            ),
+            array(
+                array(
+                    'param'    => 'post_type',
+                    'operator' => '==',
+                    'value'    => 'page',
                 ),
             ),
         ),
@@ -6999,6 +7027,13 @@ if (function_exists('acf_add_local_field_group')):
                     'value'    => 'customize-home',
                 ),
             ),
+            array(
+                array(
+                    'param'    => 'post_type',
+                    'operator' => '==',
+                    'value'    => 'page',
+                ),
+            ),
         ),
         'menu_order'            => 5,
         'position'              => 'normal',
@@ -10233,6 +10268,13 @@ if (function_exists('acf_add_local_field_group')):
                     'value'    => 'customize-home',
                 ),
             ),
+            array(
+                array(
+                    'param'    => 'post_type',
+                    'operator' => '==',
+                    'value'    => 'page',
+                ),
+            ),
         ),
         'menu_order'            => 6,
         'position'              => 'normal',
@@ -13370,6 +13412,13 @@ if (function_exists('acf_add_local_field_group')):
                     'value'    => 'customize-home',
                 ),
             ),
+            array(
+                array(
+                    'param'    => 'post_type',
+                    'operator' => '==',
+                    'value'    => 'page',
+                ),
+            ),
         ),
         'menu_order'            => 7,
         'position'              => 'normal',
@@ -14607,6 +14656,13 @@ if (function_exists('acf_add_local_field_group')):
                     'param'    => 'options_page',
                     'operator' => '==',
                     'value'    => 'customize-home',
+                ),
+            ),
+            array(
+                array(
+                    'param'    => 'post_type',
+                    'operator' => '==',
+                    'value'    => 'page',
                 ),
             ),
         ),
