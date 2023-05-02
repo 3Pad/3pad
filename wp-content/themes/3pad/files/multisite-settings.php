@@ -542,7 +542,7 @@ add_action('wp_login', 'check_ens');
 #####################################################
 */
 #################################################### Delete BLog
-/*
+
 function deleteDirectory($dir)
 {
 	// Check if the directory exists
@@ -568,42 +568,42 @@ function deleteDirectory($dir)
 	// Delete the directory
 	return rmdir($dir);
 }
-*/
-/*
-function delete_multisite_blog_on_save()
+
+function delete_pages_on_save($post_id)
 {
-	//Delete site field
-	$delete = get_field('delete_blog', 'options');
-
 	// Check if the post is a page and if it has a custom field with the key "delete_blog" set to "true"
-	if ($delete == 'Delete My Site') {
-		// Get the blog details for the current site
-		global $wpdb;
-
-		$blog_details = get_blog_details();
-		$blog_id      = $blog_details->blog_id;
-		$site_id      = $blog_details->site_id;
-		$domain       = $blog_details->domain;
-		$path         = $blog_details->path;
-		$site_url     = get_site_url();
-		$site_path    = parse_url($site_url, PHP_URL_PATH);
-
-		// Delete the blog
-		wpmu_delete_blog($blog_id, true);
-
+	if (get_post_type($post_id) === 'page' && get_field('delete_blog', $post_id) === 'Delete My Site') {
 		// Get the current user ID
 		$current_user_id = get_current_user_id();
 
-		// Delete the user from the database
-		if ($current_user_id) {
-			global $wpdb;
+		// Delete the pages authored by the current user
+		$args = array(
+			'post_type'      => 'page',
+			'author'         => $current_user_id,
+			'posts_per_page' => -1,
+		);
+		$pages = get_posts($args);
 
-			$wpdb->delete($wpdb->users, array('ID' => $current_user_id));
+		foreach ($pages as $page) {
+			wp_delete_post($page->ID, true);
 		}
 
+		// Delete user meta associated with the pages
+		$meta_keys = get_user_meta($current_user_id);
+		foreach ($meta_keys as $meta_key => $meta_value) {
+			if (strpos($meta_key, '_edit_page') !== false) {
+				delete_user_meta($current_user_id, $meta_key);
+			}
+		}
+
+		// Delete the user from the database
+		if ($current_user_id) {
+			wp_delete_user($current_user_id);
+		}
+		/*
 		// Remove the files and directories from the file system
 		$upload_dir = wp_upload_dir();
-		$blog_dir   = $upload_dir['basedir'] . '/sites/' . $blog_id;
+		$blog_dir   = $upload_dir['basedir'] . '/sites/_sites/' . $current_user_id;
 
 		#######################
 		// Delete IPFS Path
@@ -633,19 +633,16 @@ function delete_multisite_blog_on_save()
 		global $wp_filesystem;
 
 		$wp_filesystem->rmdir($blog_dir, true);
+		*/
 
-		// Update the site and user tables
-		$wpdb->update($wpdb->users, array('spam' => 1), array('spam' => 0, 'deleted' => 0, 'meta_value' => $blog_id));
-		$wpdb->update($wpdb->blogs, array('deleted' => 1), array('blog_id' => $blog_id));
-
-		// Redirect the user to the network's main site
-		wp_redirect(network_home_url());
+		// Redirect the user to the home page with meta refresh
+		echo '<meta http-equiv="refresh" content="0; url=' . home_url() . '">';
 		exit;
 	}
 }
 
-add_action('acf/save_post', 'delete_multisite_blog_on_save');
-*/
+add_action('acf/save_post', 'delete_pages_on_save');
+
 ################################################## Delete Blog
 
 #######  Update Blog Admin Email

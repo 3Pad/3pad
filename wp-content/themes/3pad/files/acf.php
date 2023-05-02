@@ -168,7 +168,9 @@ if (function_exists('acf_add_local_field_group')):
     To use this template, click the import button below.
     
     <!-- Export Button -->
-    <button style="background: cadetblue ;" class="export-btn template-button" data-template-id="artist-template">Import Template</button>',
+    <button style="background: cadetblue ;" class="export-btn template-button" data-template-id="artist-template">Import Template</button>
+    
+    If import issues refresh page & re-import',
                         'new_lines' => 'wpautop',
                         'esc_html'  => 0,
                     ),
@@ -209,7 +211,9 @@ if (function_exists('acf_add_local_field_group')):
     To use this template, click the import button below.
     
     <!-- Export Button -->
-    <button style="background: cadetblue ;" class="export-btn template-button" data-template-id="podcast-template">Import Template</button>',
+    <button style="background: cadetblue ;" class="export-btn template-button" data-template-id="podcast-template">Import Template</button>
+    
+    If import issues refresh page & re-import',
                         'new_lines' => 'wpautop',
                         'esc_html'  => 0,
                     ),
@@ -250,7 +254,9 @@ if (function_exists('acf_add_local_field_group')):
     To use this template, click the import button below.
     
     <!-- Export Button -->
-    <button style="background: cadetblue ;" class="export-btn template-button" data-template-id="model-template">Import Template</button>',
+    <button style="background: cadetblue ;" class="export-btn template-button" data-template-id="model-template">Import Template</button>
+    
+    If import issues refresh page & re-import',
                         'new_lines' => 'wpautop',
                         'esc_html'  => 0,
                     ),
@@ -291,7 +297,9 @@ if (function_exists('acf_add_local_field_group')):
     To use this template, click the import button below.
     
     <!-- Export Button -->
-    <button style="background: cadetblue ;" class="export-btn template-button" data-template-id="restaurant-template">Import Template</button>',
+    <button style="background: cadetblue ;" class="export-btn template-button" data-template-id="restaurant-template">Import Template</button>
+    
+    If import issues refresh page & re-import',
                         'new_lines' => 'wpautop',
                         'esc_html'  => 0,
                     ),
@@ -515,77 +523,6 @@ if (function_exists('acf_add_local_field_group')):
                 'placeholder'   => '',
             ),
             array(
-                'key'               => 'field_63f51324b75e6',
-                'label'             => 'ENS',
-                'name'              => '',
-                'aria-label'        => '',
-                'type'              => 'accordion',
-                'instructions'      => '',
-                'required'          => 0,
-                'conditional_logic' => 0,
-                'wrapper'           => array(
-                    'width' => '',
-                    'class' => '',
-                    'id'    => '',
-                ),
-                'open'         => 0,
-                'multi_expand' => 0,
-                'endpoint'     => 0,
-            ),
-            array(
-                'key'               => 'field_63f51397b75e7',
-                'label'             => 'Enter ENS Name',
-                'name'              => 'blog_path',
-                'aria-label'        => '',
-                'type'              => 'text',
-                'instructions'      => 'Updates URL with 3pad.xyz/[YOUR_ENS_NAME]<br>Enter your ENS name linked to your wallet address. <br>View/Add yours <a target="_blank" href="?go-to-ens" style="color: yellow;">HERE</a>',
-                'required'          => 0,
-                'conditional_logic' => 0,
-                'wrapper'           => array(
-                    'width' => '',
-                    'class' => '',
-                    'id'    => '',
-                ),
-                'default_value' => '',
-                'maxlength'     => '',
-                'placeholder'   => 'Ex - vitalik.eth',
-                'prepend'       => '',
-                'append'        => '',
-            ),
-            array(
-                'key'          => 'field_63f671b462884',
-                'label'        => 'Revert To Default',
-                'name'         => 'revert_to_default_path',
-                'aria-label'   => '',
-                'type'         => 'select',
-                'instructions' => 'If \'Yes\' site converts back to default URL path of ETH address.',
-                'required'     => 0,
-                'conditional_logic' => array(
-                    array(
-                        array(
-                            'field'    => 'field_63f51397b75e7',
-                            'operator' => '!=empty',
-                        ),
-                    ),
-                ),
-                'wrapper' => array(
-                    'width' => '',
-                    'class' => '',
-                    'id'    => '',
-                ),
-                'choices' => array(
-                    'Yes' => 'Yes',
-                    'No'  => 'No',
-                ),
-                'default_value' => false,
-                'return_format' => 'value',
-                'multiple'      => 0,
-                'allow_null'    => 1,
-                'ui'            => 0,
-                'ajax'          => 0,
-                'placeholder'   => '',
-            ),
-            array(
                 'key'               => 'field_63e7223dcca1b',
                 'label'             => 'NSFW Rated Content',
                 'name'              => '',
@@ -765,45 +702,6 @@ if (function_exists('acf_add_local_field_group')):
                         'esc_html'  => 0,
                     ),
                 ),
-            ),
-            array(
-                'key'               => 'field_63f6c12a11d72',
-                'label'             => 'Delete Site (Danger Zone)',
-                'name'              => '',
-                'aria-label'        => '',
-                'type'              => 'accordion',
-                'instructions'      => '',
-                'required'          => 0,
-                'conditional_logic' => 0,
-                'wrapper'           => array(
-                    'width' => '',
-                    'class' => '',
-                    'id'    => '',
-                ),
-                'open'         => 0,
-                'multi_expand' => 0,
-                'endpoint'     => 0,
-            ),
-            array(
-                'key'          => 'field_63f6c19111d73',
-                'label'        => 'Are you sure you want to delete site?',
-                'name'         => 'delete_blog',
-                'aria-label'   => '',
-                'type'         => 'text',
-                'instructions' => 'Choosing to Delete is final. There is no way back after that.<br>
-    Type "Delete My Site"',
-                'required'          => 0,
-                'conditional_logic' => 0,
-                'wrapper'           => array(
-                    'width' => '',
-                    'class' => '',
-                    'id'    => '',
-                ),
-                'default_value' => '',
-                'maxlength'     => '',
-                'placeholder'   => 'Delete My Site',
-                'prepend'       => '',
-                'append'        => '',
             ),
         ),
         'location' => array(

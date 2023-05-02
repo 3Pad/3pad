@@ -283,7 +283,7 @@ if (is_user_logged_in()) {
 		?>
 						
 			<div class="column-4 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack logoutbefore activate-button"> 
-			<a id="unlocklink" button="log-out" href="/" class="b4 w-button" style="background: yellow;color: black;">Launch Site 🚀</a>
+			<a id="unlocklink" button="log-out" href="/?launch_site" class="b4 w-button" style="background: yellow;color: black;">Launch Site 🚀</a>
 			 </div>
 			
 

@@ -22,15 +22,31 @@ function my_logout_redirect()
 
 add_action('wp_logout', 'my_logout_redirect');
 
-// Check if the query string contains "signature="
-if (isset($_SERVER['QUERY_STRING']) && strpos($_SERVER['QUERY_STRING'], 'signature=') !== false) {
-  // Redirect to the same URL with an additional "unlockpassed=" parameter and a random value between 1 and 9999
-  header("Location: " . $_SERVER['PHP_SELF'] . "?unlockpassed=" . rand(1, 9999), true, 301);
-  exit;
+function unlock_redirect()
+{
+  // Check if the query string contains "signature="
+  if (isset($_SERVER['QUERY_STRING']) && strpos($_SERVER['QUERY_STRING'], 'code=') !== false) {
+    // Redirect to the same URL with an additional "unlockpassed=" parameter and a random value between 1 and 9999
+    header("Location: " . $_SERVER['PHP_SELF'] . "?unlock_login=" . rand(1, 9999), true, 302);
+    exit;
+  }
+  // Check if the query string contains "signature="
+  if (isset($_SERVER['QUERY_STRING']) && strpos($_SERVER['QUERY_STRING'], 'signature=') !== false) {
+    // Redirect to the same URL with an additional "unlockpassed=" parameter and a random value between 1 and 9999
+    header("Location: " . $_SERVER['PHP_SELF'] . "?unlock_passed=" . rand(1, 9999), true, 302);
+    exit;
+  }
 }
 
-//if (is_main_site()){
-//header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
-//header("Pragma: no-cache"); // HTTP 1.0.
-//header("Expires: 0"); // Proxies.
-//}
+add_action('shutdown', 'unlock_redirect', 99);
+
+function no_cache()
+{
+  if (isset($_SERVER['QUERY_STRING']) && strpos($_SERVER['QUERY_STRING'], 'code=') !== false) {
+    header("Cache-Control: no-cache, no-store, must-revalidate");  // HTTP 1.1.
+    header("Pragma: no-cache");  // HTTP 1.0.
+    header("Expires: 0");  // Proxies.
+  }
+}
+
+add_action('wp_login', 'no_cache');

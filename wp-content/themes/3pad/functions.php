@@ -18,25 +18,11 @@ function your_theme_enqueue_styles()
 
 add_action('wp_enqueue_scripts', 'your_theme_enqueue_styles');
 
-///Delete MU plugin On switch
-function delete_my_mu_plugin_on_theme_change()
-{
-    $current_theme  = wp_get_theme();
-    $previous_theme = get_option('theme_switched');
-    $mu_plugin_path = WP_CONTENT_DIR . '/mu-plugins/3pad.php';
-
-    if ($previous_theme && $previous_theme !== $current_theme->get('Name') && file_exists($mu_plugin_path)) {
-        unlink($mu_plugin_path);
-    }
-}
-
-add_action('after_switch_theme', 'delete_my_mu_plugin_on_theme_change');
-
 ///Autoload ACF PLUGIN
 if (!function_exists('is_plugin_active')) {
     include_once (ABSPATH . 'wp-admin/includes/plugin.php');
 }
-/*
+
 function activate_acf()
 {
     // Check if the plugin is not already activated.
@@ -45,10 +31,23 @@ function activate_acf()
         activate_plugin('advanced-custom-fields/acf.php');
         echo 'MAKE SURE ACF IS INSTALLED IN FOLDER';
     }
+
+    // Check if the plugin is not already activated.
+    if (!is_plugin_active('simply-static/simply-static.php')) {
+        // Activate the plugin.
+        activate_plugin('simply-static/simply-static.php');
+        echo 'MAKE SURE SIMPLY STATIC IS INSTALLED IN FOLDER';
+    }
+
+    // Check if the plugin is not already activated.
+    if (!is_plugin_active('unlock-protocol/unlock-protocol.php')) {
+        // Activate the plugin.
+        activate_plugin('unlock-protocol/unlock-protocol.php');
+        echo 'MAKE SURE UNLCOK PROTOCOL IS INSTALLED IN FOLDER';
+    }
 }
 
-add_action('init', 'activate_acf');
-*/
+add_action('admin_init', 'activate_acf');
 
 /*  Add your own functions below this line.
 ======================================== */

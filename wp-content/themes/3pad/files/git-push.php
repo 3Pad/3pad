@@ -34,7 +34,7 @@ add_action('acf/save_post', 'ssp_delay_static_export');
 //You can use this filter to modify the Simply Static settings array. Useful if you want to change certain options temporarily. A use case for that could be changing the export directory based on the language you are currently selected. It’s used to make the multilingual integration in Simply Static Pro:
 
 ///WP Static Site Settings
-/*
+
 add_filter('ss_get_options', function ($options) {
     //Get Site Id
     $site_url  = get_site_url();
@@ -51,4 +51,3 @@ add_filter('ss_get_options', function ($options) {
 
     return $options;
 });
-*/
