@@ -141,6 +141,9 @@ define('GITHUB_ACCESS_TOKEN', getenv_docker('WORDPRESS_GITHUB_TOKEN', 'TOKEN'));
 //GIT PUSH SECONDS
 define('GIT_PUSH_SECONDS', getenv_docker('WORDPRESS_GIT_PUSH_SECONDS', '300'));
 
+//Arweave URL
+define('ARWEAVE_FILES', getenv_docker('ARWEAVE_FILES_URL', 'https://aiclsomux6khjv22oenjag7udfvl4c466gozortswz3lgdlrjimq.arweave.net/AgS5OZS_lHTXWnEakBv0GWq-C57xnZdGcrZ2sw1xShk'));
+
 # Set the default theme to '3pad'
 define('WP_DEFAULT_THEME', '3pad');
 

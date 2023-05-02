@@ -32,7 +32,7 @@ services:
       - GITHUB_KEY=ENTER
       - GITHUB_USER=ENTER
       - GITHUB_EMAIL=ENTER
-      
+      - ARWEAVE_FILES_URL=https://e2ab474kur2rcrauwl43tjkytipp4tvjyli3hshba6oqmortxp2a.arweave.net/JoAef4qkdRFEFLL5uaVYmh7-TqnC0bPI4QedBjozu_Q
     command:
       - "sh"
       - "-c"
@@ -156,9 +156,9 @@ profiles:
         memory:
           size: 2Gi
         storage:
-          - size: 40Gi
+          - size: 10Gi
           - name: data
-            size: 40Gi
+            size: 10Gi
             attributes:
               persistent: true
               class: beta1

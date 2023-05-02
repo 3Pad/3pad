@@ -49,6 +49,41 @@ function activate_acf()
 
 add_action('admin_init', 'activate_acf');
 
+/**
+ * Filters the URL of stylesheets, scripts, and assets.
+ *
+ * @param  string $url The original URL.
+ * @return string The new URL.
+ */
+add_filter('style_loader_src', 'my_theme_style_url_filter', 10, 2);
+add_filter('script_loader_src', 'my_theme_script_url_filter', 10, 2);
+add_filter('theme_file_uri', 'my_theme_asset_url_filter', 10, 2);
+
+function my_theme_style_url_filter($src, $handle)
+{
+    if (!is_admin() && !is_front_page()) {
+        $src = str_replace(get_site_url(), ARWEAVE_FILES, $src);
+    }
+    return $src;
+}
+
+function my_theme_script_url_filter($src, $handle)
+{
+    if (!is_admin() && !is_front_page()) {
+        $src = str_replace(get_site_url(), ARWEAVE_FILES, $src);
+    }
+    return $src;
+}
+
+function my_theme_asset_url_filter($url, $path)
+{
+    if (!is_admin() && !is_front_page()) {
+        $new_url = str_replace(get_site_url(), ARWEAVE_FILES, $url);
+        return $new_url !== $url ? $new_url : $url;
+    }
+    return $url;
+}
+
 /*  Add your own functions below this line.
 ======================================== */
 

@@ -2,7 +2,7 @@
 
 $nonce        = wp_create_nonce('js-nonce');
 $current_user = wp_get_current_user();
-$page         = $current_user->user_login;
+$page         = strtolower($current_user->user_login);
 
 echo '<script defer nonce="' . $nonce . '">
 var xIpfsPath = new XMLHttpRequest();
@@ -32,11 +32,11 @@ echo '";
       var ipfsLink = document.createElement("a");
       ipfsLink.href = "https://3pad.icp.xyz/" + "';
 echo $page;
-echo '"
+echo '/"
                     ipfsLink.innerText = "3pad.icp.xyz/" + "';
 echo $page;
 
-echo '/"
+echo '"
       ipfsLink.target = "_blank"; // Add this line
       document.getElementById("ipfsPath_backup").innerHTML = "";
       document.getElementById("ipfsPath_backup").appendChild(ipfsLink);
