@@ -255,13 +255,13 @@ add_action("wp_head", "mutefull_acf");
 
         //Get Page
         $page       = get_query_var('page');
-        $site_title = get_the_title() . ' | ' . get_field("site_title", $settings_page);
+        $site_title = get_the_title() . '  ' . get_field("site_title", $settings_page);
         if (!is_front_page()) {
             $site_title = get_field("site_title", $settings_page);
         }
 
         if ($page) {
-            $site_title .= " | $page";
+            $site_title .= "$page";
         }
 
         echo "

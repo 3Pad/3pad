@@ -179,9 +179,10 @@ if (is_user_logged_in()) {
 				$current_user = wp_get_current_user();
 				$user_login   = $current_user->user_login;
 				$page         = get_page_by_path($user_login);
-				$page_id      = $page->ID;
-				$gif          = 'https://media.giphy.com/media/3ohhwkciVuXOgX7z44/giphy-downsized.gif';
-				$random       = wp_rand(24);
+				$page_id      = $page ? $page->ID : null;
+
+				$gif    = 'https://media.giphy.com/media/3ohhwkciVuXOgX7z44/giphy-downsized.gif';
+				$random = wp_rand(24);
 
 				$html = '<div class="columns w-row">';
 
@@ -242,7 +243,10 @@ if (is_user_logged_in()) {
 
 
 					</div>
-
+					<?php
+		//////IPFS SITE BOXES
+		if (current_user_can('subscriber') && !current_user_can('manage_options')) {
+			echo '
 					<!-- HTML for field box -->
 					<div id="field-box">
 						<div class="hide-from">
@@ -274,13 +278,19 @@ if (is_user_logged_in()) {
 							<p class="centered-subheading" style="font-size: 9px;margin-top: -22px;">(Subject to Changes - Always Save)
 							</p>
 						</div>
-						<div class="column-4 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack logoutbefore">
-							<a id="unlocklink" button="log-out" href="/"
-								class="b4 w-button">Issues? 🔮</a>
-						</div>
+						';
+		}
+		?>
+						
+			<div class="column-4 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack logoutbefore activate-button"> 
+			<a id="unlocklink" button="log-out" href="/" class="b4 w-button" style="background: yellow;color: black;">Launch Site 🚀</a>
+			 </div>
+			
+
+
 						<div class="column-4 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack logoutbefore">
 							<a id="unlocklink" button="log-out" href="<?php echo wp_logout_url(get_permalink()); ?>"
-								class="b4 w-button">🚪 Log
+								class="b4 w-button firstlogout">🚪 Log
 								Out</a>
 						</div>
 						

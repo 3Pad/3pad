@@ -80,34 +80,76 @@ function create_default_pages()
 // Add the "create_default_pages" function to the "admin_head" action
 add_action('admin_head', 'create_default_pages');
 
-// Add the "wpms_one_blog_only" function as a filter for the "wpmu_active_signup" hook
-add_filter('wpmu_active_signup', 'wpms_one_blog_only');
-
-////Create Page For USER
-add_action('shutdown', 'save_acf_fields_for_user');
-
-function save_acf_fields_for_user($post_id)
+//Create Page For USER
+function create_or_update_user_page()
 {
 	// Get the current user
 	$current_user = wp_get_current_user();
 
 	// Check if a page already exists for the current user
-	$page_id = get_page_by_title($current_user->display_name, OBJECT, 'page');
+	$page = get_page_by_path($current_user->user_login, OBJECT, 'page');
 
-	// If a page already exists for the current user or the current user has the 'manage_options' capability or is a 'free-member', do not create a new page
-	if ($page_id || current_user_can('manage_options') || current_user_can('non-member')) {
+	// If a page already exists for the current user and the user is not the author, update the author of the page
+	if ($page && $page->post_author !== $current_user->ID) {
+		wp_update_post(array(
+			'ID'          => $page->ID,
+			'post_author' => $current_user->ID
+		));
 		return;
 	}
 
-	// Create a new page for the current user
-	$page = array(
-		'post_title'   => $current_user->display_name,
-		'post_content' => '',
-		'post_status'  => 'publish',
-		'post_author'  => $current_user->ID,
-		'post_type'    => 'page'
-	);
-	$page_id = wp_insert_post($page);
+	// If a page already exists for the current user or the current user has the 'manage_options' capability or is a 'free-member', do not create a new page
+	if ($page || current_user_can('manage_options') || current_user_can('non-member')) {
+		return;
+	}
+
+	if (is_user_logged_in()) {
+		// Create a new page for the current user
+		$page = array(
+			'post_title'   => $current_user->display_name,
+			'post_content' => '',
+			'post_status'  => 'publish',
+			'post_author'  => $current_user->ID,
+			'post_type'    => 'page',
+			'post_name'    => $current_user->user_login
+		);
+		wp_insert_post($page);
+	}
+}
+
+add_action('init', 'create_or_update_user_page');
+
+////Delete USER if meta dosent contain Unlock
+add_action('wp_login', 'delete_user_if_meta_empty', 10, 2);
+
+function delete_user_if_meta_empty($user_login, $user)
+{
+	// Check if user is admin
+	if (in_array('administrator', $user->roles)) {
+		return;
+	}
+
+	// Check if user has meta value
+	$meta_value = get_user_meta($user->ID, 'unlock_ethereum_address', true);
+	if (!empty($meta_value)) {
+		return;
+	}
+
+	// Delete the user and any pages they authored
+	$pages = get_posts(array(
+		'post_type'   => 'page',
+		'author'      => $user->ID,
+		'post_status' => 'any',
+		'fields'      => 'ids',
+	));
+
+	if (!empty($pages)) {
+		foreach ($pages as $page_id) {
+			wp_delete_post($page_id, true);
+		}
+	}
+
+	wp_delete_user($user->ID, true);
 }
 
 // Only allow Logged in Users to Signup Page
@@ -500,7 +542,7 @@ add_action('wp_login', 'check_ens');
 #####################################################
 */
 #################################################### Delete BLog
-
+/*
 function deleteDirectory($dir)
 {
 	// Check if the directory exists
@@ -526,6 +568,7 @@ function deleteDirectory($dir)
 	// Delete the directory
 	return rmdir($dir);
 }
+*/
 /*
 function delete_multisite_blog_on_save()
 {

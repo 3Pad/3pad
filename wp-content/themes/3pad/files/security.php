@@ -597,7 +597,13 @@ add_action('admin_init', function() {
   }
 });
 
-
+///Disable Admin Notices
+function wpse_hide_update_notification() {
+  if (! current_user_can( 'update_core' ) ) {
+    remove_action( 'admin_notices', 'update_nag', 3 );
+  }
+}
+add_action( 'admin_head', 'wpse_hide_update_notification' );
 
 
 // Remove the admin bar from non-admin users

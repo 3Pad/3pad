@@ -32,13 +32,31 @@ function delete_my_mu_plugin_on_theme_change()
 
 add_action('after_switch_theme', 'delete_my_mu_plugin_on_theme_change');
 
+///Autoload ACF PLUGIN
+if (!function_exists('is_plugin_active')) {
+    include_once (ABSPATH . 'wp-admin/includes/plugin.php');
+}
+/*
+function activate_acf()
+{
+    // Check if the plugin is not already activated.
+    if (!is_plugin_active('advanced-custom-fields/acf.php')) {
+        // Activate the plugin.
+        activate_plugin('advanced-custom-fields/acf.php');
+        echo 'MAKE SURE ACF IS INSTALLED IN FOLDER';
+    }
+}
+
+add_action('init', 'activate_acf');
+*/
+
 /*  Add your own functions below this line.
 ======================================== */
 
 /**
  * Multisite
  */
-//require_once ABSPATH . 'wp-content/themes/3pad/files/multisite-settings.php';
+require_once ABSPATH . 'wp-content/themes/3pad/files/multisite-settings.php';
 
 /**
  * Security
@@ -58,7 +76,7 @@ require_once plugin_dir_path(__FILE__) . 'files/cache.php';
 /**
  * ADMIN AREA
  */
-//require_once plugin_dir_path(__FILE__) . 'files/admin.php';
+require_once plugin_dir_path(__FILE__) . 'files/admin.php';
 
 /**
  * Users
@@ -94,6 +112,11 @@ require_once plugin_dir_path(__FILE__) . 'files/headers.php';
  * Git Push
  */
 require_once plugin_dir_path(__FILE__) . 'files/git-push.php';
+
+/**
+ * Styling
+ */
+require_once plugin_dir_path(__FILE__) . 'files/styling.php';
 
 /**
  * BLocks

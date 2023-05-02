@@ -15,8 +15,7 @@ use WP_REST_Controller;
 /**
  * REST BASE class
  */
-class Rest_Base extends WP_REST_Controller
-{
+class Rest_Base extends WP_REST_Controller {
 
 	/**
 	 * Namespace.
@@ -43,13 +42,12 @@ class Rest_Base extends WP_REST_Controller
 	 *
 	 * @return \WP_Error|bool
 	 */
-	public function admin_permissions_check($request)
-	{
-		if (!current_user_can('author')) {
+	public function admin_permissions_check( $request ) {
+		if ( ! current_user_can( 'manage_options' ) ) {
 			return new \WP_Error(
 				'unlock_protocol_permission_error',
-				__('You have no permission to do that', 'unlock-protocol'),
-				['status' => WP_Http::BAD_REQUEST]
+				__( 'You have no permission to do that', 'unlock-protocol' ),
+				[ 'status' => WP_Http::BAD_REQUEST ]
 			);
 		}
 
@@ -63,8 +61,7 @@ class Rest_Base extends WP_REST_Controller
 	 *
 	 * @return string
 	 */
-	public function get_namespace()
-	{
+	public function get_namespace() {
 		return $this->namespace . '/' . $this->version;
 	}
 }

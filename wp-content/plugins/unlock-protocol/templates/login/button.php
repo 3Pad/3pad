@@ -46,12 +46,12 @@
 
 <div class="login-button-container <?php echo $blurred_image_activated ? esc_attr( 'blurred' ) : ''; ?>">
 	<?php
-	if ( $blurred_image_activated ) {
+	if ( isset($blurred_image_activated ) && isset($login_button_description)) {
 		printf( '<p>%s</p>', esc_html( $login_button_description ) );
 	}
 	?>
 
-	<a target="_self" href="<?php echo esc_url( $login_url ); ?>" class="login-button"><?php echo esc_html( $login_button_text ); ?></a>
+	<a href="<?php echo esc_url( $login_url ); ?>" class="login-button"><?php echo esc_html( $login_button_text ); ?></a>
 </div>
 
 <?php do_action( 'unlock_after_login_button' ); ?>

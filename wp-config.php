@@ -126,6 +126,11 @@ if ($configExtra = getenv_docker('WORDPRESS_CONFIG_EXTRA', '')) {
 
 //3pad CONFIGS
 
+//SITE URLS
+define('WP_HOME', getenv_docker('WORDPRESS_SITE_HOME', 'URL'));
+
+define('WP_SITEURL', getenv_docker('WORDPRESS_SITE_URL', 'URL'));
+
 ////Moralis KEY
 define('MORALIS_API_KEY', getenv_docker('WORDPRESS_MORALIS_KEY', 'API'));
 

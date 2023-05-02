@@ -1,6 +1,6 @@
 <?php
 
-///Super ADmin dont display styling
+///Super Admin dont display styling
 
 /**
  * Styling

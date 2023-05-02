@@ -60,20 +60,14 @@ add_action("init", "check_user_other_sessions", 99);
 ////////////////////////////////End user session////////////////////////////////////
 
 ///////////////// Add role option theme customize
-function customize_user_roles()
-{
-  if (is_admin() && !current_user_can('manage_options')) {
-    ///////Subscriber
-    $subscriber = get_role('subscriber');
-    $subscriber->remove_cap('upload_files');
-    $subscriber->remove_cap('edit_pages');
-    $subscriber->add_cap('edit_published_pages');
-    $subscriber->remove_cap('edit_others_pages');
-    $subscriber->remove_cap('create_pages');
-  }
-}
 
-add_action('admin_footer', 'customize_user_roles');
+///////Subscriber
+$subscriber = get_role('subscriber');
+$subscriber->remove_cap('upload_files');
+$subscriber->remove_cap('edit_pages');
+$subscriber->add_cap('edit_published_pages');
+$subscriber->remove_cap('edit_others_pages');
+$subscriber->remove_cap('create_pages');
 
 ///////////////// Add role option theme customize
 

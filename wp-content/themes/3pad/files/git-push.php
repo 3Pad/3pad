@@ -34,6 +34,7 @@ add_action('acf/save_post', 'ssp_delay_static_export');
 //You can use this filter to modify the Simply Static settings array. Useful if you want to change certain options temporarily. A use case for that could be changing the export directory based on the language you are currently selected. It’s used to make the multilingual integration in Simply Static Pro:
 
 ///WP Static Site Settings
+/*
 add_filter('ss_get_options', function ($options) {
     //Get Site Id
     $site_url  = get_site_url();
@@ -41,31 +42,13 @@ add_filter('ss_get_options', function ($options) {
 
     $site_id = get_current_blog_id();
 
-    if (is_main_site()) {
-        $options['github-branch']                 = 'main';
-        $options['clear_directory_before_export'] = 'off';
-        $options['local_dir']                     = IPFS_PATH;
-        $options['temp_files_dir']                = TEMP_PATH;
-        $options['destination_url_type']          = 'offline';
-        $options['delivery_method']               = 'local';
-    }
-
-    if (!is_main_site()) {
-        $options['local_dir']                     = IPFS_PATH . $site_path . '/';
-        $options['use_cron']                      = 'off';
-        $options['clear_directory_before_export'] = 'off';
-        $options['debugging_mode']                = '0';
-        $options['destination_url_type']          = 'offline';
-        $options['delivery_method']               = 'local';
-    }
-
-    if (!is_main_site()) {
-        $options['temp_files_dir'] = TEMP_PATH;
-    }
-
-    if (!is_main_site() && file_exists($options['local_dir'])) {
-        $options['clear_directory_before_export'] = 'on';
-    }
+    $options['github-branch']                 = 'main';
+    $options['clear_directory_before_export'] = 'off';
+    $options['local_dir']                     = IPFS_PATH;
+    $options['temp_files_dir']                = TEMP_PATH;
+    $options['destination_url_type']          = 'offline';
+    $options['delivery_method']               = 'local';
 
     return $options;
 });
+*/
