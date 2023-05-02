@@ -652,5 +652,20 @@ function add_iframe_sandbox_attr($content)
 
 add_filter('the_content', 'add_iframe_sandbox_attr');
 
+///Redirect Non Authors
+function disable_view() {
+  $current_user = wp_get_current_user();
+  $post_author = get_post_field('post_author', get_queried_object_id());
+  $author_login = get_the_author_meta('user_login', $post_author);
+  $page_url = 'http://' . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
+  
+  if (!current_user_can('manage_options') && $current_user->ID != $post_author && $page_url != home_url('/' . $author_login . '/') && !is_front_page()) {
+      wp_redirect(home_url());
+      exit;
+  }
+}
+add_action('template_redirect', 'disable_view');
+
+
 /******SECURITY****
 /******SECURITY*****/

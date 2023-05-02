@@ -1,26 +1,24 @@
 <?php
+
 /**
  * unlock Protocol
  */
 
 /******UNLOCK PROTOCOL*****/
-if (!is_admin()) { //////FRONTEND
+if (!is_admin()) {  //////FRONTEND
 
-
-///////Checkout Button Template
+    ///////Checkout Button Template
     function unlock_checkout()
     {
         $pagelock = get_field("enable_page_lock");
 
         //Default Purchase
         if ($pagelock == "No" && has_block('unlock-protocol/unlock-box') && is_singular()) {
-
             //Get Custom Fields Inividual Locks
-            $bgimage = get_field("background_image_url");
-            $bg_color = get_field("button_background_color");
+            $bgimage           = get_field("background_image_url");
+            $bg_color          = get_field("button_background_color");
             $button_text_color = get_field("button_text_color");
-            $pre_text_color = get_field("button_pre_text_color");
-
+            $pre_text_color    = get_field("button_pre_text_color");
 
             echo '<style>
                 .checkout-button-container{
@@ -36,14 +34,10 @@ if (!is_admin()) { //////FRONTEND
                 }
                 </style>';
         }
-        
-
-
 
         // Check If unlock Is First & No blocks after & is not single post . If true, render template
         $pagelock = get_field("enable_page_lock");
         if ($pagelock == "Yes" && !has_block('unlock-protocol/unlock-box')) {
-
             //////Background Image
             if (is_user_logged_in()) {
                 $bgimage = get_field("background_image_logged_in_users");
@@ -88,17 +82,14 @@ if (!is_admin()) { //////FRONTEND
 
             $video_select = get_field("video_choices");
 
-
             if (is_user_logged_in()) {
-                $vid_id = get_field("enter_video_id_logged_in");
+                $vid_id     = get_field("enter_video_id_logged_in");
                 $vid_id_mp4 = get_field("mp4_link_logged_in_users");
             }
             if (!is_user_logged_in()) {
-                $vid_id = get_field("enter_video_id");
+                $vid_id     = get_field("enter_video_id");
                 $vid_id_mp4 = get_field("mp4_link");
             }
-
-
 
             if ($video_select == "Vimeo") {
                 echo '
@@ -133,19 +124,16 @@ if (!is_admin()) { //////FRONTEND
 </video>
         
         ';
-
             }
 
-
             /******Background Video*****/
-
         } else {
             return false;
         }
     }
+
     add_action("unlock_after_checkout_button", "unlock_checkout");
     ///////Checkout Button Template
-
 
     ///////Login Button Template
     function unlock_login()
@@ -154,13 +142,11 @@ if (!is_admin()) { //////FRONTEND
 
         //Default Blurred Logged In
         if ($pagelock == "No" && has_block('unlock-protocol/unlock-box') && is_singular()) {
-
             //Get Custom Fields Inividual Locks
-            $bgimage = get_field("background_image_url_login");
-            $bg_color = get_field("button_background_color_login");
+            $bgimage           = get_field("background_image_url_login");
+            $bg_color          = get_field("button_background_color_login");
             $button_text_color = get_field("button_text_color_login");
-            $pre_text_color = get_field("button_pre_text_color_login");
-
+            $pre_text_color    = get_field("button_pre_text_color_login");
 
             echo '<style>
                 .login-button-container{
@@ -177,9 +163,7 @@ if (!is_admin()) { //////FRONTEND
                 </style>';
         }
 
-
         if ($pagelock == "Yes") {
-
             //////Background Image
             if (is_user_logged_in()) {
                 $bgimage_primary = get_field("background_image_logged_in_users");
@@ -223,22 +207,18 @@ if (!is_admin()) { //////FRONTEND
             .no-comments{display: none;}</style>
             ";
 
-
             /******Background Video*****/
 
             $video_select = get_field("video_choices");
 
-
             if (is_user_logged_in()) {
-                $vid_id = get_field("enter_video_id_logged_in");
+                $vid_id     = get_field("enter_video_id_logged_in");
                 $vid_id_mp4 = get_field("mp4_link_logged_in_users");
             }
             if (!is_user_logged_in()) {
-                $vid_id = get_field("enter_video_id");
+                $vid_id     = get_field("enter_video_id");
                 $vid_id_mp4 = get_field("mp4_link");
             }
-
-
 
             if ($video_select == "Vimeo") {
                 echo '
@@ -273,14 +253,10 @@ if (!is_admin()) { //////FRONTEND
 </video>
             
             ';
-
             }
 
-
             /******Background Video*****/
-
         }
-
     }
 
     add_action("unlock_after_login_button", "unlock_login");
@@ -293,19 +269,16 @@ if (!is_admin()) { //////FRONTEND
 
 function bts_add_html_to_content($content)
 {
-
-
     $pagelock = get_field("enable_page_lock");
     if ($pagelock == "Yes") {
-
-        $network = get_field("network");
+        $network      = get_field("network");
         $lock_address = get_field("lock_address");
-        $additional1 = get_sub_field("additional_locks1");
+        $additional1  = get_sub_field("additional_locks1");
         echo get_sub_field("lock_address");
         $additional2 = get_field("additional_locks2");
 
-        $network1 = get_field("network_1");
-        $network2 = get_field("network_1");
+        $network1      = get_field("network_1");
+        $network2      = get_field("network_1");
         $lock_address1 = get_field("lock_address_1");
         $lock_address2 = get_field("lock_address_2");
 
@@ -323,8 +296,6 @@ function bts_add_html_to_content($content)
             $lock_address2 = get_field("lock_address");
         }
 
-
-
         $html_top = '<!-- wp:unlock-protocol/unlock-box {"locks":[{"address":"' . $lock_address . '","network":' . $network . '},
     {"address":"' . $lock_address1 . '","network":' . $network1 . '},
     {"address":"' . $lock_address2 . '","network":' . $network2 . '}],
@@ -338,8 +309,7 @@ function bts_add_html_to_content($content)
     {"label":"celo","value":42220},
     {"label":"binance","value":56}]} -->';
         $html_bottom = '<!-- /wp:unlock-protocol/unlock-box -->';
-        $content = $html_top . $content . $html_bottom;
-
+        $content     = $html_top . $content . $html_bottom;
     }
 
     if ($pagelock == "No") {
@@ -352,8 +322,8 @@ function bts_add_html_to_content($content)
     // }
 
     return $content;
-
 }
+
 add_filter('the_content', 'bts_add_html_to_content', 0);
 
 ////Modify Paywall Config
@@ -383,7 +353,7 @@ function modify_paywall_config($paywall_config)
     // Add the 'Title' => '3Pad' setting to the paywall configuration array
     //Only Main Site
     if (is_main_site()) {
-        $paywall_config['title'] = '3Pad | ' . $site_title . ' | ' . $welcome_text . '';
+        $paywall_config['title'] = '3Pad ' . $site_title . ' | ' . $welcome_text . '';
     }
     if (!is_main_site()) {
         $paywall_config['title'] = '' . $site_title . ' | ' . $welcome_text . '';
@@ -406,7 +376,7 @@ function modify_paywall_config($paywall_config)
     $paywall_config['captcha'] = 'true';
 
     // Add the 'messagetosigh' => 'true' setting to the paywall configuration array
-    $date = date('F j, Y, g:i a');
+    $date          = date('F j, Y, g:i a');
     // Generate a random number between 1 and 26
     $random_number = wp_rand(1, 26);
 
@@ -419,7 +389,7 @@ function modify_paywall_config($paywall_config)
     $messagetosign = get_field("message_to_sign");
 
     //Site URL
-    $site_url = site_url();
+    $site_url      = site_url();
     //Get Main Site
     $main_site_url = get_site_url(1);
 
@@ -430,116 +400,104 @@ function modify_paywall_config($paywall_config)
 
     $paywall_config['messageToSign'] = $messagetosign . "\n" . "\n" . 'URI: ' . $main_site_url . '' . "\n" . 'Signed: ' . $date . ' UTC ' . "\n" . 'REFID: ' . $random_string . '' . "\n" . "\n" . 'Resource - ' . $site_url . '';
 
-
-
     //Custom Options
-    //Get If Birthday 
+    //Get If Birthday
     $birthdate_choice = get_field("ask_for_birthdate");
     if ($birthdate_choice == 'Yes') {
         //Get If Birthday Required
         $birthdate_required = get_field("is_birthdate_required");
-        $birthdate = array(
-            "name" => "Birthdate",
-            "type" => "date",
+        $birthdate          = array(
+            "name"        => "Birthdate",
+            "type"        => "date",
             "placeholder" => "Enter Your Birthdate",
-            "public" => false,
-            "required" => $birthdate_required
+            "public"      => false,
+            "required"    => $birthdate_required
         );
-
     }
-
-
 
     //Get If Location Required
     $location_choice = get_field("ask_for_location");
     if ($location_choice == 'Yes') {
         $location_required = get_field("is_location_required");
-        $location = array(
-            "name" => "Where Are You From?",
-            "type" => "text",
+        $location          = array(
+            "name"        => "Where Are You From?",
+            "type"        => "text",
             "placeholder" => "Tokyo,India,Germany,Texas?",
-            "public" => false,
-            "required" => $location_required
+            "public"      => false,
+            "required"    => $location_required
         );
     }
-
 
     //Get If Shipping address is required
     $shipping_choice = get_field("ask_for_shipping_address");
     if ($shipping_choice == 'Yes') {
         $shipping_required = get_field("is_shipping_address_required");
-        $shipping = array(
-            "name" => "Shipping Address",
-            "type" => "text",
+        $shipping          = array(
+            "name"        => "Shipping Address",
+            "type"        => "text",
             "placeholder" => "Ex.7 Oak St, Miami, FL, US, 19384",
-            "public" => false,
-            "required" => $shipping_required
+            "public"      => false,
+            "required"    => $shipping_required
         );
     }
-
 
     //Get If Ask About Us Is Required
     $about_us_choice = get_field("ask_how_did_you_discover_us");
     if ($about_us_choice == 'Yes') {
         $about_us_required = get_field("is_ask_how_did_you_discover_us_required");
-        $about_us = array(
-            "name" => "How Did You Discover Us?",
-            "type" => "text",
+        $about_us          = array(
+            "name"        => "How Did You Discover Us?",
+            "type"        => "text",
             "placeholder" => "Enter You Answer",
-            "public" => false,
-            "required" => $about_us_required
+            "public"      => false,
+            "required"    => $about_us_required
         );
     }
-
 
     //Get If Phone Number Is Required
     $phone_choice = get_field("ask_for_phone_number");
     if ($phone_choice == 'Yes') {
         $phone_required = get_field("is_phone_number_required");
-        $phone = array(
-            "name" => "Phone Number",
-            "type" => "text",
+        $phone          = array(
+            "name"        => "Phone Number",
+            "type"        => "text",
             "placeholder" => "Enter Your Phone Number?",
-            "public" => false,
-            "required" => $phone_required
+            "public"      => false,
+            "required"    => $phone_required
         );
     }
-
 
     //Get If Comments Is Required
     $comments_choice = get_field("ask_for_comments");
     if ($comments_choice == 'Yes') {
         $comments_required = get_field("is_comments_required");
-        $comments = array(
-            "name" => "Additonal Comments",
-            "type" => "text",
+        $comments          = array(
+            "name"        => "Additonal Comments",
+            "type"        => "text",
             "placeholder" => "Comments",
-            "public" => false,
-            "required" => $comments_required
+            "public"      => false,
+            "required"    => $comments_required
         );
     }
 
-    ///Paywall Config 
+    ///Paywall Config
 
     $paywall_config['metadataInputs'] = array(
         array(
-            "name" => "Name",
-            "type" => "text",
+            "name"        => "Name",
+            "type"        => "text",
             "placeholder" => "Enter Your Name",
-            "public" => false,
-            "required" => true
+            "public"      => false,
+            "required"    => true
         ),
         array(
-            "name" => "Email",
-            "type" => "email",
+            "name"        => "Email",
+            "type"        => "email",
             "placeholder" => "Enter Your Email",
-            "public" => false,
-            "required" => true
+            "public"      => false,
+            "required"    => true
         )
-
     );
-
-
 
     // Add the phone input if it is not empty
     if ($phone_choice == 'Yes') {
@@ -583,10 +541,5 @@ $unserialized_value = unserialize($rpc_networks_unlock);
 
 // Update the option
 update_option('unlock_protocol_settings', $unserialized_value, false);
-
-
-
-
-
 
 /******UNLOCK PROTOCOL*****/
