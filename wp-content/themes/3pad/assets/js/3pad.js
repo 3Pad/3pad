@@ -192,43 +192,36 @@ jQuery('.acc_status_link').attr('href', jQuery('.checkout-button').attr('href'))
 // /////////////////////////////Attr Add /////////////////////////////
 ////////////////////////////////Age Restrction Prompt
 // get the current path and split it into an array of segments
-var pathSegments = location.pathname.split('/');
+$(document).ready(function() {
+  // get the age restricted prompt element
+  var promptElement = $(".age-restriction-prompt");
 
-// check if the current path has more than one segment (i.e. it's a subsite)
-if (pathSegments.length > 1) {
-// set the subsitePath to the first segment of the path
-var subsitePath = '/' + pathSegments[1];
-
-// get the age restricted prompt element
-var promptElement = document.getElementById("age-restriction-prompt");
-
-// check if the prompt element exists
-if (promptElement) {
+  // check if the age restricted flag is set
+if (sessionStorage.getItem("ageRestricted") === "true") {
+  // hide the age restricted prompt
+  promptElement.hide();
+} else {
   // show the age restricted prompt
-  promptElement.style.display = "block";
+  promptElement.show();
 
   // handle the "Yes" button
-  document.querySelector(".yes").onclick = function () {
+  $(".yes").click(function() {
     // hide the age restricted prompt
-    promptElement.style.display = "none";
+    promptElement.hide();
 
     // set a flag in local storage to remember that the user is over 18 for the session
-    localStorage.setItem(subsitePath, "ageRestricted");
-  }
+    sessionStorage.setItem("ageRestricted", "true");
+
+  });
 
   // handle the "No" button
-  document.querySelector(".no").onclick = function () {
+  $(".no").click(function() {
     // go back in history
     window.history.back();
-  }
+  });
+}
 
-  // check if the age restricted flag is set for the current subsite
-  if (localStorage.getItem(subsitePath) === "ageRestricted") {
-    // hide the age restricted prompt
-    promptElement.style.display = "none";
-  }
-}
-}
+});
 
 ///Close Button  & Home Button 
 jQuery(window).ready(function () {

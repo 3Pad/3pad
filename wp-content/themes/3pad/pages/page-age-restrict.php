@@ -1,5 +1,5 @@
 <?php
-$logo = get_field('site_logo', 'options');
+$logo = get_field('site_logo');
 
 if ($logo == NULL) {
   echo '<style> .logo_age {
@@ -13,14 +13,16 @@ if ($logo == NULL) {
 <div class="age-restriction-prompt" id="age-restriction-prompt">
   <div class="age-restriction-prompt-content">
     <div class="logo_age"><img style="max-width: 200px;max-height: 150px;" loading="lazy"
-        src="<?php echo get_field('site_logo', 'options'); ?>"></div>
+        src="<?php echo get_field('site_logo'); ?>"></div>
     <h3>
-      <?php echo get_field('site_title', 'options'); ?>'s Content Is Age Restricted
+      <?php echo get_field('site_title'); ?>'s Content Is Age Restricted
     </h3>
     <p>Are you over 18 years of age?</p>
-    <?php /* Terms
+    <?php
+/* Terms
     <p id="subheader-login" class="centered-subheading" style="font-size: 9px;line-height: 14px;text-transform: capitalize;">By entering, you agree to our <a target="_blank" href="https://hello.3pad.xyz/terms" style="font-weight: bold; color: bisque;">Terms</a>.</p>
-      */ ?>
+      */
+?>
     <button class="yes">Yes</button>
     <button class="no">No</button>
   </div>

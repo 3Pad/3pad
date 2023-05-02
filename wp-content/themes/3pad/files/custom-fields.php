@@ -1270,15 +1270,13 @@ add_shortcode("encrypt_video", "encrypt_video_function");
 //Age Restriction Prompt Full Page
 function age_restriction()
 {
-    if (!is_user_logged_in()) {
-        // Get options page
-        $options_page = get_queried_object_id();  ///Get Options Page
-        // Get value of "age Restrction" field on optons page
-        $age_restrict = get_field("is_the_sites_content_age_restricted", $options_page);
+    // Get options page
+    $options_page = get_queried_object_id();  ///Get Options Page
+    // Get value of "age Restrction" field on optons page
+    $age_restrict = get_field("is_the_sites_content_age_restricted", $options_page);
 
-        if ($age_restrict == 'Yes') {
-            get_template_part('pages/page-age-restrict');
-        }
+    if ($age_restrict == 'Yes') {
+        get_template_part('pages/page-age-restrict');
     }
 }
 
