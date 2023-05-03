@@ -1280,7 +1280,7 @@ function age_restriction()
     }
 }
 
-add_action('get_footer', 'age_restriction');
+add_action('wp_head', 'age_restriction', 99);
 
 ///Embed Content All Pages
 function show_comment_popup()
