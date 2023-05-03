@@ -61,7 +61,7 @@ add_filter('theme_file_uri', 'my_theme_asset_url_filter', 10, 2);
 
 function my_theme_style_url_filter($src, $handle)
 {
-    if (!is_admin() || strpos(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), 'devtest') !== false) {
+    if (!is_admin()) {
         $src = str_replace(get_site_url(), ARWEAVE_FILES, $src);
     }
     return $src;
@@ -69,7 +69,7 @@ function my_theme_style_url_filter($src, $handle)
 
 function my_theme_script_url_filter($src, $handle)
 {
-    if (!is_admin() || strpos(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), 'devtest') !== false) {
+    if (!is_admin()) {
         $src = str_replace(get_site_url(), ARWEAVE_FILES, $src);
     }
     return $src;
@@ -77,7 +77,7 @@ function my_theme_script_url_filter($src, $handle)
 
 function my_theme_asset_url_filter($url, $path)
 {
-    if (!is_admin() || strpos(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), 'devtest') !== false) {
+    if (!is_admin()) {
         $new_url = str_replace(get_site_url(), ARWEAVE_FILES, $url);
         return $new_url !== $url ? $new_url : $url;
     }
