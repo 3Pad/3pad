@@ -10,7 +10,7 @@ function my_logout_redirect()
   // Check if headers have already been sent
   if (!headers_sent()) {
     // Send Cache-Control and Pragma headers to prevent caching
-    header("Cache-Control: no-cache, no-store, must-revalidate");
+    header("Cache-Control: no-cache, no-store");
     header("Pragma: no-cache");
   }
 

@@ -35,7 +35,6 @@ if (is_user_logged_in()) {
 	?>
 	<!--- Logged IN --->
 
-	<meta http-equiv="refresh" content="3600;URL='/?home-status-check=<?php echo wp_rand(24); ?>'" />
 	<style>
 		.checkout-button-container.blurred p {
 			color: white !important;
@@ -281,10 +280,22 @@ if (is_user_logged_in()) {
 						';
 		}
 		?>
-						
-			<div class="column-4 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack logoutbefore activate-button"> 
+			<?php
+		if (current_user_can('manage_options')) {
+			echo '<div class="column-4 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack logoutbefore activate-button"> 
+				<a id="unlocklink" button="log-out" href="/wp-admin" class="b4 w-button" style="background: white;color: black;">Admin Dashboard</a>
+				 </div>';
+		}
+		?>			
+			
+
+			 <?php
+		if (!current_user_can('manage_options')) {
+			echo '<div class="column-4 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack logoutbefore activate-button"> 
 			<a id="unlocklink" button="log-out" href="/?launch_site" class="b4 w-button" style="background: yellow;color: black;">Launch Site 🚀</a>
-			 </div>
+			 </div>';
+		}
+		?>	
 			
 
 

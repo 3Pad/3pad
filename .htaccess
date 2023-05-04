@@ -1,12 +1,4 @@
 
-#Unlock Protocol
-RewriteEngine On
-RewriteCond %{QUERY_STRING} ^signature=
-RewriteRule ^(.*)$ /$1?unlockpassed=%{rand:1,9999} [R=301,L]
-
-
-
-
 RewriteEngine On
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 RewriteBase /
@@ -269,8 +261,8 @@ Deny from all
 #Staic Site Rule
 #RewriteEngine On
 #RewriteCond %{HTTP_HOST} ^(www\.)?3pad\.xyz$ [NC]
-#RewriteCond %{REQUEST_URI} !^/(wp-content/uploads/ipfs/|wp-admin|wp-login\.php) [NC]
-#RewriteRule ^(.+)$ /wp-content/uploads/ipfs/$1 [L]
+#RewriteCond %{REQUEST_URI} !^/(sites/_sites/|wp-admin|wp-login\.php) [NC]
+#RewriteRule ^(.+)$ /sites/_sites/$1 [L]
 
 # Redirect Internal Server Errors to custom page with query string
 #ErrorDocument 500 https://app.3pad.xyz/?error=500

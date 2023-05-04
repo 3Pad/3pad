@@ -5,7 +5,7 @@
     <?php echo '<meta content="Main-Site-Launchpad">'; ?>
 
     <meta charset=utf-8>
-    <meta content="width=device-width,initial-scale=1,maximum-scale=5" name=viewport>
+    <meta content="width=device-width,initial-scale=1" name=viewport>
     <meta content="ie=edge" http-equiv=x-ua-compatible>
     <meta content="3Pad | Your content. Redifined." name=description>
     <meta content="<?php echo get_field("site_title"); ?> | 3Pad" property=og:title>
