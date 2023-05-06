@@ -153,6 +153,9 @@ define('DISALLOW_FILE_EDIT', true);
 # Enable the use of a caching plugin or system
 define('WP_CACHE', true);
 
+# Disable post content revisions
+define('WP_POST_REVISIONS', false);
+
 /* That's all, stop editing! Happy publishing. */
 
 /** Absolute path to the WordPress directory. */

@@ -1,22 +1,5 @@
 <?php
 
-////Load Custom Pages
-/*
-if (function_exists('acf_add_options_page')) {
-    acf_add_options_page(
-        array(
-            'page_title' => 'Dashboard',
-            'menu_slug'  => 'customize-home',
-            'menu_title' => 'Customize 🌟',
-            'capability' => 'read',
-            'position'   => '2',
-            'icon_url'   => 'dashicons-cover-image',
-            'redirect'   => false
-        )
-    );
-}
-*/
-
 /////Import Acf PHP below
 if (function_exists('acf_add_local_field_group')):
     acf_add_local_field_group(array(

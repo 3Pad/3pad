@@ -77,10 +77,27 @@ function add_help_videos()
           height="300" width="100%"></iframe>
       </li>
       <li>
-        <iframe loading="lazy" width="100%" src="https://www.youtube-nocookie.com/embed/5C7b_eqG0SY?vq=hd1080&rel=0"
-          title="YouTube video player" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen></iframe>
+      <li>
+      <ul style="text-align: left; color: white !important; font-size: 13px; line-height: normal; font-weight: 500;">
+          <li style="font-weight: 900;">How To <img draggable="false" role="img" class="emoji" alt="⤵" src="https://s.w.org/images/core/emoji/14.0.0/svg/2935.svg" /></li>
+  
+          <li style="background: #29bf005e; border-radius: 5px; padding: 10px; ">
+              <a target="_blank" href="https://app.tango.us/app/workflow/How-to-link-Custom-Domain-To-site-Using-4everland-2dcafbe3377b424d85998290eda49d18" style="text-decoration: none; color: white;">
+                  Setup Custom Domain ⏎
+              </a>
+          </li>
+          <li style="background: #d093005e; border-radius: 5px; padding: 10px; ">
+              <a target="_blank" href="https://app.tango.us/app/workflow/How-to-Link-your-site-with-ENS-Domain-009e61569c29434c902f2bc61659e762" style="text-decoration: none; color: white;">Setup Custom Domain Using "ENS" ⏎</a>
+          </li>
+          <li style="background: #8000d05e; border-radius: 5px; padding: 10px; ">
+              <a target="_blank" href="https://app.tango.us/app/workflow/Embedding-content-using-iframely-3cb4d648d78f4f3fb2f1b6d920fc8b76" style="text-decoration: none; color: white;">Embed Content ⏎</a>
+          </li>
+          <li style="background: #d000005e; border-radius: 5px; padding: 10px; ">
+              <a target="_blank" href="https://app.tango.us/app/workflow/How-to-Insert-image---videos--628c5990357f40c0a073dd1eebf5ec78" style="text-decoration: none; color: white;">Add Background Image &amp; Video ⏎</a>
+          </li>
+      </ul>
+  </li>
+  
       </li>
       <li>
         <iframe loading="lazy" data-tally-src="https://tally.so/embed/npeq51?alignLeft=1&transparentBackground=1&dynamicHeight=1" loading="lazy"

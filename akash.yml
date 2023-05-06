@@ -77,7 +77,7 @@ services:
 
           sudo service cron restart ;
 
-          echo "*/10 * * * * env GIT_PATH=/var/www/html/sites/ GITHUB_EMAIL=ENTER GITHUB_USER=ENTER GITHUB_KEY=ENTER /var/www/html/git_push.sh >> /tmp/git_push.log 2>&1 && 0 0 * * * rm /tmp/git_push.log" | crontab - ;
+          echo "*/5 * * * * chown -R root:root /var/www/html/sites ; chown -R www-data:www-data /var/www/html/sites/_sites ; chown -R www-data:www-data /var/www/html/sites/_sites/* ; chmod -R 755 /var/www/html/sites ; chmod -R 755 /var/www/html/sites/* ;  env GIT_PATH=/var/www/html/sites/ GITHUB_EMAIL=ENTER GITHUB_USER=ENTER GITHUB_KEY=ENTER /var/www/html/git_push.sh >> /tmp/git_push.log 2>&1 && 0 0 * * * rm /tmp/git_push.log" | crontab - ; 
 
           chmod +x /var/www/html/git_push.sh ;
           exec docker-entrypoint.sh apache2-foreground'

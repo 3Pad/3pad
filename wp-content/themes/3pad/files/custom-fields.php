@@ -390,6 +390,29 @@ function bottom_menu()
     ';
     }
 
+    if (!is_front_page() && $bottom_menu !== 'Yes') {
+        $jsnonce = wp_create_nonce('js-nonce');
+        echo '
+        <style>
+    /************ Style Menu ********/
+.altmenu ul li a:hover {color: ' . $icon_color_hover . ' !important;}
+.altmenu ul li a {font-size: 30px !important; color: ' . $icon_color . ' !important;}
+/************ Style Menu ********/
+</style>
+    <div class="altmenu fullscreenhide">
+      <center>
+      <ul>
+        <li class="close_button_home" ><a href="#"><span id="icon_1" class="fa fa-circle-xmark"></span></a></li>
+              </ul>
+    </center>
+    </div>
+    <script nonce="' . $jsnonce . '">
+    $(document).ready(function() { // Set the z-index of .altmenu based on the visibility of .close_button_home if ($(".close_button_home").is(":visible")) { $(".altmenu").css("z-index", "9999"); } else { $(".altmenu").css("z-index", "unset"); } // Toggle the visibility of .close_button_home and update the z-index of .altmenu $(".full").click(function () { $(".button_home_refresh").hide(); $(".close_button_home").show(); $(".altmenu").css("z-index", "9999"); }); $(".close_button_home").click(function () { $(".close_button_home").hide(); $(".button_home_refresh").show(); $(".altmenu").css("z-index", "unset"); }); });
+      
+    </script>
+    ';
+    }
+
     if (!is_front_page() && $bottom_menu === 'Yes') {
         $site_title = get_field("site_title", $settings_page);
 
@@ -400,6 +423,22 @@ function bottom_menu()
 }
 
 add_action('wp_footer', 'bottom_menu');
+
+function bottom_menu_close_button()
+{
+    $settings_page = get_queried_object_id();  ///Get Page ID
+    $bottom_menu   = get_field("display_bottom_menu", $settings_page);
+    if (!is_front_page() && $bottom_menu !== 'Yes') {
+        echo '<style>
+        .altmenu{
+            z-index: unset;
+        }
+
+        </style>';
+    }
+}
+
+add_action('wp_head', 'bottom_menu_close_button');
 /******Bottom Menu*****/
 
 /******Home Text Links*****/
@@ -1355,268 +1394,16 @@ function show_comment_popup()
     $jsnonce = wp_create_nonce('js-nonce');
 
     ///Fullscreen Code
-    if ($fullscreen1 == 'Yes' && $bottom_menu === 'Yes') {
-        echo "<style>
-        .embed1-button-wrapper{
-            right: 0 !important;
-            bottom: 0 !important; 
-        }
-        .expanded .embed1-list {
-            height: 100vh !important;
-            width: 100vw !important;
-            transform: translate(0px, 0px) scale(1) !important;
-            border-radius: 0 !important;
-            max-height: 100vh;
-        }
-        
-        .embed1-list li{
-            margin: 0 !important;
-        }
-        .embed_f_1{
-            height: 100vh !important;
-        }
-       #embed1.iframe_style{
-        height: 93vh !important;
-       }
-        </style>";
-    }
-
-    if ($fullscreen2 == 'Yes' && $bottom_menu === 'Yes') {
-        echo "<style>
-        .embed2-button-wrapper{
-            right: 0 !important;
-            bottom: 0 !important; 
-        }
-        .expanded .embed2-list {
-            height: 100vh !important;
-            width: 100vw !important;
-            transform: translate(0px, 0px) scale(1) !important;
-            border-radius: 0 !important;
-            max-height: 100vh;
-        }
-        
-        .embed2-list li{
-            margin: 0 !important;
-        }
-        .embed_f_2{
-            height: 100vh !important;
-        }
-        #embed2.iframe_style{
-            height: 93vh !important;
-           }
-       
-        </style>";
-    }
-
-    if ($fullscreen3 == 'Yes' && $bottom_menu === 'Yes') {
-        echo "<style>
-        .embed3-button-wrapper{
-            right: 0 !important;
-            bottom: 0 !important; 
-        }
-        .expanded .embed3-list {
-            height: 100vh !important;
-            width: 100vw !important;
-            transform: translate(0px, 0px) scale(1) !important;
-            border-radius: 0 !important;
-            max-height: 100vh;
-        }
-        
-        .embed3-list li{
-            margin: 0 !important;
-        }
-        .embed_f_3{
-            height: 100vh !important;
-        }
-        #embed3.iframe_style{
-            height: 93vh !important;
-           }
-        </style>";
-    }
-
-    if ($fullscreen4 == 'Yes' && $bottom_menu === 'Yes') {
-        echo "<style>
-        .embed4-button-wrapper{
-            right: 0 !important;
-            bottom: 0 !important; 
-        }
-        .expanded .embed4-list {
-            height: 100vh !important;
-            width: 100vw !important;
-            transform: translate(0px, 0px) scale(1) !important;
-            border-radius: 0 !important;
-            max-height: 100vh;
-        }
-        
-        .embed4-list li{
-            margin: 0 !important;
-        }
-        .embed_f_4{
-            height: 100vh !important;
-        }
-        #embed4.iframe_style{
-            height: 93vh !important;
-           }
-        </style>";
-    }
-
-    if ($fullscreen5 == 'Yes' && $bottom_menu === 'Yes') {
-        echo "<style>
-        .embed5-button-wrapper{
-            right: 0 !important;
-            bottom: 0 !important; 
-        }
-        .expanded .embed5-list {
-            height: 100vh !important;
-            width: 100vw !important;
-            transform: translate(0px, 0px) scale(1) !important;
-            border-radius: 0 !important;
-            max-height: 100vh;
-        }
-        
-        .embed5-list li{
-            margin: 0 !important;
-        }
-        .embed_f_5{
-            height: 100vh !important;
-        }
-        #embed5.iframe_style{
-            height: 93vh !important;
-           }
-        </style>";
-    }
-
-    if ($fullscreen6 == 'Yes' && $bottom_menu === 'Yes') {
-        echo "<style>
-        .embed6-button-wrapper{
-            right: 0 !important;
-            bottom: 0 !important; 
-        }
-        .expanded .embed6-list {
-            height: 100vh !important;
-            width: 100vw !important;
-            transform: translate(0px, 0px) scale(1) !important;
-            border-radius: 0 !important;
-            max-height: 100vh;
-        }
-        
-        .embed6-list li{
-            margin: 0 !important;
-        }
-        .embed_f_6{
-            height: 100vh !important;
-        }
-        #embed6.iframe_style{
-            height: 93vh !important;
-           }
-        </style>";
-    }
-
-    if ($fullscreen7 == 'Yes' && $bottom_menu === 'Yes') {
-        echo "<style>
-        .embed7-button-wrapper{
-            right: 0 !important;
-            bottom: 0 !important; 
-        }
-        .expanded .embed7-list {
-            height: 100vh !important;
-            width: 100vw !important;
-            transform: translate(0px, 0px) scale(1) !important;
-            border-radius: 0 !important;
-            max-height: 100vh;
-        }
-        #embed7.iframe_style{
-            height: 93vh!important;
-        }
-        .embed7-list li{
-            margin: 0 !important;
-        }
-        .embed_f_7{
-            height: 100vh !important;
-        }
-        #embed7.iframe_style{
-            height: 93vh !important;
-           }
-        </style>";
-    }
-
-    if ($fullscreen8 == 'Yes' && $bottom_menu === 'Yes') {
-        echo "<style>
-        .embed1-button-wrapper{
-            right: 0 !important;
-            bottom: 0 !important; 
-        }
-        .expanded .embed8-list {
-            height: 100vh !important;
-            width: 100vw !important;
-            transform: translate(0px, 0px) scale(1) !important;
-            border-radius: 0 !important;
-            max-height: 100vh;
-        }
-        
-        .embed8-list li{
-            margin: 0 !important;
-        }
-        .embed_f_8{
-            height: 100vh !important;
-        }
-        #embed8.iframe_style{
-            height: 93vh !important;
-           }
-        </style>";
-    }
-
-    if ($fullscreen9 == 'Yes' && $bottom_menu === 'Yes') {
-        echo "<style>
-        .embed9-button-wrapper{
-            right: 0 !important;
-            bottom: 0 !important; 
-        }
-        .expanded .embed9-list {
-            height: 100vh !important;
-            width: 100vw !important;
-            transform: translate(0px, 0px) scale(1) !important;
-            border-radius: 0 !important;
-            max-height: 100vh;
-        }
-        
-        .embed9-list li{
-            margin: 0 !important;
-        }
-        .embed_f_9{
-            height: 100vh !important;
-        }
-        #embed9.iframe_style{
-            height: 93vh !important;
-           }
-        </style>";
-    }
-
-    if ($fullscreen10 == 'Yes' && $bottom_menu === 'Yes') {
-        echo "<style>
-        .embed10-button-wrapper{
-            right: 0 !important;
-            bottom: 0 !important; 
-        }
-        .expanded .embed10-list {
-            height: 100vh !important;
-            width: 100vw !important;
-            transform: translate(0px, 0px) scale(1) !important;
-            border-radius: 0 !important;
-            max-height: 100vh;
-        }
-        
-        .embed10-list li{
-            margin: 0 !important;
-        }
-        .embed_f_10{
-            height: 100vh !important;
-        }
-        #embed10.iframe_style{
-            height: 93vh !important;
-           }
-        </style>";
-    }
+    if ($fullscreen1 == 'Yes') { echo "<style> .embed1-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed1-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed1-list li{ margin: 0 !important; } .embed_f_1{ height: 100vh !important; } #embed1.iframe_style{ height: 93vh !important; } </style>"; }
+    if ($fullscreen2 == 'Yes') { echo "<style> .embed2-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed2-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed2-list li{ margin: 0 !important; } .embed_f_2{ height: 100vh !important; } #embed2.iframe_style{ height: 93vh !important; } </style>"; }
+    if ($fullscreen3 == 'Yes') { echo "<style> .embed3-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed3-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed3-list li{ margin: 0 !important; } .embed_f_3{ height: 100vh !important; } #embed3.iframe_style{ height: 93vh !important; } </style>"; }
+    if ($fullscreen4 == 'Yes') { echo "<style> .embed4-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed4-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed4-list li{ margin: 0 !important; } .embed_f_4{ height: 100vh !important; } #embed4.iframe_style{ height: 93vh !important; } </style>"; }
+    if ($fullscreen5 == 'Yes') { echo "<style> .embed5-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed5-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed5-list li{ margin: 0 !important; } .embed_f_5{ height: 100vh !important; } #embed5.iframe_style{ height: 93vh !important; } </style>"; }
+    if ($fullscreen6 == 'Yes') { echo "<style> .embed6-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed6-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed6-list li{ margin: 0 !important; } .embed_f_6{ height: 100vh !important; } #embed6.iframe_style{ height: 93vh !important; } </style>"; }
+    if ($fullscreen7 == 'Yes') { echo "<style> .embed7-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed7-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } #embed7.iframe_style{ height: 93vh!important; } .embed7-list li{ margin: 0 !important; } .embed_f_7{ height: 100vh !important; } #embed7.iframe_style{ height: 93vh !important; } </style>"; }
+    if ($fullscreen8 == 'Yes') { echo "<style> .embed1-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed8-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed8-list li{ margin: 0 !important; } .embed_f_8{ height: 100vh !important; } #embed8.iframe_style{ height: 93vh !important; } </style>"; }
+    if ($fullscreen9 == 'Yes') { echo "<style> .embed9-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed9-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed9-list li{ margin: 0 !important; } .embed_f_9{ height: 100vh !important; } #embed9.iframe_style{ height: 93vh !important; } </style>"; }
+    if ($fullscreen10 == 'Yes') { echo "<style> .embed10-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed10-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed10-list li{ margin: 0 !important; } .embed_f_10{ height: 100vh !important; } #embed10.iframe_style{ height: 93vh !important; } </style>"; }
 
     //Get comment selection
     $comment_embed = get_field("comments_embed", $settings_page);
