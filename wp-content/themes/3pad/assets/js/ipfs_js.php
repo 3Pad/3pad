@@ -17,7 +17,7 @@ xIpfsPath.onreadystatechange = function() {
     if (ipfsPath) {
       var ipfsHash = document.createElement("a");
       ipfsHash.href = "https://dweb.link/ipfs/" + ipfsPath;
-      ipfsHash.innerText = "ipfsPath;
+      ipfsHash.innerText = "" + ipfsPath;
       ipfsHash.target = "_blank"; // Add this line
       document.getElementById("ipfsPath").innerHTML = "";
       document.getElementById("ipfsPath").appendChild(ipfsHash);
