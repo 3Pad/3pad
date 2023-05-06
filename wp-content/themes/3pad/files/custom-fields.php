@@ -407,8 +407,7 @@ function bottom_menu()
     </center>
     </div>
     <script nonce="' . $jsnonce . '">
-    $(document).ready(function() { // Set the z-index of .altmenu based on the visibility of .close_button_home if ($(".close_button_home").is(":visible")) { $(".altmenu").css("z-index", "9999"); } else { $(".altmenu").css("z-index", "unset"); } // Toggle the visibility of .close_button_home and update the z-index of .altmenu $(".full").click(function () { $(".button_home_refresh").hide(); $(".close_button_home").show(); $(".altmenu").css("z-index", "9999"); }); $(".close_button_home").click(function () { $(".close_button_home").hide(); $(".button_home_refresh").show(); $(".altmenu").css("z-index", "unset"); }); });
-      
+    $(document).ready(function() { if ($(".close_button_home").is(":visible")) { $(".altmenu").css("z-index", "9999"); } else { $(".altmenu").css("z-index", "unset"); } $(".full").click(function () { $(".button_home_refresh").hide(); $(".close_button_home").show(); $(".altmenu").css("z-index", "9999"); }); $(".close_button_home").click(function () { $(".close_button_home").hide(); $(".button_home_refresh").show(); $(".altmenu").css("z-index", "unset"); }); });
     </script>
     ';
     }
