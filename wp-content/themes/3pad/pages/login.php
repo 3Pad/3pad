@@ -43,18 +43,7 @@ if (is_user_logged_in()) {
 	<section class="section-login wf-section">
 		<div class="container-login">
 			<div id="logo"></div>
-			<h3 id="header-user" class="centered-heading">
-				<?php
-	global $current_user;
-
-	wp_get_current_user();
-	?>
-				<?php
-	if (is_user_logged_in()) {
-		echo $current_user->display_name;
-	}
-	?>
-				</h5>
+			
 				<h1 id="header-login" class="centered-heading">You Are Connected</h1>
 				<div class="status free-tier">
 					<a id="statuslink" target="_blank" href="https://app.unlock-protocol.com/keychain">
@@ -208,7 +197,7 @@ if (is_user_logged_in()) {
 				$html .= '</div>';
 
 				$html .= '<div class="column-3 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">';
-				$html .= '<a id="unlocklink" button="status" href="https://tally.so/r/npeq51" target="_blank" rel="noopener noreferrer" class="cryptologin w-button help-button">💬 Feedback</a>';
+				$html .= '<a id="unlocklink" button="status" href="#" rel="noopener noreferrer" class="cryptologin w-button help-button">👋 Help</a>';
 				$html .= '</div>';
 
 				$html .= '<div class="column-4 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">';
@@ -273,10 +262,60 @@ if (is_user_logged_in()) {
 								<div id="ipfsPathstyle"><span id="ipfsPath"></span></div>
 							</div>
 							<p class="centered-subheading" style="font-size: 9px;margin-top: -5px;"><a target="_blank"
-									href="https://ipfsgate.com/">ⓘ Your Trustless App ⓘ</a></p>
+									href="https://app.tango.us/app/workflow/How-to-link-Custom-Domain-To-site-Using-4everland-2dcafbe3377b424d85998290eda49d18">ⓘ Your IPFS Hash ⓘ</a></p>
 							<p class="centered-subheading" style="font-size: 9px;margin-top: -22px;">(Subject to Changes - Always Save)
 							</p>
 						</div>
+
+						<!-- Div Help -->
+						<div class="help-button-wrapper">
+							<ul class="help-list">
+							<li>
+								<iframe loading="lazy" src="https://e.widgetbot.io/channels/1061496413474783352/1067294783153901588"
+								height="300" width="100%"></iframe>
+							</li>
+							<li>
+							<li>
+							<ul style="text-align: left; color: white !important; font-size: 13px; line-height: normal; font-weight: 500;">
+								<li style="font-weight: 900;">How To </li>
+						
+								<li style="background: #29bf005e; border-radius: 5px; padding: 10px; ">
+									<a target="_blank" href="https://app.tango.us/app/workflow/How-to-link-Custom-Domain-To-site-Using-4everland-2dcafbe3377b424d85998290eda49d18" style="text-decoration: none; color: white;">
+										Setup Custom Domain ⏎
+									</a>
+								</li>
+								<li style="background: #d093005e; border-radius: 5px; padding: 10px; ">
+									<a target="_blank" href="https://app.tango.us/app/workflow/How-to-Link-your-site-with-ENS-Domain-009e61569c29434c902f2bc61659e762" style="text-decoration: none; color: white;">Setup Custom Domain Using "ENS" ⏎</a>
+								</li>
+								<li style="background: #8000d05e; border-radius: 5px; padding: 10px; ">
+									<a target="_blank" href="https://app.tango.us/app/workflow/Embedding-content-using-iframely-3cb4d648d78f4f3fb2f1b6d920fc8b76" style="text-decoration: none; color: white;">Embed Content ⏎</a>
+								</li>
+								<li style="background: #d000005e; border-radius: 5px; padding: 10px; ">
+									<a target="_blank" href="https://app.tango.us/app/workflow/How-to-Insert-image---videos--628c5990357f40c0a073dd1eebf5ec78" style="text-decoration: none; color: white;">Add Background Image &amp; Video ⏎</a>
+								</li>
+							</ul>
+						</li>
+						
+							</li>
+							<li>
+								<iframe loading="lazy" data-tally-src="https://tally.so/embed/npeq51?alignLeft=1&transparentBackground=1&dynamicHeight=1" loading="lazy"
+								width="100%" height="300" frameborder="0" marginheight="0" marginwidth="0" title="Bug Report"></iframe>
+							</li>
+							</ul>
+							<script defer src="https://tally.so/widgets/embed.js"></script>
+							<button class="help-button help-button-bottom">
+							👋 Help
+						</button>
+						</div>
+						<style>
+						.expanded .help-button {
+							display: block;
+							float: right;
+						}
+						.help-button-bottom{ 
+							display: none;
+						}
+						</style>
 						';
 		}
 		?>
