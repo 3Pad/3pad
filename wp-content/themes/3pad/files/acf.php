@@ -13631,13 +13631,12 @@ if (function_exists('acf_add_local_field_group')):
                 'placeholder'   => 'Enter Iframe src URL here',
             ),
             array(
-                'key'          => 'field_63d580c992c67',
-                'label'        => 'Enable Full Screen',
-                'name'         => 'enable_full_screen_1',
-                'aria-label'   => '',
-                'type'         => 'select',
-                'instructions' => 'Open the embed in full screen.<br>
-    <br>*Bottom menu needs to be enabled.',
+                'key'               => 'field_63d580c992c67',
+                'label'             => 'Enable Full Screen',
+                'name'              => 'enable_full_screen_1',
+                'aria-label'        => '',
+                'type'              => 'select',
+                'instructions'      => 'Open the embed in full screen',
                 'required'          => 0,
                 'conditional_logic' => 0,
                 'wrapper'           => array(
@@ -13728,13 +13727,12 @@ if (function_exists('acf_add_local_field_group')):
                 'placeholder'   => 'Enter Iframe src URL here',
             ),
             array(
-                'key'          => 'field_63d583e70ae51',
-                'label'        => 'Enable Full Screen',
-                'name'         => 'enable_full_screen_3',
-                'aria-label'   => '',
-                'type'         => 'select',
-                'instructions' => 'Open the embed in full screen.<br>
-    <br>*Bottom menu needs to be enabled.',
+                'key'               => 'field_63d583e70ae51',
+                'label'             => 'Enable Full Screen',
+                'name'              => 'enable_full_screen_3',
+                'aria-label'        => '',
+                'type'              => 'select',
+                'instructions'      => 'Open the embed in full screen',
                 'required'          => 0,
                 'conditional_logic' => 0,
                 'wrapper'           => array(
@@ -13825,13 +13823,12 @@ if (function_exists('acf_add_local_field_group')):
                 'placeholder'   => 'Enter Iframe src URL here',
             ),
             array(
-                'key'          => 'field_63d583ee0ae54',
-                'label'        => 'Enable Full Screen',
-                'name'         => 'enable_full_screen_6',
-                'aria-label'   => '',
-                'type'         => 'select',
-                'instructions' => 'Open the embed in full screen.<br>
-    <br>*Bottom menu needs to be enabled.',
+                'key'               => 'field_63d583ee0ae54',
+                'label'             => 'Enable Full Screen',
+                'name'              => 'enable_full_screen_6',
+                'aria-label'        => '',
+                'type'              => 'select',
+                'instructions'      => 'Open the embed in full screen',
                 'required'          => 0,
                 'conditional_logic' => 0,
                 'wrapper'           => array(
@@ -13922,13 +13919,12 @@ if (function_exists('acf_add_local_field_group')):
                 'placeholder'   => 'Enter Iframe src URL here',
             ),
             array(
-                'key'          => 'field_63d583f40ae58',
-                'label'        => 'Enable Full Screen',
-                'name'         => 'enable_full_screen_10',
-                'aria-label'   => '',
-                'type'         => 'select',
-                'instructions' => 'Open the embed in full screen.<br>
-    <br>*Bottom menu needs to be enabled.',
+                'key'               => 'field_63d583f40ae58',
+                'label'             => 'Enable Full Screen',
+                'name'              => 'enable_full_screen_10',
+                'aria-label'        => '',
+                'type'              => 'select',
+                'instructions'      => 'Open the embed in full screen',
                 'required'          => 0,
                 'conditional_logic' => 0,
                 'wrapper'           => array(
@@ -14019,13 +14015,12 @@ if (function_exists('acf_add_local_field_group')):
                 'placeholder'   => 'Enter Iframe src URL here',
             ),
             array(
-                'key'          => 'field_63d583dc0ae4e',
-                'label'        => 'Enable Full Screen',
-                'name'         => 'enable_full_screen_2',
-                'aria-label'   => '',
-                'type'         => 'select',
-                'instructions' => 'Open the embed in full screen.<br>
-    <br>*Bottom menu needs to be enabled.',
+                'key'               => 'field_63d583dc0ae4e',
+                'label'             => 'Enable Full Screen',
+                'name'              => 'enable_full_screen_2',
+                'aria-label'        => '',
+                'type'              => 'select',
+                'instructions'      => 'Open the embed in full screen',
                 'required'          => 0,
                 'conditional_logic' => 0,
                 'wrapper'           => array(
@@ -14116,13 +14111,12 @@ if (function_exists('acf_add_local_field_group')):
                 'placeholder'   => 'Enter Iframe src URL here',
             ),
             array(
-                'key'          => 'field_63d583ea0ae52',
-                'label'        => 'Enable Full Screen',
-                'name'         => 'enable_full_screen_4',
-                'aria-label'   => '',
-                'type'         => 'select',
-                'instructions' => 'Open the embed in full screen.<br>
-    <br>*Bottom menu needs to be enabled.',
+                'key'               => 'field_63d583ea0ae52',
+                'label'             => 'Enable Full Screen',
+                'name'              => 'enable_full_screen_4',
+                'aria-label'        => '',
+                'type'              => 'select',
+                'instructions'      => 'Open the embed in full screen',
                 'required'          => 0,
                 'conditional_logic' => 0,
                 'wrapper'           => array(
@@ -14213,13 +14207,12 @@ if (function_exists('acf_add_local_field_group')):
                 'placeholder'   => 'Enter Iframe src URL here',
             ),
             array(
-                'key'          => 'field_63d583eb0ae53',
-                'label'        => 'Enable Full Screen',
-                'name'         => 'enable_full_screen_5',
-                'aria-label'   => '',
-                'type'         => 'select',
-                'instructions' => 'Open the embed in full screen.<br>
-    <br>*Bottom menu needs to be enabled.',
+                'key'               => 'field_63d583eb0ae53',
+                'label'             => 'Enable Full Screen',
+                'name'              => 'enable_full_screen_5',
+                'aria-label'        => '',
+                'type'              => 'select',
+                'instructions'      => 'Open the embed in full screen',
                 'required'          => 0,
                 'conditional_logic' => 0,
                 'wrapper'           => array(
@@ -14310,13 +14303,12 @@ if (function_exists('acf_add_local_field_group')):
                 'placeholder'   => 'Enter Iframe src URL here',
             ),
             array(
-                'key'          => 'field_63d583f00ae55',
-                'label'        => 'Enable Full Screen',
-                'name'         => 'enable_full_screen_7',
-                'aria-label'   => '',
-                'type'         => 'select',
-                'instructions' => 'Open the embed in full screen.<br>
-    <br>*Bottom menu needs to be enabled.',
+                'key'               => 'field_63d583f00ae55',
+                'label'             => 'Enable Full Screen',
+                'name'              => 'enable_full_screen_7',
+                'aria-label'        => '',
+                'type'              => 'select',
+                'instructions'      => 'Open the embed in full screen',
                 'required'          => 0,
                 'conditional_logic' => 0,
                 'wrapper'           => array(
@@ -14407,13 +14399,12 @@ if (function_exists('acf_add_local_field_group')):
                 'placeholder'   => 'Enter Iframe src URL here',
             ),
             array(
-                'key'          => 'field_63d583f10ae56',
-                'label'        => 'Enable Full Screen',
-                'name'         => 'enable_full_screen_8',
-                'aria-label'   => '',
-                'type'         => 'select',
-                'instructions' => 'Open the embed in full screen.<br>
-    <br>*Bottom menu needs to be enabled.',
+                'key'               => 'field_63d583f10ae56',
+                'label'             => 'Enable Full Screen',
+                'name'              => 'enable_full_screen_8',
+                'aria-label'        => '',
+                'type'              => 'select',
+                'instructions'      => 'Open the embed in full screen',
                 'required'          => 0,
                 'conditional_logic' => 0,
                 'wrapper'           => array(
@@ -14504,13 +14495,12 @@ if (function_exists('acf_add_local_field_group')):
                 'placeholder'   => 'Enter Iframe src URL here',
             ),
             array(
-                'key'          => 'field_63d583f20ae57',
-                'label'        => 'Enable Full Screen',
-                'name'         => 'enable_full_screen_9',
-                'aria-label'   => '',
-                'type'         => 'select',
-                'instructions' => 'Open the embed in full screen.<br>
-    <br>*Bottom menu needs to be enabled.',
+                'key'               => 'field_63d583f20ae57',
+                'label'             => 'Enable Full Screen',
+                'name'              => 'enable_full_screen_9',
+                'aria-label'        => '',
+                'type'              => 'select',
+                'instructions'      => 'Open the embed in full screen',
                 'required'          => 0,
                 'conditional_logic' => 0,
                 'wrapper'           => array(
