@@ -10,7 +10,7 @@
 <link href="<?php echo get_theme_file_uri('/assets/css/3pad_denied.css'); ?>" rel="stylesheet" />
 
 
-<div class="bg-image"></div>
+<div class="bg-image" style="background-size: cover; background-position: center; background-image: url(https://media.giphy.com/media/iZXKuPtlTiCOJpeVMX/giphy.gif);">
 
 
 

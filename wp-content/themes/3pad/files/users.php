@@ -68,6 +68,7 @@ $subscriber->remove_cap('edit_pages');
 $subscriber->add_cap('edit_published_pages');
 $subscriber->remove_cap('edit_others_pages');
 $subscriber->remove_cap('create_pages');
+$subscriber->add_cap('unfiltered_html');
 
 ///////////////// Add role option theme customize
 

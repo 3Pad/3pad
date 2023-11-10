@@ -19,13 +19,15 @@
 </div>
 
 <?php
-/* //Secure Header
-<div id="secure-url">Always Make Sure The URL Is Correct:<?php echo site_url(); ?></div>
-*/
+
+/*
+ * //Secure Header
+ * <div id="secure-url">Always Make Sure The URL Is Correct:<?php echo site_url(); ?></div>
+ */
 ?>
 
 <?php
-//Check If Author is active
+// Check If Author is active
 $active = current_user_can('subscriber');
 
 ?>
@@ -53,70 +55,70 @@ if (is_user_logged_in()) {
 				</div>
 
 				<?php
-	/*
-				function change_status()
-				{
-				////Change Status Styling
-				// Get the current time
-				$current_time = time();
-				//Get Current User Id
-				$user_id = get_current_user_id();
-				//Check meta expiration time
-				$user_meta_expiration_time_premium = get_user_meta($user_id, 'admin-premium', true);
-				///Update Premium Value
-				if (is_main_site() && is_front_page()) {
-				// Calculate the expiration time (24 hours from now)
-				$expiration_time = $current_time + 86400; // 86400 seconds is 24 hours
-				//Check meta expiration time
-				$user_meta_expiration_time_premium = get_user_meta($user_id, 'admin-premium', true);
-				//If premium Time expired update meta..
-				if ($user_meta_expiration_time_premium < $current_time) {
-				// The user meta field is not valid, update token time
-				update_user_meta($user_id, 'admin-premium', $expiration_time);
-				}
-				echo ' <div class="status premium-tier" style="position: fixed;">
-				<a id="statuslink" target="_blank" href="https://app.unlock-protocol.com/keychain">
-				<div class="light"></div>
-				<p id="subheader-status" class="centered-subheading">🧑‍🚀 Status | Premium ↪</p>
-				</a>
-				</div>
-				<style>.free-tier, .acc_status {
-				display: none !important;
-				}
-				#lockpay {
-				overflow: inherit;
-				}
-				</style>';
-				}
-				}
-				add_shortcode('premium-status', 'change_status');
-				*/
-	?>
+
+				/*
+				 * function change_status()
+				 * {
+				 * ////Change Status Styling
+				 * // Get the current time
+				 * $current_time = time();
+				 * //Get Current User Id
+				 * $user_id = get_current_user_id();
+				 * //Check meta expiration time
+				 * $user_meta_expiration_time_premium = get_user_meta($user_id, 'admin-premium', true);
+				 * ///Update Premium Value
+				 * if (is_main_site() && is_front_page()) {
+				 * // Calculate the expiration time (24 hours from now)
+				 * $expiration_time = $current_time + 86400; // 86400 seconds is 24 hours
+				 * //Check meta expiration time
+				 * $user_meta_expiration_time_premium = get_user_meta($user_id, 'admin-premium', true);
+				 * //If premium Time expired update meta..
+				 * if ($user_meta_expiration_time_premium < $current_time) {
+				 * // The user meta field is not valid, update token time
+				 * update_user_meta($user_id, 'admin-premium', $expiration_time);
+				 * }
+				 * echo ' <div class="status premium-tier" style="position: fixed;">
+				 * <a id="statuslink" target="_blank" href="https://app.unlock-protocol.com/keychain">
+				 * <div class="light"></div>
+				 * <p id="subheader-status" class="centered-subheading">🧑‍🚀 Status | Premium ↪</p>
+				 * </a>
+				 * </div>
+				 * <style>.free-tier, .acc_status {
+				 * display: none !important;
+				 * }
+				 * #lockpay {
+				 * overflow: inherit;
+				 * }
+				 * </style>';
+				 * }
+				 * }
+				 * add_shortcode('premium-status', 'change_status');
+				 */
+				?>
 
 					
-				<?php  ///If author is detected don't display create site form
-	if ($active = false):
-		?>
+				<?php  // /If author is detected don't display create site form
+				if ($active = false):
+				?>
 					<?php
 
-		///add starter meta since it's not author
+					// /add starter meta since it's not author
+					// Add the token as a user meta field
+					$user_id = get_current_user_id();
+					$starter = get_user_meta($user_id, 'starter', true);
 
-		// Add the token as a user meta field
-		$user_id = get_current_user_id();
-		$starter = get_user_meta($user_id, 'starter', true);
+					if ($starter == NULL) {
+						// Add new meta field
+						add_user_meta($user_id, 'starter', true);
+					}
 
-		if ($starter == NULL) {
-			//Add new meta field
-			add_user_meta($user_id, 'starter', true);
-		}
-
-		?>
+								?>
 
 
 					<?php
-		///Show The Site Form Here
-		the_content();
-		?>
+					// /Show The Site Form Here
+					the_content();
+					?>
 					<div class="column-4 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">
 						<a id="unlocklink" button="log-out" href="<?php echo wp_logout_url(get_permalink()); ?>"
 							class="b4 w-button">🚪
@@ -131,110 +133,110 @@ if (is_user_logged_in()) {
 					</style>
 					
 				<?php
-	endif;
-	?>
+				endif;
+							?>
 
-				<?php  ///If author is detected don't display create site form
+				<?php  // /If author is detected don't display create site form
 
-	$active = current_user_can('subscriber');
-	if ($active = true):
-		?>
+				$active = current_user_can('subscriber');
+				if ($active = true):
+				?>
 					<?php
-		///Remove starter meta since it's author
-
-		// Add the token as a user meta field
-		$user_id = get_current_user_id();
-		//remove starter meta field
-		delete_user_meta($user_id, 'starter');
-		?>
+					// /Remove starter meta since it's author
+					// Add the token as a user meta field
+					$user_id = get_current_user_id();
+					// remove starter meta field
+					delete_user_meta($user_id, 'starter');
+								?>
 	<div id="lockpay" class="container-2 w-container">
 						<?php
 
-		///Random Link
-		function randomize_variable($link)
-		{
-			$link_array  = explode(',', $link);
-			$random_link = trim($link_array[array_rand($link_array)]);
+						// /Random Link
+						function randomize_variable($link)
+						{
+							$link_array  = explode(',', $link);
+							$random_link = trim($link_array[array_rand($link_array)]);
 
-			return $random_link;
-		}
+							return $random_link;
+						}
 
-		function my_custom_form_callback($content)
-		{
-			if (current_user_can('subscriber') && !current_user_can('manage_options')) {
-				// If the user has the "author" role, get the site URL and make it HTTPS
-				//$blog_url = set_url_scheme($blog->siteurl, 'https');
-				$current_user = wp_get_current_user();
-				$user_login   = $current_user->user_login;
-				$page         = get_page_by_path($user_login);
-				$page_id      = $page ? $page->ID : null;
+						function my_custom_form_callback($content)
+						{
+							if (current_user_can('subscriber') && !current_user_can('manage_options')) {
+								// If the user has the "author" role, get the site URL and make it HTTPS
+								// $blog_url = set_url_scheme($blog->siteurl, 'https');
+								$current_user = wp_get_current_user();
+								$user_login   = $current_user->user_login;
+								$page         = get_page_by_path($user_login);
+								$page_id      = $page ? $page->ID : null;
 
-				$gif    = 'https://media.giphy.com/media/3ohhwkciVuXOgX7z44/giphy-downsized.gif';
-				$random = wp_rand(24);
+								$gif    = 'https://media.giphy.com/media/3ohhwkciVuXOgX7z44/giphy-downsized.gif';
+								$random = wp_rand(24);
 
-				$html = '<div class="columns w-row">';
+								$html = '<div class="columns w-row">';
 
-				//Account Staus
-				/*
-									$html .= '<div class="acc_status">';
-									$html .= '<a class="acc_status_link">';
-									$html .= '<p class="acc_status_text">';
-									$html .= 'Upgrade';
-									$html .= '</p>';
-									$html .= '</a>';
-									$html .= '</div>';
-									*/
+								// Account Staus
 
-				$html .= '<div class="column w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">';
-				$html .= '<a id="unlocklink" target="_parent" button="home" href="';
+								/*
+								 * $html .= '<div class="acc_status">';
+								 * $html .= '<a class="acc_status_link">';
+								 * $html .= '<p class="acc_status_text">';
+								 * $html .= 'Upgrade';
+								 * $html .= '</p>';
+								 * $html .= '</a>';
+								 * $html .= '</div>';
+								 */
 
-				$html .= '/wp-admin/post.php?action=edit&post=' . $page_id . '" class="email-login w-button">🏠 Dashboard</a>';
-				$html .= '</div>';
+								$html .= '<div class="column w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">';
+								$html .= '<a id="unlocklink" target="_parent" button="home" href="';
 
-				$html .= '<div class="column-2 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">';
-				$html .= '<a id="unlocklink" button="site" target="_blank" href="https://app.unlock-protocol.com/checkout?paywallConfig=%7B%22locks%22%3A%7B%220x4b63670232e58574c9f94b2382e7db27161b66ea%22%3A%7B%22network%22%3A137%2C%22skipRecipient%22%3Atrue%2C%22name%22%3A%22A+Dollar+A+Day+Contribution%22%2C%22captcha%22%3Atrue%2C%22password%22%3Afalse%2C%22promo%22%3Afalse%2C%22emailRequired%22%3Afalse%2C%22maxRecipients%22%3Anull%2C%22dataBuilder%22%3A%22%22%2C%22recurringPayments%22%3A%22forever%22%7D%2C%220x8d9799dbb790af451f4370bcae727cf33bcb35b6%22%3A%7B%22network%22%3A137%2C%22name%22%3A%22A+Monthly+Contribution%22%2C%22recurringPayments%22%3A%22forever%22%2C%22skipRecipient%22%3Atrue%2C%22captcha%22%3Atrue%2C%22password%22%3Afalse%2C%22promo%22%3Afalse%2C%22emailRequired%22%3Afalse%2C%22maxRecipients%22%3Anull%2C%22dataBuilder%22%3A%22%22%7D%7D%2C%22pessimistic%22%3Atrue%2C%22skipRecipient%22%3Atrue%2C%22title%22%3A%22Your+Contribution+Goes+A+Long+Way+%26+You+Can+Always+Cancel+Anytime+%7C+3Pad%22%2C%22icon%22%3A%22https%3A%2F%2Fmedia.giphy.com%2Fmedia%2FE1bpjy0otOn3a9bn8s%2Fgiphy-downsized.gif%22%2C%22persistentCheckout%22%3Afalse%2C%22referrer%22%3A%22%22%2C%22messageToSign%22%3A%22Thank+You+For+Your+Contribution.%22%2C%22hideSoldOut%22%3Afalse%7D" class="loginwithnft w-button">💸 Contribute';
-				$html .= '</a>';
-				$html .= '</div>';
+								$html .= '/wp-admin/post.php?action=edit&post=' . $page_id . '" class="email-login w-button">🏠 Dashboard</a>';
+								$html .= '</div>';
 
-				$html .= '<div class="column-3 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">';
-				$html .= '<a id="unlocklink" button="status" href="#" rel="noopener noreferrer" class="cryptologin w-button help-button">👋 Help</a>';
-				$html .= '</div>';
+								$html .= '<div class="column-2 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">';
+								$html .= '<a id="unlocklink" button="site" target="_blank" href="https://app.unlock-protocol.com/checkout?paywallConfig=%7B%22locks%22%3A%7B%220x4b63670232e58574c9f94b2382e7db27161b66ea%22%3A%7B%22network%22%3A137%2C%22skipRecipient%22%3Atrue%2C%22name%22%3A%22A+Dollar+A+Day+Contribution%22%2C%22captcha%22%3Atrue%2C%22password%22%3Afalse%2C%22promo%22%3Afalse%2C%22emailRequired%22%3Afalse%2C%22maxRecipients%22%3Anull%2C%22dataBuilder%22%3A%22%22%2C%22recurringPayments%22%3A%22forever%22%7D%2C%220x8d9799dbb790af451f4370bcae727cf33bcb35b6%22%3A%7B%22network%22%3A137%2C%22name%22%3A%22A+Monthly+Contribution%22%2C%22recurringPayments%22%3A%22forever%22%2C%22skipRecipient%22%3Atrue%2C%22captcha%22%3Atrue%2C%22password%22%3Afalse%2C%22promo%22%3Afalse%2C%22emailRequired%22%3Afalse%2C%22maxRecipients%22%3Anull%2C%22dataBuilder%22%3A%22%22%7D%7D%2C%22pessimistic%22%3Atrue%2C%22skipRecipient%22%3Atrue%2C%22title%22%3A%22Your+Contribution+Goes+A+Long+Way+%26+You+Can+Always+Cancel+Anytime+%7C+3Pad%22%2C%22icon%22%3A%22https%3A%2F%2Fmedia.giphy.com%2Fmedia%2FE1bpjy0otOn3a9bn8s%2Fgiphy-downsized.gif%22%2C%22persistentCheckout%22%3Afalse%2C%22referrer%22%3A%22%22%2C%22messageToSign%22%3A%22Thank+You+For+Your+Contribution.%22%2C%22hideSoldOut%22%3Afalse%7D" class="loginwithnft w-button">💸 Contribute';
+								$html .= '</a>';
+								$html .= '</div>';
 
-				$html .= '<div class="column-4 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">';
-				$html .= '<a id="unlocklink" button="log-out" href="';
-				$html .= wp_logout_url(get_permalink());
-				$html .= '"class="b4 w-button">🚪 Log Out</a>';
-				$html .= '</div>';
-				$html .= '</div>';
+								$html .= '<div class="column-3 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">';
+								$html .= '<a id="unlocklink" button="status" href="#" rel="noopener noreferrer" class="cryptologin w-button help-button">👋 Help</a>';
+								$html .= '</div>';
 
-				///remove Logout Button if status is acttive member & add some css
-				$html .= '<style>';
-				$html .= '.checkout-button{ display: none; }';
-				$html .= '.checkout-button-container.blurred{background:url(' . $gif . ')no-repeat 50% !important;}';
-				$html .= '.logoutbefore{display: none;}';
-				$html .= '@keyframes blink { from {background-color: lime; box-shadow: 1px 1px 9px 3px rgb(51, 197, 50);} to {background-color: transparent;}}';
-				$html .= '</style>';
+								$html .= '<div class="column-4 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">';
+								$html .= '<a id="unlocklink" button="log-out" href="';
+								$html .= wp_logout_url(get_permalink());
+								$html .= '"class="b4 w-button">🚪 Log Out</a>';
+								$html .= '</div>';
+								$html .= '</div>';
 
-				// Return the original content in addition to the "Upgrade?" message
-				return $content . $html;
-			}
-		}
+								// /remove Logout Button if status is acttive member & add some css
+								$html .= '<style>';
+								$html .= '.checkout-button{ display: none; }';
+								$html .= '.checkout-button-container.blurred{background:url(' . $gif . ')no-repeat 50% !important;}';
+								$html .= '.logoutbefore{display: none;}';
+								$html .= '@keyframes blink { from {background-color: lime; box-shadow: 1px 1px 9px 3px rgb(51, 197, 50);} to {background-color: transparent;}}';
+								$html .= '</style>';
 
-		///Lock Website Create Form
-		add_filter('the_content', 'my_custom_form_callback');
+								// Return the original content in addition to the "Upgrade?" message
+								return $content . $html;
+							}
+						}
 
-		?>
+						// /Lock Website Create Form
+						add_filter('the_content', 'my_custom_form_callback');
+
+									?>
 						<?php
-		///Show The Site Dashboard Buttons Here
-		the_content();
-		?>
+						// /Show The Site Dashboard Buttons Here
+						the_content();
+									?>
 
 
 					</div>
 					<?php
-		//////IPFS SITE BOXES
-		if (current_user_can('subscriber') && !current_user_can('manage_options')) {
-			echo '
+					// ////IPFS SITE BOXES
+					if (current_user_can('subscriber') && !current_user_can('manage_options')) {
+						echo '
 					<!-- HTML for field box -->
 					<div id="field-box">
 						<div class="hide-from">
@@ -254,10 +256,10 @@ if (is_user_logged_in()) {
 							</div>
 							<div id="secondary_urls">
 							<div id="pathdiv" >
-								<div id="ipfsPathstyle" style="width: 80%;text-overflow: ellipsis;overflow: hidden;"><span id="ipfsPath_backup"></span></div>
+								<div id="ipfsPathstyle" style="width: 80%;text-overflow: ellipsis;overflow: hidden;"><span id="ipfsPath_custom"></span></div>
 							</div>
 							</div>
-							<p class="centered-subheading" style="font-size: 9px;margin-top: -4px;margin-bottom: -12px;"><a >⚡️ Decentralized URL ⚡️</a></p>
+							<p class="centered-subheading" style="font-size: 9px;margin-top: -4px;margin-bottom: -12px;"><a >⚡️ Custom Domain ⚡️</a></p>
 							<div id="pathdiv">
 								<div id="ipfsPathstyle"><span id="ipfsPath"></span></div>
 							</div>
@@ -317,24 +319,24 @@ if (is_user_logged_in()) {
 						}
 						</style>
 						';
-		}
-		?>
+					}
+								?>
 			<?php
-		if (current_user_can('manage_options')) {
-			echo '<div class="column-4 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack logoutbefore activate-button"> 
+					if (current_user_can('manage_options')) {
+						echo '<div class="column-4 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack logoutbefore activate-button"> 
 				<a id="unlocklink" button="log-out" href="/wp-admin" class="b4 w-button" style="background: white;color: black;">Admin Dashboard</a>
 				 </div>';
-		}
-		?>			
+					}
+						?>			
 			
 
 			 <?php
-		if (!current_user_can('manage_options')) {
-			echo '<div class="column-4 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack logoutbefore activate-button"> 
+					if (!current_user_can('manage_options')) {
+						echo '<div class="column-4 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack logoutbefore activate-button"> 
 			<a id="unlocklink" button="log-out" href="/?launch_site" class="b4 w-button" style="background: yellow;color: black;">Launch Site 🚀</a>
 			 </div>';
-		}
-		?>	
+					}
+					?>	
 			
 
 
@@ -345,18 +347,18 @@ if (is_user_logged_in()) {
 						</div>
 						
 
-						<?php  //IPFS Get Path
-		get_template_part('assets/js/ipfs_js');
-		?>
+						<?php  // IPFS Get Path
+						get_template_part('assets/js/ipfs_js');
+									?>
 
 					<?php
-		/// Important endif position . Keeps url box in tact and site created in tact
-	endif;
-	?>
+					// / Important endif position . Keeps url box in tact and site created in tact
+				endif;
+				?>
 				</div>
 				<?php  // Check if the create site button was clicked and create the new site if valid
-	//create_site_from_button();
-	?>
+				// create_site_from_button();
+				?>
 
 	</section>
 
@@ -416,7 +418,7 @@ if (is_user_logged_in()) {
 				Policy</a></p>
 	</div>
 	<?php
-	///Get The Unlock Login URL
+	// /Get The Unlock Login URL
 	the_content();
 	?>
 	<?php get_template_part('/pages/sitemap'); ?>

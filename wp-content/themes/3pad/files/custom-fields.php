@@ -4,106 +4,108 @@
  * Custom Fields
  */
 
-/******CUSTOM FIELDS*****/
+/* CUSTOM FIELDS */
 if (!is_admin()) {
-    ////// Create Shortcode custom//////
+    // //// Create Shortcode custom//////
     // Shortcode: [custom id=""]
+
     /*
-function create_custom_shortcode($atts, $field)
-{
-    // Attributes
-    $atts = shortcode_atts(
-        [
-            "id" => "",
-        ],
-        $atts,
-        "custom"
-    );
-    // Attributes in var
-    $id = $atts["id"];
-    // Your Code
-    $value = get_option($field); // Array of All Options
+     * function create_custom_shortcode($atts, $field)
+     * {
+     *     // Attributes
+     *     $atts = shortcode_atts(
+     *         [
+     *             "id" => "",
+     *         ],
+     *         $atts,
+     *         "custom"
+     *     );
+     *     // Attributes in var
+     *     $id = $atts["id"];
+     *     // Your Code
+     *     $value = get_option($field); // Array of All Options
+     *
+     *     ////1. Analytics Embed (Code)
+     *     if ($id == "1") {
+     *         return get_option("1");
+     *     }
+     *     ///2. Footer Embed (Code)
+     *     if ($id == "2") {
+     *         return get_option("2");
+     *     }
+     *     ///3. Header Embed (Code)
+     *     if ($id == "3") {
+     *         return get_option("3");
+     *     }
+     *     //4. Bunny CDN Authentication Key (Video)
+     *     if ($id == "4") {
+     *         return get_option("4");
+     *     }
+     *     //5. Bunny CDN Video Library ID (Video)
+     *     if ($id == "5") {
+     *         return get_option("5");
+     *     }
+     *     //6. Bunny CDN Auth Key (Image)
+     *     if ($id == "6") {
+     *         return get_option("6");
+     *     }
+     *     //7. CloudFlare Stream API Private Key
+     *   //  if ($id == "7") {
+     *  //       return get_option("7");
+     * //	}
+     *     //5. CloudFlare Stream API Private Key
+     *     //if ($id == "5") {
+     *     //    return get_option("5");
+     *     //}
+     *     //5. CloudFlare Stream API Private Key
+     *     //if ($id == "5") {
+     *     //    return get_option("5");
+     *     //}
+     *     //5. CloudFlare Stream API Private Key
+     *     //if ($id == "5") {
+     *     //    return get_option("5");
+     *     //}
+     *     //5. CloudFlare Stream API Private Key
+     *     //if ($id == "5") {
+     *     //    return get_option("5");
+     *     //}
+     *     else {
+     *         return "";
+     *     }
+     *     return $id;
+     * }
+     * add_shortcode("custom", "create_custom_shortcode");
+     */
+    // //// Create Shortcode custom//////
 
-    ////1. Analytics Embed (Code)
-    if ($id == "1") {
-        return get_option("1");
-    }
-    ///2. Footer Embed (Code)
-    if ($id == "2") {
-        return get_option("2");
-    }
-    ///3. Header Embed (Code)
-    if ($id == "3") {
-        return get_option("3");
-    }
-    //4. Bunny CDN Authentication Key (Video)
-    if ($id == "4") {
-        return get_option("4");
-    }
-    //5. Bunny CDN Video Library ID (Video)
-    if ($id == "5") {
-        return get_option("5");
-    }
-    //6. Bunny CDN Auth Key (Image)
-    if ($id == "6") {
-        return get_option("6");
-    }
-    //7. CloudFlare Stream API Private Key
-  //  if ($id == "7") {
- //       return get_option("7");
-//	}
-    //5. CloudFlare Stream API Private Key
-    //if ($id == "5") {
-    //    return get_option("5");
-    //}
-    //5. CloudFlare Stream API Private Key
-    //if ($id == "5") {
-    //    return get_option("5");
-    //}
-    //5. CloudFlare Stream API Private Key
-    //if ($id == "5") {
-    //    return get_option("5");
-    //}
-    //5. CloudFlare Stream API Private Key
-    //if ($id == "5") {
-    //    return get_option("5");
-    //}
-    else {
-        return "";
-    }
-    return $id;
-}
-add_shortcode("custom", "create_custom_shortcode");
-*/
-    ////// Create Shortcode custom//////
+    // //////HEADER FOOTER ANALYTICS /////////
 
-    ////////HEADER FOOTER ANALYTICS /////////
     /*
-    add_action("wp_footer", function () {
-    ?>
-    <!-- Site Analytics-->
-    <?php echo do_shortcode('[custom id="1"]'); ?>
-    <?php
-    });
-    add_action("wp_footer", function () {
-    ?>
-    <!-- Footer Code-->
-    <?php echo do_shortcode('[custom id="2"]'); ?>
-    <?php
-    });
-    add_action("wp_head", function () {
-    ?>
-    <!-- Header Code-->
-    <?php echo do_shortcode('[custom id="3"]'); ?>
-    <?php
-    });
-    */
-    ////////HEADER FOOTER ANALYTICS /////////
+     * add_action("wp_footer", function () {
+     * ?>
+     * <!-- Site Analytics-->
+     * <?php echo do_shortcode('[custom id="1"]'); ?>
+     * <?php
+     * });
+     * add_action("wp_footer", function () {
+     * ?>
+     * <!-- Footer Code-->
+     * <?php echo do_shortcode('[custom id="2"]'); ?>
+     * <?php
+     * });
+     * add_action("wp_head", function () {
+     * ?>
+     * <!-- Header Code-->
+     * <?php echo do_shortcode('[custom id="3"]'); ?>
+     * <?php
+     * });
+     */
+    // //////HEADER FOOTER ANALYTICS /////////
 
-    //////////////////////////////Title
-    ///////////////////////////Custom ACF Code////////////////////////
+    // ////////////////////////////Title
+    // /////////////////////////Custom ACF Code////////////////////////
 
-    //////Individual Purchase Lock Customize
+    // ////Individual Purchase Lock Customize
     function individual_purchase_lock_css()
     {
         if (is_singular()) {
@@ -153,12 +155,12 @@ add_shortcode("custom", "create_custom_shortcode");
     }
 
     add_action("wp_head", "individual_purchase_lock_css");
-    //////Individual Purchase Lock Customize
+    // ////Individual Purchase Lock Customize
 
-    //////Individual Login Lock Customize
+    // ////Individual Login Lock Customize
     function individual_login_lock_css()
     {
-        $settings_page = get_queried_object_id();  ///Get Page ID
+        $settings_page = get_queried_object_id();  // /Get Page ID
         if (is_singular()) {
             $bgimage       = get_field("background_image_url_login", $settings_page);
             $buttonbg      = get_field("button_background_color_login", $settings_page);
@@ -206,54 +208,55 @@ add_shortcode("custom", "create_custom_shortcode");
     }
 
     add_action("wp_head", "individual_login_lock_css");
-    //////Individual Login Lock Customize
+    // ////Individual Login Lock Customize
 
-    ////Hide Mute/Fullscreen Button
+    // //Hide Mute/Fullscreen Button
+
     /*
-function mutefull_acf(){
-    $settings_page = 6403; ///Get Page ID
-    $display_logged_in = get_field("hide_logged_in", $settings_page);
-    if (is_front_page() && is_user_logged_in() && $display_logged_in === true) {
-        echo "<style> #mutefull{display: none;} #topright{display: block;} </style>";
-    }
-    if (
-        is_front_page() &&
-        is_user_logged_in() &&
-        $display_logged_in === false
-    ) {
-        echo "<style> #topright{display: none;}</style>";
-    }
+     * function mutefull_acf(){
+     *     $settings_page = 6403; ///Get Page ID
+     *     $display_logged_in = get_field("hide_logged_in", $settings_page);
+     *     if (is_front_page() && is_user_logged_in() && $display_logged_in === true) {
+     *         echo "<style> #mutefull{display: none;} #topright{display: block;} </style>";
+     *     }
+     *     if (
+     *         is_front_page() &&
+     *         is_user_logged_in() &&
+     *         $display_logged_in === false
+     *     ) {
+     *         echo "<style> #topright{display: none;}</style>";
+     *     }
+     *
+     *     $display_loggedout = get_field("hide_logged_out", $settings_page);
+     *
+     *     if (
+     *         is_front_page() &&
+     *         !is_user_logged_in() &&
+     *         $display_loggedout === true
+     *     ) {
+     *         echo "<style> #mutefull{display: none;} #topright{display: block;}  </style>";
+     *     }
+     *     if (
+     *         is_front_page() &&
+     *         !is_user_logged_in() &&
+     *         $display_loggedout === false
+     *     ) {
+     *         echo "<style>#topright{display: none;}  </style>";
+     *     }
+     *     if($display_loggedout === NULL){
+     *         echo "<style>#topright{display: block;}  </style>";
+     *     }
+     * }
+     * add_action("wp_head", "mutefull_acf");
+     */
+    // ///////////////////////Hide Mute/Fullscreen Button////////////////////////
 
-    $display_loggedout = get_field("hide_logged_out", $settings_page);
-
-    if (
-        is_front_page() &&
-        !is_user_logged_in() &&
-        $display_loggedout === true
-    ) {
-        echo "<style> #mutefull{display: none;} #topright{display: block;}  </style>";
-    }
-    if (
-        is_front_page() &&
-        !is_user_logged_in() &&
-        $display_loggedout === false
-    ) {
-        echo "<style>#topright{display: none;}  </style>";
-    }
-    if($display_loggedout === NULL){
-        echo "<style>#topright{display: block;}  </style>";
-    }
-}
-add_action("wp_head", "mutefull_acf");
-*/
-    /////////////////////////Hide Mute/Fullscreen Button////////////////////////
-
-    /////////Site info ACF
+    // ///////Site info ACF
     function prefix_site_info()
     {
         $settings_page = get_queried_object_id();
 
-        //Get Page
+        // Get Page
         $page       = get_query_var('page');
         $site_title = get_the_title() . '  ' . get_field("site_title", $settings_page);
         if (!is_front_page()) {
@@ -269,16 +272,16 @@ add_action("wp_head", "mutefull_acf");
 ";
     }
 
-    add_action('wp_head', 'prefix_site_info', 0);  //front end
-    add_action('admin_head', 'prefix_site_info');  //admin end
+    add_action('wp_head', 'prefix_site_info', 0);  // front end
+    add_action('admin_head', 'prefix_site_info');  // admin end
     add_action('login_head', 'prefix_site_info');
 
-    /////////Site Info ACF
+    // ///////Site Info ACF
 
-    ///////// Shortcode: [videos]
+    // /////// Shortcode: [videos]
     function create_videos_shortcode()
     {
-        $settings_page = get_queried_object_id();  ///Get Page ID
+        $settings_page = get_queried_object_id();  // /Get Page ID
         if (!is_user_logged_in()) {
             return get_field("background_videofor_logged_out_users", $settings_page);
         }
@@ -288,13 +291,13 @@ add_action("wp_head", "mutefull_acf");
     }
 
     add_shortcode('videos', 'create_videos_shortcode');
-    ////////// Create Shortcode videos
+    // //////// Create Shortcode videos
 }
 
-/******Bottom Menu*****/
+/* Bottom Menu */
 function bottom_menu()
 {
-    $settings_page = get_queried_object_id();  ///Get Page ID
+    $settings_page = get_queried_object_id();  // /Get Page ID
 
     $icon_2 = get_field("menu_icon_2", $settings_page);
     $icon_3 = get_field("menu_icon_3", $settings_page);
@@ -308,27 +311,27 @@ function bottom_menu()
     $icon_3_link = get_field("menu_icon_url_3", $settings_page);
     $icon_4_link = get_field("menu_icon_url_4", $settings_page);
 
-    //New Tab Choice
+    // New Tab Choice
     $new_tab_2 = get_field("open_in_new_tab_2", $settings_page);
     $new_tab_3 = get_field("open_in_new_tab_3", $settings_page);
     $new_tab_4 = get_field("open_in_new_tab_4", $settings_page);
 
-    //Embed Field Choice
+    // Embed Field Choice
     $popup2 = get_field("enable_popup_7", $settings_page);
     $popup3 = get_field("enable_popup_8", $settings_page);
     $popup4 = get_field("enable_popup_9", $settings_page);
 
-    //Enable Full Screen
+    // Enable Full Screen
     $fullscreen7 = get_field("enable_full_screen_7", $settings_page);
     $fullscreen8 = get_field("enable_full_screen_8", $settings_page);
     $fullscreen9 = get_field("enable_full_screen_9", $settings_page);
 
-    //Blank Else
+    // Blank Else
     $embed_fullscreen_7 = '';
     $embed_fullscreen_8 = '';
     $embed_fullscreen_9 = '';
 
-    //Embed Check for Comments If statement
+    // Embed Check for Comments If statement
     $content_embed7 = get_field("embed_7", $settings_page);
     $content_embed8 = get_field("embed_8", $settings_page);
     $content_embed9 = get_field("embed_9", $settings_page);
@@ -340,7 +343,7 @@ function bottom_menu()
     $bottom_menu      = get_field("display_bottom_menu", $settings_page);
     $home_url         = home_url();
 
-    ///Target Blank
+    // /Target Blank
     if ($new_tab_2 == 'Yes') {
         $new_tab_2 = 'target="_blank"';
     }
@@ -355,13 +358,13 @@ function bottom_menu()
 
     $logoutlink = wp_logout_url(get_permalink());
 
-    //if (!is_user_logged_in()) {
-    //echo '<style> #logoutlink{display: none;} </style>';
-    //$logoutlink = FALSE;
-    /// }
+    // if (!is_user_logged_in()) {
+    // echo '<style> #logoutlink{display: none;} </style>';
+    // $logoutlink = FALSE;
+    // / }
     if (!is_front_page() && $bottom_menu === 'Yes') {
         echo '<style>#bottomright, #bottomleft{display: none;}
-             #main_titles{display: flex; flex-direction: column !important; margin-bottom: 35px !important;} </style>';
+             #main_titles{display: flex; flex-direction: column !important; margin-bottom: 30px !important;} </style>';
     }
     if (!is_front_page() && $hide_pwa == 'Yes') {
         echo '<style>#app_button {display: none;}
@@ -371,32 +374,15 @@ function bottom_menu()
         echo '
         <style>
     /************ Style Menu ********/
-.altmenu ul li a:hover {color: ' . $icon_color_hover . ' !important;}
-.altmenu ul li a {font-size: 30px !important; color: ' . $icon_color . ' !important;}
+.altmenu ul li a:hover {color: ' . $icon_color_hover . ' !important;} .altmenu ul li a {font-size: 30px !important; color: ' . $icon_color . ' !important;}
 /************ Style Menu ********/
 </style>
-    <div class="altmenu fullscreenhide">
-      <center>
-      <ul>
-        <li class="button_home_refresh"><a><span id="icon_1" class="fa fa-home"></span></a></li>
-        <li class="close_button_home" ><a href="#"><span id="icon_1" class="fa fa-circle-xmark"></span></a></li>
-        <li class="menu_2"><a ' . $new_tab_2 . ' class="ex_button ' . $embed_fullscreen_7 . ' ' . $popup2 . ' " href="' . $icon_2_link . '#"><span id="icon_2" class="' . $icon_2 . '"></span></a></li>
-        <li class="menu_3"><a ' . $new_tab_3 . ' class="ex_button ' . $embed_fullscreen_8 . ' ' . $popup3 . ' " href="' . $icon_3_link . '#"><span id="icon_3" class=" ' . $icon_3 . '"></span></a></li>
-        <li class="menu_4"><a ' . $new_tab_4 . ' class="ex_button ' . $embed_fullscreen_9 . ' ' . $popup4 . ' " href="' . $icon_4_link . '#"><span id="icon_4" class=" ' . $icon_4 . '"></span></a></li>
-        <li id="app_button"><a id="app-install" href="#"><span id="icon_5" class="fa-solid fa-download"></span></a></li>
-      </ul>
-    </center>
-    </div>
-    ';
+<div class="altmenu fullscreenhide"><center><ul><li class="button_home_refresh"><a><span id="icon_1" class="fa fa-home"></span></a></li><li class="close_button_home"><a href="#"><span id="icon_1" class="fa fa-circle-xmark"></span></a></li><li class="menu_2"><a ' . $new_tab_2 . ' class="ex_button ' . $embed_fullscreen_7 . ' ' . $popup2 . ' " href="' . $icon_2_link . '#"><span id="icon_2" class="' . $icon_2 . '"></span></a></li><li class="menu_3"><a ' . $new_tab_3 . ' class="ex_button ' . $embed_fullscreen_8 . ' ' . $popup3 . ' " href="' . $icon_3_link . '#"><span id="icon_3" class=" ' . $icon_3 . '"></span></a></li><li class="menu_4"><a ' . $new_tab_4 . ' class="ex_button ' . $embed_fullscreen_9 . ' ' . $popup4 . ' " href="' . $icon_4_link . '#"><span id="icon_4" class=" ' . $icon_4 . '"></span></a></li><li id="app_button"><a id="app-install" href="#"><span id="icon_5" class="fa-solid fa-download"></span></a></li></ul></center></div>';
     }
 
     if (!is_front_page() && $bottom_menu !== 'Yes') {
         $jsnonce = wp_create_nonce('js-nonce');
-        echo '
-        <style>
-    /************ Style Menu ********/
-.altmenu ul li a:hover {color: ' . $icon_color_hover . ' !important;}
-.altmenu ul li a {font-size: 30px !important; color: ' . $icon_color . ' !important;}
+        echo '<style>.altmenu ul li a:hover{color:' . $icon_color_hover . '!important}.altmenu ul li a{font-size:30px!important;color:' . $icon_color . '!important}
 /************ Style Menu ********/
 </style>
     <div class="altmenu fullscreenhide">
@@ -425,7 +411,7 @@ add_action('wp_footer', 'bottom_menu');
 
 function bottom_menu_close_button()
 {
-    $settings_page = get_queried_object_id();  ///Get Page ID
+    $settings_page = get_queried_object_id();  // /Get Page ID
     $bottom_menu   = get_field("display_bottom_menu", $settings_page);
     if (!is_front_page() && $bottom_menu !== 'Yes') {
         echo '<style>
@@ -438,69 +424,69 @@ function bottom_menu_close_button()
 }
 
 add_action('wp_head', 'bottom_menu_close_button');
-/******Bottom Menu*****/
+/* Bottom Menu */
 
-/******Home Text Links*****/
+/* Home Text Links */
 function home_text_links()
 {
-    $settings_page   = get_queried_object_id();  ///Get Page ID
+    $settings_page   = get_queried_object_id();  // /Get Page ID
     $show_text_links = get_field("display_text_links_on_home_page", $settings_page);
 
-    //text color
+    // text color
     $text_color_top   = get_field("top_middle_text_color", $settings_page);
     $text_color_left  = get_field("left_middle_text_color", $settings_page);
     $text_color_right = get_field("right_middle_text_color", $settings_page);
 
-    //text family/weight
+    // text family/weight
     $text_font_family = get_field("font_family", $settings_page);
     $text_font_weight = get_field("font_weight", $settings_page);
 
-    //text URL
+    // text URL
     $text_right_URL  = get_field("right_middle_text_url", $settings_page);
     $text_left_URL   = get_field("left_middle_text_url", $settings_page);
     $text_middle_URL = get_field("top_middle_text_url", $settings_page);
 
-    //text Page
+    // text Page
     $text_right_page  = get_field("link_page_right", $settings_page);
     $text_left_page   = get_field("link_page_middle", $settings_page);
     $text_middle_page = get_field("link_page_left", $settings_page);
 
-    //text output
+    // text output
     $text_right  = get_field("right_middle_text", $settings_page);
     $text_left   = get_field("left_middle_text", $settings_page);
     $text_middle = get_field("top_middle_text", $settings_page);
 
-    //text tab
+    // text tab
     $text_right_tab  = get_field("new_tab_right", $settings_page);
     $text_left_tab   = get_field("new_tab_left", $settings_page);
     $text_middle_tab = get_field("new_tab_middle", $settings_page);
 
-    //text stroke
+    // text stroke
     $text_right_stroke_size  = get_field("text_stroke_right", $settings_page);
     $text_left_stroke_size   = get_field("text_stroke_left", $settings_page);
     $text_middle_stroke_size = get_field("text_stroke_middle", $settings_page);
 
-    //text stroke color
+    // text stroke color
     $text_right_stroke_color  = get_field("text_stroke_right_color", $settings_page);
     $text_left_stroke_color   = get_field("text_stroke_left_color", $settings_page);
     $text_middle_stroke_color = get_field("text_stroke_middle_color", $settings_page);
 
-    //Embed Field Choice
+    // Embed Field Choice
     $popup2 = get_field("enable_popup_2", $settings_page);
     $popup4 = get_field("enable_popup_4", $settings_page);
     $popup5 = get_field("enable_popup_5", $settings_page);
 
-    //Enable Full Screen
+    // Enable Full Screen
     $fullscreen2 = get_field("enable_full_screen_2", $settings_page);
     $fullscreen4 = get_field("enable_full_screen_4", $settings_page);
     $fullscreen5 = get_field("enable_full_screen_5", $settings_page);
 
-    //Blank Else
+    // Blank Else
     $embed_fullscreen_2 = '';
     $embed_fullscreen_4 = '';
     $embed_fullscreen_5 = '';
 
-    //Full Screen Choice
+    // Full Screen Choice
     if ($fullscreen2 == 'Yes') {
         $embed_fullscreen_2 = 'full';
     }
@@ -513,7 +499,7 @@ function home_text_links()
         $embed_fullscreen_5 = 'full';
     }
 
-    ///// If External UrL Empty Get Page
+    // /// If External UrL Empty Get Page
     if ($text_middle_URL == NULL) {
         $text_middle_URL = get_field("link_page_left", $settings_page);
     }
@@ -526,7 +512,7 @@ function home_text_links()
         $text_left_URL = get_field("link_page_middle", $settings_page);
     }
 
-    ///// If new window is true
+    // /// If new window is true
     if ($text_right_tab == 'Yes') {
         $text_right_tab = 'target="_blank"';
     }
@@ -555,10 +541,7 @@ function home_text_links()
         </div>
     <style>
     /************ Style Text Links ********/
-        #middleleft a{-webkit-text-stroke: ' . $text_left_stroke_size . 'px ' . $text_left_stroke_color . '; text-stroke: ' . $text_left_stroke_size . 'px ' . $text_left_stroke_color . '; color: ' . $text_color_left . ' ;}
-        #middleright a{-webkit-text-stroke: ' . $text_right_stroke_size . 'px ' . $text_right_stroke_color . '; text-stroke: ' . $text_right_stroke_size . 'px ' . $text_right_stroke_color . '; color: ' . $text_color_right . ' ;}
-        #topmiddle a{-webkit-text-stroke: ' . $text_middle_stroke_size . 'px ' . $text_middle_stroke_color . '; text-stroke: ' . $text_middle_stroke_size . 'px ' . $text_middle_stroke_color . '; color: ' . $text_color_top . ' ;}
-        #topmiddle a, #middleright a, #middleleft a{font-family: ' . $text_font_family . ' !important; font-weight: ' . $text_font_weight . ' !important;}
+    #middleleft a{-webkit-text-stroke:' . $text_left_stroke_size . 'px ' . $text_left_stroke_color . ';text-stroke:' . $text_left_stroke_size . 'px ' . $text_left_stroke_color . ';color:' . $text_color_left . '}#middleright a{-webkit-text-stroke:' . $text_right_stroke_size . 'px ' . $text_right_stroke_color . ';text-stroke:' . $text_right_stroke_size . 'px ' . $text_right_stroke_color . ';color:' . $text_color_right . '}#topmiddle a{-webkit-text-stroke:' . $text_middle_stroke_size . 'px ' . $text_middle_stroke_color . ';text-stroke:' . $text_middle_stroke_size . 'px ' . $text_middle_stroke_color . ';color:' . $text_color_top . '}#topmiddle a,#middleright a,#middleleft a{font-family:' . $text_font_family . '!important;font-weight:' . $text_font_weight . '!important}
 /************ Style Text Links ********/
 </style>
     ';
@@ -566,37 +549,38 @@ function home_text_links()
 }
 
 add_shortcode('text_links_shortcode', 'home_text_links');
-/******Home Text Links*****/
+/* Home Text Links */
 
-/******Home Titles*****/
+/* Home Titles */
 function home_titles()
 {
-    $settings_page = get_queried_object_id();  ///Get Page ID
+    $settings_page = get_queried_object_id();  // /Get Page ID
     $show_titles   = get_field("display_titles", $settings_page);
 
-    //Text Color
+    // Text Color
     $text_color_sub  = get_field("sub_title_color", $settings_page);
     $text_color_main = get_field("main_title_color", $settings_page);
 
-    //Text Font Family Sub
+    // Text Font Family Sub
     $text_font_family_sub = get_field("sub_title_font", $settings_page);
     $text_font_weight_sub = get_field("sub_title_weight", $settings_page);
 
-    //Text Font Family Main
+    // Text Font Family Main
     $text_font_family_main = get_field("main_title_font", $settings_page);
     $text_font_weight_main = get_field("main_title_font_weight", $settings_page);
 
-    //Text stroke color
+    // Text stroke color
     $text_stroke_main_color = get_field("text_stroke_main_color", $settings_page);
     $text_stroke_sub_color  = get_field("text_stroke_sub_color", $settings_page);
 
-    //Text stroke size
+    // Text stroke size
     $text_stroke_size_main = get_field("text_stroke_main", $settings_page);
     $text_stroke_size_sub  = get_field("text_stroke_sub", $settings_page);
 
-    //Text output
-    $text_sub  = get_field("sub_title", $settings_page);
-    $text_main = get_field("main_title", $settings_page);
+    // Text output
+    $text_sub       = get_field("sub_title", $settings_page);
+    $text_main      = get_field("main_title", $settings_page);
+    $text_main_logo = get_field("title_logo", $settings_page);
 
     if (!is_front_page() && $show_titles === 'Yes') {
         echo '
@@ -608,10 +592,10 @@ function home_titles()
         <div class=elementor-widget-container>
         <h1 class="elementor-heading-title elementor-size-default main-title-home">' . $text_main . '</h1> </div>
         </div>
+        <img class="main-title-logo" src="' . $text_main_logo . '" style="max-width: 80%;display: block;margin-left: auto;margin-right: auto;">
         <style>
         /************ Style Titles ********/
-            .sub-title-home{-webkit-text-stroke: ' . $text_stroke_size_sub . 'px ' . $text_stroke_sub_color . '; text-stroke: ' . $text_stroke_size_sub . 'px ' . $text_stroke_sub_color . '; color: ' . $text_color_sub . ' !important ; font-weight: ' . $text_font_weight_sub . ' !important ;font-family: ' . $text_font_family_sub . ' !important ; }
-            .main-title-home{-webkit-text-stroke: ' . $text_stroke_size_main . 'px ' . $text_stroke_main_color . '; text-stroke: ' . $text_stroke_size_main . 'px ' . $text_stroke_main_color . '; color: ' . $text_color_main . ' !important ; font-weight: ' . $text_font_weight_main . ' !important ; font-family: ' . $text_font_family_main . ' !important ;}
+       .sub-title-home{-webkit-text-stroke:' . $text_stroke_size_sub . 'px ' . $text_stroke_sub_color . ';text-stroke:' . $text_stroke_size_sub . 'px ' . $text_stroke_sub_color . ';color:' . $text_color_sub . '!important;font-weight:' . $text_font_weight_sub . '!important;font-family:' . $text_font_family_sub . '!important}.main-title-home{-webkit-text-stroke:' . $text_stroke_size_main . 'px ' . $text_stroke_main_color . ';text-stroke:' . $text_stroke_size_main . 'px ' . $text_stroke_main_color . ';color:' . $text_color_main . '!important;font-weight:' . $text_font_weight_main . '!important;font-family:' . $text_font_family_main . '!important}
     /************ Style Titles ********/
     </style>
         ';
@@ -619,65 +603,65 @@ function home_titles()
 }
 
 add_shortcode('home_titles_shortcode', 'home_titles');
-/******Home Titles*****/
+/* Home Titles */
 
-/******Corner Icons*****/
+/* Corner Icons */
 function home_corner_icons()
 {
-    $settings_page     = get_queried_object_id();  ///Get Options Page
+    $settings_page     = get_queried_object_id();  // /Get Options Page
     $show_corner_links = get_field("display_corner_icons_on_home_page", $settings_page);
 
-    //Get Icons
+    // Get Icons
     $icon_top_left     = get_field("top_left_icon", $settings_page);
     $icon_top_right    = get_field("top_right_icon", $settings_page);
     $icon_bottom_right = get_field("bottom_right_icon", $settings_page);
     $icon_bottom_left  = get_field("bottom_left_icon", $settings_page);
 
-    //Corner icon Colors
+    // Corner icon Colors
     $icon_top_left_color     = get_field("top_left_icon_color", $settings_page);
     $icon_top_right_color    = get_field("top_right_icon_color", $settings_page);
     $icon_bottom_right_color = get_field("bottom_right_icon_color", $settings_page);
     $icon_bottom_left_color  = get_field("bottom_left_icon_color", $settings_page);
 
-    //Corner icon  Stroke Colors
+    // Corner icon  Stroke Colors
     $icon_top_left_color_stroke     = get_field("stroke_color_top_left", $settings_page);
     $icon_top_right_color_stroke    = get_field("stroke_color_top_right", $settings_page);
     $icon_bottom_right_color_stroke = get_field("stroke_color_bottom_right", $settings_page);
     $icon_bottom_left_color_stroke  = get_field("stroke_color_bottom_left", $settings_page);
 
-    //Corner Icon New Window
+    // Corner Icon New Window
     $icon_top_left_tab     = get_field("open_in_new_tab_topleft", $settings_page);
     $icon_top_right_tab    = get_field("open_in_new_tab_topright", $settings_page);
     $icon_bottom_right_tab = get_field("open_in_new_tab_bottomright", $settings_page);
     $icon_bottom_left_tab  = get_field("open_in_new_tab_bottomleft", $settings_page);
 
-    //Corner Icon url
+    // Corner Icon url
     $icon_top_left_URL     = get_field("top_left_icon_url", $settings_page);
     $icon_top_right_URL    = get_field("top_right_icon_url", $settings_page);
     $icon_bottom_right_URL = get_field("bottom_right_icon_url", $settings_page);
     $icon_bottom_left_URL  = get_field("bottom_left_icon_url", $settings_page);
 
-    //Embed Field Choice
+    // Embed Field Choice
     $popup1  = get_field("enable_popup_1", $settings_page);
     $popup3  = get_field("enable_popup_3", $settings_page);
     $popup6  = get_field("enable_popup_6", $settings_page);
     $popup10 = get_field("enable_popup_10", $settings_page);
 
-    //Full Screen Choice
-    //Blank Else
-    //Enable Full Screen
+    // Full Screen Choice
+    // Blank Else
+    // Enable Full Screen
     $fullscreen1  = get_field("enable_full_screen_1", $settings_page);
     $fullscreen3  = get_field("enable_full_screen_3", $settings_page);
     $fullscreen6  = get_field("enable_full_screen_6", $settings_page);
     $fullscreen10 = get_field("enable_full_screen_10", $settings_page);
 
-    //Blank Else
+    // Blank Else
     $embed_fullscreen_1  = '';
     $embed_fullscreen_3  = '';
     $embed_fullscreen_6  = '';
     $embed_fullscreen_10 = '';
 
-    //Full Screen Choice
+    // Full Screen Choice
 
     if ($fullscreen1 == 'Yes') {
         $embed_fullscreen_1 = 'full';
@@ -695,7 +679,7 @@ function home_corner_icons()
         $embed_fullscreen_10 = 'full';
     }
 
-    ///// If new window is true
+    // /// If new window is true
     if ($icon_top_left_tab == 'Yes') {
         $icon_top_left_tab = 'target="_blank"';
     }
@@ -712,7 +696,7 @@ function home_corner_icons()
         $icon_bottom_left_tab = 'target="_blank"';
     }
 
-    ///// If External UrL Empty Get Page
+    // /// If External UrL Empty Get Page
     if ($icon_top_left_URL == NULL) {
         $icon_top_left_URL = get_field("link_page_topleft", $settings_page);
     }
@@ -772,14 +756,14 @@ function home_corner_icons()
 }
 
 add_shortcode('corner_icons_shortcode', 'home_corner_icons');
-/******Corner Icons*****/
+/* Corner Icons */
 
-/******Social Icons*****/
+/* Social Icons */
 function icons_social()
 {
-    $settings_page = get_queried_object_id();  ///Get Page ID
+    $settings_page = get_queried_object_id();  // /Get Page ID
 
-    //Get Social Icon
+    // Get Social Icon
     $social_icon_1 = get_field("social_icon_1", $settings_page);
     $social_icon_2 = get_field("social_icon_2", $settings_page);
     $social_icon_3 = get_field("social_icon_3", $settings_page);
@@ -787,7 +771,7 @@ function icons_social()
     $social_icon_5 = get_field("social_icon_5", $settings_page);
     $social_icon_6 = get_field("social_icon_6", $settings_page);
 
-    //Get Social Icon color
+    // Get Social Icon color
     $social_icon_color_1 = get_field("social_icon_color_1", $settings_page);
     $social_icon_color_2 = get_field("social_icon_color_2", $settings_page);
     $social_icon_color_3 = get_field("social_icon_color_3", $settings_page);
@@ -795,7 +779,7 @@ function icons_social()
     $social_icon_color_5 = get_field("social_icon_color_5", $settings_page);
     $social_icon_color_6 = get_field("social_icon_color_6", $settings_page);
 
-    //Get Social Icon color stroke
+    // Get Social Icon color stroke
     $social_icon_color_1_stroke = get_field("stroke_color_1", $settings_page);
     $social_icon_color_2_stroke = get_field("stroke_color_2", $settings_page);
     $social_icon_color_3_stroke = get_field("stroke_color_3", $settings_page);
@@ -803,7 +787,7 @@ function icons_social()
     $social_icon_color_5_stroke = get_field("stroke_color_5", $settings_page);
     $social_icon_color_6_stroke = get_field("stroke_color_6", $settings_page);
 
-    //Get Social Icon external urls
+    // Get Social Icon external urls
     $social_icon_1_link_external = get_field("social_icon_url_1", $settings_page);
     $social_icon_2_link_external = get_field("social_icon_url_2", $settings_page);
     $social_icon_3_link_external = get_field("social_icon_url_3", $settings_page);
@@ -864,12 +848,7 @@ function icons_social()
  </div>
     <style>
     /************ Style Social Icons ********/
-    .s1 i{-webkit-text-stroke: 0.2px ' . $social_icon_color_1_stroke . '; text-stroke: 0.2px ' . $social_icon_color_1_stroke . '; color: ' . $social_icon_color_1 . ' !important; }
-    .s2 i{-webkit-text-stroke: 0.2px ' . $social_icon_color_2_stroke . '; text-stroke: 0.2px ' . $social_icon_color_2_stroke . '; color: ' . $social_icon_color_2 . ' !important; }
-    .s3 i{-webkit-text-stroke: 0.2px ' . $social_icon_color_3_stroke . '; text-stroke: 0.2px ' . $social_icon_color_3_stroke . '; color: ' . $social_icon_color_3 . ' !important; }
-    .s4 i{-webkit-text-stroke: 0.2px ' . $social_icon_color_4_stroke . '; text-stroke: 0.2px ' . $social_icon_color_4_stroke . '; color: ' . $social_icon_color_4 . ' !important; }
-    .s5 i{-webkit-text-stroke: 0.2px ' . $social_icon_color_5_stroke . '; text-stroke: 0.2px ' . $social_icon_color_5_stroke . '; color: ' . $social_icon_color_5 . ' !important; }
-    .s6 i{-webkit-text-stroke: 0.2px ' . $social_icon_color_6_stroke . '; text-stroke: 0.2px ' . $social_icon_color_6_stroke . '; color: ' . $social_icon_color_6 . ' !important; }
+    .s1 i{-webkit-text-stroke: 0.2px ' . $social_icon_color_1_stroke . '; text-stroke: 0.2px ' . $social_icon_color_1_stroke . '; color: ' . $social_icon_color_1 . ' !important; } .s2 i{-webkit-text-stroke: 0.2px ' . $social_icon_color_2_stroke . '; text-stroke: 0.2px ' . $social_icon_color_2_stroke . '; color: ' . $social_icon_color_2 . ' !important; } .s3 i{-webkit-text-stroke: 0.2px ' . $social_icon_color_3_stroke . '; text-stroke: 0.2px ' . $social_icon_color_3_stroke . '; color: ' . $social_icon_color_3 . ' !important; } .s4 i{-webkit-text-stroke: 0.2px ' . $social_icon_color_4_stroke . '; text-stroke: 0.2px ' . $social_icon_color_4_stroke . '; color: ' . $social_icon_color_4 . ' !important; } .s5 i{-webkit-text-stroke: 0.2px ' . $social_icon_color_5_stroke . '; text-stroke: 0.2px ' . $social_icon_color_5_stroke . '; color: ' . $social_icon_color_5 . ' !important; } .s6 i{-webkit-text-stroke: 0.2px ' . $social_icon_color_6_stroke . '; text-stroke: 0.2px ' . $social_icon_color_6_stroke . '; color: ' . $social_icon_color_6 . ' !important; }
 /************ Style Social Icons ********/
 </style>
     ';
@@ -877,27 +856,27 @@ function icons_social()
 }
 
 add_shortcode('social_icons', 'icons_social');
-/******Social Icons*****/
+/* Social Icons */
 
-/******Background Video*****/
+/* Background Video */
 
-/******Buttons Video/Logo*****/
+/* Buttons Video/Logo */
 
 function buttons_front_page()
 {
-    $settings_page = get_queried_object_id();  ///Get Options
+    $settings_page = get_queried_object_id();  // /Get Options
     $showbuttons   = get_field("show_play_&_fullscreen_buttons", $settings_page);
 
     if (!is_front_page() && $showbuttons == "Yes") {
-        //Check Logo Is Present
+        // Check Logo Is Present
         $logo = get_field("site_logo", $settings_page);
         if ($logo == NULL) {
             echo '<style>#logo{display: none;}</style>';
         }
-        //Hide Top Right Icon
+        // Hide Top Right Icon
         echo '<style>#topright{display: none;}</style>';
     }
-    /// Hide If "No"
+    // / Hide If "No"
     else {
         echo '<style>.mute_control, #button_fullscreen{display: none !important;}</style>';
     }
@@ -905,12 +884,12 @@ function buttons_front_page()
 
 add_action("wp_head", "buttons_front_page", 100);
 
-/******Buttons Video/Logo*****/
+/* Buttons Video/Logo */
 
-//Fullscreen JS Load
+// Fullscreen JS Load
 function buttons_front_page_js_load()
 {
-    $settings_page = get_queried_object_id();  ///Get Options
+    $settings_page = get_queried_object_id();  // /Get Options
     $showbuttons   = get_field("show_play_&_fullscreen_buttons", $settings_page);
 
     if (!is_front_page() && $showbuttons == "Yes") {
@@ -922,53 +901,54 @@ function buttons_front_page_js_load()
 
 add_action("wp_footer", "buttons_front_page_js_load");
 
-/******Video Autoplay*****/
+/* Video Autoplay */
 function home_video_autoplay()
 {
-    ////////Only Home
+    // //////Only Home
     if (!is_front_page()) {
-        $settings_page_video = get_queried_object_id();  ///Get Page ID
+        $settings_page_video = get_queried_object_id();  // /Get Page ID
 
-        //Check User Staus For ACF
+        // Check User Staus For ACF
+
         /*
-        if (is_user_logged_in() && !current_user_can('subsciber')) {
-
-            $vid_id = get_field("enter_video_id_logged_in_home", $settings_page_video);
-            $vid_id_mp4 = get_field("mp4_link_logged_in_users_home", $settings_page_video);
-        }
-        if (!is_user_logged_in()) {
-            $vid_id = get_field("enter_video_id_home", $settings_page_video);
-            $vid_id_mp4 = get_field("mp4_link_home", $settings_page_video);
-        }
-        if (current_user_can('subsciber')) {
-            $vid_id = get_field("enter_video_id_subscribers_home", $settings_page_video);
-            $vid_id_mp4 = get_field("mp4_link_subscribers_users", $settings_page_video);
-        }
-        if (is_user_logged_in() && !current_user_can('subsciber')) {
-            $video_select = get_field("video_choices_home_logged_in", $settings_page_video);
-        }
-        if (!is_user_logged_in()) {
-            $video_select = get_field("video_choices_home", $settings_page_video);
-        }
-        if (current_user_can('subsciber')) {
-            $video_select = get_field("video_choices_home_subscribers", $settings_page_video);
-        }
-        */
+         * if (is_user_logged_in() && !current_user_can('subsciber')) {
+         *
+         *     $vid_id = get_field("enter_video_id_logged_in_home", $settings_page_video);
+         *     $vid_id_mp4 = get_field("mp4_link_logged_in_users_home", $settings_page_video);
+         * }
+         * if (!is_user_logged_in()) {
+         *     $vid_id = get_field("enter_video_id_home", $settings_page_video);
+         *     $vid_id_mp4 = get_field("mp4_link_home", $settings_page_video);
+         * }
+         * if (current_user_can('subsciber')) {
+         *     $vid_id = get_field("enter_video_id_subscribers_home", $settings_page_video);
+         *     $vid_id_mp4 = get_field("mp4_link_subscribers_users", $settings_page_video);
+         * }
+         * if (is_user_logged_in() && !current_user_can('subsciber')) {
+         *     $video_select = get_field("video_choices_home_logged_in", $settings_page_video);
+         * }
+         * if (!is_user_logged_in()) {
+         *     $video_select = get_field("video_choices_home", $settings_page_video);
+         * }
+         * if (current_user_can('subsciber')) {
+         *     $video_select = get_field("video_choices_home_subscribers", $settings_page_video);
+         * }
+         */
 
         $vid_id       = get_field("enter_video_id_home", $settings_page_video);
         $vid_id_mp4   = get_field("mp4_link_home", $settings_page_video);
         $video_select = get_field("video_choices_home", $settings_page_video);
 
-        if ($video_select == "Vimeo") {
+        if ($video_select == "allowf") {
             echo '
             ' . get_template_part('assets/js/vimeo') . '
                 
                 ';
         }
 
-        /******Vimeo Autoplay*****/
+        /* Vimeo Autoplay */
 
-        /******Youtube Autoplay*****/
+        /* Youtube Autoplay */
 
         if ($video_select == "Youtube") {
             echo '
@@ -978,9 +958,9 @@ function home_video_autoplay()
             ';
         }
 
-        /******Youtube Autoplay*****/
+        /* Youtube Autoplay */
 
-        /******MP4 Autoplay*****/
+        /* MP4 Autoplay */
 
         if ($video_select == "MP4") {
             echo '
@@ -994,49 +974,44 @@ function home_video_autoplay()
 }
 
 add_action('wp_footer', 'home_video_autoplay', 100);
-/******MP4 Autoplay*****/
+/* MP4 Autoplay */
 
-/******Background Video*****/
+/* Background Video */
 
-/******Background Image*****/
+/* Background Image */
 function background_image_color_homepage()
 {
-    $settings_page       = get_queried_object_id();  ///Get Page ID
+    $settings_page       = get_queried_object_id();  // /Get Page ID
     $bgimagehome         = get_field("background_image_home", $settings_page);
     $bg_position_mobile  = get_field("background_image_mobile_position", $settings_page);
     $bg_position_desktop = get_field("background_image_desktop_position", $settings_page);
 
-    /////Check If Logged In
+    // ///Check If Logged In
+
     /*
-    if (is_user_logged_in() && !current_user_can('subsciber')) {
-        $bgimagehome = get_field("background_image_logged_in_users_home", $settings_page);
-    }
-    if (!is_user_logged_in()) {
-        $bgimagehome = get_field("background_image_home", $settings_page);
-    }
-    if (current_user_can('subsciber')) {
-        $bgimagehome = get_field("background_image_subscribers", $settings_page);
-    }
-    */
+     * if (is_user_logged_in() && !current_user_can('subsciber')) {
+     *     $bgimagehome = get_field("background_image_logged_in_users_home", $settings_page);
+     * }
+     * if (!is_user_logged_in()) {
+     *     $bgimagehome = get_field("background_image_home", $settings_page);
+     * }
+     * if (current_user_can('subsciber')) {
+     *     $bgimagehome = get_field("background_image_subscribers", $settings_page);
+     * }
+     */
 
     $bg_colorhome = get_field("background_color_home", $settings_page);
     if (!is_front_page()) {
         echo '<style>
-        @media (min-width:801px)  {
-                body{ background-image: url("' . $bgimagehome . '") !important; background-position: 50% ' . $bg_position_desktop . '% !important; background-color: ' . $bg_colorhome . ' !important;} 
-        }
-        @media (max-width:800px)  {
-            body{ background-image: url("' . $bgimagehome . '") !important; background-position: ' . $bg_position_mobile . '% !important;  background-color: ' . $bg_colorhome . ' !important;} 
-    }
-                
+        @media (min-width:801px){body{background-image:url("' . $bgimagehome . '")!important;background-position:50% ' . $bg_position_desktop . '%!important;background-color:' . $bg_colorhome . '!important}}@media (max-width:800px){body{background-image:url("' . $bgimagehome . '")!important;background-position:' . $bg_position_mobile . '%!important;background-color:' . $bg_colorhome . '!important}}
                 </style>';
     }
 }
 
 add_action('wp_head', 'background_image_color_homepage', 100);
-/******Background Image*****/
+/* Background Image */
 
-///////FRONTEND
+// /////FRONTEND
 
 // Discord Comments
 // Check if Discord comments are enabled and we're on a singular page
@@ -1069,7 +1044,7 @@ add_shortcode("discord_comment_shortcode", "discord_comments");
 function discord_comments_home()
 {
     // Get value of "enable_comments" field on settings page
-    $settings_page = get_queried_object_id();  ///Get Options Page
+    $settings_page = get_queried_object_id();  // /Get Options Page
 
     // Get settings for Discord comments
     $server_id  = get_field("server_id_home", $settings_page);
@@ -1095,19 +1070,19 @@ function telegram_comments_home()
 {
     // Get settings page ID
     // Get value of "enable_comments" field on settings page
-    $settings_page = get_queried_object_id();  ///Get Options Page
+    $settings_page = get_queried_object_id();  // /Get Options Page
     // Get settings for Telegram comments
     $site_id       = get_field("telegram_site_id_home", $settings_page);
     $comment_count = get_field("telegram_comment_count_home", $settings_page);
     $likes         = get_field("telegram_likes_home", $settings_page);
     $colornames    = get_field("telegram_color_names_home", $settings_page);
     // Get current page ID
-    $page_id       = '-1';
-    //Get Site Path
-    $site_url      = get_site_url();
-    $site_path     = parse_url($site_url, PHP_URL_PATH);
-    $site_path     = ltrim($site_path, '/');
-    $site_title    = get_field("site_title", "options");
+    $page_id = '-1';
+    // Get Site Path
+    $site_url   = get_site_url();
+    $site_path  = parse_url($site_url, PHP_URL_PATH);
+    $site_path  = ltrim($site_path, '/');
+    $site_title = get_field("site_title", "options");
 
     // Echo JavaScript code to load the Telegram comments widget
     echo '
@@ -1144,7 +1119,7 @@ function telegram_comments()
         $colornames        = get_field("telegram_color_names");
         $accentcolor       = get_field("telegram_accent");
         // Get current page ID
-        $page_id           = get_the_ID();
+        $page_id = get_the_ID();
         // Echo JavaScript code to load the Telegram comments widget
         echo '
         <script defer src="https://comments.app/js/widget.js?3" 
@@ -1188,7 +1163,7 @@ function back_to_top()
 // Add shortcode for back to top button
 add_shortcode("back_to_top_shortcode", "back_to_top");
 
-////Back To Top
+// //Back To Top
 
 // Disqus Comments
 // Check if Disqus comments are enabled and we're on a singular page
@@ -1229,14 +1204,14 @@ function disqus_reactions()
 // Add shortcode for Disqus reactions
 add_shortcode("disqus_react", "disqus_reactions");
 
-//Add Analytics To Pages
+// Add Analytics To Pages
 
 function analytics()
 {
     // Get options page
     $options_page = "options";
     // Get value of "analytics choics" field on optons page
-    $analytics    = get_field("choose_analytics", $options_page);
+    $analytics = get_field("choose_analytics", $options_page);
     // If analytics are chosen and we're on a  page, load the analytics code
     if ($analytics == "Google" && is_page()) {
         get_template_part('assets/js/google_analytics');
@@ -1249,33 +1224,33 @@ function analytics()
 // Load in head for Analytics code
 add_action("wp_head", "analytics");
 
-////Page Encrypt Background Vid/Image
+// //Page Encrypt Background Vid/Image
 function encrypt_video_function()
 {
-    //Check if fullpage encrypt is enabled
+    // Check if fullpage encrypt is enabled
     $fullpage_encrypt = get_field('full_page_encrypt_or_individual');
 
     if ($fullpage_encrypt == "Full Page") {
-        /******Background Video Encrypt*****/
+        /* Background Video Encrypt */
 
         $video_select = get_field("video_select_encrypt");
 
-        //Get Vid ID
+        // Get Vid ID
         $vid_id     = get_field("video_id_encrypted");
         $vid_id_mp4 = get_field("video_mp4_encrypted");
 
         if ($video_select == "Vimeo") {
             echo '
                 <div class="vid-wrapper_encrypted">
-                <iframe src="https://player.vimeo.com/video/' . $vid_id . '?background=1&autoplay=1&muted=1&loop=1&byline=0&title=0"
+                <iframe allow="*" src="https://player.vimeo.com/video/' . $vid_id . '?background=1&autoplay=1&muted=1&loop=1&byline=0&title=0"
                 frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                 </div>
                 ';
         }
 
-        /******Vimeo Autoplay*****/
+        /* allowf Autoplay */
 
-        /******Youtube Autoplay*****/
+        /* Youtube Autoplay */
 
         if ($video_select == "Youtube") {
             echo '
@@ -1285,9 +1260,9 @@ function encrypt_video_function()
             ';
         }
 
-        /******Youtube Autoplay*****/
+        /* Youtube Autoplay */
 
-        /******MP4 Autoplay*****/
+        /* MP4 Autoplay */
 
         if ($video_select == "MP4") {
             echo '
@@ -1299,17 +1274,17 @@ function encrypt_video_function()
             ';
         }
 
-        /******Background Video*****/
+        /* Background Video */
     }
 }
 
 add_shortcode("encrypt_video", "encrypt_video_function");
 
-//Age Restriction Prompt Full Page
+// Age Restriction Prompt Full Page
 function age_restriction()
 {
     // Get options page
-    $options_page = get_queried_object_id();  ///Get Options Page
+    $options_page = get_queried_object_id();  // /Get Options Page
     // Get value of "age Restrction" field on optons page
     $age_restrict = get_field("is_the_sites_content_age_restricted", $options_page);
 
@@ -1320,12 +1295,12 @@ function age_restriction()
 
 add_action('wp_head', 'age_restriction', 99);
 
-///Embed Content All Pages
+// /Embed Content All Pages
 function show_comment_popup()
 {
-    $settings_page = get_queried_object_id();  ///Get Options Page
+    $settings_page = get_queried_object_id();  // /Get Options Page
 
-    //Custom Fields embed URL
+    // Custom Fields embed URL
     $content_embed1  = get_field("embed_1", $settings_page);
     $content_embed2  = get_field("embed_2", $settings_page);
     $content_embed3  = get_field("embed_3", $settings_page);
@@ -1337,7 +1312,7 @@ function show_comment_popup()
     $content_embed9  = get_field("embed_9", $settings_page);
     $content_embed10 = get_field("embed_10", $settings_page);
 
-    //Check If url entered
+    // Check If url entered
     if ($content_embed1 == NULL) {
         $content_embed1 = get_field("created_embed_1", $settings_page);
     }
@@ -1369,12 +1344,12 @@ function show_comment_popup()
         $content_embed10 = get_field("created_embed_10", $settings_page);
     }
 
-    //Check If comments is enabled
+    // Check If comments is enabled
     $comment_check = get_field("enable_popup_1", $settings_page);
     $comment_check = get_field("enable_popup_2", $settings_page);
     $comment_check = get_field("enable_popup_3", $settings_page);
 
-    //Enable Full Screen
+    // Enable Full Screen
     $fullscreen1  = get_field("enable_full_screen_1", $settings_page);
     $fullscreen2  = get_field("enable_full_screen_2", $settings_page);
     $fullscreen3  = get_field("enable_full_screen_3", $settings_page);
@@ -1386,28 +1361,181 @@ function show_comment_popup()
     $fullscreen9  = get_field("enable_full_screen_9", $settings_page);
     $fullscreen10 = get_field("enable_full_screen_10", $settings_page);
 
-    //Check Bottom Menu
+    // Background Color For Contenet
+    $content_background_color_1  = get_field("content_color_1", $settings_page);
+    $content_background_color_2  = get_field("content_color_2", $settings_page);
+    $content_background_color_3  = get_field("content_color_3", $settings_page);
+    $content_background_color_4  = get_field("content_color_4", $settings_page);
+    $content_background_color_5  = get_field("content_color_5", $settings_page);
+    $content_background_color_6  = get_field("content_color_6", $settings_page);
+    $content_background_color_7  = get_field("content_color_7", $settings_page);
+    $content_background_color_8  = get_field("content_color_8", $settings_page);
+    $content_background_color_9  = get_field("content_color_9", $settings_page);
+    $content_background_color_10 = get_field("content_color_10", $settings_page);
+
+    // Background Color For Contenet
+    $content_background_image_1  = get_field("content_image_1", $settings_page);
+    $content_background_image_2  = get_field("content_image_2", $settings_page);
+    $content_background_image_3  = get_field("content_image_3", $settings_page);
+    $content_background_image_4  = get_field("content_image_4", $settings_page);
+    $content_background_image_5  = get_field("content_image_5", $settings_page);
+    $content_background_image_6  = get_field("content_image_6", $settings_page);
+    $content_background_image_7  = get_field("content_image_7", $settings_page);
+    $content_background_image_8  = get_field("content_image_8", $settings_page);
+    $content_background_image_9  = get_field("content_image_9", $settings_page);
+    $content_background_image_10 = get_field("content_image_10", $settings_page);
+
+    // Check Bottom Menu
     $bottom_menu = get_field("display_bottom_menu", $settings_page);
 
-    //Jsnonce
+    // Jsnonce
     $jsnonce = wp_create_nonce('js-nonce');
 
-    ///Fullscreen Code
-    if ($fullscreen1 == 'Yes') { echo "<style> .embed1-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed1-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed1-list li{ margin: 0 !important; } .embed_f_1{ height: 100vh !important; } #embed1.iframe_style{ height: 93vh !important; } </style>"; }
-    if ($fullscreen2 == 'Yes') { echo "<style> .embed2-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed2-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed2-list li{ margin: 0 !important; } .embed_f_2{ height: 100vh !important; } #embed2.iframe_style{ height: 93vh !important; } </style>"; }
-    if ($fullscreen3 == 'Yes') { echo "<style> .embed3-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed3-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed3-list li{ margin: 0 !important; } .embed_f_3{ height: 100vh !important; } #embed3.iframe_style{ height: 93vh !important; } </style>"; }
-    if ($fullscreen4 == 'Yes') { echo "<style> .embed4-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed4-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed4-list li{ margin: 0 !important; } .embed_f_4{ height: 100vh !important; } #embed4.iframe_style{ height: 93vh !important; } </style>"; }
-    if ($fullscreen5 == 'Yes') { echo "<style> .embed5-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed5-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed5-list li{ margin: 0 !important; } .embed_f_5{ height: 100vh !important; } #embed5.iframe_style{ height: 93vh !important; } </style>"; }
-    if ($fullscreen6 == 'Yes') { echo "<style> .embed6-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed6-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed6-list li{ margin: 0 !important; } .embed_f_6{ height: 100vh !important; } #embed6.iframe_style{ height: 93vh !important; } </style>"; }
-    if ($fullscreen7 == 'Yes') { echo "<style> .embed7-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed7-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } #embed7.iframe_style{ height: 93vh!important; } .embed7-list li{ margin: 0 !important; } .embed_f_7{ height: 100vh !important; } #embed7.iframe_style{ height: 93vh !important; } </style>"; }
-    if ($fullscreen8 == 'Yes') { echo "<style> .embed1-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed8-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed8-list li{ margin: 0 !important; } .embed_f_8{ height: 100vh !important; } #embed8.iframe_style{ height: 93vh !important; } </style>"; }
-    if ($fullscreen9 == 'Yes') { echo "<style> .embed9-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed9-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed9-list li{ margin: 0 !important; } .embed_f_9{ height: 100vh !important; } #embed9.iframe_style{ height: 93vh !important; } </style>"; }
-    if ($fullscreen10 == 'Yes') { echo "<style> .embed10-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed10-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed10-list li{ margin: 0 !important; } .embed_f_10{ height: 100vh !important; } #embed10.iframe_style{ height: 93vh !important; } </style>"; }
+    // /Fullscreen Code
+    if ($fullscreen1 == 'Yes') { echo "<style> #close_button_1{display: none;} .embed1-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed1-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed1-list li{ margin: 0 !important; } .embed_f_1{ height: 100vh !important; } #embed1.iframe_style{ background-image: url($content_background_image_1); background-color: $content_background_color_1; height: calc(100% - 50px) !important; } </style>"; }
+    if ($fullscreen2 == 'Yes') { echo "<style>#close_button_2{display: none;}  .embed2-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed2-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed2-list li{ margin: 0 !important; } .embed_f_2{ height: 100vh !important; } #embed2.iframe_style{ background-image: url($content_background_image_2); background-color: $content_background_color_2; height: calc(100% - 50px) !important; } </style>"; }
+    if ($fullscreen3 == 'Yes') { echo "<style>#close_button_3{display: none;}  .embed3-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed3-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed3-list li{ margin: 0 !important; } .embed_f_3{ height: 100vh !important; } #embed3.iframe_style{ background-image: url($content_background_image_3); background-color: $content_background_color_3; height: calc(100% - 50px) !important; } </style>"; }
+    if ($fullscreen4 == 'Yes') { echo "<style> #close_button_4{display: none;} .embed4-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed4-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed4-list li{ margin: 0 !important; } .embed_f_4{ height: 100vh !important; } #embed4.iframe_style{ background-image: url($content_background_image_4); background-color: $content_background_color_4; height: calc(100% - 50px) !important; } </style>"; }
+    if ($fullscreen5 == 'Yes') { echo "<style>#close_button_5{display: none;}  .embed5-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed5-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed5-list li{ margin: 0 !important; } .embed_f_5{ height: 100vh !important; } #embed5.iframe_style{ background-image: url($content_background_image_5); background-color: $content_background_color_5; height: calc(100% - 50px) !important; } </style>"; }
+    if ($fullscreen6 == 'Yes') { echo "<style>#close_button_6{display: none;}  .embed6-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed6-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed6-list li{ margin: 0 !important; } .embed_f_6{ height: 100vh !important; } #embed6.iframe_style{ background-image: url($content_background_image_6); background-color: $content_background_color_6; height: calc(100% - 50px) !important; } </style>"; }
+    if ($fullscreen7 == 'Yes') { echo "<style>#close_button_7{display: none;}  .embed7-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed7-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } #embed7.iframe_style{ height: 93vh!important; } .embed7-list li{ margin: 0 !important; } .embed_f_7{ height: 100vh !important; } #embed7.iframe_style{ background-image: url($content_background_image_7); background-color: $content_background_color_7; height: calc(100% - 50px) !important; } </style>"; }
+    if ($fullscreen8 == 'Yes') { echo "<style>#close_button_8{display: none;}  .embed8-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed8-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed8-list li{ margin: 0 !important; } .embed_f_8{ height: 100vh !important; } #embed8.iframe_style{ background-image: url($content_background_image_8); background-color: $content_background_color_8; height: calc(100% - 50px) !important; } </style>"; }
+    if ($fullscreen9 == 'Yes') { echo "<style>#close_button_9{display: none;}  .embed9-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed9-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed9-list li{ margin: 0 !important; } .embed_f_9{ height: 100vh !important; } #embed9.iframe_style{ background-image: url($content_background_image_9); background-color: $content_background_color_9; height: calc(100% - 50px) !important; } </style>"; }
+    if ($fullscreen10 == 'Yes') { echo "<style>#close_button_10{display: none;}  .embed10-button-wrapper{ right: 0 !important; bottom: 0 !important; } .expanded .embed10-list { height: 100vh !important; width: 100vw !important; transform: translate(0px, 0px) scale(1) !important; border-radius: 0 !important; max-height: 100vh; } .embed10-list li{ margin: 0 !important; } .embed_f_10{ height: 100vh !important; } #embed10.iframe_style{ background-image: url($content_background_image_10); background-color: $content_background_color_10; height: calc(100% - 50px) !important; } </style>"; }
 
-    //Get comment selection
+    // Get Iframe Content Selection
+
+    $content_check1  = get_field("enable_popup_1", $settings_page);
+    $content_check2  = get_field("enable_popup_2", $settings_page);
+    $content_check3  = get_field("enable_popup_3", $settings_page);
+    $content_check4  = get_field("enable_popup_4", $settings_page);
+    $content_check5  = get_field("enable_popup_5", $settings_page);
+    $content_check6  = get_field("enable_popup_6", $settings_page);
+    $content_check7  = get_field("enable_popup_7", $settings_page);
+    $content_check8  = get_field("enable_popup_8", $settings_page);
+    $content_check9  = get_field("enable_popup_9", $settings_page);
+    $content_check10 = get_field("enable_popup_10", $settings_page);
+
+    $srcdoc1  = '';
+    $srcdoc2  = '';
+    $srcdoc3  = '';
+    $srcdoc4  = '';
+    $srcdoc5  = '';
+    $srcdoc6  = '';
+    $srcdoc7  = '';
+    $srcdoc8  = '';
+    $srcdoc9  = '';
+    $srcdoc10 = '';
+
+    $iframe_content1  = "";
+    $iframe_content2  = "";
+    $iframe_content3  = "";
+    $iframe_content4  = "";
+    $iframe_content5  = "";
+    $iframe_content6  = "";
+    $iframe_content7  = "";
+    $iframe_content8  = "";
+    $iframe_content9  = "";
+    $iframe_content10 = "";
+
+    $doc1  = '';
+    $doc2  = '';
+    $doc3  = '';
+    $doc4  = '';
+    $doc5  = '';
+    $doc6  = '';
+    $doc7  = '';
+    $doc8  = '';
+    $doc9  = '';
+    $doc10 = '';
+
+    $style1  = '';
+    $style2  = '';
+    $style3  = '';
+    $style4  = '';
+    $style5  = '';
+    $style6  = '';
+    $style7  = '';
+    $style8  = '';
+    $style9  = '';
+    $style10 = '';
+
+    // Iframe Content
+    if ($content_check1 == 'embed1-content') {
+        $iframe_content1 = get_field("enable_iframe_content_1", $settings_page);
+        $iframe_content1 = str_replace(array("\r", "\n"), '', $iframe_content1);
+        $iframe_content1 = str_replace("'", "\\'", $iframe_content1);
+        $style1          = '<style>iframe { border: none; } body{color: white; padding: 2% 8% 0% 8%;   } * {  overflow: scroll; max-width: 100%; } </style>';
+        $doc1            = 'doc';
+    }
+    if ($content_check2 == 'embed2-content') {
+        $iframe_content2 = get_field("enable_iframe_content_2", $settings_page);
+        $iframe_content2 = str_replace(array("\r", "\n"), '', $iframe_content2);
+        $iframe_content2 = str_replace("'", "\\'", $iframe_content2);
+        $style2          = '<style>iframe { border: none; } body{color: white; padding: 2% 8% 0% 8%;   ; } * {  overflow: scroll; max-width: 100%; } </style>';
+        $doc2            = 'doc';
+    }
+    if ($content_check3 == 'embed3-content') {
+        $iframe_content3 = get_field("enable_iframe_content_3", $settings_page);
+        $iframe_content3 = str_replace(array("\r", "\n"), '', $iframe_content3);
+        $iframe_content3 = str_replace("'", "\\'", $iframe_content3);
+        $style3          = '<style>iframe { border: none; } body{color: white; padding: 2% 8% 0% 8%;   ; } * {  overflow: scroll; max-width: 100%; } </style>';
+        $doc3            = 'doc';
+    }
+    if ($content_check4 == 'embed4-content') {
+        $iframe_content4 = get_field("enable_iframe_content_4", $settings_page);
+        $iframe_content4 = str_replace(array("\r", "\n"), '', $iframe_content4);
+        $iframe_content4 = str_replace("'", "\\'", $iframe_content4);
+        $style4          = '<style>iframe { border: none; } body{color: white; padding: 2% 8% 0% 8%;   ; } * {  overflow: scroll; max-width: 100%; } </style>';
+        $doc4            = 'doc';
+    }
+    if ($content_check5 == 'embed5-content') {
+        $iframe_content5 = get_field("enable_iframe_content_5", $settings_page);
+        $iframe_content5 = str_replace(array("\r", "\n"), '', $iframe_content5);
+        $iframe_content5 = str_replace("'", "\\'", $iframe_content5);
+        $style5          = '<style>iframe { border: none; } body{color: white; padding: 2% 8% 0% 8%;   ; } * {  overflow: scroll; max-width: 100%; } </style>';
+        $doc5            = 'doc';
+    }
+    if ($content_check6 == 'embed6-content') {
+        $iframe_content6 = get_field("enable_iframe_content_6", $settings_page);
+        $iframe_content6 = str_replace(array("\r", "\n"), '', $iframe_content6);
+        $iframe_content6 = str_replace("'", "\\'", $iframe_content6);
+        $style6          = '<style>iframe { border: none; } body{color: white; padding: 2% 8% 0% 8%;   } * {  overflow: scroll; max-width: 100%; } </style>';
+        $doc6            = 'doc';
+    }
+    if ($content_check7 == 'embed7-content') {
+        $iframe_content7 = get_field("enable_iframe_content_7", $settings_page);
+        $iframe_content7 = str_replace(array("\r", "\n"), '', $iframe_content7);
+        $iframe_content7 = str_replace("'", "\\'", $iframe_content7);
+        $style7          = '<style>iframe { border: none; } body{color: white; padding: 2% 8% 0% 8%;   } * {  overflow: scroll; max-width: 100%; } </style>';
+        $doc7            = 'doc';
+    }
+    if ($content_check8 == 'embed8-content') {
+        $iframe_content8 = get_field("enable_iframe_content_8", $settings_page);
+        $iframe_content8 = str_replace(array("\r", "\n"), '', $iframe_content8);
+        $iframe_content8 = str_replace("'", "\\'", $iframe_content8);
+        $style8          = '<style>iframe { border: none; } body{color: white; padding: 2% 8% 0% 8%;   } * {  overflow: scroll; max-width: 100%; } </style>';
+        $doc8            = 'doc';
+    }
+    if ($content_check9 == 'embed9-content') {
+        $iframe_content9 = get_field("enable_iframe_content_9", $settings_page);
+        $iframe_content9 = str_replace(array("\r", "\n"), '', $iframe_content9);
+        $iframe_content9 = str_replace("'", "\\'", $iframe_content9);
+        $style9          = '<style>iframe { border: none; } body{color: white; padding: 2% 8% 0% 8%;   } * {  overflow: scroll; max-width: 100%; } </style>';
+        $doc9            = 'doc';
+    }
+    if ($content_check10 == 'embed10-content') {
+        $iframe_content10 = get_field("enable_iframe_content_10", $settings_page);
+        $iframe_content10 = str_replace(array("\r", "\n"), '', $iframe_content10);
+        $iframe_content10 = str_replace("'", "\\'", $iframe_content10);
+        $style10          = '<style>iframe { border: none; } body{color: white; padding: 2% 8% 0% 8%;   } * {  overflow: scroll; max-width: 100%; } </style>';
+        $doc10            = 'doc';
+    }
+
+    // Get comment selection
     $comment_embed = get_field("comments_embed", $settings_page);
     if (!is_front_page()) {
-        //Comment Embed
+        // Comment Embed
         if ($comment_check !== NULL) {
             echo '<div class="comments-button-wrapper">
         <ul class="comments-list">
@@ -1427,124 +1555,153 @@ function show_comment_popup()
         </ul>
       </div>';
         }
+    }
 
-        //Embed 1
-        if ($content_embed1 != NULL) {
-            echo '<div style="" class="embed1-button-wrapper">
-        <ul style="" class="embed1-list">
+    // Embed 1
+    if ($content_embed1 != NULL || $content_check1 == 'embed1-content') {
+        echo '<div class="embed1-button-wrapper">
+        <ul class="embed1-list">
           <li>
-          <div class="embed_f_1" style="left: 0; width: 100%; height: 400px; position: relative;"><i class="embedloading fas fa-circle-notch fa-spin"></i><iframe class="iframe_style" id="embed1" loading="lazy" allowfullscreen allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture; camera; microphone; clipboard-read; clipboard-write; display-capture;"></iframe></div>
+          <div class="close_button" id="close_button_1" style="margin-top: 3px;left: 3px;height: 20px;width: 20px;position: absolute;text-align: center;font-size: 12px;z-index: 9999999;background: #ffffff;border-radius: 6px;cursor: pointer;box-shadow: 0px 0px 5px 2px #000000;">❌</div>
+          <div class="embed_f_1" style="left: 0; width: 100%; height: 400px; position: relative;">
+    <iframe webkitallowfullscreen mozallowfullscreen allowfullscreen class="iframe_style" id="embed1" loading="lazy" src="' . $srcdoc1 . '"  allow="*""></iframe>
+</div>
         </li>  
         </ul>
       </div>';
-        }
+    }
 
-        //Embed 2
-        if ($content_embed2 != NULL) {
-            echo '<div class="embed2-button-wrapper">
+    // Embed 2
+    if ($content_embed2 != NULL || $content_check2 == 'embed2-content') {
+        echo '<div class="embed2-button-wrapper">
         <ul class="embed2-list">
           <li>
-          <div class="embed_f_2 style="left: 0; width: 100%; height: 400px; position: relative;"><i class="embedloading fas fa-circle-notch fa-spin"></i><iframe name="embed-frame" class="iframe_style" id="embed2" loading="lazy" src="" allowfullscreen allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture; camera; microphone; clipboard-read; clipboard-write; display-capture;"></iframe></div>
+          <div class="close_button" id="close_button_2" style="margin-top: 3px;left: 3px;height: 20px;width: 20px;position: absolute;text-align: center;font-size: 12px;z-index: 9999999;background: #ffffff;border-radius: 6px;cursor: pointer;box-shadow: 0px 0px 5px 2px #000000;">❌</div>
+          <div class="embed_f_2" style="left: 0; width: 100%; height: 400px; position: relative;">
+    <iframe webkitallowfullscreen mozallowfullscreen allowfullscreen class="iframe_style" id="embed2" loading="lazy" src="' . $srcdoc2 . '"  allow="*""></iframe>
+</div>
         </li>  
         </ul>
       </div>';
-        }
+    }
 
-        //Embed 3
-        if ($content_embed3 != NULL) {
-            echo '<div class="embed3-button-wrapper">
+    // Embed 3
+    if ($content_embed3 != NULL || $content_check3 == 'embed3-content') {
+        echo '<div class="embed3-button-wrapper">
         <ul class="embed3-list">
           <li>
-          <div class="embed_f_3 style="left: 0; width: 100%; height: 400px; position: relative;"><i class="embedloading fas fa-circle-notch fa-spin"></i><iframe name="embed-frame" class="iframe_style" id="embed3" loading="lazy" src="" allowfullscreen allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture; camera; microphone; clipboard-read; clipboard-write; display-capture;"></iframe></div>
+          <div class="close_button" id="close_button_3" style="margin-top: 3px;left: 3px;height: 20px;width: 20px;position: absolute;text-align: center;font-size: 12px;z-index: 9999999;background: #ffffff;border-radius: 6px;cursor: pointer;box-shadow: 0px 0px 5px 2px #000000;">❌</div>
+          <div class="embed_f_3" style="left: 0; width: 100%; height: 400px; position: relative;">
+    <iframe webkitallowfullscreen mozallowfullscreen allowfullscreen class="iframe_style" id="embed3" loading="lazy" src="' . $srcdoc3 . '"  allow="*""></iframe>
+</div>
         </li>  
         </ul>
       </div>';
-        }
+    }
 
-        //Embed 4
-        if ($content_embed4 != NULL) {
-            echo '<div class="embed4-button-wrapper ">
+    // Embed 4
+    if ($content_embed4 != NULL || $content_check4 == 'embed4-content') {
+        echo '<div class="embed4-button-wrapper ">
         <ul class="embed4-list">
           <li>
-          <div class="embed_f_4 style="left: 0; width: 100%; height: 400px; position: relative;"><i class="embedloading fas fa-circle-notch fa-spin"></i><iframe class="iframe_style" id="embed4" loading="lazy" src="" allowfullscreen allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture; camera; microphone; clipboard-read; clipboard-write; display-capture;"></iframe></div>
+          <div class="close_button" id="close_button_4" style="margin-top: 3px;left: 3px;height: 20px;width: 20px;position: absolute;text-align: center;font-size: 12px;z-index: 9999999;background: #ffffff;border-radius: 6px;cursor: pointer;box-shadow: 0px 0px 5px 2px #000000;">❌</div>
+          <div class="embed_f_4" style="left: 0; width: 100%; height: 400px; position: relative;">
+    <iframe webkitallowfullscreen mozallowfullscreen allowfullscreen class="iframe_style" id="embed4" loading="lazy" src="' . $srcdoc4 . '"  allow="*""></iframe>
+</div>
+
         </li>  
         </ul>
       </div>';
-        }
+    }
 
-        //Embed 5
-        if ($content_embed5 != NULL) {
-            echo '<div class="embed5-button-wrapper">
+    // Embed 5
+    if ($content_embed5 != NULL || $content_check5 == 'embed5-content') {
+        echo '<div class="embed5-button-wrapper">
         <ul class="embed5-list">
           <li>
-          <div class="embed_f_5 style="left: 0; width: 100%; height: 400px; position: relative;"><i class="embedloading fas fa-circle-notch fa-spin"></i><iframe class="iframe_style" id="embed5" loading="lazy" src="" allowfullscreen allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture; camera; microphone; clipboard-read; clipboard-write; display-capture;"></iframe></div>
+          <div class="close_button" id="close_button_5" style="margin-top: 3px;left: 3px;height: 20px;width: 20px;position: absolute;text-align: center;font-size: 12px;z-index: 9999999;background: #ffffff;border-radius: 6px;cursor: pointer;box-shadow: 0px 0px 5px 2px #000000;">❌</div>
+          <div class="embed_f_5" style="left: 0; width: 100%; height: 400px; position: relative;">
+    <iframe webkitallowfullscreen mozallowfullscreen allowfullscreen class="iframe_style" id="embed5" loading="lazy" src="' . $srcdoc5 . '"  allow="*""></iframe>
+</div>
         </li>  
         </ul>
       </div>';
-        }
+    }
 
-        //Embed 6
-        if ($content_embed6 != NULL) {
-            echo '<div class="embed6-button-wrapper">
+    // Embed 6
+    if ($content_embed6 != NULL || $content_check6 == 'embed6-content') {
+        echo '<div class="embed6-button-wrapper">
         <ul class="embed6-list">
           <li>
-          <div class="embed_f_6 style="left: 0; width: 100%; height: 400px; position: relative;"><i class="embedloading fas fa-circle-notch fa-spin"></i><iframe class="iframe_style" id="embed6" loading="lazy" src="" allowfullscreen allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture; camera; microphone; clipboard-read; clipboard-write; display-capture;"></iframe></div>
+          <div class="close_button" id="close_button_6" style="margin-top: 3px;left: 3px;height: 20px;width: 20px;position: absolute;text-align: center;font-size: 12px;z-index: 9999999;background: #ffffff;border-radius: 6px;cursor: pointer;box-shadow: 0px 0px 5px 2px #000000;">❌</div>
+          <div class="embed_f_6" style="left: 0; width: 100%; height: 400px; position: relative;">
+    <iframe webkitallowfullscreen mozallowfullscreen allowfullscreen class="iframe_style" id="embed6" loading="lazy" src="' . $srcdoc6 . '"  allow="*""></iframe>
+</div>
         </li>  
         </ul>
       </div>';
-        }
+    }
 
-        //Embed 7
-        if ($content_embed7 != NULL) {
-            echo '<div class="embed7-button-wrapper">
+    // Embed 7
+    if ($content_embed7 != NULL || $content_check7 == 'embed7-content') {
+        echo '<div class="embed7-button-wrapper">
         <ul class="embed7-list">
           <li>
-          <div class="embed_f_7 style="left: 0; width: 100%; height: 400px; position: relative;"><i class="embedloading fas fa-circle-notch fa-spin"></i><iframe class="iframe_style" id="embed7" loading="lazy" src="" allowfullscreen allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture; camera; microphone; clipboard-read; clipboard-write; display-capture;"></iframe></div>
+          <div class="close_button" id="close_button_7" style="margin-top: 3px;left: 3px;height: 20px;width: 20px;position: absolute;text-align: center;font-size: 12px;z-index: 9999999;background: #ffffff;border-radius: 6px;cursor: pointer;box-shadow: 0px 0px 5px 2px #000000;">❌</div>
+          <div class="embed_f_7" style="left: 0; width: 100%; height: 400px; position: relative;">
+    <iframe webkitallowfullscreen mozallowfullscreen allowfullscreen class="iframe_style" id="embed7" loading="lazy" src="' . $srcdoc7 . '"  allow="*""></iframe>
+</div>
         </li>  
         </ul>
       </div>';
-        }
+    }
 
-        //Embed 8
-        if ($content_embed8 != NULL) {
-            echo '<div class="embed8-button-wrapper">
-        <ul class="embed8-list">
-          <li>
-          <div class="embed_f_8 style="left: 0; width: 100%; height: 400px; position: relative;"><i class="embedloading fas fa-circle-notch fa-spin"></i><iframe class="iframe_style" id="embed8" loading="lazy" src="" allowfullscreen allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture; camera; microphone; clipboard-read; clipboard-write; display-capture;"></iframe></div>
-        </li>  
-        </ul>
-      </div>';
-        }
+    // Embed 8
+    if ($content_embed8 != NULL || $content_check8 == 'embed8-content') {
+        echo '<div class="embed8-button-wrapper">
+            <ul class="embed8-list">
+              <li>
+              <div class="close_button" id="close_button_8" style="margin-top: 3px;left: 3px;height: 20px;width: 20px;position: absolute;text-align: center;font-size: 12px;z-index: 9999999;background: #ffffff;border-radius: 6px;cursor: pointer;box-shadow: 0px 0px 5px 2px #000000;">❌</div>
+              <div class="embed_f_8" style="left: 0; width: 100%; height: 400px; position: relative;">
+        <iframe webkitallowfullscreen mozallowfullscreen allowfullscreen class="iframe_style" id="embed8" loading="lazy" src="' . $srcdoc8 . '"  allow="*""></iframe>
+    </div>
+            </li>  
+            </ul>
+          </div>';
+    }
 
-        //Embed 9
-        if ($content_embed9 != NULL) {
-            echo '<div class="embed9-button-wrapper">
+    // Embed 9
+    if ($content_embed9 != NULL || $content_check9 == 'embed9-content') {
+        echo '<div class="embed9-button-wrapper">
         <ul class="embed9-list">
           <li>
-          <div class="embed_f_9 style="left: 0; width: 100%; height: 400px; position: relative;"><i class="embedloading fas fa-circle-notch fa-spin"></i><iframe class="iframe_style" id="embed9" loading="lazy" src="" allowfullscreen allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture; camera; microphone; clipboard-read; clipboard-write; display-capture;"></iframe></div>
+          <div class="close_button" id="close_button_9" style="margin-top: 3px;left: 3px;height: 20px;width: 20px;position: absolute;text-align: center;font-size: 12px;z-index: 9999999;background: #ffffff;border-radius: 6px;cursor: pointer;box-shadow: 0px 0px 5px 2px #000000;">❌</div>
+          <div class="embed_f_9" style="left: 0; width: 100%; height: 400px; position: relative;">
+    <iframe webkitallowfullscreen mozallowfullscreen allowfullscreen class="iframe_style" id="embed9" loading="lazy" src="' . $srcdoc9 . '"  allow="*""></iframe>
+</div>
         </li>  
         </ul>
       </div>';
-        }
+    }
 
-        //Embed 10
-        if ($content_embed10 != NULL) {
-            echo '<div class="embed10-button-wrapper">
+    // Embed 10
+    if ($content_embed10 != NULL || $content_check10 == 'embed10-content') {
+        echo '<div class="embed10-button-wrapper">
         <ul class="embed10-list">
           <li>
-          <div class="embed_f_10 style="left: 0; width: 100%; height: 400px; position: relative;"><i class="embedloading fas fa-circle-notch fa-spin"></i><iframe class="iframe_style" id="embed10" loading="lazy" src="" allowfullscreen allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture; camera; microphone; clipboard-read; clipboard-write; display-capture;"></iframe></div>
+          <div class="close_button" id="close_button_10" style="margin-top: 3px;left: 3px;height: 20px;width: 20px;position: absolute;text-align: center;font-size: 12px;z-index: 9999999;background: #ffffff;border-radius: 6px;cursor: pointer;box-shadow: 0px 0px 5px 2px #000000;">❌</div>
+          <div class="embed_f_10" style="left: 0; width: 100%; height: 400px; position: relative;">
+    <iframe webkitallowfullscreen mozallowfullscreen allowfullscreen class="iframe_style" id="embed10" loading="lazy" src="' . $srcdoc10 . '"  allow="*""></iframe>
+</div>
         </li>  
         </ul>
       </div>';
-        }
     }
 
     if (!is_front_page()) {
         echo "
-        <script nonce=" . $jsnonce . " defer>
-        var button1=document.querySelector('.embed1-button'),iframeLoaded1=!1,button2=document.querySelector('.embed2-button'),iframeLoaded2=!1,button3=document.querySelector('.embed3-button'),iframeLoaded3=!1,button4=document.querySelector('.embed4-button'),iframeLoaded4=!1,button5=document.querySelector('.embed5-button'),iframeLoaded5=!1,button6=document.querySelector('.embed6-button'),iframeLoaded6=!1,button7=document.querySelector('.embed7-button'),iframeLoaded7=!1,button8=document.querySelector('.embed8-button'),iframeLoaded8=!1,button9=document.querySelector('.embed9-button'),iframeLoaded9=!1,button10=document.querySelector('.embed10-button'),iframeLoaded10=!1;
-      
-        button1&&button1.addEventListener('click',(function(){iframeLoaded1||(document.getElementById('embed1').src='$content_embed1',iframeLoaded1=!0)})),button2&&button2.addEventListener('click',(function(){iframeLoaded2||(document.getElementById('embed2').src='$content_embed2',iframeLoaded2=!0)})),button3&&button3.addEventListener('click',(function(){iframeLoaded3||(document.getElementById('embed3').src='$content_embed3',iframeLoaded3=!0)})),button4&&button4.addEventListener('click',(function(){iframeLoaded4||(document.getElementById('embed4').src='$content_embed4',iframeLoaded4=!0)})),button5&&button5.addEventListener('click',(function(){iframeLoaded5||(document.getElementById('embed5').src='$content_embed5',iframeLoaded5=!0)})),button6&&button6.addEventListener('click',(function(){iframeLoaded6||(document.getElementById('embed6').src='$content_embed6',iframeLoaded6=!0)})),button7&&button7.addEventListener('click',(function(){iframeLoaded7||(document.getElementById('embed7').src='$content_embed7',iframeLoaded7=!0)})),button8&&button8.addEventListener('click',(function(){iframeLoaded8||(document.getElementById('embed8').src='$content_embed8',iframeLoaded8=!0)})),button9&&button9.addEventListener('click',(function(){iframeLoaded9||(document.getElementById('embed9').src='$content_embed9',iframeLoaded9=!0)})),button10&&button10.addEventListener('click',(function(){iframeLoaded10||(document.getElementById('embed10').src='$content_embed10',iframeLoaded10=!0)}));
+        <script nonce='" . $jsnonce . "' defer>
+        var button1 = document.querySelector('.embed1-button, .embed1-content'); var iframeLoaded1 = false; var button2 = document.querySelector('.embed2-button, .embed2-content'); var iframeLoaded2 = false; var button3 = document.querySelector('.embed3-button, .embed3-content'); var iframeLoaded3 = false; var button4 = document.querySelector('.embed4-button, .embed4-content'); var iframeLoaded4 = false; var button5 = document.querySelector('.embed5-button, .embed5-content'); var iframeLoaded5 = false; var button6 = document.querySelector('.embed6-button, .embed6-content'); var iframeLoaded6 = false; var button7 = document.querySelector('.embed7-button, .embed7-content'); var iframeLoaded7 = false; var button8 = document.querySelector('.embed8-button, .embed8-content'); var iframeLoaded8 = false; var button9 = document.querySelector('.embed9-button, .embed9-content'); var iframeLoaded9 = false; var button10 = document.querySelector('.embed10-button, .embed10-content'); var iframeLoaded10 = false; /*Add event listeners after button assignments*/ button1 && button1.addEventListener('click', function() { if (!iframeLoaded1) { document.getElementById('embed1').src$doc1 = '" . $srcdoc1 . "' + '" . $style1 . $content_embed1 . $iframe_content1 . "'; iframeLoaded1 = true; } }); button2 && button2.addEventListener('click', function() { if (!iframeLoaded2) { document.getElementById('embed2').src$doc2 = '" . $srcdoc2 . "' + '" . $style2 . $content_embed2 . $iframe_content2 . "'; iframeLoaded2 = true; } }); button3 && button3.addEventListener('click', function() { if (!iframeLoaded3) { document.getElementById('embed3').src$doc3 = '" . $srcdoc3 . "' + '" . $style3 . $content_embed3 . $iframe_content3 . "'; iframeLoaded3 = true; } }); button4 && button4.addEventListener('click', function() { if (!iframeLoaded4) { document.getElementById('embed4').src$doc4 = '" . $srcdoc4 . "' + '" . $style4 . $content_embed4 . $iframe_content4 . "'; iframeLoaded4 = true; } }); button5 && button5.addEventListener('click', function() { if (!iframeLoaded5) { document.getElementById('embed5').src$doc5 = '" . $srcdoc5 . "' + '" . $style5 . $content_embed5 . $iframe_content5 . "'; iframeLoaded5 = true; } }); button6 && button6.addEventListener('click', function() { if (!iframeLoaded6) { document.getElementById('embed6').src$doc6 = '" . $srcdoc6 . "' + '" . $style6 . $content_embed6 . $iframe_content6 . "'; iframeLoaded6 = true; } }); button7 && button7.addEventListener('click', function() { if (!iframeLoaded7) { document.getElementById('embed7').src$doc7 = '" . $srcdoc7 . "' + '" . $style7 . $content_embed7 . $iframe_content7 . "'; iframeLoaded7 = true; } }); button8 && button8.addEventListener('click', function() { if (!iframeLoaded8) { document.getElementById('embed8').src$doc8 = '" . $srcdoc8 . "' + '" . $style8 . $content_embed8 . $iframe_content8 . "'; iframeLoaded8 = true; } }); button9 && button9.addEventListener('click', function() { if (!iframeLoaded9) { document.getElementById('embed9').src$doc9 = '" . $srcdoc9 . "' + '" . $style9 . $content_embed9 . $iframe_content9 . "'; iframeLoaded9 = true; } }); button10 && button10.addEventListener('click', function() { if (!iframeLoaded10) { document.getElementById('embed10').src$doc10 = '" . $srcdoc10 . "' + '" . $style10 . $content_embed10 . $iframe_content10 . "'; iframeLoaded10 = true; } });
         </script>
         ";
     }
@@ -1555,9 +1712,7 @@ add_action('wp_footer', 'show_comment_popup');
 function trailing_slash()
 {
     if (!is_front_page()) {
-        echo '<script> ///Add Trailing Slash
-if (window.location.pathname.trim().slice(-1) !== "/") {window.location.pathname = window.location.pathname.trim() + "/";} </script>
-';
+        echo '<script> /*Add trailing slash*/ if (window.location.pathname.trim().slice(-1) !== "/") {window.location.pathname = window.location.pathname.trim() + "/";} </script>';
     }
 }
 
@@ -1565,22 +1720,19 @@ add_action('wp_head', 'trailing_slash', 0);
 
 function meta_db()
 {
-    $settings_page = get_queried_object_id();  ///Get Options Page
-    ///Get Json Backup
-    $get_db        = get_field('db_group', $settings_page);
+    $settings_page = get_queried_object_id();  // /Get Options Page
+    // /Get Json Backup
+    $get_db = get_field('db_group', $settings_page);
 
     if ($get_db):
         $json = $get_db['backup_json'];
     endif;
 
     if (!is_front_page()) {
-        echo '<backup style="display: none !important;" id="backup-data-json">
-        ' . $json . '
-        </backup>
-';
+        echo '<script defer type="application/json" id="backup-data-json">' . $json . '</script>';
     }
 }
 
-add_action('wp_head', 'meta_db');
+add_action('wp_footer', 'meta_db');
 
-/******CUSTOM FIELDS*****/
+/* CUSTOM FIELDS */

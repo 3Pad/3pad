@@ -287,21 +287,21 @@ jQuery(document).ready(function ($) {
   ////////////Bottom Menu
 
   ///Embed Button 7 (Bottom Menu)
-  $(document).on("click", ".embed7-button", function () {
+  $(document).on("click", ".embed7-button, .embed7-content", function () {
     $(".embed7-button-wrapper").toggleClass("expanded");
     $(".embed8-button-wrapper").removeClass("expanded");
     $(".embed9-button-wrapper").removeClass("expanded");
   });
 
   ///Embed Button 8 (Bottom Menu)
-  $(document).on("click", ".embed8-button", function () {
+  $(document).on("click", ".embed8-button, .embed8-content", function () {
     $(".embed8-button-wrapper").toggleClass("expanded");
     $(".embed7-button-wrapper").removeClass("expanded");
     $(".embed9-button-wrapper").removeClass("expanded");
   });
 
   ///Embed Button 9 (Bottom Menu)
-  $(document).on("click", ".embed9-button", function () {
+  $(document).on("click", ".embed9-button, .embed9-content", function () {
     $(".embed9-button-wrapper").toggleClass("expanded");
     $(".embed7-button-wrapper").removeClass("expanded");
     $(".embed8-button-wrapper").removeClass("expanded");
@@ -310,7 +310,7 @@ jQuery(document).ready(function ($) {
   ////////////Text Links
 
   ///Embed Button 2 (Top Middle)
-  $(document).on("click", ".embed2-button", function () {
+  $(document).on("click", ".embed2-button, .embed2-content", function () {
     $(".embed2-button-wrapper").toggleClass("expanded");
     $(".embed1-button-wrapper").removeClass("expanded");
     $(".embed3-button-wrapper").removeClass("expanded");
@@ -321,7 +321,7 @@ jQuery(document).ready(function ($) {
   });
 
   ///Embed Button 4 (Middle Left)
-  $(document).on("click", ".embed4-button", function () {
+  $(document).on("click", ".embed4-button, .embed4-content", function () {
     $(".embed4-button-wrapper").toggleClass("expanded");
     $(".embed1-button-wrapper").removeClass("expanded");
     $(".embed2-button-wrapper").removeClass("expanded");
@@ -332,7 +332,7 @@ jQuery(document).ready(function ($) {
   });
 
   ///Embed Button 5 (Middle Right)
-  $(document).on("click", ".embed5-button", function () {
+  $(document).on("click", ".embed5-button, .embed5-content", function () {
     $(".embed5-button-wrapper").toggleClass("expanded");
     $(".embed1-button-wrapper").removeClass("expanded");
     $(".embed2-button-wrapper").removeClass("expanded");
@@ -345,7 +345,7 @@ jQuery(document).ready(function ($) {
   ////////////Corner Icons
 
   ///Embed Button 1 (Top Left Icon)
-  $(document).on("click", ".embed1-button", function () {
+  $(document).on("click", ".embed1-button, .embed1-content", function () {
     $(".embed1-button-wrapper").toggleClass("expanded");
     $(".embed2-button-wrapper").removeClass("expanded");
     $(".embed3-button-wrapper").removeClass("expanded");
@@ -356,7 +356,7 @@ jQuery(document).ready(function ($) {
   });
 
   ///Embed Button 3 (Top Right Icon)
-  $(document).on("click", ".embed3-button", function () {
+  $(document).on("click", ".embed3-button, .embed3-content", function () {
     $(".embed3-button-wrapper").toggleClass("expanded");
     $(".embed1-button-wrapper").removeClass("expanded");
     $(".embed2-button-wrapper").removeClass("expanded");
@@ -367,7 +367,7 @@ jQuery(document).ready(function ($) {
   });
 
   ///Embed Button 6 (Bottom Left Icon)
-  $(document).on("click", ".embed6-button", function () {
+  $(document).on("click", ".embed6-button, .embed6-content", function () {
     $(".embed6-button-wrapper").toggleClass("expanded");
     $(".embed1-button-wrapper").removeClass("expanded");
     $(".embed2-button-wrapper").removeClass("expanded");
@@ -378,7 +378,7 @@ jQuery(document).ready(function ($) {
   });
 
   ///Embed Button 10 (Bottom Right Icon)
-  $(document).on("click", ".embed10-button", function () {
+  $(document).on("click", ".embed10-button, .embed10-content", function () {
     $(".embed10-button-wrapper").toggleClass("expanded");
     $(".embed1-button-wrapper").removeClass("expanded");
     $(".embed2-button-wrapper").removeClass("expanded");
@@ -386,5 +386,19 @@ jQuery(document).ready(function ($) {
     $(".embed4-button-wrapper").removeClass("expanded");
     $(".embed5-button-wrapper").removeClass("expanded");
     $(".embed6-button-wrapper").removeClass("expanded");
+  });
+
+  ///Close PopUP Button
+  $(document).on("click", ".close_button", function () {
+    $(".embed10-button-wrapper").removeClass("expanded");
+    $(".embed1-button-wrapper").removeClass("expanded");
+    $(".embed2-button-wrapper").removeClass("expanded");
+    $(".embed3-button-wrapper").removeClass("expanded");
+    $(".embed4-button-wrapper").removeClass("expanded");
+    $(".embed5-button-wrapper").removeClass("expanded");
+    $(".embed6-button-wrapper").removeClass("expanded");
+    $(".embed7-button-wrapper").removeClass("expanded");
+    $(".embed8-button-wrapper").removeClass("expanded");
+    $(".embed9-button-wrapper").removeClass("expanded");
   });
 });

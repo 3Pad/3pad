@@ -151,12 +151,19 @@ function importFields() {
         }
       });
 
-      showAlert("✅ Settings imported successfully. ✅");
+      
+
+      showAlert("✅ Settings imported successfully.✅ Refresh page and restart import if issues arise.");
     } catch (e) {
       showAlert(
         "⚠️ Failed to import settings. Please make sure the input is valid JSON. ⚠️"
       );
     }
+
+     // Click the "update" button
+     const updateBtn = document.getElementById("publish");
+     updateBtn.click();
+   
   }
 }
 
@@ -623,3 +630,247 @@ function updateHeadingText() {
 }
 
 updateHeadingText();
+
+///////WYSIWYG  Editor 
+jQuery(document).ready(function($) {
+  var tinymceConfig = {
+    paste_data_images: true,
+    file_picker_callback: function(callback, value, meta) {
+      if (meta.filetype === 'image') {
+        var input = document.createElement('input');
+        input.setAttribute('type', 'file');
+        input.setAttribute('accept', 'image/*');
+
+        input.onchange = function() {
+          var file = this.files[0];
+          var reader = new FileReader();
+
+          reader.onload = function() {
+            var base64Data = reader.result;
+            callback(base64Data, {alt: file.name});
+          };
+
+          reader.readAsDataURL(file);
+        };
+
+        input.click();
+      }
+    },
+    height: 400,
+    toolbar: 'undo | bold italic blockquote | forecolor backcolor | alignleft aligncenter alignright | ' +
+  ' image media | fontselect fontsizeselect | hr',
+    plugins: 'hr lists link image fullscreen media paste textcolor colorpicker',
+    content_style: 'body { font-family: system-ui, sans-serif; font-size: 14px; }',
+    custom_ui_selector: '#left-middle, #right-middle, #top-left, #top-right, #top-middle, #bottom-left, #bottom-right, #icon-2, #icon-3, #icon-4',
+  };
+
+  // Add the configuration objects for #left-middle and #right-middle editors
+  var leftEditorConfig = Object.assign({}, tinymceConfig, {
+    selector: '#left-middle .acf-input textarea',
+    setup: function (editor) {
+      editor.on('change', function () {
+        var content = editor.getContent();
+        var modifiedContent = content.replace(/%/g, "%25");
+        $('#left-middle .acf-input textarea').val(modifiedContent).trigger('change');
+      });
+    }
+  });
+
+  var rightEditorConfig = Object.assign({}, tinymceConfig, {
+    selector: '#right-middle .acf-input textarea',
+    setup: function (editor) {
+      editor.on('change', function () {
+        var content = editor.getContent();
+        var modifiedContent = content.replace(/%/g, "%25");
+        $('#right-middle .acf-input textarea').val(modifiedContent).trigger('change');
+      });
+    }
+  });
+
+  var topLeftEditorConfig = Object.assign({}, tinymceConfig, {
+    selector: '#top-left .acf-input textarea',
+    setup: function (editor) {
+      editor.on('change', function () {
+        var content = editor.getContent();
+        var modifiedContent = content.replace(/%/g, "%25");
+        $('#top-left .acf-input textarea').val(modifiedContent).trigger('change');
+      });
+    }
+  });
+
+  var topRightEditorConfig = Object.assign({}, tinymceConfig, {
+    selector: '#top-right .acf-input textarea',
+    setup: function (editor) {
+      editor.on('change', function () {
+        var content = editor.getContent();
+        var modifiedContent = content.replace(/%/g, "%25");
+        $('#top-right .acf-input textarea').val(modifiedContent).trigger('change');
+      });
+    }
+  });
+
+  var topMiddleEditorConfig = Object.assign({}, tinymceConfig, {
+    selector: '#top-middle .acf-input textarea',
+    setup: function (editor) {
+      editor.on('change', function () {
+        var content = editor.getContent();
+        var modifiedContent = content.replace(/%/g, "%25");
+        $('#top-middle .acf-input textarea').val(modifiedContent).trigger('change');
+      });
+    }
+  });
+
+  var bottomLeftEditorConfig = Object.assign({}, tinymceConfig, {
+    selector: '#bottom-left .acf-input textarea',
+    setup: function (editor) {
+      editor.on('change', function () {
+        var content = editor.getContent();
+        var modifiedContent = content.replace(/%/g, "%25");
+        $('#bottom-left .acf-input textarea').val(modifiedContent).trigger('change');
+      });
+    }
+  });
+
+  var bottomRightEditorConfig = Object.assign({}, tinymceConfig, {
+    selector: '#bottom-right .acf-input textarea',
+    setup: function (editor) {
+      editor.on('change', function () {
+        var content = editor.getContent();
+        var modifiedContent = content.replace(/%/g, "%25");
+        $('#bottom-right .acf-input textarea').val(modifiedContent).trigger('change');
+      });
+    }
+  });
+
+  var icon2EditorConfig = Object.assign({}, tinymceConfig, {
+    selector: '#icon-2 .acf-input textarea',
+    setup: function (editor) {
+      editor.on('change', function () {
+        var content = editor.getContent();
+        var modifiedContent = content.replace(/%/g, "%25");
+        $('#icon-2 .acf-input textarea').val(modifiedContent).trigger('change');
+      });
+    }
+  });
+
+  var icon3EditorConfig = Object.assign({}, tinymceConfig, {
+    selector: '#icon-3 .acf-input textarea',
+    setup: function (editor) {
+      editor.on('change', function () {
+        var content = editor.getContent();
+        var modifiedContent = content.replace(/%/g, "%25");
+        $('#icon-3 .acf-input textarea').val(modifiedContent).trigger('change');
+      });
+    }
+  });
+
+  var icon4EditorConfig = Object.assign({}, tinymceConfig, {
+    selector: '#icon-4 .acf-input textarea',
+    setup: function (editor) {
+      editor.on('change', function () {
+        var content = editor.getContent();
+        var modifiedContent = content.replace(/%/g, "%25");
+        $('#icon-4 .acf-input textarea').val(modifiedContent).trigger('change');
+      });
+    }
+  });
+
+  tinymce.init(leftEditorConfig);
+  tinymce.init(rightEditorConfig);
+  tinymce.init(topLeftEditorConfig);
+  tinymce.init(topRightEditorConfig);
+  tinymce.init(topMiddleEditorConfig);
+  tinymce.init(bottomLeftEditorConfig);
+  tinymce.init(bottomRightEditorConfig);
+  tinymce.init(icon2EditorConfig);
+  tinymce.init(icon3EditorConfig);
+  tinymce.init(icon4EditorConfig);
+});
+
+////Export HTML Site
+jQuery(document).ready(function ($) {
+document.getElementById('download-btn').addEventListener('click', function(event) {
+  event.preventDefault();
+  const previewButton = $("#post-preview");
+  const previewHref = previewButton.attr("href");
+  const previewIndex = previewHref.indexOf("?preview=true");
+  const siteUrl = previewHref
+    .substring(0, previewIndex)
+    .replace(/\/$/, "") // Remove any trailing slashes
+    .replace(/(\/\/[^\/]+)(.*)/, "$1$2");
+
+  exportHTMLContent('index.html', siteUrl); // Replace with the URL of the desired page
+});
+
+function exportHTMLContent(fileName, pageUrl) {
+  fetch(pageUrl)
+    .then(function(response) {
+      return response.text();
+    })
+    .then(function(html) {
+      var blob = new Blob([html], { type: 'text/html' });
+      var url = URL.createObjectURL(blob);
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    })
+    .catch(function(error) {
+      console.error('Error fetching page:', error);
+    });
+}
+});
+
+//Import URL Configuration 
+
+document.getElementById("import-url-btn").addEventListener("click", function (event) {
+  event.preventDefault();
+
+  // Get the URL from the input field
+  var url = document.getElementById("import-fields-url").value;
+
+  // Make an AJAX request
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", url, true);
+
+  xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4) {
+          if (xhr.status == 200) {
+              // Parse the HTML content
+              var parser = new DOMParser();
+              var doc = parser.parseFromString(xhr.responseText, "text/html");
+
+              // Find the backup-data-json div
+              var backupDataJson = doc.getElementById("backup-data-json");
+
+              if (backupDataJson) {
+                  // Get the content of backup-data-json and set it in import-fields
+                  var importFields = document.getElementById("import-fields");
+                  importFields.textContent = backupDataJson.textContent;
+                  
+                  showSuccessAlert("✅ Data extracted successfully. You can now import. ✅");
+              } else {
+                  showAlert("⚠️ Data not found on the specified URL. ⚠️");
+              }
+          } else {
+              showAlert("⚠️ Failed to fetch URL. Please check if it's accessible. ⚠️");
+          }
+      }
+  };
+
+  xhr.send();
+});
+
+function showAlert(message) {
+  // Implement your logic to show an alert or handle the message.
+  alert(message);
+  // You can replace this with your own alert mechanism, e.g., showing a Bootstrap alert.
+}
+
+function showSuccessAlert(message) {
+  // Implement your logic to show a success alert or handle the message.
+  alert(message);
+  // You can replace this with your own alert mechanism.
+}

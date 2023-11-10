@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang=en>
-    <meta content="This site was built with Web3 platform 3Pad. More Info at https://hello.3pad.xyz">
+    <meta content="This site was built with Web3 platform 3Pad. More Info at https://3pad.xyz">
     <meta content="3Pad - Version 1.0">
     <?php echo '<meta content="Main-Site-Launchpad">'; ?>
 
@@ -53,7 +53,7 @@
     <meta name="apple-mobile-web-app-status-bar-style"
         content="<?php echo get_field('view_port_theme_color'); ?>">
     <noscript>
-        <meta http-equiv="refresh" content="0;url=https://3pad.xyz/nojs.html">
+        
     </noscript>
     <!-- Cloudflare Web Analytics -->
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js'

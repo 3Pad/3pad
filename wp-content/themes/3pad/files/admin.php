@@ -4,9 +4,9 @@
  * ADMIN
  */
 
-/////////Disable Deleting Categories
+// ///////Disable Deleting Categories
 
-//////Remove Page/Post Widgets
+// ////Remove Page/Post Widgets
 
 function remove_page_attribute_support()
 {
@@ -18,11 +18,11 @@ function remove_page_attribute_support()
 }
 
 add_action('init', 'remove_page_attribute_support');
-/////////Remove Page Widgets
+// ///////Remove Page Widgets
 
 // Update CSS within in Elementor
 
-/////////Removes the leftover 'Visual Editor', 'Keyboard Shortcuts' and 'Toolbar' options.
+// ///////Removes the leftover 'Visual Editor', 'Keyboard Shortcuts' and 'Toolbar' options.
 if (is_admin()) {
   add_action('admin_head', function () {
     ob_start(
@@ -38,9 +38,9 @@ if (is_admin()) {
     ob_end_flush();
   });
 }
-/////////Removes the leftover 'Visual Editor', 'Keyboard Shortcuts' and 'Toolbar' options.
+// ///////Removes the leftover 'Visual Editor', 'Keyboard Shortcuts' and 'Toolbar' options.
 
-////////////////////////////////////// Disable Blocks /////////////////////////////////
+// //////////////////////////////////// Disable Blocks /////////////////////////////////
 add_filter('allowed_block_types_all', 'misha_allowed_block_types');
 
 function misha_allowed_block_types($allowed_blocks)
@@ -71,9 +71,9 @@ function misha_allowed_block_types($allowed_blocks)
   }
 }
 
-////////////////////////////////////// Disable Blocks /////////////////////////////////
+// //////////////////////////////////// Disable Blocks /////////////////////////////////
 
-///////////////////////Disable Admin Full Screen Edit ///////
+// /////////////////////Disable Admin Full Screen Edit ///////
 if (is_admin()) {
   function jba_disable_editor_fullscreen_by_default()
   {
@@ -83,9 +83,9 @@ if (is_admin()) {
 
   add_action('enqueue_block_editor_assets', 'jba_disable_editor_fullscreen_by_default');
 }
-///////////////////////Disable Admin Full Screen Edit ///////
+// /////////////////////Disable Admin Full Screen Edit ///////
 
-///////////////////////Remove Customizer Settings ///////
+// /////////////////////Remove Customizer Settings ///////
 if (is_admin()) {
   function wpse257129_remove_colors_section(WP_Customize_Manager $wp_customize)
   {
@@ -105,7 +105,7 @@ if (is_admin()) {
 
   add_action('customize_register', 'wpse257129_remove_colors_section', 100);
 }
-///////////////////////Remove Customizer Settings ///////
+// /////////////////////Remove Customizer Settings ///////
 
 // Remove admin bar menu search box.
 add_action(
@@ -117,7 +117,7 @@ add_action(
 );
 // Remove admin bar menu search box.
 
-///////////////// Disable Certain Admin Pages
+// /////////////// Disable Certain Admin Pages
 add_action('admin_head', 'restrict_access');  // action hook for loading code in wp-admin pages.
 
 function restrict_access()
@@ -128,32 +128,33 @@ function restrict_access()
   $basepath  = $homeadmin;
   $URI       = $home . $Path;
 
-  /*if you want to restrict any other admin page just replace “post-new.php” OR “edit.php” with your desired page.
-  current_user_can ('administrator') will check if the user has not administrative capabilities
-  */
+  /*
+   * if you want to restrict any other admin page just replace “post-new.php” OR “edit.php” with your desired page.
+   * current_user_can ('administrator') will check if the user has not administrative capabilities
+   */
 
-  if (!current_user_can('administrator')) {  ////Admin Only
+  if (!current_user_can('administrator')) {  // //Admin Only
     if (
       ($URI == ($basepath . '/options-general.php?page=unlock-protocol')) || ($URI == ($basepath . '/options-privacy.php')) ||
-        ($URI == ($basepath . '/options-permalink.php')) || ($URI == ($basepath . '/options-media.php')) ||
-        //($URI ==($basepath . '/options-discussion.php'))
-        ($URI == ($basepath . '/options-reading.php')) ||
-        ($URI == ($basepath . '/options-writing.php')) || ($URI == ($basepath . '/options-general.php')) ||
-        ($URI == ($basepath . '/options.php')) || ($URI == ($basepath . '/themes.php')) ||
-        ($URI == ($basepath . '/nav-menus.php')) || ($URI == ($basepath . '/admin.php?page=elementor')) ||
-        ($URI == ($basepath . '/edit.php?post_type=elementor_font')) || ($URI == ($basepath . '/edit.php?post_type=elementor_icons')) ||
-        ($URI == ($basepath . '/admin.php?page=elementor-system-info')) || ($URI == ($basepath . '/admin.php?page=elementor-license')) ||
-        ($URI == ($basepath . '/edit.php?post_type=acf-field-group')) || ($URI == ($basepath . '/post-new.php?post_type=acf-field-group')) ||
-        ($URI == ($basepath . '/edit.php?post_type=acf-field-group&page=acf-tools')) ||
-        ($URI == ($basepath . '/admin.php?page=wp-postratings%2Fpostratings-templates.php')) ||
-        ($URI == ($basepath . '/admin.php?page=wp-postratings%2Fpostratings-options.php')) ||
-        ($URI == ($basepath . '/edit-comments.php?page=commentpress.php')) ||
-        ($URI == ($basepath . '/admin.php?page=elementor-tools')) ||
-        ($URI == ($basepath . '/admin-ajax.php?action=elementor_library_direct_actions&library_action=export_template')) ||
-        ($URI == ($basepath . '/admin.php?page=uip-overview')) || ($URI == ($basepath . '/admin.php?page=uip-content')) ||
-        ($URI == ($basepath . '/users.php?page=wp-user-profile-avatar-settings')) ||
-        ($URI == ($basepath . '/wp-admin/post-new.php?post_type=elementor_library')) ||
-        ($URI == ($basepath . '/wp-admin/index.php?page=burst#settings'))
+      ($URI == ($basepath . '/options-permalink.php')) || ($URI == ($basepath . '/options-media.php')) ||
+      // ($URI ==($basepath . '/options-discussion.php'))
+      ($URI == ($basepath . '/options-reading.php')) ||
+      ($URI == ($basepath . '/options-writing.php')) || ($URI == ($basepath . '/options-general.php')) ||
+      ($URI == ($basepath . '/options.php')) || ($URI == ($basepath . '/themes.php')) ||
+      ($URI == ($basepath . '/nav-menus.php')) || ($URI == ($basepath . '/admin.php?page=elementor')) ||
+      ($URI == ($basepath . '/edit.php?post_type=elementor_font')) || ($URI == ($basepath . '/edit.php?post_type=elementor_icons')) ||
+      ($URI == ($basepath . '/admin.php?page=elementor-system-info')) || ($URI == ($basepath . '/admin.php?page=elementor-license')) ||
+      ($URI == ($basepath . '/edit.php?post_type=acf-field-group')) || ($URI == ($basepath . '/post-new.php?post_type=acf-field-group')) ||
+      ($URI == ($basepath . '/edit.php?post_type=acf-field-group&page=acf-tools')) ||
+      ($URI == ($basepath . '/admin.php?page=wp-postratings%2Fpostratings-templates.php')) ||
+      ($URI == ($basepath . '/admin.php?page=wp-postratings%2Fpostratings-options.php')) ||
+      ($URI == ($basepath . '/edit-comments.php?page=commentpress.php')) ||
+      ($URI == ($basepath . '/admin.php?page=elementor-tools')) ||
+      ($URI == ($basepath . '/admin-ajax.php?action=elementor_library_direct_actions&library_action=export_template')) ||
+      ($URI == ($basepath . '/admin.php?page=uip-overview')) || ($URI == ($basepath . '/admin.php?page=uip-content')) ||
+      ($URI == ($basepath . '/users.php?page=wp-user-profile-avatar-settings')) ||
+      ($URI == ($basepath . '/wp-admin/post-new.php?post_type=elementor_library')) ||
+      ($URI == ($basepath . '/wp-admin/index.php?page=burst#settings'))
     ) {
       // anyone attempting to access this page except administrator will be sent to the below page.
 
@@ -171,16 +172,16 @@ function restrict_access()
   }
 }
 
-///////////////// Disable Certain Admin Pages
+// /////////////// Disable Certain Admin Pages
 
-//////////Customize Page Site Settings
-add_filter('use_block_editor_for_post', 'disable_gutenberg_on_settings_page', 5, 2);  //////Hiding Gutenberg
+// ////////Customize Page Site Settings
+add_filter('use_block_editor_for_post', 'disable_gutenberg_on_settings_page', 5, 2);  // ////Hiding Gutenberg
 
 function disable_gutenberg_on_settings_page($can, $post)
 {
   if ($post) {
     // Replace "site-settings" with the slug of your site settings page.
-    //Disable home page editing
+    // Disable home page editing
     if ($post->ID === 1000) {
       return false;
     }
@@ -188,14 +189,13 @@ function disable_gutenberg_on_settings_page($can, $post)
 
   return $can;
 }
-//////////Customize Page Site Settings
+// ////////Customize Page Site Settings
 
-/////////////Hide Settings & HOME From Menu
+// ///////////Hide Settings & HOME From Menu
 
-/////////////Hide Settings & HOME From Menu
+// ///////////Hide Settings & HOME From Menu
 
-
-///Disable Fields Profile PHP
+// /Disable Fields Profile PHP
 function disable_first_last_name_fields($user)
 {
   // Remove the first name and last name fields from the user profile page
@@ -206,88 +206,88 @@ function disable_first_last_name_fields($user)
 add_action('show_user_profile', 'disable_first_last_name_fields');
 add_action('edit_user_profile', 'disable_first_last_name_fields');
 
-////////////////Disable menu items
+// //////////////Disable menu items
 function remove_menus()
 {
   $user          = wp_get_current_user();
   $allowed_roles = array('subscriber', 'editor', 'author', 'contributor');
   if (array_intersect($allowed_roles, $user->roles)) {
-    remove_menu_page('site-health.php');  //Dashboard Hide
-    remove_menu_page('upload.php');  //Media
-    remove_menu_page('options-general.php');  //Options General Hide
-    remove_menu_page('themes.php');  //Themes Hide
-    remove_menu_page('uip-content');  //Uip Hide
-    remove_menu_page('tools.php');  //Tools Hide
-    remove_menu_page('edit.php');  //Edit Hide
-    remove_menu_page('edit.php?post_type=page');  //Tools Hide
-    remove_menu_page('edit-comments.php');  //comments Hide
-    remove_menu_page('wp-postratings/postratings-manager.php');  //Ratings Hide
-    remove_menu_page('edit.php?post_type=acf-field-group');  //ACF Hide
-    remove_submenu_page('edit-comments.php', 'commentpress.php');  //Comment Hide
+    remove_menu_page('site-health.php');  // Dashboard Hide
+    remove_menu_page('upload.php');  // Media
+    remove_menu_page('profile.php');  // Profile
+    remove_menu_page('options-general.php');  // Options General Hide
+    remove_menu_page('themes.php');  // Themes Hide
+    remove_menu_page('uip-content');  // Uip Hide
+    remove_menu_page('tools.php');  // Tools Hide
+    remove_menu_page('edit.php');  // Edit Hide
+    remove_menu_page('edit.php?post_type=page');  // Tools Hide
+    remove_menu_page('edit-comments.php');  // comments Hide
+    remove_menu_page('wp-postratings/postratings-manager.php');  // Ratings Hide
+    remove_menu_page('edit.php?post_type=acf-field-group');  // ACF Hide
+    remove_submenu_page('edit-comments.php', 'commentpress.php');  // Comment Hide
     remove_submenu_page('user.php', 'wp-user-profile-avatar-settings');
   }
 }
 
 add_action('admin_menu', 'remove_menus', 1000);
-////////////////Disable menu items
+// //////////////Disable menu items
 
-
-/////////////Redirect TO Launchpad
+// ///////////Redirect TO Launchpad
 $words = array('?launchpad');
 foreach ($words as $word) {
   if (stristr($_SERVER["REQUEST_URI"], $word) !== false) {
     $random = time();
     exit (header("Location: /?" . urlencode($random)));
-    //exit(header("HTTP/1.0 410 Gone"));
+    // exit(header("HTTP/1.0 410 Gone"));
   }
 }
 
-/////////////Encrypt Page
+// ///////////Encrypt Page
 $words = array('?encrypt');
 foreach ($words as $word) {
   if (stristr($_SERVER["REQUEST_URI"], $word) !== false) {
     exit (header("Location: https://3pad.xyz/encrypt.html"));
-    //exit(header("HTTP/1.0 410 Gone"));
+    // exit(header("HTTP/1.0 410 Gone"));
   }
 }
-/*
-/////////////Status
-$words = array('?status');
-foreach ($words as $word) {
-if (stristr($_SERVER["REQUEST_URI"], $word) !== false) {
-exit(header("Location: https://app.unlock-protocol.com/keychain"));
-//exit(header("HTTP/1.0 410 Gone"));
-}
-}
-*/
 
+/*
+ * /////////////Status
+ * $words = array('?status');
+ * foreach ($words as $word) {
+ * if (stristr($_SERVER["REQUEST_URI"], $word) !== false) {
+ * exit(header("Location: https://app.unlock-protocol.com/keychain"));
+ * //exit(header("HTTP/1.0 410 Gone"));
+ * }
+ * }
+ */
 
 //
-function redirect_to_profile_edit_page() {
+function redirect_to_profile_edit_page()
+{
   $words = array('?customize-page');
   foreach ($words as $word) {
-      if (stristr($_SERVER["REQUEST_URI"], $word) !== false) {
-          $current_user = wp_get_current_user();
-          $user_login = $current_user->user_login;
-          $page = get_page_by_path($user_login);
-          if ($page) {
-              $page_id = $page->ID;
-          } else {
-              // If the user has not authored any pages, set $page_id to null
-              $page_id = null;
-          }
-
-          exit (header("Location: /wp-admin/post.php?action=edit&post=$page_id"));
-          //exit(header("HTTP/1.0 410 Gone"));
+    if (stristr($_SERVER["REQUEST_URI"], $word) !== false) {
+      $current_user = wp_get_current_user();
+      $user_login   = $current_user->user_login;
+      $page         = get_page_by_path($user_login);
+      if ($page) {
+        $page_id = $page->ID;
+      } else {
+        // If the user has not authored any pages, set $page_id to null
+        $page_id = null;
       }
+
+      exit (header("Location: /wp-admin/post.php?action=edit&post=$page_id"));
+      // exit(header("HTTP/1.0 410 Gone"));
+    }
   }
 }
 
 add_action('admin_init', 'redirect_to_profile_edit_page');
 
-
-///////ENS
-/////////////Analytics
+// /////ENS
+// ///////////Analytics
 $words = array('?go-to-ens');
 foreach ($words as $word) {
   if (stristr($_SERVER["REQUEST_URI"], $word) !== false) {
@@ -306,11 +306,11 @@ foreach ($words as $word) {
     $site_path = '/' . $email_username;
 
     exit (header("Location: https://app.ens.domains/address$site_path"));
-    //exit(header("HTTP/1.0 410 Gone"));
+    // exit(header("HTTP/1.0 410 Gone"));
   }
 }
 
-//Redirect To Custom Dashboard
+// Redirect To Custom Dashboard
 function custom_site_name_url()
 {
   global $wp_admin_bar;
@@ -330,7 +330,7 @@ function custom_site_name_url()
 
 add_action('wp_before_admin_bar_render', 'custom_site_name_url');
 
-////////////////////Add Menu Option
+// //////////////////Add Menu Option
 add_action('admin_menu', 'add_nav_menus_link_for_editor');
 
 function add_nav_menus_link_for_editor()
@@ -344,28 +344,28 @@ function add_nav_menus_link_for_editor()
 
   // The user meta field is not valid (premium), deny access to the admin page...
   if ($user_meta_expiration_time < $current_time && !current_user_can('manage_options')) {
-    /////////Add Content Page
-    /*
-    add_menu_page(
-      ////Customize Main Menu
-      __('Pages'),
-      // the page title
-      __('Pages 🔒'),
-      //menu title
-      'edit_pages',
-      //capability
-      'edit.php?post_type=page',
-      //menu slug/handle this is what you need!!!
-      '',
-      //callback function
-      'dashicons-welcome-write-blog',
-      //icon_url,
-      10 //position
-    );
+    // ///////Add Content Page
 
-*/
+    /*
+     * add_menu_page(
+     *   ////Customize Main Menu
+     *   __('Pages'),
+     *   // the page title
+     *   __('Pages 🔒'),
+     *   //menu title
+     *   'edit_pages',
+     *   //capability
+     *   'edit.php?post_type=page',
+     *   //menu slug/handle this is what you need!!!
+     *   '',
+     *   //callback function
+     *   'dashicons-welcome-write-blog',
+     *   //icon_url,
+     *   10 //position
+     * );
+     */
   }
-  ///All
+  // /All
 
   add_menu_page(
     __('Customize'),
@@ -373,7 +373,7 @@ function add_nav_menus_link_for_editor()
     __('Customize'),
     // the menu title
     'read',
-    //capability
+    // capability
     '?customize-page',
     // 3pad help page //menu slug
     'customize',
@@ -387,7 +387,7 @@ function add_nav_menus_link_for_editor()
     __('Launchpad 🚀'),
     // the menu title
     'read',
-    //capability
+    // capability
     '?launchpad',
     // 3pad help page //menu slug
     'launchpad',
@@ -395,91 +395,94 @@ function add_nav_menus_link_for_editor()
     900
   );
 
-  //<------------> If user is premium Member <------------>
+  // <------------> If user is premium Member <------------>
   if ($user_meta_expiration_time > $current_time && !current_user_can('manage_options')) {
     // Custom link to the nav menus page
-    /*
-    add_menu_page(
-    __('Site menu'),
-    __('Edit Site Info'),
-    'edit_pages',
-    '/customize.php', // Site Info
-    '',
-    'dashicons-edit',
-    0
-    );
-    ////
-    add_menu_page(
-    __('Help'),
-    // the page title
-    __('Help ℹ️'),
-    // the menu title
-    'delete_private_pages',
-    //capability
-    '?3padhelp',
-    // 3pad help page //menu slug
-    '3padhelp',
-    'dashicons-editor-help',
-    2000
-    );
-    */
 
-    /////////Add Domain Mapping Page
     /*
-    add_menu_page(
-    ////Customize Main Menu
-    __('Beta'),
-    // the page title
-    __('Beta Test ⌛'),
-    //menu title
-    'edit_pages',
-    //capability
-    '#',
-    //menu slug/handle this is what you need!!!
-    '',
-    //callback function
-    'dashicons-hourglass',
-    //icon_url,
-    800 //position
-    );
-    */
+     * add_menu_page(
+     * __('Site menu'),
+     * __('Edit Site Info'),
+     * 'edit_pages',
+     * '/customize.php', // Site Info
+     * '',
+     * 'dashicons-edit',
+     * 0
+     * );
+     * ////
+     * add_menu_page(
+     * __('Help'),
+     * // the page title
+     * __('Help ℹ️'),
+     * // the menu title
+     * 'delete_private_pages',
+     * //capability
+     * '?3padhelp',
+     * // 3pad help page //menu slug
+     * '3padhelp',
+     * 'dashicons-editor-help',
+     * 2000
+     * );
+     */
 
-    /////////Add Content Page
+    // ///////Add Domain Mapping Page
+
+    /*
+     * add_menu_page(
+     * ////Customize Main Menu
+     * __('Beta'),
+     * // the page title
+     * __('Beta Test ⌛'),
+     * //menu title
+     * 'edit_pages',
+     * //capability
+     * '#',
+     * //menu slug/handle this is what you need!!!
+     * '',
+     * //callback function
+     * 'dashicons-hourglass',
+     * //icon_url,
+     * 800 //position
+     * );
+     */
+
+    // ///////Add Content Page
     add_menu_page(
-      ////Customize Main Menu
+      // //Customize Main Menu
       __('Pages'),
       // the page title
       __('Pages'),
-      //menu title
+      // menu title
       'edit_pages',
-      //capability
+      // capability
       'edit.php?post_type=page',
-      //menu slug/handle this is what you need!!!
+      // menu slug/handle this is what you need!!!
       '',
-      //callback function
+      // callback function
       'dashicons-welcome-write-blog',
-      //icon_url,
-      10  //position
+      // icon_url,
+      10  // position
     );
+
     /*
-    add_menu_page(
-      __('Analytics'),
-      // the page title
-      __('Analytics'),
-      // the menu title
-      'delete_private_pages',
-      //capability
-      '?analytics',
-      // 3pad help page //menu slug
-      'status',
-      'dashicons-chart-area',
-      50
-    );
-    */
+     * add_menu_page(
+     *   __('Analytics'),
+     *   // the page title
+     *   __('Analytics'),
+     *   // the menu title
+     *   'delete_private_pages',
+     *   //capability
+     *   '?analytics',
+     *   // 3pad help page //menu slug
+     *   'status',
+     *   'dashicons-chart-area',
+     *   50
+     * );
+     */
   }
 }
 
-/////Remove Dashboard Widgets
+// ///Remove Dashboard Widgets
 function remove_dashboard_widgets()
 {
   global $wp_meta_boxes;
@@ -497,7 +500,7 @@ function remove_dashboard_widgets()
 
 add_action('wp_dashboard_setup', 'remove_dashboard_widgets');
 
-////Redirect if Trying To edit home page
+// //Redirect if Trying To edit home page
 add_action('init', function () {
   $current_page = "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
@@ -507,15 +510,15 @@ add_action('init', function () {
   }
 });
 
-///Detect if Title is empty if so redirect (New Users) (ACF ERROR)
+// /Detect if Title is empty if so redirect (New Users) (ACF ERROR)
 function check_if_home_pending()
 {
-  //Get blog Id
+  // Get blog Id
   $user_id = get_current_user_id();
   $blog_id = get_current_blog_id();
-  //Check if title is empty
-  $title   = get_field('site_title', 'option');
-  //If Title is empty. Isn't on admin page. isn't on login page. Isn't mainsite (WPMU)
+  // Check if title is empty
+  $title = get_field('site_title', 'option');
+  // If Title is empty. Isn't on admin page. isn't on login page. Isn't mainsite (WPMU)
   if ($title == NULL && !is_main_site() && current_user_can('edit_pages')) {
     echo "<script>alert('Please Setup Your Landing Page. Enter Title To Start'); </script>";
   }
@@ -524,10 +527,10 @@ function check_if_home_pending()
 add_action('admin_notices', 'check_if_home_pending');
 add_action('template_redirect', 'check_if_home_pending');
 
-//Disable Avatars
+// Disable Avatars
 add_filter('option_show_avatars', '__return_false');
 
-///Remove Post Revision
+// /Remove Post Revision
 function limit_post_revisions($num, $post)
 {
   return 0;
@@ -535,7 +538,7 @@ function limit_post_revisions($num, $post)
 
 add_filter('wp_revisions_to_keep', 'limit_post_revisions', 10, 2);
 
-///Admin Tiltle & Favicon Changes
+// /Admin Tiltle & Favicon Changes
 function remove_admin_bar_wp_title($admin_title)
 {
   $admin_title = str_replace('WordPress', 'Dashboard | 3Pad', $admin_title);
@@ -558,22 +561,23 @@ add_action('admin_head', 'metahead', 0);
 
 remove_action('admin_head', '_admin_bar_bump_cb');
 
-///Redirect from page edit screen non admin
+// /Redirect from page edit screen non admin
+
 /*
-function my_custom_redirect()
-{
-  if (!current_user_can('manage_options')) {
-    if (isset($_GET['action']) && $_GET['action'] === 'edit') {
-      wp_redirect(admin_url('/admin.php?page=customize-home'), 301);
-      exit;
-    }
-  }
-}
+ * function my_custom_redirect()
+ * {
+ *   if (!current_user_can('manage_options')) {
+ *     if (isset($_GET['action']) && $_GET['action'] === 'edit') {
+ *       wp_redirect(admin_url('/admin.php?page=customize-home'), 301);
+ *       exit;
+ *     }
+ *   }
+ * }
+ *
+ * add_action('admin_init', 'my_custom_redirect');
+ */
 
-add_action('admin_init', 'my_custom_redirect');
-*/
-
-///Simply Static Menu
+// /Simply Static Menu
 function change_ss_settings_capability($capability)
 {
   return 'manage_options';
@@ -581,35 +585,58 @@ function change_ss_settings_capability($capability)
 
 add_filter('ss_settings_capability', 'change_ss_settings_capability');
 
-///Load Custom admin Javascript file
-function load_admin_js() {
-	if ( ! current_user_can('manage_options') ) {
-		wp_enqueue_script( 'dashboard-js1', get_theme_file_uri( '/assets/js/dashboard.js' ), array( 'jquery' ), '1.0', true );
-	}
-}
-
-add_action( 'admin_enqueue_scripts', 'load_admin_js' );
-
-function load_admin_css() {
-  if ( ! current_user_can('manage_options') ) {
-    wp_enqueue_style( 'dashboard-css', get_theme_file_uri( '/assets/css/admin.css' ), array(), '1.0', 'all', 999 );
-    wp_enqueue_style( 'fontawesome-css', get_theme_file_uri( '/assets/css/fontawesome.min.css' ), array(), '1.0', 'all', 999 );
-    wp_enqueue_style( 'brands-css', get_theme_file_uri( '/assets/css/brands.min.css' ), array(), '1.0', 'all', 999 );
-    wp_enqueue_style( 'solid-css', get_theme_file_uri( '/assets/css/solid.min.css' ), array(), '1.0', 'all', 999 );
+// /Load Custom admin Javascript file
+function load_admin_js()
+{
+  if (!current_user_can('manage_options')) {
+    wp_enqueue_script('dashboard-js1', get_theme_file_uri('/assets/js/dashboard.js'), array('jquery'), '1.0', true);
   }
 }
 
-add_action( 'admin_enqueue_scripts', 'load_admin_css', 0 );
+add_action('admin_enqueue_scripts', 'load_admin_js');
 
-
-//Disable Gutenberg
-function disable_gutenberg() {
-  if ( ! current_user_can( 'manage_options' ) ) {
-      add_filter( 'use_block_editor_for_post', '__return_false' );
+function load_admin_css()
+{
+  if (!current_user_can('manage_options')) {
+    wp_enqueue_style('dashboard-css', get_theme_file_uri('/assets/css/admin.css'), array(), '1.0', 'all', 999);
+    wp_enqueue_style('fontawesome-css', get_theme_file_uri('/assets/css/fontawesome.min.css'), array(), '1.0', 'all', 999);
+    wp_enqueue_style('brands-css', get_theme_file_uri('/assets/css/brands.min.css'), array(), '1.0', 'all', 999);
+    wp_enqueue_style('solid-css', get_theme_file_uri('/assets/css/solid.min.css'), array(), '1.0', 'all', 999);
   }
 }
-add_action( 'admin_init', 'disable_gutenberg' );
 
+add_action('admin_enqueue_scripts', 'load_admin_css', 0);
 
+// Disable Gutenberg
+function disable_gutenberg()
+{
+  if (!current_user_can('manage_options')) {
+    add_filter('use_block_editor_for_post', '__return_false');
+  }
+}
 
-/******ADMIN AREA*****/
+add_action('admin_init', 'disable_gutenberg');
+
+/* Disable Profile Page */
+function disable_profile_page_redirect()
+{
+  $current_screen = get_current_screen();
+
+  if ($current_screen && $current_screen->base === 'profile') {
+    wp_redirect(admin_url());
+    exit;
+  }
+}
+
+add_action('current_screen', 'disable_profile_page_redirect');
+
+function remove_admin_bar_top_secondary()
+{
+  global $wp_admin_bar;
+
+  $wp_admin_bar->remove_menu('my-account');
+}
+
+add_action('wp_before_admin_bar_render', 'remove_admin_bar_top_secondary');
+
+/* ADMIN AREA */

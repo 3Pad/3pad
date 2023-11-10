@@ -4,7 +4,7 @@
  * CACHE
  */
 
-////Logout Cache Bust
+// //Logout Cache Bust
 function my_logout_redirect()
 {
   // Check if headers have already been sent
@@ -50,3 +50,27 @@ function no_cache()
 }
 
 add_action('wp_login', 'no_cache');
+
+// Redirect To Html Pages
+$host       = $_SERVER['HTTP_HOST'];
+$requestUri = $_SERVER['REQUEST_URI'];
+
+// Check if the user is a site admin
+if (current_user_can('manage_options')) {
+  // The user is a site admin, do not perform the redirection
+} else {
+  // Check if the specific nonce is present
+  $expected_nonce = isset($_GET['unique_page_nonce']) ? sanitize_text_field($_GET['unique_page_nonce']) : '';
+
+  // Allow any subdomain before any top-level domain and any path
+  if (
+    preg_match('/^([a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]+\.[a-zA-Z]+\/?.*$/', $host) &&
+    !preg_match('/^\/(sites\/_sites\/|wp-admin|wp-login\.php)/', $requestUri) &&
+    empty($expected_nonce) &&
+    !(empty($requestUri) || $requestUri === '/' || parse_url($requestUri, PHP_URL_PATH) === '/')
+  ) {
+    // Redirect to the specified folder
+    header("Location: /sites/_sites$requestUri", true, 301);
+    exit ();
+  }
+}

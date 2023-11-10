@@ -31,13 +31,11 @@ if (!function_exists('getenv_docker')) {
 	{
 		if ($fileEnv = getenv($env . '_FILE')) {
 			return rtrim(file_get_contents($fileEnv), "\r\n");
+		} else if (($val = getenv($env)) !== false) {
+			return $val;
+		} else {
+			return $default;
 		}
-		else
-			if (($val = getenv($env)) !== false) {
-				return $val;
-			} else {
-				return $default;
-			}
 	}
 }
 
@@ -66,7 +64,8 @@ define('DB_CHARSET', getenv_docker('WORDPRESS_DB_CHARSET', 'utf8'));
 /** The database collate type. Don't change this if in doubt. */
 define('DB_COLLATE', getenv_docker('WORDPRESS_DB_COLLATE', ''));
 
-/**#@+
+/*
+ * #@+
  * Authentication unique keys and salts.
  *
  * Change these to different unique phrases! You can generate these using
@@ -87,7 +86,7 @@ define('LOGGED_IN_SALT', getenv_docker('WORDPRESS_LOGGED_IN_SALT', 'f1700c7af9e4
 define('NONCE_SALT', getenv_docker('WORDPRESS_NONCE_SALT', '241ee0bdd3656282529f4aceda1ffea325e4bb7e'));
 // (See also https://wordpress.stackexchange.com/a/152905/199287)
 
-/**#@-*/
+/* #@- */
 
 /**
  * WordPress database table prefix.
@@ -124,9 +123,12 @@ if ($configExtra = getenv_docker('WORDPRESS_CONFIG_EXTRA', '')) {
 	eval($configExtra);
 }
 
-//3pad CONFIGS
+// 3pad CONFIGS
 
-////Moralis KEY
+// Disable Auto Updates
+define('AUTOMATIC_UPDATER_DISABLED', true);
+
+// //Moralis KEY
 define('MORALIS_API_KEY', getenv_docker('WORDPRESS_MORALIS_KEY', 'API'));
 
 // IPFS PATH
@@ -138,22 +140,22 @@ define('TEMP_PATH', getenv_docker('WORDPRESS_TEMP_PATH', 'PATH'));
 // GITHUB ACCESS TOKEN
 define('GITHUB_ACCESS_TOKEN', getenv_docker('WORDPRESS_GITHUB_TOKEN', 'TOKEN'));
 
-//GIT PUSH SECONDS
+// GIT PUSH SECONDS
 define('GIT_PUSH_SECONDS', getenv_docker('WORDPRESS_GIT_PUSH_SECONDS', '300'));
 
-//Arweave URL
+// Arweave URL
 define('ARWEAVE_FILES', getenv_docker('ARWEAVE_FILES_URL', 'https://aiclsomux6khjv22oenjag7udfvl4c466gozortswz3lgdlrjimq.arweave.net/AgS5OZS_lHTXWnEakBv0GWq-C57xnZdGcrZ2sw1xShk'));
 
-# Set the default theme to '3pad'
+// Set the default theme to '3pad'
 define('WP_DEFAULT_THEME', '3pad');
 
-# Disallow editing files from the WordPress dashboard
+// Disallow editing files from the WordPress dashboard
 define('DISALLOW_FILE_EDIT', true);
 
-# Enable the use of a caching plugin or system
+// Enable the use of a caching plugin or system
 define('WP_CACHE', true);
 
-# Disable post content revisions
+// Disable post content revisions
 define('WP_POST_REVISIONS', false);
 
 /* That's all, stop editing! Happy publishing. */

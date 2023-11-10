@@ -1,12 +1,12 @@
 <?php
 
-///Super Admin dont display styling
+// /Super Admin dont display styling
 
 /**
  * Styling
  */
 
-//REMOVE GUTENBERG BLOCK LIBRARY CSS FROM LOADING ON FRONT PAGES
+// REMOVE GUTENBERG BLOCK LIBRARY CSS FROM LOADING ON FRONT PAGES
 function remove_wp_block_library_css()
 {
   if (is_front_page()) {
@@ -22,10 +22,17 @@ function remove_wp_block_library_css()
 
 add_action('wp_enqueue_scripts', 'remove_wp_block_library_css', 100);
 
-//////////////////////////////Password Protected CSS///////////////////////////////////
+add_action('wp_enqueue_scripts', 'remove_global_styles');
+
+function remove_global_styles()
+{
+  wp_dequeue_style('global-styles');
+}
+
+// ////////////////////////////Password Protected CSS///////////////////////////////////
 function my_custom_password_form()
 {
-  if (is_page()) {  //Private Page
+  if (is_page()) {  // Private Page
 
     global $post;
 
@@ -43,11 +50,11 @@ function my_custom_password_form()
 }
 
 add_filter('the_password_form', 'my_custom_password_form', 99);
-//////////////////////////////Password Protected CSS///////////////////////////////////
+// ////////////////////////////Password Protected CSS///////////////////////////////////
 
-/////////Custom CSS for admin area
+// ///////Custom CSS for admin area
 
-//Add Bg-Image
+// Add Bg-Image
 function add_bg_image_div()
 {
   if (is_admin() && !current_user_can('manage_options')) {
@@ -65,7 +72,7 @@ function add_bg_image_div()
 
 add_action('admin_head', 'add_bg_image_div');
 
-//Add Help Videos
+// Add Help Videos
 function add_help_videos()
 {
   if (is_admin() && !current_user_can('manage_options')) {
@@ -126,7 +133,7 @@ function add_help_videos()
 
 add_action('admin_head', 'add_help_videos', 100);
 
-//Remove Dashboard Dropdown
+// Remove Dashboard Dropdown
 function custom_dashboard_url($wp_admin_bar)
 {
   // Remove the default "Dashboard" menu item
@@ -135,7 +142,7 @@ function custom_dashboard_url($wp_admin_bar)
 
 add_action('admin_bar_menu', 'custom_dashboard_url', 999);
 
-//Hide New Page For Non Premium
+// Hide New Page For Non Premium
 add_action('admin_bar_menu', 'remove_add_new_page', 999);
 
 function remove_add_new_page($wp_admin_bar)
@@ -154,7 +161,7 @@ function remove_add_new_page($wp_admin_bar)
   }
 }
 
-////// Super Admin Hide Dont add code below this
+// //// Super Admin Hide Dont add code below this
 
 // Hide My Sites From Admin Bar
 function hide_my_sites_admin_bar()
@@ -177,13 +184,30 @@ function hide_admin_bar_site_name()
   echo '<style> #wp-admin-bar-site-name { display: none !important; }</style>';
 }
 
-///Disable application password
+// /Disable application password
 add_filter('wp_is_application_passwords_available', '__return_false');
 
-///Remove Dashboard Menu Icon
+// /Remove Dashboard Menu Icon
 function remove_dashboard_icon()
 {
   remove_menu_page('index.php');
 }
 
 add_action('admin_menu', 'remove_dashboard_icon');
+
+// Disable WordPress update failed notice
+// Your PHP code here
+
+// Check if the user is an administrator
+if (!current_user_can('manage_options')) {
+  add_action('admin_head', 'remove_update_nag');
+
+  function remove_update_nag()
+  {
+    echo '<style> .update-nag { display: none !important;} </style>';
+  }
+}
+
+// /Load Summernote WYSIWYG
+
+// Global CSS
