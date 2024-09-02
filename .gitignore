@@ -14,6 +14,7 @@
 !/files/app/public/wp-content/
 !/files/app/public/wp-content/themes/
 !/files/app/public/wp-content/plugins/
+!/files/app/public/public-folder.zip
 
 
 # Include everything in these folders
