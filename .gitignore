@@ -14,9 +14,9 @@
 !/files/app/public/wp-content/
 !/files/app/public/wp-content/themes/
 !/files/app/public/wp-content/plugins/
-!/.github/workflows/
+!.github/workflows/zip_subfolder.yml
 
 # Include everything in these folders
 !/files/app/public/wp-content/themes/**
 !/files/app/public/wp-content/plugins/**
-!/.github/workflows/**
+!.github/workflows/**
