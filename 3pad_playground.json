@@ -12,14 +12,14 @@
         "step": "importWordPressFiles",
         "wordPressFilesZip": {
           "resource": "url",
-          "url": "https://bafybeigdd4tp5bazibjhdme2it2l7wh5j65hgvo6t6ig2p6yn3s6ghkgki.ipfs.flk-ipfs.io"
+          "url": "https://raw.githubusercontent.com/3Pad/3pad-wordpress/main/public-folder.zip"
         }
       },
       {
         "step": "importWxr",
         "file": {
           "resource": "url",
-          "url": "https://bafkreihlgcnb5pb7tdjlkrzxvunfk74wn3ianx2uuc7dpl5kvozbog7eie.ipfs.flk-ipfs.io"
+          "url": "https://raw.githubusercontent.com/3Pad/3pad-wordpress/main/3pad_page_settings.xml"
         }
       },
       {
