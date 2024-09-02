@@ -15,12 +15,12 @@ jobs:
       - name: Zip subfolder
         run: |
           cd files/app/public
-          zip -r public_folder.zip .
-          mkdir -p release
-          mv public_folder.zip release/
+          zip -r public_folder.zip .  # Create the zip file with all contents in the current directory
+          mkdir -p ../../release       # Create the release directory outside of the zipped folder path
+          mv public_folder.zip ../../release/  # Move the zip file to the release directory
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: public-folder-zip
-          path: release/public_folder.zip
+          path: files/release/public_folder.zip  # Ensure the correct path to the zip file
