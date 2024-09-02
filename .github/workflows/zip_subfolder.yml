@@ -1,26 +1,31 @@
-name: Zip Subfolder
+name: Zip and Commit
 
 on:
   push:
     branches:
-      - main
+      - main  # Trigger on push to the main branch
 
 jobs:
-  zip:
+  zip_and_commit:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Zip subfolder
+      - name: Zip the folder
         run: |
-          cd files/app/public
-          zip -r public_folder.zip .  # Create the zip file with all contents in the current directory
-          mkdir -p ../../release       # Create the release directory outside of the zipped folder path
-          mv public_folder.zip ../../release/  # Move the zip file to the release directory
+          zip -r files/app/public/public-folder.zip files/app/public/*
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: public-folder-zip
-          path: files/release/public_folder.zip  # Ensure the correct path to the zip file
+      - name: Set up Git
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+
+      - name: Commit ZIP to repository
+        run: |
+          git add files/app/public/public-folder.zip
+          git commit -m "Add ZIP of public folder"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
