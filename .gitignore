@@ -14,9 +14,14 @@
 !/files/app/public/wp-content/
 !/files/app/public/wp-content/themes/
 !/files/app/public/wp-content/plugins/
-!.github/workflows/
+
 
 # Include everything in these folders
 !/files/app/public/wp-content/themes/**
 !/files/app/public/wp-content/plugins/**
+
+
+# Include GitHub workflows
+!.github/
+!.github/workflows/
 !.github/workflows/**

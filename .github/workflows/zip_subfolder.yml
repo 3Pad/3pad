@@ -1,0 +1,26 @@
+name: Zip Subfolder
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  zip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Zip subfolder
+        run: |
+          cd files/app/public
+          zip -r public_folder.zip .
+          mkdir -p release
+          mv public_folder.zip release/
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: public-folder-zip
+          path: release/public_folder.zip
