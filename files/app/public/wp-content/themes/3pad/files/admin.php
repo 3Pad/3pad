@@ -517,23 +517,24 @@ add_action('init', function () {
   }
 });
 
-// /Detect if Title is empty if so redirect (New Users) (ACF ERROR)
-function check_if_home_pending()
-{
-  // Get blog Id
-  $user_id = get_current_user_id();
-  $blog_id = get_current_blog_id();
-  // Check if title is empty
-  $title = get_field('site_title', 'option');
-  // If Title is empty. Isn't on admin page. isn't on login page. Isn't mainsite (WPMU)
-  if ($title == NULL && !is_main_site() && current_user_can('edit_pages')) {
-    echo "<script>alert('Please Setup Your Landing Page. Enter Title To Start'); </script>";
-  }
-}
-
-add_action('admin_notices', 'check_if_home_pending');
-add_action('template_redirect', 'check_if_home_pending');
-
+/*
+ * // /Detect if Title is empty if so redirect (New Users) (ACF ERROR)
+ * function check_if_home_pending()
+ * {
+ *   // Get blog Id
+ *   $user_id = get_current_user_id();
+ *   $blog_id = get_current_blog_id();
+ *   // Check if title is empty
+ *   $title = get_field('site_title', 'option');
+ *   // If Title is empty. Isn't on admin page. isn't on login page. Isn't mainsite (WPMU)
+ *   if ($title == NULL && !is_main_site() && current_user_can('edit_pages')) {
+ *     echo "<script>alert('Please Setup Your Landing Page. Enter Title To Start'); </script>";
+ *   }
+ * }
+ *
+ * add_action('admin_notices', 'check_if_home_pending');
+ * add_action('template_redirect', 'check_if_home_pending');
+ */
 // Disable Avatars
 add_filter('option_show_avatars', '__return_false');
 
