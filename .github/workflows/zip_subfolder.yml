@@ -13,14 +13,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Zip the folder contents
+      - name: Zip the contents of the public folder
         run: |
           # Navigate to the public directory
           cd files/app/public
-          # Create a zip of the contents of the 'public' folder
-          zip -r public-folder.zip ./*
-          # Move the zip to the root of the repository
-          mv public-folder.zip ../../../
+          # Create a zip of the contents without including the folder itself
+          zip -r ../../../public-folder.zip ./*
 
       - name: Set up Git
         run: |
