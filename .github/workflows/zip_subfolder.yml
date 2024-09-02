@@ -27,8 +27,8 @@ jobs:
 
       - name: Commit ZIP to repository
         run: |
-          git add 3pad.zip
-          git commit -m "Add ZIP of 3pad folder contents to root"
+          git add public-folder.zip
+          git commit -m "Add ZIP of public folder contents to root"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Ensure this line is correct
