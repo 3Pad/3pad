@@ -18,7 +18,7 @@ jobs:
           # Navigate to the public directory
           cd files/app/public
           # Create a zip of the contents without including the folder itself
-          zip -r ../../../public-folder.zip ./*
+          zip -r ../../../3pad.zip ./*
 
       - name: Set up Git
         run: |
@@ -27,8 +27,8 @@ jobs:
 
       - name: Commit ZIP to repository
         run: |
-          git add public-folder.zip
-          git commit -m "Add ZIP of public folder contents to root"
+          git add 3pad.zip
+          git commit -m "Add ZIP of 3pad contents to root"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Ensure this line is correct
