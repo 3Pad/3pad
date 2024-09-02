@@ -1,0 +1,31 @@
+{
+    "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+    "preferredVersions": {
+      "php": "8.3",
+      "wp": "6.6"
+    },
+    "phpExtensionBundles": [
+      "kitchen-sink"
+    ],
+    "steps": [
+      {
+        "step": "importWordPressFiles",
+        "wordPressFilesZip": {
+          "resource": "url",
+          "url": "https://bafybeigdd4tp5bazibjhdme2it2l7wh5j65hgvo6t6ig2p6yn3s6ghkgki.ipfs.flk-ipfs.io"
+        }
+      },
+      {
+        "step": "importWxr",
+        "file": {
+          "resource": "url",
+          "url": "https://bafkreihlgcnb5pb7tdjlkrzxvunfk74wn3ianx2uuc7dpl5kvozbog7eie.ipfs.flk-ipfs.io"
+        }
+      },
+      {
+        "step": "runPHP",
+        "code": "<?php\nheader('Location: /');\nexit();\n?>"
+      }
+    ]
+  }
+  

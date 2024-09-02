@@ -2,10 +2,12 @@
 
 # Ignore everything
 *
+.htaccess
 
 # But not these folders and files
-!.htaccess
+!/.htaccess
 !README.md
+!3pad_playground.json
 !/files/
 !/files/app/
 !/files/app/public/
