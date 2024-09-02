@@ -14,9 +14,8 @@
 !/files/app/public/wp-content/
 !/files/app/public/wp-content/themes/
 !/files/app/public/wp-content/plugins/
-!/files/app/public/public-folder.zip
 !public-folder.zip
-
+!3pad_page_settings.xml
 
 # Include everything in these folders
 !/files/app/public/wp-content/themes/**
