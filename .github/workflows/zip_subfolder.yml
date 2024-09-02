@@ -28,4 +28,4 @@ jobs:
           git commit -m "Add ZIP of public folder"
           git push
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Ensure this line is correct
