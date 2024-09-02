@@ -12,7 +12,7 @@
         "step": "importWordPressFiles",
         "wordPressFilesZip": {
           "resource": "url",
-          "url": "https://raw.githubusercontent.com/3Pad/3pad-wordpress/main/3pad.zip"
+          "url": "https://raw.githubusercontent.com/3Pad/3pad-wordpress/main/public-folder.zip"
         }
       },
       {
