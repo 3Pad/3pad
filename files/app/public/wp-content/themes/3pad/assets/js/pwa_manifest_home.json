@@ -1,0 +1,29 @@
+{
+  "name": "3Pad",
+  "short_name": "3Pad",
+  "screenshots": [
+    {
+     "src": "https://ipfs.io/ipfs/QmeJ13XnVj1pdEnCGzRQEKLsmPUhzTCd8ryArBwmRDK2CB",
+      "sizes": "192x192",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "https://ipfs.io/ipfs/QmeJ13XnVj1pdEnCGzRQEKLsmPUhzTCd8ryArBwmRDK2CB",
+       "sizes": "512x512",
+       "type": "image/png",
+       "form_factor": "wide"
+     }
+],
+  "icons": [
+      { "src": "https://ipfs.io/ipfs/QmeJ13XnVj1pdEnCGzRQEKLsmPUhzTCd8ryArBwmRDK2CB", "sizes": "192x192", "type": "image/png" },
+      { "src": "https://ipfs.io/ipfs/QmeJ13XnVj1pdEnCGzRQEKLsmPUhzTCd8ryArBwmRDK2CB", "sizes": "512x512", "type": "image/png" }
+  ],
+  "description": "Your Page Revamped",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait",
+  "display": "standalone"
+
+  
+}

@@ -1,3 +1,20 @@
 
-.vscode/
-.DS_Store
+
+# Ignore everything
+*
+
+# But not these folders and files
+!.vscode/
+!.htaccess
+!README.md
+!/files/
+!/files/app/
+!/files/app/public/
+!/files/app/public/wp-content/
+!/files/app/public/wp-content/themes/
+!/files/app/public/wp-content/plugins/
+
+# Include everything in these folders
+!.vscode/**
+!/files/app/public/wp-content/themes/**
+!/files/app/public/wp-content/plugins/**
