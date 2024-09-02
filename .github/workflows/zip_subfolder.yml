@@ -13,9 +13,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Zip the folder
+      - name: Zip the folder contents
         run: |
-          zip -r files/app/public/public-folder.zip files/app/public/*
+          # Navigate to the public directory
+          cd files/app/public
+          # Create a zip of the contents of the 'public' folder
+          zip -r public-folder.zip ./*
+          # Move the zip to the root of the repository
+          mv public-folder.zip ../../../
 
       - name: Set up Git
         run: |
@@ -24,8 +29,8 @@ jobs:
 
       - name: Commit ZIP to repository
         run: |
-          git add files/app/public/public-folder.zip
-          git commit -m "Add ZIP of public folder"
+          git add public-folder.zip
+          git commit -m "Add ZIP of public folder contents to root"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Ensure this line is correct
