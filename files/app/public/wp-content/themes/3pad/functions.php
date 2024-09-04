@@ -31,15 +31,6 @@ function activate_acf()
         activate_plugin('advanced-custom-fields/acf.php');
         echo 'MAKE SURE ACF IS INSTALLED IN FOLDER';
     }
-
-    // Check if the plugin is not already activated.
-
-    // Check if the plugin is not already activated.
-    if (!is_plugin_active('unlock-protocol/unlock-protocol.php')) {
-        // Activate the plugin.
-        activate_plugin('unlock-protocol/unlock-protocol.php');
-        echo 'MAKE SURE UNLCOK PROTOCOL IS INSTALLED IN FOLDER';
-    }
 }
 
 add_action('admin_init', 'activate_acf');
@@ -69,7 +60,7 @@ require_once plugin_dir_path(__FILE__) . 'files/users.php';
 require_once plugin_dir_path(__FILE__) . 'files/custom-fields.php';
 
 /** Login Security */
-require_once plugin_dir_path(__FILE__) . 'files/login-security.php';
+// require_once plugin_dir_path(__FILE__) . 'files/login-security.php';
 
 /** Unlock Protocol */
 require_once plugin_dir_path(__FILE__) . 'files/unlock-protocol.php';

@@ -14,6 +14,10 @@
           "resource": "url",
           "url": "https://raw.githubusercontent.com/3Pad/3pad-wordpress/main/public-folder.zip"
         }
+      },
+      {
+        "step": "runPHP",
+        "code": "<?php\nheader('Location: /');\nexit();\n?>"
       }
     ]
   }

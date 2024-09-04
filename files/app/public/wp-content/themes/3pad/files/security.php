@@ -451,18 +451,6 @@ if (!is_admin()) {
   add_filter('wp_resource_hints', 'bunny_fonts_swap_src');
   // ////////////////////////////Remove Google Font///////////////////////////////////
 
-  // Disable Login.php
-  function disable_wp_login_php()
-  {
-    if (!isset($_GET['action'])) {
-      // Redirect to homepage if the user is not logged in and the 'action' query parameter is not set
-      wp_redirect(home_url());
-      exit;
-    }
-  }
-
-  add_action('login_init', 'disable_wp_login_php');
-
   // ///////Disable Category Page
   add_action('template_redirect', 'meks_remove_wp_archives');
 
@@ -563,20 +551,6 @@ function remove_dashboard_access()
     exit;
   }
 }
-
-// Redirect logged-out users who try to access wp-login.php and logged-in users who try to access wp-signup.php
-add_action('init', function () {
-  // Check if the current page URL contains 'wp-login.php' and the user is not logged in
-  if (strpos($_SERVER['REQUEST_URI'], 'wp-login.php') !== false && !is_user_logged_in()) {
-    // Redirect logged-out users to the homepage
-    wp_redirect('/');
-  }
-  // Check if the current page URL contains 'wp-signup.php' and the user is logged in
-  if (strpos($_SERVER['REQUEST_URI'], 'wp-signup.php') !== false && is_user_logged_in()) {
-    // Redirect logged-in users to the homepage
-    wp_redirect('/');
-  }
-});
 
 // Redirect non-super admins who attempt to access the main site wp-admin
 add_action('admin_init', function () {
