@@ -117,10 +117,10 @@ function add_help_videos()
       <center>
       <ul>
         <li class="button_home" style="background: rgb(211, 42, 42); border-radius: 30px;"><a><span id="icon_1" class="fa fa-home"></span></a></li>
-        <li class="menu_5"><a id="app-install" ><span id="icon_5" class="fa-regular fa-photo-film"></span></a></li>
+        <li class="menu_5"><a id="app-install" ><span id="icon_5" class="fas fa-photo-film"></span></a></li>
         <li class="menu_2"><a class="text-links"><span id="icon_2" class="fa fa-text-width"></span></a></li>
         <li class="menu_3"><a class="icons-links   " ><span id="icon_3" class="fa-solid fa-icons"></span></a></li>
-        <li class="menu_4"><a class="embed-links   " ><span id="icon_4" class="fa-regular fa-network-wired"></span></a></li>
+        <li class="menu_4"><a class="embed-links   " ><span id="icon_4" class="fas fa-network-wired"></span></a></li>
         <li class="menu_6"><a target="_blank" href="/"; class="embed-links   " ><span id="icon_6" class="fa fa-user-circle"></span></a></li>
       </ul>
     </center>

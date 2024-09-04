@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Login class.
  *
@@ -20,8 +19,8 @@ use WP_User;
  *
  * @since 3.0.0
  */
-class Login
-{
+class Login {
+
 	use Singleton;
 
 	/**
@@ -29,8 +28,7 @@ class Login
 	 *
 	 * @since 3.0.0
 	 */
-	protected function __construct()
-	{
+	protected function __construct() {
 		$this->setup_hooks();
 	}
 
@@ -41,16 +39,19 @@ class Login
 	 *
 	 * @return void
 	 */
-	protected function setup_hooks()
-	{
-		/** Actions */
-		add_action('login_form', array(                   $this, 'login_button'));
-		add_action('authenticate', array(                 $this, 'authenticate'));
-		add_action('unlock_protocol_register_user', array($this, 'register'));
-		add_action('wp', array(                           $this, 'login_user'));
+	protected function setup_hooks() {
+		/**
+		 * Actions
+		 */
+		add_action( 'login_form', array( $this, 'login_button' ) );
+		add_action( 'authenticate', array( $this, 'authenticate' ) );
+		add_action( 'unlock_protocol_register_user', array( $this, 'register' ) );
+		add_action( 'wp', array( $this, 'login_user' ) );
 
-		/** Filters */
-		add_filter('unlock_authenticate_user', array($this, 'authenticate'));
+		/**
+		 * Filters
+		 */
+		add_filter( 'unlock_authenticate_user', array( $this, 'authenticate' ) );
 	}
 
 	/**
@@ -60,13 +61,12 @@ class Login
 	 *
 	 * @return void
 	 */
-	public function login_button()
-	{
-		$login_button_text       = __('Connect Your Crypto Wallet', 'unlock-protocol');
-		$login_button_bg_color   = up_get_general_settings('login_button_bg_color', '#000');
-		$login_button_text_color = up_get_general_settings('login_button_text_color', '#fff');
+	public function login_button() {
+		$login_button_text       = __( 'Connect Your Crypto Wallet', 'unlock-protocol' );
+		$login_button_bg_color   = up_get_general_settings( 'login_button_bg_color', '#000' );
+		$login_button_text_color = up_get_general_settings( 'login_button_text_color', '#fff' );
 
-		echo unlock_protocol_get_template(  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo unlock_protocol_get_template( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			'login/button',
 			array(
 				'login_url'               => Unlock::get_login_url(),
@@ -87,9 +87,8 @@ class Login
 	 * @return WP_User|WP_Error
 	 * @throws \Exception Invalid Account.
 	 */
-	public function authenticate($user = null)
-	{
-		if ($user instanceof WP_User) {
+	public function authenticate( $user = null ) {
+		if ( $user instanceof WP_User ) {
 			return $user;
 		}
 
@@ -104,29 +103,31 @@ class Login
 			$state = preg_replace('/<[^>]*>/', '', $state);  // Remove any HTML tags
 		}
 
-		if ('' === $code || false === wp_verify_nonce($state, 'unlock_login_state')) {
+		if ( '' === $code || false === wp_verify_nonce( $state, 'unlock_login_state' ) ) {
 			return $user;
 		}
 
 		try {
-			$ethereum_address = Unlock::validate_auth_code($code);
+			$ethereum_address = Unlock::validate_auth_code( $code );
 
-			if (is_wp_error($ethereum_address)) {
-				throw new \Exception(__('Invalid Account', 'unlock-protocol'));
+			if ( is_wp_error( $ethereum_address ) ) {
+				throw new \Exception( __( 'Invalid Account', 'unlock-protocol' ) );
 			}
 
-			$ethereum_address = sanitize_text_field($ethereum_address);
+			$ethereum_address = sanitize_text_field( $ethereum_address );
 
-			/** If there is any user associated with the given ethereum address already, log them in. */
-			$user = $this->get_user_with_ethereum_address($ethereum_address);
-			if (false !== $user) {
+			/**
+			 * If there is any user associated with the given ethereum address already, log them in.
+			 */
+			$user = $this->get_user_with_ethereum_address( $ethereum_address );
+			if ( false !== $user ) {
 				return $user;
 			}
 
-			if (is_user_logged_in()) {
+			if ( is_user_logged_in() ) {
 				$user = wp_get_current_user();
 
-				update_user_meta($user->ID, 'unlock_ethereum_address', $ethereum_address);
+				update_user_meta( $user->ID, 'unlock_ethereum_address', $ethereum_address );
 
 				return $user;
 			}
@@ -134,12 +135,12 @@ class Login
 			/*
 			 * Using ethereum address as email and client id as hostname.
 			 */
-			$email_address = $this->get_email_address($ethereum_address);
+			$email_address = $this->get_email_address( $ethereum_address );
 
-			if (email_exists($email_address)) {
-				$user = get_user_by('email', $email_address);
+			if ( email_exists( $email_address ) ) {
+				$user = get_user_by( 'email', $email_address );
 
-				update_user_meta($user->ID, 'unlock_ethereum_address', $ethereum_address);
+				update_user_meta( $user->ID, 'unlock_ethereum_address', $ethereum_address );
 
 				return $user;
 			}
@@ -151,9 +152,10 @@ class Login
 			 *
 			 * @since 3.0.0
 			 */
-			return apply_filters('unlock_protocol_register_user', $ethereum_address);
-		} catch (\Throwable $e) {
-			return new WP_Error('unlock_login_failed', $e->getMessage());
+			return apply_filters( 'unlock_protocol_register_user', $ethereum_address );
+
+		} catch ( \Throwable $e ) {
+			return new WP_Error( 'unlock_login_failed', $e->getMessage() );
 		}
 	}
 
@@ -166,9 +168,8 @@ class Login
 	 *
 	 * @return string
 	 */
-	public function get_email_address($ethereum_address)
-	{
-		return sprintf('%1$s@%2$s', esc_html($ethereum_address), esc_html(Unlock::get_client_id()));
+	public function get_email_address( $ethereum_address ) {
+		return sprintf( '%1$s@%2$s', esc_html( $ethereum_address ), esc_html( Unlock::get_client_id() ) );
 	}
 
 	/**
@@ -178,40 +179,39 @@ class Login
 	 *
 	 * @since 3.0.0
 	 *
-	 * @return WP_User|false WP_User object or false if user not found.
+	 * @return WP_User|null
 	 * @throws \Exception Registration is not allowed.
 	 * @throws \Throwable Invalid email registration.
 	 */
-	public function register($ethereum_address)
-	{
-		$register = true === (bool) get_option('users_can_register', false);
+	public function register( $ethereum_address ) {
+		$register = true === (bool) get_option( 'users_can_register', false );
 
-		if (!$register) {
-			throw new \Exception(__('Registration is not allowed.', 'unlock-protocol'));
+		if ( ! $register ) {
+			throw new \Exception( __( 'Registration is not allowed.', 'unlock-protocol' ) );
 		}
 
 		try {
-			$user_email = $this->get_email_address($ethereum_address);
-			$length     = rand(16, 32);
+			$user_email = $this->get_email_address( $ethereum_address );
 
 			$uid = wp_insert_user(
 				array(
 					'user_login' => $ethereum_address,
-					// Password Length 16 - 32 characters , include special characters & extra special characters
-					'user_pass'  => wp_generate_password($length, true, true),
+					'user_pass'  => wp_generate_password( 10 ),
 					'user_email' => $user_email,
 				)
 			);
 
-			$user = get_user_by('id', $uid);
+			$user = get_user_by( 'id', $uid );
 
-			update_user_meta($user->ID, 'unlock_ethereum_address', $ethereum_address);
+			update_user_meta( $user->ID, 'unlock_ethereum_address', $ethereum_address );
 
-			/** Fires once the user has been registered successfully. */
-			do_action('unlock_protocol_user_created', $uid, $user);
+			/**
+			 * Fires once the user has been registered successfully.
+			 */
+			do_action( 'unlock_protocol_user_created', $uid, $user );
 
 			return $user;
-		} catch (\Throwable $e) {
+		} catch ( \Throwable $e ) {
 			throw $e;
 		}
 	}
@@ -225,17 +225,16 @@ class Login
 	 *
 	 * @return WP_User|false Returns WP_User associated with the ethereum address or returns false if not found.
 	 */
-	public function get_user_with_ethereum_address($ethereum_address = '')
-	{
+	public function get_user_with_ethereum_address( $ethereum_address = '' ) {
 		$args = array(
 			'meta_key'     => 'unlock_ethereum_address',
-			'meta_value'   => $ethereum_address,  // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
+			'meta_value'   => $ethereum_address, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 			'meta_compare' => '=',
 		);
 
-		$user_query = new \WP_User_Query($args);
+		$user_query = new \WP_User_Query( $args );
 		$users      = $user_query->get_results();
-		if (!empty($users)) {
+		if ( ! empty( $users ) ) {
 			return $users[0];
 		}
 
@@ -249,24 +248,24 @@ class Login
 	 *
 	 * @return void
 	 */
-	public function login_user()
-	{
+	public function login_user() {
 		global $wp;
+		$user = apply_filters( 'unlock_authenticate_user', null );
 
-		$user = apply_filters('unlock_authenticate_user', null);
-
-		if ($user) {
+		if ( $user ) {
 			wp_clear_auth_cookie();
-			wp_set_current_user($user->ID);
+			wp_set_current_user( $user->ID );
 
-			if (true === is_ssl()) {
-				wp_set_auth_cookie($user->ID, true, true);
+			if ( true === is_ssl() ) {
+				wp_set_auth_cookie( $user->ID, true, true );
 			} else {
-				wp_set_auth_cookie($user->ID, true, false);
+				wp_set_auth_cookie( $user->ID, true, false );
 			}
 
-			/** Redirecting it intentionally because removing the code query string. */
-			wp_safe_redirect(home_url($wp->request));
+			/**
+			 * Redirecting it intentionally because removing the code query string.
+			 */
+			wp_safe_redirect( home_url( $wp->request ) );
 			exit;
 		}
 	}

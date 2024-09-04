@@ -7,9 +7,12 @@ if (!is_page(10)) {
 	<?php get_header(); ?>
 
 	
-	<link href="<?php echo get_theme_file_uri('/assets/js/pwa_manifest.json'); ?>"  rel="manifest" />
+	
 	<!--- Home CSS --->
 	<link href="<?php echo get_theme_file_uri('/assets/css/home.css'); ?>" rel="stylesheet" />
+	<link href="<?php echo get_theme_file_uri('/assets/css/fontawesome.min.css'); ?>" rel="stylesheet" />
+<link href="<?php echo get_theme_file_uri('/assets/css/brands.min.css'); ?>" rel="stylesheet" />
+<link href="<?php echo get_theme_file_uri('/assets/css/solid.min.css'); ?>" rel="stylesheet" />
 	</head>
 	<!--- Body --->
 
@@ -69,7 +72,8 @@ if (!is_page(10)) {
 							<div class="fullscreenshow" id=logo>
 								<div class="elementor-widget-container sf-hidden">
 									<img style="max-width: 100px;max-height: 100px;opacity: 0.5;float: left;" loading="lazy"
-										src="<?php $settings_page = get_queried_object_id(); echo get_field("site_logo", $settings_page); ?>"> </img>
+										src="<?php $settings_page = get_queried_object_id();
+	echo get_field("site_logo", $settings_page); ?>"> </img>
 								</div>
 							</div>
 							<?php do_shortcode("[corner_icons_shortcode]"); ?>
@@ -87,4 +91,4 @@ if (!is_page(10)) {
 else {
 	get_template_part('pages/login');
 }
-?>
+		?>

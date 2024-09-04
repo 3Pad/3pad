@@ -105,122 +105,123 @@ $custom      = get_field("custom_domain", $authpage_id);
  */
 
 echo '
- <script defer nonce="' . $nonce . '">
- document.addEventListener("DOMContentLoaded", function() {
-   var sitePath = document.getElementById("site_path");
+ <script defer nonce="<?php echo ' . $nonce . ' ?>">
+document.addEventListener("DOMContentLoaded", function() {
+  var sitePath = document.getElementById("site_path");
    var customValue = ' . json_encode($custom) . ';
- 
-   if (customValue && customValue.trim() !== "") {
-     // Remove http:// or https:// from the URL
-     var cleanedUrl = customValue.replace(/^https?:\/\//, "");
- 
-     // Create a clickable link with the cleaned URL
-     sitePath.innerHTML = "<a href=\"" + customValue + "\" target=\"_blank\" rel=\"noopener noreferrer\">" + cleanedUrl + "</a>";
-   } else {
-     sitePath.innerHTML = "⏳ Awaiting Publication... 📄";
-   }
- 
-   // Use the custom value as the input for fetching the URL
-   var fetchUrl = customValue && customValue.trim() !== "" 
-                  ? customValue + "/?app-version-check=' . wp_rand(8) . '" 
-                  : "";
- 
-   // Only fetch if customValue is not empty
-   if (fetchUrl) {
-     fetch(fetchUrl, {})
-       .then(response => response.text())
-       .then(html_content => {
-         var parser = new DOMParser();
-         var doc = parser.parseFromString(html_content, "text/html");
-         var meta_tags = doc.getElementsByTagName("meta");
-         var versionFound = false;
- 
-         for (var i = 0; i < meta_tags.length; i++) {
-           var metaContent = meta_tags[i].getAttribute("content");
- 
-           // Check if meta content contains the version number
-           if (metaContent && metaContent.includes("3Pad - Version")) {
-             versionFound = true;
- 
-             if (metaContent === "3Pad - Version 1.0") {
-               // Show the confirmed-app element for 3 seconds, then slide down
-               var confirmedApp = document.getElementById("confirmed-app");
-               if (confirmedApp) {
-                 confirmedApp.style.display = "block";
-                 confirmedApp.style.maxHeight = "0"; // Initialize for transition
-                 confirmedApp.style.opacity = "0"; // Initialize for transition
-                 setTimeout(function() {
-                   confirmedApp.style.transition = "max-height 0.5s ease-out, opacity 0.5s ease-out";
-                   confirmedApp.style.maxHeight = "100px"; // Adjust to your max-height value
-                   confirmedApp.style.opacity = "1";
-                 }, 10); // Timeout to ensure styles are applied correctly
- 
-                 // Hide after 3 seconds
-                 setTimeout(function() {
-                   confirmedApp.style.transition = "max-height 0.5s ease-in, opacity 0.5s ease-in";
-                   confirmedApp.style.maxHeight = "0";
-                   confirmedApp.style.opacity = "0";
-                   setTimeout(function() {
-                     confirmedApp.style.display = "none";
-                   }, 500);
-                 }, 3000);
-               }
-             } else {
-               // If the version is not the required version, show the update message
-               var updateApp = document.getElementById("update-app");
-               if (updateApp) {
-                 updateApp.style.display = "block";
-                 updateApp.style.maxHeight = "0";
-                 updateApp.style.opacity = "0";
-                 setTimeout(function() {
-                   updateApp.style.transition = "max-height 0.5s ease-out, opacity 0.5s ease-out";
-                   updateApp.style.maxHeight = "100px";
-                   updateApp.style.opacity = "1";
-                 }, 10);
-               }
-             }
-             break;
-           }
-         }
- 
-         // If no specific version found or other conditions
-         if (!versionFound) {
-           var unknownApp = document.getElementById("unknown-app");
-           if (unknownApp) {
-             unknownApp.style.display = "block";
-             unknownApp.style.maxHeight = "0";
-             unknownApp.style.opacity = "0";
-             setTimeout(function() {
-               unknownApp.style.transition = "max-height 0.5s ease-out, opacity 0.5s ease-out";
-               unknownApp.style.maxHeight = "100px";
-               unknownApp.style.opacity = "1";
-             }, 10);
-           } else {
-             console.error("Element with ID \'unknown-app\' not found.");
-           }
-         }
-       })
-       .catch(error => {
-         console.error("Error fetching version:", error);
- 
-         // Handle ERR_FAILED or any fetch error
-         var unknownApp = document.getElementById("unknown-app");
-         if (unknownApp) {
-           unknownApp.style.display = "block";
-           unknownApp.style.maxHeight = "0";
-           unknownApp.style.opacity = "0";
-           setTimeout(function() {
-             unknownApp.style.transition = "max-height 0.5s ease-out, opacity 0.5s ease-out";
-             unknownApp.style.maxHeight = "100px";
-             unknownApp.style.opacity = "1";
-           }, 10);
-         } else {
-           console.error("Element with ID \'unknown-app\' not found.");
-         }
-       });
-   }
- });
- </script>
+
+  if (customValue && customValue.trim() !== "") {
+    // Remove http:// or https:// from the URL
+    var cleanedUrl = customValue.replace(/^https?:\/\//, "");
+
+    // Create a clickable link with the cleaned URL
+    if (sitePath) {
+      sitePath.innerHTML = "<a href=\"" + customValue + "\" target=\"_blank\" rel=\"noopener noreferrer\">" + cleanedUrl + "</a>";
+    } else {
+      sitePath.innerHTML = "⏳ Awaiting Publication... 📄";
+    }
+
+    // Use the custom value as the input for fetching the URL
+    var fetchUrl = customValue + "/?app-version-check=<?php echo wp_rand(); ?>";
+
+    // Only fetch if customValue is not empty
+    if (fetchUrl) {
+      fetch(fetchUrl, {})
+        .then(response => response.text())
+        .then(html_content => {
+          var parser = new DOMParser();
+          var doc = parser.parseFromString(html_content, "text/html");
+          var meta_tags = doc.getElementsByTagName("meta");
+          var versionFound = false;
+
+          for (var i = 0; i < meta_tags.length; i++) {
+            var metaContent = meta_tags[i].getAttribute("content");
+
+            // Check if meta content contains the version number
+            if (metaContent && metaContent.includes("3Pad - Version")) {
+              versionFound = true;
+
+              if (metaContent === "3Pad - Version 1.0") {
+                // Show the confirmed-app element for 3 seconds, then slide down
+                var confirmedApp = document.getElementById("confirmed-app");
+                if (confirmedApp) {
+                  confirmedApp.style.display = "block";
+                  confirmedApp.style.maxHeight = "0"; // Initialize for transition
+                  confirmedApp.style.opacity = "0"; // Initialize for transition
+                  setTimeout(function() {
+                    confirmedApp.style.transition = "max-height 0.5s ease-out, opacity 0.5s ease-out";
+                    confirmedApp.style.maxHeight = "100px"; // Adjust to your max-height value
+                    confirmedApp.style.opacity = "1";
+                  }, 10); // Timeout to ensure styles are applied correctly
+
+                  // Hide after 3 seconds
+                  setTimeout(function() {
+                    confirmedApp.style.transition = "max-height 0.5s ease-in, opacity 0.5s ease-in";
+                    confirmedApp.style.maxHeight = "0";
+                    confirmedApp.style.opacity = "0";
+                    setTimeout(function() {
+                      confirmedApp.style.display = "none";
+                    }, 500);
+                  }, 3000);
+                }
+              } else {
+                // If the version is not the required version, show the update message
+                var updateApp = document.getElementById("update-app");
+                if (updateApp) {
+                  updateApp.style.display = "block";
+                  updateApp.style.maxHeight = "0";
+                  updateApp.style.opacity = "0";
+                  setTimeout(function() {
+                    updateApp.style.transition = "max-height 0.5s ease-out, opacity 0.5s ease-out";
+                    updateApp.style.maxHeight = "100px";
+                    updateApp.style.opacity = "1";
+                  }, 10);
+                }
+              }
+              break;
+            }
+          }
+
+          // If no specific version found or other conditions
+          if (!versionFound) {
+            var unknownApp = document.getElementById("unknown-app");
+            if (unknownApp) {
+              unknownApp.style.display = "block";
+              unknownApp.style.maxHeight = "0";
+              unknownApp.style.opacity = "0";
+              setTimeout(function() {
+                unknownApp.style.transition = "max-height 0.5s ease-out, opacity 0.5s ease-out";
+                unknownApp.style.maxHeight = "100px";
+                unknownApp.style.opacity = "1";
+              }, 10);
+            } else {
+              console.error("Element with ID unknown-app not found.");
+            }
+          }
+        })
+        .catch(error => {
+          console.error("Error fetching version:", error);
+
+          // Handle ERR_FAILED or any fetch error
+          var unknownApp = document.getElementById("unknown-app");
+          if (unknownApp) {
+            unknownApp.style.display = "block";
+            unknownApp.style.maxHeight = "0";
+            unknownApp.style.opacity = "0";
+            setTimeout(function() {
+              unknownApp.style.transition = "max-height 0.5s ease-out, opacity 0.5s ease-out";
+              unknownApp.style.maxHeight = "100px";
+              unknownApp.style.opacity = "1";
+            }, 10);
+          } else {
+            console.error("Element with ID unknown-app  not found.");
+          }
+        });
+    }
+  }
+});
+</script>
+
  ';
 
 ?>

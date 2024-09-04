@@ -55,7 +55,6 @@
     <noscript>
         
     </noscript>
-    <!-- Cloudflare Web Analytics -->
-    <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
-        data-cf-beacon='{"token": "5092b35b470549b1af6e595e86ebcd1f"}'></script><!-- End Cloudflare Web Analytics -->
+    <script src="<?php echo get_theme_file_uri('/assets/js/jquery.js'); ?>"></script>
+   
     <?php wp_head(); ?>

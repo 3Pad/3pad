@@ -187,7 +187,7 @@ if (is_user_logged_in()) {
 								 */
 
 								$html .= '<div class="column w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">';
-								$html .= '<a id="unlocklink" target="_parent" button="home" href="';
+								$html .= '<a id="unlocklink" button="home" href="';
 
 								$html .= '/wp-admin/post.php?action=edit&post=' . $page_id . '" class="email-login w-button">🏠 Dashboard</a>';
 								$html .= '</div>';
@@ -382,16 +382,16 @@ if (is_user_logged_in()) {
 			<div id="lockpay" class="container-2 w-container">
 				<div class="columns w-row">
 					<div class="column w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">
-						<a target="_parent" id="unlocklink" button="email" href="#" class="email-login w-button">📧 Connect Email</a>
+						<a target="_top" id="unlocklink" button="email" href="#" class="email-login w-button">📧 Connect Email</a>
 					</div>
 					<div class="column-2 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">
-						<a target="_parent" id="unlocklink" button="nft" href="#" class="loginwithnft w-button">🤳 Connect NFT</a>
+						<a target="_top" id="unlocklink" button="nft" href="#" class="loginwithnft w-button">🤳 Connect NFT</a>
 					</div>
 					<div class="column-3 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">
-						<a target="_parent" id="unlocklink" button="crypto" href="#" class="cryptologin w-button">₿ Connect Crypto</a>
+						<a target="_top" id="unlocklink" button="crypto" href="#" class="cryptologin w-button">₿ Connect Crypto</a>
 					</div>
 					<div class="column-4 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">
-						<a target="_parent" id="unlocklink" button="pass" href="#" class="b4 w-button">🎟️ Subscription</a>
+						<a target="_top" id="unlocklink" button="pass" href="#" class="b4 w-button">🎟️ Subscription</a>
 					</div>
 				</div>
 			</div>
@@ -418,7 +418,6 @@ if (is_user_logged_in()) {
 	// /Get The Unlock Login URL
 	the_content();
 	?>
-	<?php get_template_part('/pages/sitemap'); ?>
 
 <?php
 }
@@ -426,8 +425,7 @@ if (is_user_logged_in()) {
 
 
 
-<script src="<?php echo get_theme_file_uri('/assets/js/jquery.js'); ?>"></script>
-<script src="<?php echo get_theme_file_uri('/assets/js/3pad.js'); ?>" async></script>
+<script src="<?php echo get_theme_file_uri('/assets/js/3pad.js'); ?>" defer></script>
 
 
 <div class="footer">

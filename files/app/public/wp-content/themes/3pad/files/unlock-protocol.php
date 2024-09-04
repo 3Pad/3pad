@@ -33,6 +33,16 @@ if (!is_admin()) {  // ////FRONTEND
                 </style>';
         }
 
+        // /Grant full access if logged in
+        if (is_user_logged_in()) {
+            // Hide checkout button
+            echo '<style>
+                .checkout-button-container{
+                display: none;
+                }
+                </style>';
+        }
+
         // Check If unlock Is First & No blocks after & is not single post . If true, render template
         $pagelock = get_field("enable_page_lock");
         if ($pagelock == "Yes" && !has_block('unlock-protocol/unlock-box')) {

@@ -1,18 +1,4 @@
-////Register Service Worker
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function () {
-    navigator.serviceWorker
-      .register("/wp-content/themes/3pad/assets/js/pwa_js.js")
-      .then(
-        function (registration) {
-          console.log("Service worker registered successfully:", registration);
-        }
-      )
-      .catch(function (error) {
-        console.error("Service worker registration failed:", error);
-      });
-  });
-}
+
 
 
 function exitFullscreen() {
@@ -66,45 +52,49 @@ muteControls.forEach(function (control) {
 
 // get the current path and split it into an array of segments
 // get the age restricted prompt element
-var promptElement = $(".age-restriction-prompt");
-var match = window.location.pathname.match(/^\/(.+)$/);
-var uniqueValue = match ? match[1] : null;
-
-// check if the age restricted flag is set
-if (sessionStorage.getItem("ageRestricted" + uniqueValue) === "true") {
-  // hide the age restricted prompt
-  promptElement.hide();
-} else {
-  // show the age restricted prompt
-  promptElement.show();
-
-  // handle the "Yes" button
-  $(".yes").click(function () {
-    // hide the age restricted prompt
-    promptElement.hide();
-
-    // set a flag in local storage to remember that the user is over 18 for the session
-    sessionStorage.setItem("ageRestricted" + uniqueValue, "true");
-  });
-
-  // handle the "No" button
-  $(".no").click(function () {
-    // go back in history
-    window.history.back();
-  });
-}
 
 ///Resend Form Stop
 if (window.history.replaceState) {
   window.history.replaceState(null, null, window.location.href);
 }
+// Check if the div with id 'age-restriction-prompt' exists
+if (document.getElementById('age-restriction-prompt')) {
+  // Select the age restriction prompt element
+  var promptElement = $(".age-restriction-prompt");
 
+  // Check if the prompt element exists
+  if (promptElement.length > 0) {
+    var match = window.location.pathname.match(/^\/(.+)$/);
+    var uniqueValue = match ? match[1] : null;
 
+    // Check if the age restricted flag is set
+    if (sessionStorage.getItem("ageRestricted" + uniqueValue) === "true") {
+      // Hide the age restricted prompt
+      promptElement.hide();
+    } else {
+      // Show the age restricted prompt
+      promptElement.show();
 
-//Hide app install button
-if (window.matchMedia("(display-mode: standalone)").matches) {
-  document.getElementById("app_button").style.display = "none";
+      // Handle the "Yes" button
+      $(".yes").click(function () {
+        // Hide the age restricted prompt
+        promptElement.hide();
+
+        // Set a flag in session storage to remember that the user is over 18 for the session
+        sessionStorage.setItem("ageRestricted" + uniqueValue, "true");
+      });
+
+      // Handle the "No" button
+      $(".no").click(function () {
+        // Go back in history
+        window.history.back();
+      });
+    }
+  }
 }
+
+
+
 
 /////Refresh
 const buttonHomeRefresh = document.querySelector(".button_home_refresh");
@@ -406,3 +396,29 @@ jQuery(document).ready(function ($) {
     $(".embed9-button-wrapper").removeClass("expanded");
   });
 });
+
+
+// Register Service Worker
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker
+      .register("/wp-content/themes/3pad/assets/js/pwa_js.js")
+      .then(
+        function (registration) {
+          console.log("Service worker registered successfully:", registration);
+        }
+      )
+      .catch(function (error) {
+        console.error("Service worker registration failed:", error);
+      });
+  });
+}
+
+
+
+
+
+//Hide app install button
+if (window.matchMedia("(display-mode: standalone)").matches) {
+  document.getElementById("app_button").style.display = "none";
+}

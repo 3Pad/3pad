@@ -799,41 +799,193 @@ jQuery(document).ready(function($) {
   tinymce.init(icon4EditorConfig);
 });
 
+///////BG IMAGE
+/*
+document.addEventListener("DOMContentLoaded", function () {
+  // Select and hide the acf-input area inside #bg-image-base64
+  var acfInputArea = document.querySelector("#bg-image-base64 > div.acf-input");
+  if (acfInputArea) {
+    acfInputArea.style.display = "none"; // Hide the .acf-input area
+  } else {
+    console.error("#bg-image-base64 > div.acf-input not found.");
+  }
+
+  // Create a container for the URL input and image upload elements
+  var container = document.createElement("div");
+  container.id = "image-input-container";
+  container.style.alignItems = "center";
+  container.style.margin = "20px 0";
+  container.style.width = "100%";
+
+  // Create the URL input field
+  var urlInput = document.createElement("input");
+  urlInput.type = "text";
+  urlInput.placeholder = "Enter image URL or Base64";
+  urlInput.style.flex = "1"; // Make the input take full width
+  urlInput.style.marginRight = "10px";
+  urlInput.id = "acf-field_detect"; // Set the ID here
+
+  // Create the image upload button
+  var uploadButton = document.createElement("input");
+  uploadButton.type = "file";
+  uploadButton.accept = "image/*";
+  uploadButton.id = "acf-field_detect_image";
+  uploadButton.style.flexShrink = "0"; // Prevent the button from shrinking
+  uploadButton.style.color = "wheat"; // Prevent the button from shrinking
+
+
+  // Append the URL input and upload button to the container
+  container.appendChild(urlInput);
+  container.appendChild(uploadButton);
+
+  // Append the container and image preview below it
+  if (acfInputArea && acfInputArea.parentNode) {
+    acfInputArea.parentNode.insertBefore(container, acfInputArea);
+  } else {
+    console.error("Unable to find the parent of #bg-image-base64 > div.acf-input.");
+    // Fallback: append to body if parent not found
+    document.body.appendChild(container);
+  }
+
+  // Function to update the textarea with Base64 or URL and trigger publish
+  function updateTextareaAndTrigger(value) {
+    if (acfInputArea) {
+      // Access the textarea within the hidden .acf-input
+      var textarea = acfInputArea.querySelector("textarea");
+      if (textarea) {
+        textarea.value = value;
+        textarea.dispatchEvent(new Event('input'));  // Trigger input event for live updates
+        // Trigger the publish button click
+        $("#publish").trigger("click");
+      } else {
+        console.error("Textarea not found inside #bg-image-base64 > div.acf-input.");
+      }
+    }
+  }
+
+  
+  
+  // Handle image upload and convert to Base64
+  uploadButton.addEventListener("change", function () {
+    var file = this.files[0];
+    if (file) {
+      var reader = new FileReader();
+      reader.onload = function () {
+        var base64data = reader.result;
+        urlInput.value = base64data; // Display the Base64 string in the input
+        updateTextareaAndTrigger(base64data);
+ 
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+});
+
+*/
+///////BG IMAGE
+
+
 ////Export HTML Site
 jQuery(document).ready(function ($) {
-document.getElementById('download-btn').addEventListener('click', function(event) {
-  event.preventDefault();
-  const previewButton = $("#post-preview");
-  const previewHref = previewButton.attr("href");
-  const previewIndex = previewHref.indexOf("?preview=true");
-  const siteUrl = previewHref
-    .substring(0, previewIndex)
-    .replace(/\/$/, "") // Remove any trailing slashes
-    .replace(/(\/\/[^\/]+)(.*)/, "$1$2");
+  document.getElementById('download-btn').addEventListener('click', function(event) {
+    event.preventDefault();
+    const previewButton = $("#post-preview");
+    const previewHref = previewButton.attr("href");
+    const previewIndex = previewHref.indexOf("?preview=true");
+    const siteUrl = previewHref
+      .substring(0, previewIndex)
+      .replace(/\/$/, "") // Remove any trailing slashes
+      .replace(/(\/\/[^\/]+)(.*)/, "$1$2");
 
-  exportHTMLContent('index.html', siteUrl); // Replace with the URL of the desired page
+    exportFullHTMLContent('index.html', siteUrl);
+  });
+
+  function exportFullHTMLContent(fileName, pageUrl) {
+    fetch(pageUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.text();
+      })
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+
+        function inlineCSS(stylesheets) {
+          return Promise.all(stylesheets.map(sheet => {
+            const href = sheet.href;
+            return fetch(href)
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.text();
+              })
+              .then(css => {
+                // Optionally replace font URLs with Base64 data here if needed
+                // Remove FontAwesome-specific handling
+
+                const style = document.createElement('style');
+                style.textContent = css;
+                doc.head.appendChild(style);
+                sheet.parentNode.removeChild(sheet);
+              })
+              .catch(error => {
+                console.error('Error fetching CSS from ' + href + ':', error);
+              });
+          }));
+        }
+
+        function inlineJS(scripts) {
+          return Promise.all(scripts.map(script => {
+            const src = script.src;
+            return fetch(src)
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.text();
+              })
+              .then(js => {
+                script.parentNode.removeChild(script);
+                const scriptEl = document.createElement('script');
+                scriptEl.textContent = js;
+                doc.body.appendChild(scriptEl);
+              })
+              .catch(error => {
+                console.error('Error fetching JavaScript from ' + src + ':', error);
+              });
+          }));
+        }
+
+        const stylesheets = Array.from(doc.querySelectorAll('link[rel="stylesheet"]'));
+        Promise.all([
+          inlineCSS(stylesheets),
+          inlineJS(Array.from(doc.querySelectorAll('script[src]')))
+        ])
+          .then(() => {
+            const updatedHTML = doc.documentElement.outerHTML;
+            const blob = new Blob([updatedHTML], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = fileName;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          })
+          .catch(error => {
+            console.error('Error processing the HTML content:', error);
+          });
+      })
+      .catch(error => {
+        console.error('Error fetching the page:', error);
+      });
+  }
 });
 
-function exportHTMLContent(fileName, pageUrl) {
-  fetch(pageUrl)
-    .then(function(response) {
-      return response.text();
-    })
-    .then(function(html) {
-      var blob = new Blob([html], { type: 'text/html' });
-      var url = URL.createObjectURL(blob);
-      var link = document.createElement('a');
-      link.href = url;
-      link.download = fileName;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    })
-    .catch(function(error) {
-      console.error('Error fetching page:', error);
-    });
-}
-});
+
 
 //Import URL Configuration 
 
