@@ -42,7 +42,7 @@ add_action('admin_init', 'activate_acf');
 require_once ABSPATH . 'wp-content/themes/3pad/files/multisite-settings.php';
 
 /** Security */
-require_once plugin_dir_path(__FILE__) . 'files/security.php';
+// require_once plugin_dir_path(__FILE__) . 'files/security.php';
 
 /** ACF */
 require_once plugin_dir_path(__FILE__) . 'files/acf.php';
