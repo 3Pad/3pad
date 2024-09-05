@@ -81,31 +81,45 @@ function create_default_pages()
 // Add the "create_default_pages" function to the "admin_head" action
 add_action('admin_head', 'create_default_pages');
 
-// Create Page For USER
+// Create or Update Page for User
 function create_or_update_user_page()
 {
 	// Get the current user
 	$current_user = wp_get_current_user();
 
-	// Check if a page already exists for the current user
-	$page = get_page_by_path($current_user->user_login, OBJECT, 'page');
+	// Check if a page already exists for the current user with the status 'publish'
+	$args = array(
+		'name'        => $current_user->user_login,
+		'post_type'   => 'page',
+		'post_status' => 'publish',
+		'numberposts' => 1
+	);
 
-	// If a page already exists for the current user and the user is not the author, update the author of the page
-	if ($page && $page->post_author !== $current_user->ID) {
+	$existing_page = get_posts($args);
+
+	// If a published page already exists for the current user, do nothing
+	if (!empty($existing_page)) {
+		return;
+	}
+
+	// If a page exists but is not published, check the author and update if needed
+	$draft_page = get_page_by_path($current_user->user_login, OBJECT, 'page');
+
+	if ($draft_page && $draft_page->post_status !== 'publish' && $draft_page->post_author !== $current_user->ID) {
 		wp_update_post(array(
-			'ID'          => $page->ID,
+			'ID'          => $draft_page->ID,
 			'post_author' => $current_user->ID
 		));
 		return;
 	}
 
-	// If a page already exists for the current user or the current user has the 'manage_options' capability or is a 'free-member', do not create a new page
-	if ($page || current_user_can('manage_options') || current_user_can('non-member')) {
+	// If the current user has the 'manage_options' capability or is a 'non-member', do not create a new page
+	if (current_user_can('manage_options') || current_user_can('non-member')) {
 		return;
 	}
 
-	if (is_user_logged_in()) {
-		// Create a new page for the current user
+	// If user is logged in, create a new page for the current user
+	if (is_user_logged_in() && !$existing_page) {
 		$page = array(
 			'post_title'   => $current_user->display_name,
 			'post_content' => '',
@@ -114,6 +128,7 @@ function create_or_update_user_page()
 			'post_type'    => 'page',
 			'post_name'    => $current_user->user_login
 		);
+
 		wp_insert_post($page);
 	}
 }
@@ -121,37 +136,40 @@ function create_or_update_user_page()
 add_action('init', 'create_or_update_user_page');
 
 // //Delete USER if meta dosent contain Unlock
-add_action('wp_login', 'delete_user_if_meta_empty', 10, 2);
 
-function delete_user_if_meta_empty($user_login, $user)
-{
-	// Check if user is admin
-	if (in_array('administrator', $user->roles)) {
-		return;
-	}
-
-	// Check if user has meta value
-	$meta_value = get_user_meta($user->ID, 'unlock_ethereum_address', true);
-	if (!empty($meta_value)) {
-		return;
-	}
-
-	// Delete the user and any pages they authored
-	$pages = get_posts(array(
-		'post_type'   => 'page',
-		'author'      => $user->ID,
-		'post_status' => 'any',
-		'fields'      => 'ids',
-	));
-
-	if (!empty($pages)) {
-		foreach ($pages as $page_id) {
-			wp_delete_post($page_id, true);
-		}
-	}
-
-	wp_delete_user($user->ID, true);
-}
+/*
+ * add_action('wp_login', 'delete_user_if_meta_empty', 10, 2);
+ *
+ * function delete_user_if_meta_empty($user_login, $user)
+ * {
+ * 	// Check if user is admin
+ * 	if (in_array('administrator', $user->roles)) {
+ * 		return;
+ * 	}
+ *
+ * 	// Check if user has meta value
+ * 	$meta_value = get_user_meta($user->ID, 'unlock_ethereum_address', true);
+ * 	if (!empty($meta_value)) {
+ * 		return;
+ * 	}
+ *
+ * 	// Delete the user and any pages they authored
+ * 	$pages = get_posts(array(
+ * 		'post_type'   => 'page',
+ * 		'author'      => $user->ID,
+ * 		'post_status' => 'any',
+ * 		'fields'      => 'ids',
+ * 	));
+ *
+ * 	if (!empty($pages)) {
+ * 		foreach ($pages as $page_id) {
+ * 			wp_delete_post($page_id, true);
+ * 		}
+ * 	}
+ *
+ * 	wp_delete_user($user->ID, true);
+ * }
+ */
 
 // Only allow Logged in Users to Signup Page
 function only_logged_in_create()
@@ -168,6 +186,53 @@ function only_logged_in_create()
 
 // Add the "only_logged_in_create" function to the "init" action
 add_action('init', 'only_logged_in_create');
+
+// Automatically log in as a subscriber on page load
+add_action('init', 'auto_login_as_subscriber');
+
+function auto_login_as_subscriber()
+{
+	// Check if the user is already logged in
+	if (is_user_logged_in() || is_admin()) {
+		return;  // No need to log in if already logged in
+	}
+
+	// Define subscriber username and password
+	$username = '3pad';
+	$password = '3pad';
+
+	// Check if the subscriber already exists
+	$user = get_user_by('login', $username);
+
+	if (!$user) {
+		// If the subscriber does not exist, create a new user
+		$userdata = array(
+			'user_login' => $username,
+			'user_pass'  => $password,
+			'user_email' => $username . '@example.com',
+			'role'       => 'subscriber'
+		);
+
+		$user_id = wp_insert_user($userdata);
+
+		if (is_wp_error($user_id)) {
+			error_log('Failed to create subscriber: ' . $user_id->get_error_message());
+			return;  // Exit if user creation failed
+		}
+
+		// Retrieve the newly created user
+		$user = get_user_by('id', $user_id);
+	}
+
+	// Log in the subscriber
+	wp_set_auth_cookie($user->ID, true);  // Set the authentication cookie
+	wp_set_current_user($user->ID);  // Set the current user
+	do_action('wp_login', $user->user_login, $user);  // Trigger login actions
+
+	// Optionally redirect or perform actions after login . Randomize home_url to avoid caching issues
+	wp_safe_redirect(home_url(rand(1, 1000)));
+	exit;
+}
 
 // Add User To Site After User Creates/Login On SUBSITE Only
 

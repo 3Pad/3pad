@@ -42,13 +42,13 @@ add_action('admin_init', 'activate_acf');
 require_once ABSPATH . 'wp-content/themes/3pad/files/multisite-settings.php';
 
 /** Security */
-// require_once plugin_dir_path(__FILE__) . 'files/security.php';
+require_once plugin_dir_path(__FILE__) . 'files/security.php';
 
 /** ACF */
 require_once plugin_dir_path(__FILE__) . 'files/acf.php';
 
 /** CACHE */
-require_once plugin_dir_path(__FILE__) . 'files/cache.php';
+// require_once plugin_dir_path(__FILE__) . 'files/cache.php';
 
 /** ADMIN AREA */
 require_once plugin_dir_path(__FILE__) . 'files/admin.php';
@@ -60,10 +60,10 @@ require_once plugin_dir_path(__FILE__) . 'files/users.php';
 require_once plugin_dir_path(__FILE__) . 'files/custom-fields.php';
 
 /** Login Security */
-// require_once plugin_dir_path(__FILE__) . 'files/login-security.php';
+require_once plugin_dir_path(__FILE__) . 'files/login-security.php';
 
 /** Unlock Protocol */
-require_once plugin_dir_path(__FILE__) . 'files/unlock-protocol.php';
+// require_once plugin_dir_path(__FILE__) . 'files/unlock-protocol.php';
 
 /** Author Filter Html */
 // require_once plugin_dir_path(__FILE__) . 'files/author-unfiltered-html.php';
@@ -103,17 +103,20 @@ require_once plugin_dir_path(__FILE__) . 'files/styling.php';
 // Get the current post ID
 
 // Function to minify HTML content
-function minify_html_sites($html)
-{
-    // Remove extra white spaces between tags
-    $html = preg_replace('/>\s+</', '><', $html);
 
-    // Remove white spaces around tags
-    $html = preg_replace('/\s*<\s*([^\s>]+)\s*>/', '<$1>', $html);
-    $html = preg_replace('/\s*>\s*([^\s<]+)\s*</', '>$1<', $html);
-
-    return $html;
-}
+/*
+ * function minify_html_sites($html)
+ * {
+ *     // Remove extra white spaces between tags
+ *     $html = preg_replace('/>\s+</', '><', $html);
+ *
+ *     // Remove white spaces around tags
+ *     $html = preg_replace('/\s*<\s*([^\s>]+)\s*>/', '<$1>', $html);
+ *     $html = preg_replace('/\s*>\s*([^\s<]+)\s*</', '>$1<', $html);
+ *
+ *     return $html;
+ * }
+ */
 
 /**
  * Filters the URL of stylesheets, scripts, and assets.
