@@ -13,12 +13,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Clean up old ZIP files (if any)
+        run: |
+          # Remove any existing ZIP file to avoid conflicts or overwriting issues
+          rm -f public-folder.zip
+
       - name: Zip the contents of the public folder
         run: |
           # Navigate to the public directory
           cd files/app/public
           # Create a zip of the contents without including the folder itself
           zip -r ../../../public-folder.zip ./*
+        shell: bash
 
       - name: Set up Git
         run: |
@@ -27,8 +33,13 @@ jobs:
 
       - name: Commit ZIP to repository
         run: |
-          git add public-folder.zip
-          git commit -m "Add ZIP of public folder contents to root"
-          git push
+          # Check for changes, only commit if there are changes to avoid unnecessary commits
+          if [ -n "$(git status --porcelain)" ]; then
+            git add public-folder.zip
+            git commit -m "Add ZIP of public folder contents to root"
+            git push
+          else
+            echo "No changes to commit"
+          fi
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Ensure this line is correct
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
