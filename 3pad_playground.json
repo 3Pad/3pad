@@ -15,16 +15,6 @@
           "url": "https://raw.githubusercontent.com/3Pad/3pad-wordpress/main/public-folder.zip"
         }
       },
-      
-    {
-      "step": "runPHP",
-      "code": "<?php require '/wordpress/wp-load.php'; $user_id = wp_create_user('myuser', 'mypass', 'myuser@localhost'); (new WP_User($user_id))->set_role('subscriber');"
-    },
-    {
-      "step": "login",
-      "username": "myuser",
-      "password": "mypass"
-    },
       {
         "step": "runPHP",
         "code": "<?php\nheader('Location: /');\nexit();\n?>"
