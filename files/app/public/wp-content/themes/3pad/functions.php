@@ -39,10 +39,10 @@ add_action('admin_init', 'activate_acf');
 ======================================== */
 
 /** Multisite */
-require_once ABSPATH . 'wp-content/themes/3pad/files/multisite-settings.php';
+require_once plugin_dir_path(__FILE__) . 'files/multisite-settings.php';
 
 /** Security */
-require_once plugin_dir_path(__FILE__) . 'files/security.php';
+// require_once plugin_dir_path(__FILE__) . 'files/security.php';
 
 /** ACF */
 require_once plugin_dir_path(__FILE__) . 'files/acf.php';
@@ -60,7 +60,7 @@ require_once plugin_dir_path(__FILE__) . 'files/users.php';
 require_once plugin_dir_path(__FILE__) . 'files/custom-fields.php';
 
 /** Login Security */
-require_once plugin_dir_path(__FILE__) . 'files/login-security.php';
+// require_once plugin_dir_path(__FILE__) . 'files/login-security.php';
 
 /** Unlock Protocol */
 // require_once plugin_dir_path(__FILE__) . 'files/unlock-protocol.php';
