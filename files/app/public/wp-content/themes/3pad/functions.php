@@ -39,7 +39,7 @@ add_action('admin_init', 'activate_acf');
 ======================================== */
 
 /** Multisite */
-require_once plugin_dir_path(__FILE__) . 'files/multisite-settings.php';
+// require_once plugin_dir_path(__FILE__) . 'files/multisite-settings.php';
 
 /** Security */
 // require_once plugin_dir_path(__FILE__) . 'files/security.php';

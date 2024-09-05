@@ -619,31 +619,33 @@ function auto_login_as_subscriber()
  */
 // ################################################### Delete BLog
 
-function deleteDirectory($dir)
-{
-	// Check if the directory exists
-	if (!file_exists($dir)) {
-		return true;
-	}
-	// Check if it is a directory
-	if (!is_dir($dir)) {
-		return unlink($dir);
-	}
-	// Loop through the contents of the directory
-	foreach (scandir($dir) as $item) {
-		// Skip the current and parent directories
-		if ($item == '.' || $item == '..') {
-			continue;
-		}
-		// Recursively delete the contents of the directory
-		if (!deleteDirectory($dir . DIRECTORY_SEPARATOR . $item)) {
-			return false;
-		}
-	}
-
-	// Delete the directory
-	return rmdir($dir);
-}
+/*
+ * function deleteDirectory($dir)
+ * {
+ * 	// Check if the directory exists
+ * 	if (!file_exists($dir)) {
+ * 		return true;
+ * 	}
+ * 	// Check if it is a directory
+ * 	if (!is_dir($dir)) {
+ * 		return unlink($dir);
+ * 	}
+ * 	// Loop through the contents of the directory
+ * 	foreach (scandir($dir) as $item) {
+ * 		// Skip the current and parent directories
+ * 		if ($item == '.' || $item == '..') {
+ * 			continue;
+ * 		}
+ * 		// Recursively delete the contents of the directory
+ * 		if (!deleteDirectory($dir . DIRECTORY_SEPARATOR . $item)) {
+ * 			return false;
+ * 		}
+ * 	}
+ *
+ * 	// Delete the directory
+ * 	return rmdir($dir);
+ * }
+ */
 
 /*
  * function delete_pages_on_save($post_id)
