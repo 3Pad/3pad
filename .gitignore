@@ -1,26 +1,29 @@
-
-
-# Ignore everything
+# Ignore everything by default
 *
-.htaccess
 
-# But not these folders and files
-!/.htaccess
+# Exceptions for important files and folders
+!.htaccess
 !README.md
 !3pad_playground.json
-!/3pad-playground/ 
-!/3pad-playground/wp-content/
-!/3pad-playground/wp-content/themes/3pad/
-!/3pad-playground/wp-content/plugins/advanced-custom-fields/
-!/3pad-playground/wp-content/database/
 !public-folder.zip
 !3pad_page_settings.xml
 
-# Include everything in these folders
-!/3pad-playground/wp-content/themes/3pad **
-!/3pad-playground/wp-content/plugins/advanced-custom-fields/ **
-!/3pad-playground/wp-content/database/** 
+# Include the 3pad playground folder and contents
+!/3pad-playground/
+!/3pad-playground/**
 
+# Ignore twentytwentyfour theme specifically
+/3pad-playground/wp-content/themes/twentytwentyfour/
+
+# Include specific WordPress content folders recursively
+!/3pad-playground/wp-content/
+!/3pad-playground/wp-content/themes/
+!/3pad-playground/wp-content/themes/3pad/**
+
+!/3pad-playground/wp-content/plugins/
+!/3pad-playground/wp-content/plugins/advanced-custom-fields/**
+
+!/3pad-playground/wp-content/database/**
 
 # Include GitHub workflows
 !.github/

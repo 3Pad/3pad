@@ -1,0 +1,4 @@
+[06-Sep-2024 04:16:35 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /wordpress/wp-content/themes/3pad/functions.php:32) in /wordpress/wp-admin/includes/misc.php on line 85
+[06-Sep-2024 04:16:35 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /wordpress/wp-content/themes/3pad/functions.php:32) in /wordpress/wp-includes/functions.php on line 135
+[06-Sep-2024 04:16:35 UTC] PHP Warning:  Cannot modify header information - headers already sent by (output started at /wordpress/wp-content/themes/3pad/functions.php:32) in /wordpress/wp-admin/admin-header.php on line 2
+[06-Sep-2024 04:17:21 UTC] PHP Deprecated:  str_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in /wordpress/wp-includes/formatting.php on line 25
