@@ -5,7 +5,7 @@
 !.htaccess
 !README.md
 !3pad_playground.json
-!public-folder.zip
+!wp-content-folder.zip
 !3pad_page_settings.xml
 
 # Include the 3pad playground folder and contents
