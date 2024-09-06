@@ -8,20 +8,18 @@
 !/.htaccess
 !README.md
 !3pad_playground.json
-!/files/
-!/files/app/
-!/files/app/public/
-!/files/app/public/wp-content/
-!/files/app/public/wp-content/themes/3pad
-!/files/app/public/wp-content/plugins/advanced-custom-fields
-!/files/app/public/wp-content/database/
+!/3pad-playground/ 
+!/3pad-playground/wp-content/
+!/3pad-playground/wp-content/themes/3pad/
+!/3pad-playground/wp-content/plugins/advanced-custom-fields/
+!/3pad-playground/wp-content/database/
 !public-folder.zip
 !3pad_page_settings.xml
 
 # Include everything in these folders
-!/files/app/public/wp-content/themes/3pad **
-!/files/app/public/wp-content/plugins/advanced-custom-fields **
-!/files/app/public/wp-content/database/** 
+!/3pad-playground/wp-content/themes/3pad **
+!/3pad-playground/wp-content/plugins/advanced-custom-fields/ **
+!/3pad-playground/wp-content/database/** 
 
 
 # Include GitHub workflows
