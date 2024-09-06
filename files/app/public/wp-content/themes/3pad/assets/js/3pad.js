@@ -402,7 +402,7 @@ jQuery(document).ready(function ($) {
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function () {
     navigator.serviceWorker
-      .register("/wp-content/themes/3pad/assets/js/pwa_js.js")
+      .register("/../wp-content/themes/3pad/assets/js/pwa_js.js")
       .then(
         function (registration) {
           console.log("Service worker registered successfully:", registration);

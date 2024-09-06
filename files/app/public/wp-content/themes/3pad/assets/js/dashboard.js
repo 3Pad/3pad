@@ -324,28 +324,26 @@ jQuery(document).ready(function ($) {
   });
 });
 
-////Preview Button on home page customization
 jQuery(document).ready(function ($) {
   // Get the current URL
 
-  const previewButton = $("#post-preview");
-  const previewHref = previewButton.attr("href");
-  const previewIndex = previewHref.indexOf("?preview=true");
-  const siteUrl = previewHref
-    .substring(0, previewIndex)
-    .replace(/\/$/, "") // Remove any trailing slashes
-    .replace(/(\/\/[^\/]+)(.*)/, "$1$2");
+  const previewButton = $("#post-preview"); // Select the preview button element by its ID
+  const previewHref = previewButton.attr("href"); // Get the href attribute value of the preview button (the preview link)
+
+  // Use the full URL without truncating
+  const siteUrl = previewHref.replace(/\/$/, ""); // Remove any trailing slashes from the URL
 
   // Use the siteUrl variable in your code
 
   ///Site Preview
   $("#publishing-action").after(
-    '<iframe id="preview-frame"  src="' +
+    '<iframe id="preview-frame" src="' +
       siteUrl +
-      "/?customize_home=" +
+      "&customize_home=" +
       Date.now() +
       '" title="Site Preview"></iframe>'
   );
+
 
   ///Launch Button
   //$('#publishing-action').after('<div class="button button-primary button-large launch-bt" id="preview-bt" style=" background: #397939; width: 30%; ">Launch</div></a>');

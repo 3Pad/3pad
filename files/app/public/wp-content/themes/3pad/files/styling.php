@@ -121,7 +121,7 @@ function add_help_videos()
         <li class="menu_2"><a class="text-links"><span id="icon_2" class="fa fa-text-width"></span></a></li>
         <li class="menu_3"><a class="icons-links   " ><span id="icon_3" class="fa-solid fa-icons"></span></a></li>
         <li class="menu_4"><a class="embed-links   " ><span id="icon_4" class="fas fa-network-wired"></span></a></li>
-        <li class="menu_6"><a target="_blank" href="/"; class="embed-links   " ><span id="icon_6" class="fa fa-user-circle"></span></a></li>
+        <li class="menu_6"><a href="/"; class="embed-links   " ><span id="icon_6" class="fa fa-user-circle"></span></a></li>
       </ul>
     </center>
     </div>

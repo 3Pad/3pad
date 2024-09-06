@@ -792,7 +792,7 @@ Paste exported settings in the text field below.
 <br>
 <div class="image-publishing" style="flex-direction: row; flex-wrap: wrap; gap: 10px; justify-content: center; width: 100%; max-width: 1000px; margin: 0 auto; display: flex !important; ">
 		<a target="_blank" href="https://example.com/image1" style="flex: 1; min-width: 200px; box-sizing: border-box;">
-				<img src="/wp-content/themes/3pad/assets/images/tinyhost.png" alt="Image 1" style="width: 100%; height: auto; display: block;">
+				<img src="/../wp-content/themes/3pad/assets/images/tinyhost.png" alt="Image 1" style="width: 100%; height: auto; display: block;">
 		</a>
 		<a target="_blank" href="https://example.com/image2" style="flex: 1; min-width: 200px; box-sizing: border-box;">
 				<img src="/wp-content/themes/3pad/assets/images/static.png" alt="Image 2" style="width: 100%; height: auto; display: block;">
@@ -883,7 +883,7 @@ Paste exported settings in the text field below.
                     'class' => '',
                     'id'    => '',
                 ),
-                'message' => '<img class="instructions" style="width: 100%;" src="/wp-content/themes/3pad/assets/images/pre_title.jpg">',
+                'message' => '<img class="instructions" style="width: 100%;" src="/../wp-content/themes/3pad/assets/images/pre_title.jpg">',
                 'new_lines' => 'wpautop',
                 'esc_html' => 0,
             ),
@@ -1779,7 +1779,7 @@ Paste exported settings in the text field below.
                     'class' => '',
                     'id'    => '',
                 ),
-                'message' => '<img class="instructions" style="width: 100%;" src="/wp-content/themes/3pad/assets/images/text_links.jpg">',
+                'message' => '<img class="instructions" style="width: 100%;" src="/../wp-content/themes/3pad/assets/images/text_links.jpg">',
                 'new_lines' => 'wpautop',
                 'esc_html' => 0,
             ),
@@ -2422,7 +2422,7 @@ Paste exported settings in the text field below.
                     'class' => '',
                     'id'    => '',
                 ),
-                'message' => '<img class="instructions" style="width: 100%;" src="/wp-content/themes/3pad/assets/images/background_image.jpg">',
+                'message' => '<img class="instructions" style="width: 100%;" src="/../wp-content/themes/3pad/assets/images/background_image.jpg">',
                 'new_lines' => 'wpautop',
                 'esc_html' => 0,
             ),
@@ -2538,7 +2538,7 @@ Paste exported settings in the text field below.
                     'class' => '',
                     'id'    => '',
                 ),
-                'message' => '<img class="instructions" style="width: 100%;" src="/wp-content/themes/3pad/assets/images/background_video.gif">',
+                'message' => '<img class="instructions" style="width: 100%;" src="/../wp-content/themes/3pad/assets/images/background_video.gif">',
                 'new_lines' => 'wpautop',
                 'esc_html' => 0,
             ),
@@ -2735,7 +2735,7 @@ Paste exported settings in the text field below.
                     'class' => '',
                     'id'    => '',
                 ),
-                'message' => '<img class="instructions" style="width: 100%;" src="/wp-content/themes/3pad/assets/images/corner_icons.jpg">',
+                'message' => '<img class="instructions" style="width: 100%;" src="/../wp-content/themes/3pad/assets/images/corner_icons.jpg">',
                 'new_lines' => 'wpautop',
                 'esc_html' => 0,
             ),
@@ -7116,7 +7116,7 @@ Paste exported settings in the text field below.
                     'class' => '',
                     'id'    => '',
                 ),
-                'message' => '<img class="instructions" style="width: 100%;" src="/wp-content/themes/3pad/assets/images/social_icons.jpg">',
+                'message' => '<img class="instructions" style="width: 100%;" src="/../wp-content/themes/3pad/assets/images/social_icons.jpg">',
                 'new_lines' => 'wpautop',
                 'esc_html' => 0,
             ),
@@ -10357,7 +10357,7 @@ Paste exported settings in the text field below.
                     'class' => '',
                     'id'    => '',
                 ),
-                'message' => '<img class="instructions" style="width: 100%;" src="/wp-content/themes/3pad/assets/images/bottom_menu.jpg">',
+                'message' => '<img class="instructions" style="width: 100%;" src="/../wp-content/themes/3pad/assets/images/bottom_menu.jpg">',
                 'new_lines' => 'wpautop',
                 'esc_html' => 0,
             ),
