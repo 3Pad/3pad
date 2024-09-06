@@ -16,13 +16,13 @@ jobs:
       - name: Clean up old ZIP files (if any)
         run: |
           # Remove any existing ZIP file to avoid conflicts or overwriting issues
-          rm -f wp-content-folder.zip
+          rm -f 3pad-playground.zip
 
-      - name: Zip the contents of the wp-content folder
+      - name: Zip the contents of the 3pad-playground folder
         run: |
-          # Create a zip of the contents of the wp-content directory
-          cd 3pad-playground/wp-content
-          zip -r ../../wp-content-folder.zip .
+          # Create a zip of the contents of the 3pad-playground directory
+          cd 3pad-playground
+          zip -r ../3pad-playground.zip .
         shell: bash
 
       - name: Set up Git
@@ -34,8 +34,8 @@ jobs:
         run: |
           # Check for changes, only commit if there are changes to avoid unnecessary commits
           if [ -n "$(git status --porcelain)" ]; then
-            git add wp-content-folder.zip
-            git commit -m "Add ZIP of wp-content folder to root"
+            git add 3pad-playground.zip
+            git commit -m "Add ZIP of 3pad-playground folder to root"
             git push
           else
             echo "No changes to commit"
