@@ -198,8 +198,22 @@ function showAlert(message) {
 }
 
 // Add event listeners to the buttons
-document.getElementById("export-btn").addEventListener("click", exportFields);
-document.getElementById("import-btn").addEventListener("click", importFields);
+// Add event listeners to the buttons, checking for their existence
+const exportBtn = document.getElementById("export-btn");
+const importBtn = document.getElementById("import-btn");
+
+if (exportBtn) {
+  exportBtn.addEventListener("click", exportFields);
+} else {
+  console.error("Export button not found");
+}
+
+if (importBtn) {
+  importBtn.addEventListener("click", importFields);
+} else {
+  console.error("Import button not found");
+}
+
 
 ///Template Import
 // Get all template buttons
