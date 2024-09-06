@@ -21,7 +21,7 @@ jobs:
       - name: Zip the contents of the public folder
         run: |
           # Navigate to the public directory
-          cd files/app/public
+          cd 3pad-playground
           # Create a zip of the contents without including the folder itself
           zip -r ../../../public-folder.zip ./*
         shell: bash
