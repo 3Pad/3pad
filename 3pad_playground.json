@@ -1,24 +1,29 @@
 {
-    "$schema": "https://playground.wordpress.net/blueprint-schema.json",
-    "preferredVersions": {
-      "php": "8.3",
-      "wp": "6.6"
-    },
-    "phpExtensionBundles": [
-      "kitchen-sink"
-    ],
-    "steps": [
-      {
-        "step": "importWordPressFiles",
-        "wordPressFilesZip": {
-          "resource": "url",
-          "url": "https://raw.githubusercontent.com/3Pad/3pad-wordpress/main/public-folder.zip"
-        }
-      },
-      {
-        "step": "runPHP",
-        "code": "<?php\nheader('Location: /');\nexit();\n?>"
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "landingPage": "/",
+  "preferredVersions": {
+    "php": "8.0",
+    "wp": "6.6"
+  },
+  "phpExtensionBundles": [
+    "kitchen-sink"
+  ],
+  "login": false,
+  "steps": [
+    {
+      "step": "importWordPressFiles",
+      "wordPressFilesZip": {
+        "resource": "url",
+        "url": "https://raw.githubusercontent.com/3Pad/3pad-wordpress/main/3pad-playground.zip"
       }
-    ]
-  }
-  
+    },
+    {
+      "step": "activateTheme",
+      "themeFolderName": "3pad"
+    },
+    {
+      "step": "runPHP",
+      "code": "<?php\nheader('Location: /');\nexit();\n?>"
+    }
+  ]
+}
