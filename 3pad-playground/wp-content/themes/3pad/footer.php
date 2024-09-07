@@ -14,8 +14,9 @@ if (!defined('ABSPATH')) {
 ?>
 
 
-
+<script src="<?php echo get_theme_file_uri('/assets/js/jquery.js'); ?>"></script>
 <script src="<?php echo get_theme_file_uri('/assets/js/3pad.js'); ?>" defer></script>
+
 
 <?php wp_footer(); ?>
 

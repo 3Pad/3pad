@@ -12,6 +12,10 @@
 !/3pad-playground/
 !/3pad-playground/**
 
+# Include the wordpress playground folder and contents
+!/wordpress-playground/
+!/wordpress-playground/**
+
 # Ignore twentytwentyfour theme specifically
 /3pad-playground/wp-content/themes/twentytwentyfour/
 

@@ -1,6 +1,7 @@
 <?php
 
 $nonce        = wp_create_nonce('js-nonce');
+$custom_nonce = wp_create_nonce('my_custom_nonce_action');
 $current_user = wp_get_current_user();
 $page         = strtolower($current_user->user_login);
 
@@ -105,6 +106,10 @@ $custom      = get_field("custom_domain", $authpage_id);
  */
 
 echo '
+<script defer id="nonce-script" type="text/javascript">
+            var myNonce = "' . esc_js($custom_nonce) . '";
+          
+          </script>
  <script defer nonce="<?php echo ' . $nonce . ' ?>">
 document.addEventListener("DOMContentLoaded", function() {
   var sitePath = document.getElementById("site_path");

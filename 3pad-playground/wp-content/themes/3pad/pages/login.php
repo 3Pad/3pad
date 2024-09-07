@@ -42,7 +42,8 @@ if (is_user_logged_in()) {
 		}
 	</style>
 	<section class="section-login wf-section">
-		<div class="container-login">
+	   <div class="container-login" >
+		   <div class="unlock-content unlocked">
 			<div id="logo"></div>
 			
 				<h1 id="header-login" class="centered-heading">You Are Connected</h1>
@@ -342,6 +343,7 @@ if (is_user_logged_in()) {
 								class="b4 w-button firstlogout">🚪 Log
 								Out</a>
 						</div>
+	
 						
 
 						<?php  // IPFS Get Path
@@ -356,21 +358,15 @@ if (is_user_logged_in()) {
 				<?php  // Check if the create site button was clicked and create the new site if valid
 				// create_site_from_button();
 				?>
-
+	</div>
 	</section>
 
 <?php
-} else {
-	?>
-	<!--- IPFS Message --->
-	<div style=" background: black; z-index: 99999999999999999999; top: 0px; width: 100%; height: 20px; position: fixed; ">
-		<p
-			style=" color: white; text-align: center; font-family: monospace; font-size: 10px; /* text-transform: uppercase; */ font-weight: 500; ">
-			Confirm your URL https://app.3pad.xyz</p>
-	</div>
-	<!--- IPFS Message --->
+
+?>
+<div class="unlock-content locked" >
 	<section class="section-login wf-section">
-		<div class="container-login">
+		<div class="container-login ">
 			<div id="logo"></div>
 			<h1 id="header-login" class="centered-heading">Connect With WEB3 To Launch</h1>
 			<p id="subheader-login" class="centered-subheading">Choose A Option Below To Connect With</p>
@@ -382,16 +378,16 @@ if (is_user_logged_in()) {
 			<div id="lockpay" class="container-2 w-container">
 				<div class="columns w-row">
 					<div class="column w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">
-						<a target="_top" id="unlocklink" button="email" href="#" class="email-login w-button">📧 Connect Email</a>
+						<a onclick="window.unlockProtocol && window.unlockProtocol.loadCheckoutModal()" id="unlocklink" button="email" href="#" class="email-login w-button">📧 Connect Email</a>
 					</div>
 					<div class="column-2 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">
-						<a target="_top" id="unlocklink" button="nft" href="#" class="loginwithnft w-button">🤳 Connect NFT</a>
+						<a onclick="window.unlockProtocol && window.unlockProtocol.loadCheckoutModal()" id="unlocklink" button="nft" href="#" class="loginwithnft w-button">🤳 Connect NFT</a>
 					</div>
 					<div class="column-3 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">
-						<a target="_top" id="unlocklink" button="crypto" href="#" class="cryptologin w-button">₿ Connect Crypto</a>
+						<a onclick="window.unlockProtocol && window.unlockProtocol.loadCheckoutModal()" id="unlocklink" button="crypto" href="#" class="cryptologin w-button">₿ Connect Crypto</a>
 					</div>
 					<div class="column-4 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">
-						<a target="_top" id="unlocklink" button="pass" href="#" class="b4 w-button">🎟️ Subscription</a>
+						<a tonclick="window.unlockProtocol && window.unlockProtocol.loadCheckoutModal()" id="unlocklink" button="pass" href="#" class="b4 w-button">🎟️ Subscription</a>
 					</div>
 				</div>
 			</div>
@@ -414,10 +410,8 @@ if (is_user_logged_in()) {
 		<p style=" width: 74px; display: inline-block; "><a target="_blank" href="https://hello.3pad.xyz/terms/index.html"> Privacy
 				Policy</a></p>
 	</div>
-	<?php
-	// /Get The Unlock Login URL
-	the_content();
-	?>
+</div>
+
 
 <?php
 }
@@ -425,10 +419,113 @@ if (is_user_logged_in()) {
 
 
 
-<script src="<?php echo get_theme_file_uri('/assets/js/3pad.js'); ?>" defer></script>
+<script src="<?php echo get_theme_file_uri('/assets/js/unlock.js'); ?>" defer></script>
+
+<script>
+(function (d, s) {
+    var js = d.createElement(s),
+      sc = d.getElementsByTagName(s)[0];
+    js.src = "https://paywall.unlock-protocol.com/static/unlock.latest.min.js";
+    sc.parentNode.insertBefore(js, sc);
+}(document, "script"));
+</script>
+
+<script>
+	window.addEventListener("unlockProtocol.status", function (event) {
+    // We hide all .unlock-content elements
+    document.querySelector(".unlock-content").style.display = "none";
+    // We show only the relevant element
+    document
+      .querySelectorAll(`.unlock-content.${event.detail.state}`)
+      .forEach((element) => {
+        element.style.display = "contents";
+      });
+  });
+
+  
+  
+ // Listen for the unlockProtocol event
+ window.addEventListener('unlockProtocol', function (e) {
+    var state = e.detail;
+
+    if (state === 'locked') {
+        // Hide elements with the class 'unlock-content locked'
+        document.querySelectorAll('.unlock-content.locked').forEach(function (element) {
+            element.style.display = 'none'; // Hide the element
+        });
+
+        // Optionally, load ad rendering component here
+        console.log('Content is locked.');
+
+    } else {
+        // Show elements with the class 'unlock-content locked'
+        document.querySelectorAll('.unlock-content.locked').forEach(function (element) {
+            element.style.display = ''; // Show the element (default display)
+        });
+
+        // Optionally, stop ad rendering component
+        console.log('Content is unlocked.');
+
+        // Save the nonce into a cookie
+        if (typeof myNonce !== 'undefined') {
+            // Save nonce in a cookie
+            document.cookie = 'unlock_nonce=' + myNonce + '; path=/; SameSite=Strict; Secure; max-age=43200'; // 12 hours expiration
+        } else {
+            console.error('Security Nonce is not defined.');
+        }
+    }
+});
+
+
+  
+</script>
+
+  <script>var unlockProtocolConfig = {
+    icon: "",
+    locks: {
+        "0x4b63670232e58574c9f94b2382e7db27161b66ea": {
+            network: 137,
+            skipRecipient: true,
+            order: 3,
+            name: "Dollar A Day",
+            maxRecipients: null,
+            recipient: "",
+            dataBuilder: "",
+            emailRequired: true,
+            recurringPayments: "forever"
+        },
+        "0x89a1b8642a6942f619f78d5e89e23bb14ad03e26": {
+            network: 137,
+            name: "",
+            order: 0,
+            maxRecipients: null,
+            recipient: "",
+            dataBuilder: "",
+            emailRequired: true
+        },
+        "0x8d9799dbb790af451f4370bcae727cf33bcb35b6": {
+            network: 137,
+            name: "Monthly (Contribution)",
+            order: 2
+        }
+    },
+    pessimistic: true,
+    skipRecipient: true,
+    title: "Burn After Access",
+    referrer: "",
+    endingCallToAction: "",
+    persistentCheckout: false,
+    hideSoldOut: false,
+    skipSelect: false
+};</script>
 
 
 <div class="footer">
 	<?php do_shortcode("[analytics]"); ?>
 </div>
+
+
+
+
+
 <!-- .Footer -->

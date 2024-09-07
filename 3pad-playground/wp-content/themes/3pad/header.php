@@ -55,6 +55,9 @@
     <noscript>
         
     </noscript>
-    <script src="<?php echo get_theme_file_uri('/assets/js/jquery.js'); ?>"></script>
+
    
-    <?php wp_head(); ?>
+    <?php
+
+        wp_head();
+    ?>

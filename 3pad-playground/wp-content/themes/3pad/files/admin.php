@@ -563,10 +563,17 @@ function metahead()
   $ico   = get_theme_file_uri('/assets/images/favicon.ico');
   echo ' <link href="' . $ico . '" rel=icon type=image/x-icon>
   <meta content="#000000" name=theme-color>
+  	<!--- IPFS Message --->
+	<div style=" background: black; z-index: 99999999999999999999; top: 0px; width: 100%; height: 20px; position: fixed; ">
+		<p
+			style="margin-top: 3px; color: white; text-align: center; font-family: monospace; font-size: 10px; /* text-transform: uppercase; */ font-weight: 500; ">
+			💾 Always export. Everything gets destroyed. 🔥</p>
+	</div>
+	<!--- IPFS Message --->
   ';
 }
 
-add_action('admin_head', 'metahead', 0);
+add_action('admin_footer', 'metahead');
 
 remove_action('admin_head', '_admin_bar_bump_cb');
 
