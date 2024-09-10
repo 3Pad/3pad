@@ -110,6 +110,7 @@ if (buttonHomeRefresh !== null) {
   });
 }
 
+
 //Show Activate Button
 jQuery(document).ready(function ($) {
   if ($(".checkout-button-container").is(":visible")) {
@@ -171,10 +172,45 @@ jQuery(document).ready(function ($) {
 
   // //////////////////////////////////////////////////Fullscreen///////////////////////////////////////////////
   // Select the fullscreen button
-  $(".fullscreen-button").click(function () {
-    // Toggle fullscreen mode
-    $(document).toggleFullScreen();
-  });
+  $(document).ready(function () {
+    $(".fullscreen-button").click(function () {
+        // Toggle fullscreen-like behavior by adding/removing a custom class
+        $("body").toggleClass("fullscreen-mode");
+
+        // Apply fade-in/fade-out animations, excluding #topright
+        if ($("body").hasClass("fullscreen-mode")) {
+            fadeOutElements(".fullscreenhide:not(#topright)");
+            fadeInElements(".fullscreenshow:not(#topright)");
+        } else {
+            fadeInElements(".fullscreenhide:not(#topright)");
+            fadeOutElements(".fullscreenshow:not(#topright)");
+        }
+    });
+});
+
+function fadeInElements(selector) {
+    $(selector).each(function() {
+        $(this).stop(true, true).css({
+            opacity: 0,
+            display: 'block'
+        }).animate({
+            opacity: 1
+        }, 750); // Duration in milliseconds
+    });
+}
+
+function fadeOutElements(selector) {
+    $(selector).each(function() {
+        $(this).stop(true, true).animate({
+            opacity: 0
+        }, 750, function() {
+            $(this).css('display', 'none');
+        }); // Duration in milliseconds
+    });
+}
+
+
+
 
   // //////////////////////////////////////////////////Popup///////////////////////////////////////////////
   // Unmute/Mute
@@ -400,25 +436,85 @@ jQuery(document).ready(function ($) {
 
 // Register Service Worker
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function () {
-    navigator.serviceWorker
-      .register("/../wp-content/themes/3pad/assets/js/pwa_js.js")
-      .then(
-        function (registration) {
-          console.log("Service worker registered successfully:", registration);
-        }
-      )
-      .catch(function (error) {
-        console.error("Service worker registration failed:", error);
-      });
+  window.addEventListener("load", function() {
+      function registerServiceWorker(path) {
+          return navigator.serviceWorker.register(path)
+              .then(function(registration) {
+                  console.log("Service worker registered successfully:", registration);
+                  return registration;
+              })
+              .catch(function(error) {
+                  console.error("Service worker registration failed for path " + path + ":", error);
+                  throw error;
+              });
+      }
+
+      registerServiceWorker("mobile_app.js")
+          .catch(function() {
+              // If the first registration attempt fails, try with the local path
+              return registerServiceWorker("/../wp-content/themes/3pad/assets/js/pwa_js.js");
+          })
+          .then(function(registration) {
+              // This will run if either registration attempt succeeds
+              console.log("Service worker registration completed.");
+          })
+          .catch(function(error) {
+              // This will run if both registration attempts fail
+              console.error("All service worker registration attempts failed:", error);
+          });
   });
 }
 
-
-
-
-
-//Hide app install button
-if (window.matchMedia("(display-mode: standalone)").matches) {
-  document.getElementById("app_button").style.display = "none";
+///Hide App button if in PWA mode
+// Function to check if the app is in standalone mode
+function isStandalone() {
+  return ('standalone' in window.navigator && window.navigator.standalone) || 
+         (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
 }
+
+// Function to hide the app button
+function hideAppButton() {
+  if (typeof jQuery !== 'undefined') {
+      jQuery('#app_button').hide();
+  } else {
+      var appButton = document.getElementById('app_button');
+      if (appButton) {
+          appButton.style.display = 'none';
+      }
+  }
+}
+
+// Function to check standalone mode and hide button
+function checkStandaloneAndHide() {
+  if (isStandalone()) {
+      hideAppButton();
+  }
+}
+
+// jQuery ready function for broader compatibility
+if (typeof jQuery !== 'undefined') {
+  jQuery(document).ready(checkStandaloneAndHide);
+}
+
+// Vanilla JS event listeners
+document.addEventListener('DOMContentLoaded', checkStandaloneAndHide);
+window.addEventListener('load', checkStandaloneAndHide);
+document.addEventListener('touchend', checkStandaloneAndHide);
+
+// Listen for changes in display mode
+if (window.matchMedia) {
+  window.matchMedia('(display-mode: standalone)').addListener(function(e) {
+      if (e.matches) {
+          hideAppButton();
+      }
+  });
+}
+
+// Immediate check (for browsers that might have already loaded)
+checkStandaloneAndHide();
+
+
+
+
+
+

@@ -1,17 +1,15 @@
 <?php
 
-/**
- * Users
- */
+/** Users */
 
-//////////////////////////////Disable Login.php///////////////////////////////////
+// ////////////////////////////Disable Login.php///////////////////////////////////
 add_action('init', 'prevent_wp_login');
 
 function prevent_wp_login()
 {
   // WP tracks the current page - global the variable to access it
   global $pagenow;
-  ///Check IF IP Address if($_SERVER["REMOTE_ADDR"]=='111.111.111.111'){
+  // /Check IF IP Address if($_SERVER["REMOTE_ADDR"]=='111.111.111.111'){
   // Check if a $_GET['action'] is set, and if so, load it into $action variable
   $action = (isset($_GET['action'])) ? $_GET['action'] : '';
   // Check if we're on the login page, and ensure the action is not 'logout'
@@ -21,7 +19,7 @@ function prevent_wp_login()
     // Redirect to the home page
     wp_redirect($page);
     // Stop execution to prevent the page loading for any reason
-    exit ();
+    exit();
   }
 }
 
@@ -30,21 +28,22 @@ function disable_wp_login()
   // Redirect users away from the login page if they try to access it directly
   if (in_array($GLOBALS['pagenow'], array('wp-login.php', 'wp-register.php'))) {
     wp_redirect(home_url());
-    exit ();
+    exit();
   }
 }
+
 add_action('wp', 'disable_wp_login');
 
-//////////////////////////////Disable Login.Php///////////////////////////////////
+// ////////////////////////////Disable Login.Php///////////////////////////////////
 
-//////////Disable Password Reset //////////////
+// ////////Disable Password Reset //////////////
 class Password_Reset_Removed
 {
   function __construct()
   {
     add_filter('show_password_fields', array($this, 'disable'));
     add_filter('allow_password_reset', array($this, 'disable'));
-    add_filter('gettext', array($this, 'remove'));
+    add_filter('gettext', array(             $this, 'remove'));
   }
 
   function disable()
@@ -76,10 +75,11 @@ function disable_lost_password()
     }
   }
 }
-add_action("login_init", "disable_lost_password");
-//////////Disable Password Reset //////////////
 
-/////////////////Disable Registration Page//////////////
+add_action("login_init", "disable_lost_password");
+// ////////Disable Password Reset //////////////
+
+// ///////////////Disable Registration Page//////////////
 
 add_filter('option_users_can_register', function ($value) {
   $script = basename(parse_url($_SERVER['SCRIPT_NAME'], PHP_URL_PATH));
@@ -91,12 +91,12 @@ add_filter('option_users_can_register', function ($value) {
   return $value;
 });
 
-/////////////////Disable Registration Page//////////////
+// ///////////////Disable Registration Page//////////////
 
-/////////////Custom Css Login Page /////////////
+// ///////////Custom Css Login Page /////////////
 function custom_login()
 {
-  ?>
+?>
 <style type="text/css">
   .forgetmenot {
     display: none;
@@ -139,20 +139,19 @@ function custom_login()
 </style>
 <?php
 }
-add_action('login_enqueue_scripts', 'custom_login');
-/////////////Custom Css Login Page /////////////
 
-/////Disable default Login/////////
+add_action('login_enqueue_scripts', 'custom_login');
+// ///////////Custom Css Login Page /////////////
+
+// ///Disable default Login/////////
 add_action('login_init', function () {
   if (isset($_POST['log']) || isset($_POST['user_login'])) {
     die;
   }
 });
-/////Disable default Login//////////
+// ///Disable default Login//////////
 
-/**
- * This hides the login and password fields so only the social login button is visible
- */
+/** This hides the login and password fields so only the social login button is visible */
 add_action('login_head', 'wpse_121687_hide_login');
 
 function wpse_121687_hide_login()
@@ -169,6 +168,4 @@ function wpse_121687_hide_login()
   echo $style;
 }
 
-/**
- * This hides the login and password fields so only the social login button is visible
- */
+/** This hides the login and password fields so only the social login button is visible */

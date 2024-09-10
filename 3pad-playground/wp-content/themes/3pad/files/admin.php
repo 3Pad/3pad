@@ -566,7 +566,7 @@ function metahead()
   	<!--- IPFS Message --->
 	<div style=" background: black; z-index: 99999999999999999999; top: 0px; width: 100%; height: 20px; position: fixed; ">
 		<p
-			style="margin-top: 3px; color: white; text-align: center; font-family: monospace; font-size: 10px; /* text-transform: uppercase; */ font-weight: 500; ">
+			style="margin-top: 2px; color: white; text-align: center; font-family: monospace; font-size: 10px; /* text-transform: uppercase; */ font-weight: 500; ">
 			💾 Always export. Everything gets destroyed. 🔥</p>
 	</div>
 	<!--- IPFS Message --->
@@ -656,5 +656,30 @@ function remove_admin_bar_top_secondary()
 }
 
 add_action('wp_before_admin_bar_render', 'remove_admin_bar_top_secondary');
+
+// Redirect User if Individual Lock and Page Lock Enabled
+add_action('admin_init', 'check_nonce_and_restrict_access', 0);
+
+function check_nonce_and_restrict_access()
+{
+  if (is_admin() && !wp_doing_ajax()) {
+    $expected_nonce = wp_create_nonce('my_custom_nonce_action');
+
+    add_action('admin_head', function () use ($expected_nonce) {
+      echo "<script>
+                // Retrieve the nonce from session storage
+                var sessionNonce = sessionStorage.getItem('unlock_nonce');
+                var expectedNonce = " . json_encode($expected_nonce) . ";
+                
+                if (sessionNonce === expectedNonce) {
+                    console.log('%cAccess granted.', 'color: green; font-weight: bold');
+                } else {
+                    console.log('%cAccess restricted. Redirecting to home...', 'color: red; font-weight: bold');
+                    window.location.href = '" . home_url() . "';
+                }
+            </script>";
+    });
+  }
+}
 
 /* ADMIN AREA */

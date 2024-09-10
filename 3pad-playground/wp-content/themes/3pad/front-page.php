@@ -11,8 +11,9 @@ if (!is_page(10)) {
 	<!--- Home CSS --->
 	<link href="<?php echo get_theme_file_uri('/assets/css/home.css'); ?>" rel="stylesheet" />
 	<link href="<?php echo get_theme_file_uri('/assets/css/fontawesome.min.css'); ?>" rel="stylesheet" />
-<link href="<?php echo get_theme_file_uri('/assets/css/brands.min.css'); ?>" rel="stylesheet" />
-<link href="<?php echo get_theme_file_uri('/assets/css/solid.min.css'); ?>" rel="stylesheet" />
+	<link href="<?php echo get_theme_file_uri('/assets/css/brands.min.css'); ?>" rel="stylesheet" />
+	<link href="<?php echo get_theme_file_uri('/assets/css/solid.min.css'); ?>" rel="stylesheet" />
+	<link rel="manifest" href="data:application/manifest+json,%7B%22background_color%22%3A%20%22%23000000%22%2C%22theme_color%22%3A%20%22%23000000%22%2C%22orientation%22%3A%20%22portrait%22%2C%22display%22%3A%20%22standalone%22%7D">
 	</head>
 	<!--- Body --->
 

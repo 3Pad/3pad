@@ -619,17 +619,5 @@ function page_lock_clash($postid)
 
 add_action('save_post', 'page_lock_clash');
 
-// Add Sandbox To Iframe
-
-function add_iframe_sandbox_attr($content)
-{
-  $content = preg_replace('/<iframe/', '<iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" ', $content);
-  $content = preg_replace('/<img/', '<img loading="lazy" referrerpolicy="strict-origin-when-cross-origin" ', $content);
-
-  return $content;
-}
-
-add_filter('the_content', 'add_iframe_sandbox_attr');
-
 /******SECURITY****
 /******SECURITY*****/

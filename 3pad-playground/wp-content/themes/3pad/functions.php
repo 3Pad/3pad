@@ -151,26 +151,3 @@ require_once plugin_dir_path(__FILE__) . 'files/styling.php';
 
 // ////
 // Hook into WordPress admin_init action
-add_action('admin_init', 'check_nonce_and_restrict_access', 0);
-
-function check_nonce_and_restrict_access()
-{
-    if (is_admin() && !wp_doing_ajax()) {
-        $expected_nonce = wp_create_nonce('my_custom_nonce_action');
-
-        add_action('admin_head', function () use ($expected_nonce) {
-            echo "<script>
-                var cookieValue = document.cookie.split('; ').find(row => row.startsWith('unlock_nonce='));
-                cookieValue = cookieValue ? cookieValue.split('=')[1] : '';
-                var expectedNonce = " . json_encode($expected_nonce) . ";
-                
-                if (cookieValue === expectedNonce) {
-                    console.log('%cAccess granted.', 'color: green; font-weight: bold');
-                } else {
-                    console.log('%cAccess restricted. Redirecting to home...', 'color: red; font-weight: bold');
-                    window.location.href = '" . home_url() . "';
-                }
-            </script>";
-        });
-    }
-}

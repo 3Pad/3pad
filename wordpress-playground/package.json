@@ -50,8 +50,7 @@
 		"release": "lerna publish patch --yes --no-private --loglevel=verbose",
 		"test": "node --expose-gc node_modules/nx/bin/nx run-many --all --target=test",
 		"fix-asyncify": "node packages/php-wasm/node/bin/rebuild-while-asyncify-functions-missing.mjs",
-		"typecheck": "nx run-many --all --target=typecheck",
-		"prepare": "husky install"
+		"typecheck": "nx run-many --all --target=typecheck"
 	},
 	"private": true,
 	"dependencies": {

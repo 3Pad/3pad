@@ -899,21 +899,61 @@ document.addEventListener("DOMContentLoaded", function () {
 
 ////Export HTML Site
 jQuery(document).ready(function ($) {
-  document.getElementById('download-btn').addEventListener('click', function(event) {
-    event.preventDefault();
-    const previewButton = $("#post-preview");
-    const previewHref = previewButton.attr("href");
-    const previewIndex = previewHref.indexOf("?preview=true");
-    const siteUrl = previewHref
-      .substring(0, previewIndex)
-      .replace(/\/$/, "") // Remove any trailing slashes
-      .replace(/(\/\/[^\/]+)(.*)/, "$1$2");
+  // Load JSZip library
+  var script = document.createElement('script');
+  script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js';
+  document.head.appendChild(script);
 
-    exportFullHTMLContent('index.html', siteUrl);
-  });
+  script.onload = function() {
+    document.getElementById('download-btn').addEventListener('click', function(event) {
+      event.preventDefault();
+      
+      const previewButton = $("#post-preview"); // Select the preview button element by its ID
+      const previewHref = previewButton.attr("href"); // Get the href attribute value of the preview button (the preview link)
+      const previewIndex = previewHref.indexOf("?preview=true");
+      const siteUrl = previewHref.replace(/\/$/, ""); // Remove any trailing slashes from the URL
 
-  function exportFullHTMLContent(fileName, pageUrl) {
-    fetch(pageUrl)
+      const jspreviewButton = $("#post-preview");
+      const jspreviewHref = jspreviewButton.attr("href");
+      const jspreviewIndex = jspreviewHref.indexOf("?preview=true");
+      const jssiteUrl = jspreviewHref
+        .substring(0, jspreviewIndex)
+        .replace(/\/$/, "") // Remove any trailing slashes
+        .replace(/(\/\/[^\/]+)(.*)/, "$1$2");
+
+      exportAsZip(siteUrl, jssiteUrl);
+    });
+  };
+
+  function exportAsZip(siteUrl, jssiteUrl) {
+    const zip = new JSZip();
+    
+    Promise.all([
+      fetchAndProcessHTML(siteUrl),
+      fetchJSFile(jssiteUrl + '/wp-content/themes/3pad/assets/js/pwa_js.js')
+    ])
+    .then(([htmlContent, jsContent]) => {
+      zip.file("index.html", htmlContent);
+      zip.file("mobile_app.js", jsContent);
+
+      zip.generateAsync({type:"blob"})
+        .then(function(content) {
+          const url = URL.createObjectURL(content);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = "exported_files.zip";
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        });
+    })
+    .catch(error => {
+      console.error('Error creating zip file:', error);
+    });
+  }
+
+  function fetchAndProcessHTML(pageUrl) {
+    return fetch(pageUrl)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok ' + response.statusText);
@@ -924,80 +964,59 @@ jQuery(document).ready(function ($) {
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
 
-        function inlineCSS(stylesheets) {
-          return Promise.all(stylesheets.map(sheet => {
-            const href = sheet.href;
-            return fetch(href)
-              .then(response => {
-                if (!response.ok) {
-                  throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.text();
-              })
-              .then(css => {
-                // Optionally replace font URLs with Base64 data here if needed
-                // Remove FontAwesome-specific handling
-
-                const style = document.createElement('style');
-                style.textContent = css;
-                doc.head.appendChild(style);
-                sheet.parentNode.removeChild(sheet);
-              })
-              .catch(error => {
-                console.error('Error fetching CSS from ' + href + ':', error);
-              });
-          }));
-        }
-
-        function inlineJS(scripts) {
-          return Promise.all(scripts.map(script => {
-            const src = script.src;
-            return fetch(src)
-              .then(response => {
-                if (!response.ok) {
-                  throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.text();
-              })
-              .then(js => {
-                script.parentNode.removeChild(script);
-                const scriptEl = document.createElement('script');
-                scriptEl.textContent = js;
-                doc.body.appendChild(scriptEl);
-              })
-              .catch(error => {
-                console.error('Error fetching JavaScript from ' + src + ':', error);
-              });
-          }));
-        }
-
-        const stylesheets = Array.from(doc.querySelectorAll('link[rel="stylesheet"]'));
-        Promise.all([
-          inlineCSS(stylesheets),
+        return Promise.all([
+          inlineCSS(Array.from(doc.querySelectorAll('link[rel="stylesheet"]'))),
           inlineJS(Array.from(doc.querySelectorAll('script[src]')))
         ])
-          .then(() => {
-            const updatedHTML = doc.documentElement.outerHTML;
-            const blob = new Blob([updatedHTML], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = fileName;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-          })
-          .catch(error => {
-            console.error('Error processing the HTML content:', error);
-          });
-      })
-      .catch(error => {
-        console.error('Error fetching the page:', error);
+        .then(() => {
+          return doc.documentElement.outerHTML;
+        });
+      });
+  }
+
+  function inlineCSS(stylesheets) {
+    return Promise.all(stylesheets.map(sheet => {
+      const href = sheet.href;
+      return fetch(href)
+        .then(response => response.text())
+        .then(css => {
+          const style = document.createElement('style');
+          style.textContent = css;
+          sheet.parentNode.replaceChild(style, sheet);
+        })
+        .catch(error => {
+          console.error('Error fetching CSS from ' + href + ':', error);
+        });
+    }));
+  }
+
+  function inlineJS(scripts) {
+    return Promise.all(scripts.map(script => {
+      const src = script.src;
+      return fetch(src)
+        .then(response => response.text())
+        .then(js => {
+          const scriptEl = document.createElement('script');
+          scriptEl.textContent = js;
+          script.parentNode.replaceChild(scriptEl, script);
+        })
+        .catch(error => {
+          console.error('Error fetching JavaScript from ' + src + ':', error);
+        });
+    }));
+  }
+
+  function fetchJSFile(url) {
+    return fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.text();
       });
   }
 });
-
-
+////Export HTML Site
 
 //Import URL Configuration 
 

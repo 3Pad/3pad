@@ -444,8 +444,8 @@ if (is_user_logged_in()) {
 
   
   
- // Listen for the unlockProtocol event
- window.addEventListener('unlockProtocol', function (e) {
+// Listen for the unlockProtocol event
+window.addEventListener('unlockProtocol', function (e) {
     var state = e.detail;
 
     if (state === 'locked') {
@@ -466,10 +466,10 @@ if (is_user_logged_in()) {
         // Optionally, stop ad rendering component
         console.log('Content is unlocked.');
 
-        // Save the nonce into a cookie
+        // Save the nonce into session storage
         if (typeof myNonce !== 'undefined') {
-            // Save nonce in a cookie
-            document.cookie = 'unlock_nonce=' + myNonce + '; path=/; SameSite=Strict; Secure; max-age=43200'; // 12 hours expiration
+            // Save nonce in session storage
+            sessionStorage.setItem('unlock_nonce', myNonce);
         } else {
             console.error('Security Nonce is not defined.');
         }
@@ -477,47 +477,32 @@ if (is_user_logged_in()) {
 });
 
 
+
   
 </script>
 
   <script>var unlockProtocolConfig = {
-    icon: "",
-    locks: {
-        "0x4b63670232e58574c9f94b2382e7db27161b66ea": {
-            network: 137,
-            skipRecipient: true,
-            order: 3,
-            name: "Dollar A Day",
-            maxRecipients: null,
-            recipient: "",
-            dataBuilder: "",
-            emailRequired: true,
-            recurringPayments: "forever"
-        },
-        "0x89a1b8642a6942f619f78d5e89e23bb14ad03e26": {
-            network: 137,
-            name: "",
-            order: 0,
-            maxRecipients: null,
-            recipient: "",
-            dataBuilder: "",
-            emailRequired: true
-        },
-        "0x8d9799dbb790af451f4370bcae727cf33bcb35b6": {
-            network: 137,
-            name: "Monthly (Contribution)",
-            order: 2
-        }
+    "icon": "",
+    "locks": {
+        "0x89a1b8642a6942f619f78d5e89e23bb14ad03e26": { "name": "Free Member", "order": 0, "network": 137, "recipient": "", "dataBuilder": "", "emailRequired": true, "maxRecipients": null },
+        "0x8d9799dbb790af451f4370bcae727cf33bcb35b6": { "name": "Monthly (Donation)", "order": 1, "network": 137, "recipient": "", "dataBuilder": "", "emailRequired": false, "maxRecipients": null },
+        "0x9f1066ea080912c6a3b2d4f0ceb071417d3842fd": { "name": "Donate a ETH", "order": 3, "network": 137, "recipient": "", "dataBuilder": "", "emailRequired": false, "maxRecipients": null }
     },
-    pessimistic: true,
-    skipRecipient: true,
-    title: "Burn After Access",
-    referrer: "",
-    endingCallToAction: "",
-    persistentCheckout: false,
-    hideSoldOut: false,
-    skipSelect: false
-};</script>
+    "title": "Gain Access",
+    "referrer": "0xd5e3a9199cC1DeD984B44892ef5c8fBB93Bf62d6",
+    "skipSelect": false,
+    "hideSoldOut": false,
+    "pessimistic": true,
+    "skipRecipient": true,
+    "endingCallToAction": "Unlock",
+    "persistentCheckout": false,
+    "redirectUri": window.location.href
+}
+
+
+;
+
+</script>
 
 
 <div class="footer">
