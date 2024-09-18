@@ -8,26 +8,30 @@
 !3pad-playground.zip
 !3pad_page_settings.xml
 
-# Include the 3pad playground folder and contents
-!/3pad-playground/
-!/3pad-playground/**
+# Include the 3pad  folder and contents
+!/3pad/
+!/3pad/**
+
+# Include the app folder and contents
+!/app/
+!/app/**
 
 # Include the WordPress playground folder and contents
-!/wordpress-playground/
-!/wordpress-playground/**
+!/playground/
+!/playground/**
 
 # Ignore twentytwentyfour theme specifically
-/3pad-playground/wp-content/themes/twentytwentyfour/
+/3pad/wp-content/themes/twentytwentyfour/
 
 # Include specific WordPress content folders recursively
-!/3pad-playground/wp-content/
-!/3pad-playground/wp-content/themes/
-!/3pad-playground/wp-content/themes/3pad/**
+!/3pad/wp-content/
+!/3pad/wp-content/themes/
+!/3pad/wp-content/themes/3pad/**
 
-!/3pad-playground/wp-content/plugins/
-!/3pad-playground/wp-content/plugins/advanced-custom-fields/**
+!/3pad/wp-content/plugins/
+!/3pad/wp-content/plugins/advanced-custom-fields/**
 
-!/3pad-playground/wp-content/database/**
+!/3pad/wp-content/database/**
 
 # Include GitHub workflows
 !.github/

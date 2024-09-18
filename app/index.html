@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordPress Playground Test</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        #wp {
+            width: 100%;
+            height: 100vh;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="wp"></iframe>
+
+    <script type="module">
+       import { startPlaygroundWeb } from 'https://26tske4vkycd3lupsfxhyiubc6n2ryhkly5muwsrga7mlmubmboa.ar-io.dev/16clE5VWBD2uj5FufCKBF5uo4OpeOspaUTA-xbKBYFw?';
+
+async function initPlayground() {
+    try {
+        const client = await startPlaygroundWeb({
+            iframe: document.getElementById('wp'),
+            remoteUrl: 'https://chipper-praline-addadd.netlify.app/remote.html',
+            blueprint: {
+                "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+                "landingPage": "/",
+                "preferredVersions": {
+                    "php": "8.0",
+                    "wp": "6.6"
+                },
+                "phpExtensionBundles": [
+                    "kitchen-sink"
+                ],
+                "login": false,
+                "steps": [
+                    {
+                        "step": "importWordPressFiles",
+                        "wordPressFilesZip": {
+                            "resource": "url",
+                            "url": "https://raw.githubusercontent.com/3Pad/3pad-wordpress/main/3pad-playground.zip"
+                        }
+                    },
+                    {
+                        "step": "activateTheme",
+                        "themeFolderName": "3pad"
+                    },
+                    {
+                        "step": "runPHP",
+                        "code": "<?php\nheader('Location: /');\nexit();\n?>"
+                    }
+                ]
+            }
+        });
+
+        await client.isReady();
+        console.log('WordPress Playground is ready!');
+    } catch (error) {
+        console.error('Error initializing WordPress Playground:', error);
+    }
+}
+
+initPlayground();
+    </script>
+</body>
+</html>
+
