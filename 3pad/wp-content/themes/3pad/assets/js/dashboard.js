@@ -153,11 +153,42 @@ function importFields() {
 
       
 
-      showAlert("✅ Settings imported successfully.✅ Refresh page and restart import if issues arise.");
+      showCustomAlert("✅ Settings imported successfully.", true);
     } catch (e) {
-      showAlert(
-        "⚠️ Failed to import settings. Please make sure the input is valid JSON. ⚠️"
-      );
+      showCustomAlert("⚠️ Failed to import settings. Please make sure the input is valid JSON. ⚠️", false);
+    }
+    function showCustomAlert(message, isSuccess) {
+      const alertDiv = document.createElement('div');
+      alertDiv.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: black;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        z-index: 1000;
+        text-align: center;
+      `;
+    
+      alertDiv.innerHTML = `
+        <p>${message}</p>
+        <button id="okButton">OK</button>
+        ${isSuccess ? '<button id="retryButton">Retry</button>' : ''}
+      `;
+    
+      document.body.appendChild(alertDiv);
+    
+      document.getElementById('okButton').addEventListener('click', function () {
+        document.body.removeChild(alertDiv);
+      });
+    
+      if (isSuccess) {
+        document.getElementById('retryButton').addEventListener('click', function () {
+          window.location.reload();
+        });
+      }
     }
 
      // Click the "update" button

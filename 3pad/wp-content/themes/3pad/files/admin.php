@@ -567,7 +567,7 @@ function metahead()
 	<div style=" background: black; z-index: 99999999999999999999; top: 0px; width: 100%; height: 20px; position: fixed; ">
 		<p
 			style="margin-top: 2px; color: white; text-align: center; font-family: monospace; font-size: 10px; /* text-transform: uppercase; */ font-weight: 500; ">
-			💾 Always export. Everything gets destroyed. 🔥</p>
+			💾 Always export. Destroyed on refresh. 🔥</p>
 	</div>
 	<!--- IPFS Message --->
   ';

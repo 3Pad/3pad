@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WordPress Playground Test</title>
+    <title>3Pad</title>
     <style>
         body, html {
             margin: 0;
@@ -21,53 +21,118 @@
     <iframe id="wp"></iframe>
 
     <script type="module">
-       import { startPlaygroundWeb } from 'https://26tske4vkycd3lupsfxhyiubc6n2ryhkly5muwsrga7mlmubmboa.ar-io.dev/16clE5VWBD2uj5FufCKBF5uo4OpeOspaUTA-xbKBYFw?';
-
-async function initPlayground() {
-    try {
-        const client = await startPlaygroundWeb({
-            iframe: document.getElementById('wp'),
-            remoteUrl: 'https://chipper-praline-addadd.netlify.app/remote.html',
-            blueprint: {
-                "$schema": "https://playground.wordpress.net/blueprint-schema.json",
-                "landingPage": "/",
-                "preferredVersions": {
-                    "php": "8.0",
-                    "wp": "6.6"
-                },
-                "phpExtensionBundles": [
-                    "kitchen-sink"
-                ],
-                "login": false,
-                "steps": [
-                    {
-                        "step": "importWordPressFiles",
-                        "wordPressFilesZip": {
-                            "resource": "url",
-                            "url": "https://raw.githubusercontent.com/3Pad/3pad-wordpress/main/3pad-playground.zip"
-                        }
-                    },
-                    {
-                        "step": "activateTheme",
-                        "themeFolderName": "3pad"
-                    },
-                    {
-                        "step": "runPHP",
-                        "code": "<?php\nheader('Location: /');\nexit();\n?>"
-                    }
-                ]
+        // Define multiple module import URLs
+        const moduleUrls = [
+            'https://26tske4vkycd3lupsfxhyiubc6n2ryhkly5muwsrga7mlmubmboa.ar-io.dev/16clE5VWBD2uj5FufCKBF5uo4OpeOspaUTA-xbKBYFw?',
+            'https://another-backup-url.com/module.js'
+        ];
+    
+        // Function to try multiple module URLs for import
+        async function tryImportModule(urls) {
+            for (let url of urls) {
+                try {
+                    console.log(`Trying to import module from: ${url}`);
+                    const module = await import(url);
+                    console.log(`Successfully imported from: ${url}`);
+                    return module;
+                } catch (error) {
+                    console.error(`Failed to import from: ${url}, trying next...`);
+                }
             }
-        });
-
-        await client.isReady();
-        console.log('WordPress Playground is ready!');
-    } catch (error) {
-        console.error('Error initializing WordPress Playground:', error);
-    }
-}
-
-initPlayground();
+            throw new Error('All module imports failed.');
+        }
+    
+        // Main function to initialize the WordPress Playground
+        async function initPlayground() {
+            try {
+                // Attempt to import the module using the provided URLs
+                const { startPlaygroundWeb } = await tryImportModule(moduleUrls);
+    
+                async function tryRemoteUrlsAndWordPressFiles(remoteUrls, wpFileUrls) {
+                    for (let remoteUrl of remoteUrls) {
+                        try {
+                            // Try each remote URL
+                            const client = await startPlaygroundWeb({
+                                iframe: document.getElementById('wp'),
+                                remoteUrl: remoteUrl,
+                                blueprint: {
+                                    "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+                                    "landingPage": "/",
+                                    "preferredVersions": {
+                                        "php": "8.0",
+                                        "wp": "6.6"
+                                    },
+                                    "phpExtensionBundles": [
+                                        "kitchen-sink"
+                                    ],
+                                    "login": false,
+                                    "steps": [
+                                        {
+                                            "step": "importWordPressFiles",
+                                            "wordPressFilesZip": await tryWordPressFilesZipUrls(wpFileUrls)
+                                        },
+                                        {
+                                            "step": "activateTheme",
+                                            "themeFolderName": "3pad"
+                                        },
+                                        {
+                                            "step": "runPHP",
+                                            "code": "<?php\nheader('Location: /');\nexit();\n?>"
+                                        }
+                                    ]
+                                }
+                            });
+    
+                            // If successful, stop trying further URLs
+                            console.log(`Loaded successfully from: ${remoteUrl}`);
+                            return client;
+                        } catch (error) {
+                            console.error(`Failed to load from: ${remoteUrl}, trying next...`);
+                        }
+                    }
+                    throw new Error('All remote URLs failed to load.');
+                }
+    
+                async function tryWordPressFilesZipUrls(urls) {
+                    for (let url of urls) {
+                        try {
+                            // Return the first successful wordPressFilesZip object
+                            console.log(`Trying WordPressFilesZip URL: ${url}`);
+                            return {
+                                "resource": "url",
+                                "url": url
+                            };
+                        } catch (error) {
+                            console.error(`Failed to load WordPress files from: ${url}, trying next...`);
+                        }
+                    }
+                    throw new Error('All WordPressFilesZip URLs failed to load.');
+                }
+    
+                // Define multiple remote URLs and WordPressFilesZip URLs
+                const remoteUrls = [
+                    'https://chipper-praline-addadd.netlify.app/remote.html',
+                    'https://alternative-url.com/remote.html'
+                ];
+    
+                const wpFileUrls = [
+                    'https://raw.githubusercontent.com/3Pad/3pad-wordpress/main/wp-content-zip/3pad.zip',
+                    'https://another-backup-url.com/3pad-playground.zip'
+                ];
+    
+                // Start the process with both remote URLs and WordPress files URLs
+                const client = await tryRemoteUrlsAndWordPressFiles(remoteUrls, wpFileUrls);
+                await client.isReady();
+                console.log('WordPress Playground is ready!');
+            } catch (error) {
+                console.error('Error initializing WordPress Playground:', error);
+            }
+        }
+    
+        // Start the initialization
+        initPlayground();
     </script>
+    
 </body>
 </html>
 

@@ -190,7 +190,7 @@ if (is_user_logged_in()) {
 								$html .= '<div class="column w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">';
 								$html .= '<a id="unlocklink" button="home" href="';
 
-								$html .= '/wp-admin/post.php?action=edit&post=' . $page_id . '" class="email-login w-button">🏠 Dashboard</a>';
+								$html .= '/./wp-admin/post.php?action=edit&post=' . $page_id . '" class="email-login w-button">🏠 Dashboard</a>';
 								$html .= '</div>';
 
 								$html .= '<div class="column-2 w-col w-col-3 w-col-small-small-stack w-col-tiny-tiny-stack">';
