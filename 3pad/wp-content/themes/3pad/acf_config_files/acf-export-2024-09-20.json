@@ -35,8 +35,9 @@
                     "class": "",
                     "id": ""
                 },
-                "default_value": "",
+                "default_value": "Get Started Here!",
                 "maxlength": 50,
+                "allow_in_bindings": 1,
                 "placeholder": "Enter Site Name Here",
                 "prepend": "",
                 "append": ""
@@ -730,7 +731,7 @@
                     "class": "",
                     "id": ""
                 },
-                "message": "First export your site & then upload the file (.zip) to any of the options below.\r\n<br>\r\n<div class=\"image-publishing\" style=\"flex-direction: row; flex-wrap: wrap; gap: 10px; justify-content: center; width: 100%; max-width: 1000px; margin: 0 auto; display: flex !important; \">\r\n    <a target=\"_blank\" href=\"https:\/\/tiiny.host\" style=\"flex: 1; min-width: 200px; box-sizing: border-box;\">\r\n        <img src=\"\/.\/wp-content\/themes\/3pad\/assets\/images\/tinyhost.png\" alt=\"Image 1\" style=\"width: 100%; height: auto; display: block;\">\r\n    <\/a>\r\n    <a target=\"_blank\" href=\"https:\/\/static.app\" style=\"flex: 1; min-width: 200px; box-sizing: border-box;\">\r\n        <img src=\"\/.\/wp-content\/themes\/3pad\/assets\/images\/static.png\" alt=\"Image 2\" style=\"width: 100%; height: auto; display: block;\">\r\n    <\/a>\r\n    <a target=\"_blank\" href=\"https:\/\/statichost.host\" style=\"flex: 1; min-width: 200px; box-sizing: border-box;\">\r\n        <img src=\"\/.\/wp-content\/themes\/3pad\/assets\/images\/statichost.png\" alt=\"Image 3\" style=\"width: 100%; height: auto; display: block;\">\r\n    <\/a>\r\n<\/div>",
+                "message": "First export your site & then upload the file (.zip) to any of the options below.\r\n<br>\r\n<div class=\"image-publishing\" style=\"flex-direction: row; flex-wrap: wrap; gap: 10px; justify-content: center; width: 100%; max-width: 1000px; margin: 0 auto; display: flex !important; \">\r\n    <a target=\"_blank\" href=\"https:\/\/tiiny.host\" style=\"flex: 1; min-width: 200px; box-sizing: border-box;\">\r\n        <img src=\"\/wp-content\/themes\/3pad\/assets\/images\/tinyhost.png\" alt=\"Image 1\" style=\"width: 100%; height: auto; display: block;\">\r\n    <\/a>\r\n    <a target=\"_blank\" href=\"https:\/\/static.app\" style=\"flex: 1; min-width: 200px; box-sizing: border-box;\">\r\n        <img src=\"\/wp-content\/themes\/3pad\/assets\/images\/static.png\" alt=\"Image 2\" style=\"width: 100%; height: auto; display: block;\">\r\n    <\/a>\r\n    <a target=\"_blank\" href=\"https:\/\/statichost.host\" style=\"flex: 1; min-width: 200px; box-sizing: border-box;\">\r\n        <img src=\"\/wp-content\/themes\/3pad\/assets\/images\/statichost.png\" alt=\"Image 3\" style=\"width: 100%; height: auto; display: block;\">\r\n    <\/a>\r\n<\/div>",
                 "new_lines": "wpautop",
                 "esc_html": 0
             }
@@ -812,7 +813,7 @@
                     "class": "",
                     "id": ""
                 },
-                "message": "<img class=\"instructions\" style=\"width: 100%;\" src=\"\/.\/wp-content\/themes\/3pad\/assets\/images\/pre_title.jpg\">",
+                "message": "<img class=\"instructions\" style=\"width: 100%;\" src=\"\/wp-content\/themes\/3pad\/assets\/images\/pre_title.jpg\">",
                 "new_lines": "wpautop",
                 "esc_html": 0
             },
@@ -1666,7 +1667,7 @@
         "label_placement": "left",
         "instruction_placement": "label",
         "hide_on_screen": "",
-        "active": true,
+        "active": false,
         "description": "Update Locks Configuration",
         "show_in_rest": 0
     },
@@ -1706,7 +1707,7 @@
                     "class": "",
                     "id": ""
                 },
-                "message": "<img class=\"instructions\" style=\"width: 100%;\" src=\"\/.\/wp-content\/themes\/3pad\/assets\/images\/text_links.jpg\">",
+                "message": "<img class=\"instructions\" style=\"width: 100%;\" src=\"\/wp-content\/themes\/3pad\/assets\/images\/text_links.jpg\">",
                 "new_lines": "wpautop",
                 "esc_html": 0
             },
@@ -2348,7 +2349,7 @@
                     "class": "",
                     "id": ""
                 },
-                "message": "<img class=\"instructions\" style=\"width: 100%;\" src=\"\/.\/wp-content\/themes\/3pad\/assets\/images\/background_image.jpg\">",
+                "message": "<img class=\"instructions\" style=\"width: 100%;\" src=\"\/wp-content\/themes\/3pad\/assets\/images\/background_image.jpg\">",
                 "new_lines": "wpautop",
                 "esc_html": 0
             },
@@ -2467,7 +2468,7 @@
                     "class": "",
                     "id": ""
                 },
-                "message": "<img class=\"instructions\" style=\"width: 100%;\" src=\"\/.\/wp-content\/themes\/3pad\/assets\/images\/background_video.gif\">",
+                "message": "<img class=\"instructions\" style=\"width: 100%;\" src=\"\/wp-content\/themes\/3pad\/assets\/images\/background_video.gif\">",
                 "new_lines": "wpautop",
                 "esc_html": 0
             },
@@ -2663,7 +2664,7 @@
                     "class": "",
                     "id": ""
                 },
-                "message": "<img class=\"instructions\" style=\"width: 100%;\" src=\"\/.\/wp-content\/themes\/3pad\/assets\/images\/corner_icons.jpg\">",
+                "message": "<img class=\"instructions\" style=\"width: 100%;\" src=\"\/wp-content\/themes\/3pad\/assets\/images\/corner_icons.jpg\">",
                 "new_lines": "wpautop",
                 "esc_html": 0
             },
@@ -7043,7 +7044,7 @@
                     "class": "",
                     "id": ""
                 },
-                "message": "<img class=\"instructions\" style=\"width: 100%;\" src=\"\/.\/wp-content\/themes\/3pad\/assets\/images\/social_icons.jpg\">",
+                "message": "<img class=\"instructions\" style=\"width: 100%;\" src=\"\/wp-content\/themes\/3pad\/assets\/images\/social_icons.jpg\">",
                 "new_lines": "wpautop",
                 "esc_html": 0
             },
@@ -10283,7 +10284,7 @@
                     "class": "",
                     "id": ""
                 },
-                "message": "<img class=\"instructions\" style=\"width: 100%;\" src=\"\/.\/wp-content\/themes\/3pad\/assets\/images\/bottom_menu.jpg\">",
+                "message": "<img class=\"instructions\" style=\"width: 100%;\" src=\"\/wp-content\/themes\/3pad\/assets\/images\/bottom_menu.jpg\">",
                 "new_lines": "wpautop",
                 "esc_html": 0
             },

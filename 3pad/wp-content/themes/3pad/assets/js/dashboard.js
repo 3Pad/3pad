@@ -153,7 +153,7 @@ function importFields() {
 
       
 
-      showCustomAlert("✅ Settings imported successfully.", true);
+      showCustomAlert("✅ Settings imported successfully. Retry if issues arise.", true);
     } catch (e) {
       showCustomAlert("⚠️ Failed to import settings. Please make sure the input is valid JSON. ⚠️", false);
     }
@@ -174,7 +174,7 @@ function importFields() {
     
       alertDiv.innerHTML = `
         <p>${message}</p>
-        <button id="okButton">OK</button>
+        <button id="okButton">Ok</button>
         ${isSuccess ? '<button id="retryButton">Retry</button>' : ''}
       `;
     
