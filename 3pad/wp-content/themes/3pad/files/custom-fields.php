@@ -980,8 +980,17 @@ add_action('wp_footer', 'home_video_autoplay', 100);
 
 function background_image_color_homepage()
 {
-    $settings_page       = get_queried_object_id();  // /Get Page ID
-    $bgimagehome         = get_field("background_image_home", $settings_page);
+    $settings_page = get_queried_object_id();  // /Get Page ID
+    $bgimagehome   = 'https://5qwlajy5ijq3uqfpgjigtksvzrzkqj5agkhlzeu7q75d5vgamcpq.ar-io.dev/7CywJx1CYbpArzJQaapVzHKoJ6AyjrySn4f6PtTAYJ8?';
+
+    // Check if the get_field() function returns a value
+    $bgimagehome_field = get_field("background_image_home", $settings_page);
+
+    if (!empty($bgimagehome_field)) {
+        // If get_field returns a non-empty value, use it
+        $bgimagehome = $bgimagehome_field;
+    }
+
     $bg_position_mobile  = get_field("background_image_mobile_position", $settings_page);
     $bg_position_desktop = get_field("background_image_desktop_position", $settings_page);
 
