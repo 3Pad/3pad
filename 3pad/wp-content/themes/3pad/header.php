@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang=en>
-    <meta content="This site was built with Web3 platform 3Pad. More Info at https://3pad.xyz">
-    <meta content="3Pad - Version 1.0">
+    <meta content="This site was built with Web3 platform Burnafter. More Info at https:/burnafter.eth.limo">
+    <meta content="Burnafter - Version 1.0">
     <?php echo '<meta content="Main-Site-Launchpad">'; ?>
 
     <meta charset=utf-8>
     <meta content="width=device-width,initial-scale=1" name=viewport>
     <meta content="ie=edge" http-equiv=x-ua-compatible>
-    <meta content="3Pad | Your content. Redifined." name=description>
-    <meta content="<?php echo get_field("site_title"); ?> | 3Pad" property=og:title>
-    <meta content=3Pad property=og:site_name>
-    <meta content="3Pad | Your content. Redifined." property=og:description>
+    <meta content="Burnafter | Build,Export,Yours Forever." name=description>
+    <meta content="<?php echo get_field("site_title"); ?> | Burnafter" property=og:title>
+    <meta content=Burnafter property=og:site_name>
+    <meta content="Burnafter | Build,Export,Yours Forever." property=og:description>
     <meta content="<?php echo get_theme_file_uri('/assets/images/favicon.ico'); ?>" property=og:image>
     <meta content="<?php echo get_theme_file_uri('/assets/images/favicon.ico'); ?>" property=twitter:image>
-    <meta content="<?php echo get_field("site_title"); ?> | 3Pad" name=twitter:title>
-    <meta content="3Pad | Your content. Redifined." name=twitter:description>
+    <meta content="<?php echo get_field("site_title"); ?> | Burnafter" name=twitter:title>
+    <meta content="Burnafter | Build,Export,Yours Forever." name=twitter:description>
     <meta content=summary_large_image property=twitter:card>
-    <meta content=3Pad name=twitter:domain>
+    <meta content=Burnafter name=twitter:domain>
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="icon" href="<?php echo get_field("app_icon_url"); ?>">

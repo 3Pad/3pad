@@ -266,7 +266,7 @@ if (!is_admin()) {
         }
 
         echo "
-<title>$site_title | 3Pad</title>
+<title>$site_title | Burnafter</title>
 ";
     }
 

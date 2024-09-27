@@ -106,10 +106,8 @@ $custom      = get_field("custom_domain", $authpage_id);
  */
 
 echo '
-<script defer id="nonce-script" type="text/javascript">
-            var myNonce = "' . esc_js($custom_nonce) . '";
-          </script>
- <script defer nonce="<?php echo ' . $nonce . ' ?>">
+<script defer id="nonce-script" type="text/javascript"> var myNonce = "' . esc_js($custom_nonce) . '"; </script>
+ <script defer>
 document.addEventListener("DOMContentLoaded", function() {
   var sitePath = document.getElementById("site_path");
    var customValue = ' . json_encode($custom) . ';

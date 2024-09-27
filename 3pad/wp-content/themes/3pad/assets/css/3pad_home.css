@@ -249,9 +249,9 @@ body {
 }
 
 #logo {
-  background-image: url("/wp-content/themes/3pad/assets/images/3pad_logo.png") !important;
+  background-image: url("/wp-content/themes/3pad/assets/images/burn_logo.png") !important;
   width: 160px;
-  height: 100px;
+  height: 60px;
   display: block;
   background-size: contain;
   background-position: center;

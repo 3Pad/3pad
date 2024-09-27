@@ -843,88 +843,135 @@ jQuery(document).ready(function($) {
 });
 
 ///////BG IMAGE
-/*
 document.addEventListener("DOMContentLoaded", function () {
-  // Select and hide the acf-input area inside #bg-image-base64
-  var acfInputArea = document.querySelector("#bg-image-base64 > div.acf-input");
-  if (acfInputArea) {
-    acfInputArea.style.display = "none"; // Hide the .acf-input area
+  // Select and hide the acf-input areas for logo and background
+  var logoAcfInputArea = document.querySelector("#logo-base64 > div.acf-input");
+  var backgroundAcfInputArea = document.querySelector("#background-base64 > div.acf-input");
+
+  // IDs of ACF fields for background and logo
+  var backgroundAcfField = document.querySelector("#acf-field_6397a0fa13f1d");
+  var logoAcfField = document.querySelector("#acf-field_6381d68145acd");
+
+  if (logoAcfInputArea) {
+    logoAcfInputArea.style.display = "none"; // Hide the .acf-input area for logo
   } else {
-    console.error("#bg-image-base64 > div.acf-input not found.");
+    console.error("#logo-base64 > div.acf-input not found.");
   }
 
-  // Create a container for the URL input and image upload elements
-  var container = document.createElement("div");
-  container.id = "image-input-container";
-  container.style.alignItems = "center";
-  container.style.margin = "20px 0";
-  container.style.width = "100%";
-
-  // Create the URL input field
-  var urlInput = document.createElement("input");
-  urlInput.type = "text";
-  urlInput.placeholder = "Enter image URL or Base64";
-  urlInput.style.flex = "1"; // Make the input take full width
-  urlInput.style.marginRight = "10px";
-  urlInput.id = "acf-field_detect"; // Set the ID here
-
-  // Create the image upload button
-  var uploadButton = document.createElement("input");
-  uploadButton.type = "file";
-  uploadButton.accept = "image/*";
-  uploadButton.id = "acf-field_detect_image";
-  uploadButton.style.flexShrink = "0"; // Prevent the button from shrinking
-  uploadButton.style.color = "wheat"; // Prevent the button from shrinking
-
-
-  // Append the URL input and upload button to the container
-  container.appendChild(urlInput);
-  container.appendChild(uploadButton);
-
-  // Append the container and image preview below it
-  if (acfInputArea && acfInputArea.parentNode) {
-    acfInputArea.parentNode.insertBefore(container, acfInputArea);
+  if (backgroundAcfInputArea) {
+    backgroundAcfInputArea.style.display = "none"; // Hide the .acf-input area for background
   } else {
-    console.error("Unable to find the parent of #bg-image-base64 > div.acf-input.");
-    // Fallback: append to body if parent not found
-    document.body.appendChild(container);
+    console.error("#background-base64 > div.acf-input not found.");
   }
 
-  // Function to update the textarea with Base64 or URL and trigger publish
-  function updateTextareaAndTrigger(value) {
-    if (acfInputArea) {
-      // Access the textarea within the hidden .acf-input
-      var textarea = acfInputArea.querySelector("textarea");
-      if (textarea) {
-        textarea.value = value;
-        textarea.dispatchEvent(new Event('input'));  // Trigger input event for live updates
-        // Trigger the publish button click
-        $("#publish").trigger("click");
-      } else {
-        console.error("Textarea not found inside #bg-image-base64 > div.acf-input.");
+  // Function to create input and upload container
+  function createInputContainer() {
+    var container = document.createElement("div");
+    container.style.display = "flex";
+    container.style.alignItems = "center";
+    container.style.margin = "20px 0";
+    container.style.width = "100%";
+
+    var urlInput = document.createElement("input");
+    urlInput.type = "text";
+    urlInput.placeholder = "Enter image URL or Base64";
+    urlInput.style.flex = "1"; // Make the input take full width
+    urlInput.style.marginRight = "10px";
+    urlInput.style.padding = "8px";
+    urlInput.style.borderRadius = "4px";
+    urlInput.style.border = "1px solid #ccc";
+    
+    var uploadLabel = document.createElement("label");
+    uploadLabel.textContent = "🖼️ Upload Image"; // Add image emoji and custom label
+    uploadLabel.style.cursor = "pointer"; 
+    uploadLabel.style.padding = "10px 15px";
+    uploadLabel.style.backgroundColor = "#007bff";
+    uploadLabel.style.color = "#fff";
+    uploadLabel.style.borderRadius = "5px";
+    uploadLabel.style.display = "inline-block";
+    
+    var uploadButton = document.createElement("input");
+    uploadButton.type = "file";
+    uploadButton.accept = "image/*";
+    uploadButton.style.display = "none"; // Hide the file input, we'll use the label to trigger it
+
+    // Attach the upload input to the label
+    uploadLabel.appendChild(uploadButton);
+
+    container.appendChild(urlInput);
+    container.appendChild(uploadLabel);
+
+    return { container, urlInput, uploadButton };
+  }
+
+  // Function to handle Base64 conversion for image uploads
+  function handleImageUpload(uploadButton, urlInput, acfField) {
+    uploadButton.addEventListener("change", function () {
+      var file = this.files[0];
+      if (file) {
+        var reader = new FileReader();
+        reader.onload = function () {
+          var base64data = reader.result;
+          urlInput.value = base64data; // Display the Base64 string in the input
+          updateAcfField(acfField, base64data); // Update ACF field with the Base64 value
+        };
+        reader.readAsDataURL(file);
       }
+    });
+
+    // Automatically update ACF field when a URL is entered
+    urlInput.addEventListener("input", function () {
+      updateAcfField(acfField, urlInput.value);
+    });
+  }
+
+  // Function to update ACF field and trigger "publish" button
+  function updateAcfField(acfField, value) {
+    if (acfField && value) {
+      acfField.value = value; // Update the hidden ACF field with the Base64 or URL
+      acfField.dispatchEvent(new Event('input')); // Trigger input event for live updates
+      console.log(`Updated ACF field: ${acfField.id}`);
+
+      // Automatically click the "publish" button
+      const updateBtn = document.getElementById("publish");
+      if (updateBtn) {
+        updateBtn.click();
+        console.log('Publish button clicked.');
+      }
+    } else {
+      console.error("Error: ACF field or value is missing.");
     }
   }
 
-  
-  
-  // Handle image upload and convert to Base64
-  uploadButton.addEventListener("change", function () {
-    var file = this.files[0];
-    if (file) {
-      var reader = new FileReader();
-      reader.onload = function () {
-        var base64data = reader.result;
-        urlInput.value = base64data; // Display the Base64 string in the input
-        updateTextareaAndTrigger(base64data);
- 
-      };
-      reader.readAsDataURL(file);
-    }
-  });
+  // Create the input container and append for logo
+  var logoInputElements = createInputContainer();
+  var logoContainer = logoInputElements.container;
+  var logoUrlInput = logoInputElements.urlInput;
+  var logoUploadButton = logoInputElements.uploadButton;
+
+  if (logoAcfInputArea && logoAcfInputArea.parentNode) {
+    logoAcfInputArea.parentNode.insertBefore(logoContainer, logoAcfInputArea);
+  } else {
+    document.body.appendChild(logoContainer); // Fallback: append to body if parent not found
+  }
+
+  handleImageUpload(logoUploadButton, logoUrlInput, logoAcfField);
+
+  // Create the input container and append for background
+  var backgroundInputElements = createInputContainer();
+  var backgroundContainer = backgroundInputElements.container;
+  var backgroundUrlInput = backgroundInputElements.urlInput;
+  var backgroundUploadButton = backgroundInputElements.uploadButton;
+
+  if (backgroundAcfInputArea && backgroundAcfInputArea.parentNode) {
+    backgroundAcfInputArea.parentNode.insertBefore(backgroundContainer, backgroundAcfInputArea);
+  } else {
+    document.body.appendChild(backgroundContainer); // Fallback: append to body if parent not found
+  }
+
+  handleImageUpload(backgroundUploadButton, backgroundUrlInput, backgroundAcfField);
 });
 
-*/
 ///////BG IMAGE
 
 
@@ -972,7 +1019,7 @@ jQuery(document).ready(function ($) {
           const url = URL.createObjectURL(content);
           const link = document.createElement('a');
           link.href = url;
-          link.download = "exported_files.zip";
+          link.download = "exported_site.zip";
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);

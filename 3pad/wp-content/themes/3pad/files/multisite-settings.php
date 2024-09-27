@@ -41,7 +41,7 @@ function create_default_pages()
 				$wpdb->posts,
 				array(
 					'ID'             => 10,
-					'post_title'     => 'Home Page',
+					'post_title'     => 'Launchpad',
 					'post_status'    => 'publish',
 					'post_type'      => 'page',
 					'comment_status' => 'closed',
@@ -67,7 +67,7 @@ function create_default_pages()
 				$wpdb->posts,
 				array(
 					'ID'             => 1000,
-					'post_title'     => 'Home Page',
+					'post_title'     => 'Launchpad',
 					'post_status'    => 'publish',
 					'post_type'      => 'page',
 					'comment_status' => 'closed',

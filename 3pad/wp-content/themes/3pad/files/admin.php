@@ -549,8 +549,8 @@ add_filter('wp_revisions_to_keep', 'limit_post_revisions', 10, 2);
 // /Admin Tiltle & Favicon Changes
 function remove_admin_bar_wp_title($admin_title)
 {
-  // Replace "WordPress" with "Dashboard | 3Pad" in the admin title
-  $admin_title = preg_replace('/WordPress/', 'Dashboard | 3Pad', $admin_title);
+  // Replace "WordPress" with "Dashboard | Burnafter" in the admin title
+  $admin_title = preg_replace('/WordPress/', 'Dashboard | Burnafter', $admin_title);
 
   return $admin_title;
 }

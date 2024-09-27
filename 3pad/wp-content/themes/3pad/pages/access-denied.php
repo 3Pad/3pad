@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<title>Membership Inactive | 3Pad</title>
+<title>Membership Inactive | Burnafter</title>
 
 
 

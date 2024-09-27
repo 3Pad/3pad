@@ -46,20 +46,86 @@ window.addEventListener('unlockProtocol', function (e) {
   }
 });
 
-var unlockProtocolConfig = {
-  "icon": "",
+// Check if 'unlock_nonce' is present in sessionStorage
+if (!sessionStorage.getItem('unlock_nonce')) {
+  // 'unlock_nonce' is not set, execute the unlockProtocolConfig code
+  var unlockProtocolConfig = {
+      "icon": "https://053d5f40691c2c46d614df8c3be6ac57.ipfs.4everland.link/ipfs/bafybeieqfzh2jxrbjstx5h5h6lktspb2yilzpn4eizueqsvcebubvimjci",
+      "locks": {
+          "0x89a1b8642a6942f619f78d5e89e23bb14ad03e26": {
+              "name": "Free Access",
+              "order": 0,
+              "network": 137,
+              "recipient": "",
+              "dataBuilder": "",
+              "emailRequired": true,
+          "maxRecipients": null,
+              "captcha": true,
+          }
+      },
+      "title": "Gain Access",
+      "referrer": "0xd5e3a9199cC1DeD984B44892ef5c8fBB93Bf62d6",
+      "skipSelect": false,
+      "hideSoldOut": false,
+      "pessimistic": true,
+      "skipRecipient": true,
+      "endingCallToAction": "Access Granted",
+      "persistentCheckout": false,
+      "redirectUri": window.location.href
+  };
+
+  // Additional code to use the unlockProtocolConfig as needed
+  console.log('unlockProtocolConfig is loaded because unlock_nonce is not set.');
+} else {
+  var unlockProtocolConfig = {
   "locks": {
-      "0x89a1b8642a6942f619f78d5e89e23bb14ad03e26": { "name": "Free Access", "order": 0, "network": 137, "recipient": "", "dataBuilder": "", "emailRequired": true, "maxRecipients": null }
+    "0x4b63670232e58574c9f94b2382e7db27161b66ea": {
+      "network": 137,
+      "skipRecipient": true,
+      "name": "A Dollar A Day Contribution",
+      "captcha": false,
+      "password": false,
+      "promo": false,
+      "emailRequired": false,
+      "maxRecipients": null,
+      "dataBuilder": "",
+      "recurringPayments": "forever"
+    },
+    "0x8d9799dbb790af451f4370bcae727cf33bcb35b6": {
+      "network": 137,
+      "name": "A Monthly Contribution",
+      "recurringPayments": "forever",
+      "skipRecipient": true,
+      "captcha": false,
+      "password": false,
+      "promo": false,
+      "emailRequired": false,
+      "maxRecipients": null,
+      "dataBuilder": ""
+      },
+    "0x89a1b8642a6942f619f78d5e89e23bb14ad03e26": {
+
+            "order": 0,
+            "network": 137,
+            "recipient": "",
+            "dataBuilder": "",
+            "emailRequired": true,
+            "maxRecipients": null,
+            "name": "Access Key",
+        }
   },
-  "title": "Gain Access",
-  "referrer": "0xd5e3a9199cC1DeD984B44892ef5c8fBB93Bf62d6",
-  "skipSelect": false,
-  "hideSoldOut": false,
-  "pessimistic": true,
+  "pessimistic": false,
   "skipRecipient": true,
-  "endingCallToAction": "Unlock",
-  "persistentCheckout": true,
-  "redirectUri": window.location.href
+  "title": "Your Contribution Goes A Long Way & You Can Always Cancel Anytime | Burnafter",
+  "icon": "https://media.giphy.com/media/E1bpjy0otOn3a9bn8s/giphy-downsized.gif",
+  "persistentCheckout": false,
+  "referrer": "",
+  "hideSoldOut": false
+  
+  };
+  
+ 
+  console.log('unlock_nonce is already present in sessionStorage.');
 }
 
 
@@ -72,7 +138,8 @@ document.addEventListener('DOMContentLoaded', function () {
           e.preventDefault(); // Prevent default behavior of the link
           
           localStorage.removeItem('userInfo'); // Clear the local storage key
-          location.reload(); // Refresh the page
+          window.location.href; // Reload to /?current with a timestamp to bypass cache
+
       });
   }
 });

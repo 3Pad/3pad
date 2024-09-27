@@ -433,6 +433,93 @@ function fadeOutElements(selector) {
   });
 });
 
+// Ensure the script runs after the DOM is fully loaded
+window.onload = function () {
+    // Function to show the install instructions popup
+    window.showInstallPopup = function() {
+        const popup = document.getElementById('pwa-installPopup');
+        const instructions = document.getElementById('pwa-instructions');
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+        // Check if it's iOS
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            instructions.innerHTML = `
+                <p>To install this app on iOS:</p>
+                <ol>
+                    <li>Tap the <strong>Share</strong> button in Safari's bottom bar.</li>
+                    <li>Scroll down and tap <strong>Add to Home Screen</strong>.</li>
+                    <li>Confirm by tapping <strong>Add</strong> in the top-right corner.</li>
+                </ol>
+            `;
+        } 
+        // Check if it's Android
+        else if (/android/i.test(userAgent)) {
+            instructions.innerHTML = `
+                <p>To install this app on Android:</p>
+                <ol>
+                    <li>Tap the <strong>three dots</strong> menu in the top-right corner of your browser.</li>
+                    <li>Select <strong>Add to Home Screen</strong>.</li>
+                    <li>Confirm by tapping <strong>Add</strong>.</li>
+                </ol>
+            `;
+        } 
+        // Default message if platform cannot be detected
+        else {
+            // Check for Safari
+            if (userAgent.includes("Safari") && !userAgent.includes("Chrome")) {
+                instructions.innerHTML = `
+                    <p>To install this app in Safari:</p>
+                    <ol>
+                        <li>Tap the <strong>Share</strong> button in Safari's bottom bar.</li>
+                        <li>Scroll down and tap <strong>Add to Home Screen</strong>.</li>
+                        <li>Confirm by tapping <strong>Add</strong> in the top-right corner.</li>
+                    </ol>
+                `;
+            } 
+            // Check for Chrome
+            else if (userAgent.includes("Chrome")) {
+                instructions.innerHTML = `
+                    <p>To install this app in Chrome:</p>
+                    <ol>
+                        <li>Tap the <strong>three dots</strong> menu in the top-right corner of your browser.</li>
+                        <li>Select <strong>Add to Home Screen</strong>.</li>
+                        <li>Confirm by tapping <strong>Add</strong>.</li>
+                    </ol>
+                `;
+            } 
+            // Default message if no specific browser is detected
+            else {
+                instructions.innerHTML = `
+                    <p>We couldn't detect your platform. Please use either Safari or Chrome and follow these steps to install:</p>
+                    <ol>
+                        <li>Open the browser menu.</li>
+                        <li>Look for the <strong>Add to Home Screen</strong> option.</li>
+                        <li>Confirm the installation.</li>
+                    </ol>
+                `;
+            }
+        }
+        
+        // Show the popup
+        popup.style.display = 'block';
+    };
+
+    // Function to close the popup
+    window.closePopup = function() {
+        const popup = document.getElementById('pwa-installPopup');
+        popup.style.display = 'none';
+    };
+
+    // Close the popup when clicking outside the content
+    window.addEventListener('click', function (event) {
+        const popup = document.getElementById('pwa-installPopup');
+        if (event.target === popup) {
+            popup.style.display = 'none';
+        }
+    });
+};
+
+
 
 // Register Service Worker
 if ("serviceWorker" in navigator) {
